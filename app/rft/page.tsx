@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DocPage } from "@/components/DocPage";
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "RFT by WhatBit",
@@ -15,7 +16,7 @@ export default function Page() {
       blocks={[
         {
           heading: "What to send",
-          text: "Email the documents to hello@whatbit.io. A short note on timeline, constraints, and what “good” looks like helps more than a long cover letter.",
+          text: `Email the documents to ${CONTACT_EMAIL}. A short note on timeline, constraints, and what “good” looks like helps more than a long cover letter.`,
         },
         {
           heading: "What happens next",
@@ -23,7 +24,7 @@ export default function Page() {
         },
       ]}
       cta={{
-        href: "mailto:hello@whatbit.io?subject=RFT",
+        href: `${CONTACT_MAILTO}?subject=RFT`,
         label: "Email the pack",
       }}
     />

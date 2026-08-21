@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DocPage } from "@/components/DocPage";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Privacy — WhatBit",
@@ -17,7 +18,7 @@ export default function Page() {
           text: "If you write to us, we use your contact details to reply. We don’t sell personal information.",
         },
         {
-          text: "When a full policy exists, it will live here. Until then, questions about how WhatBit handles information go to hello@whatbit.io.",
+          text: `When a full policy exists, it will live here. Until then, questions about how WhatBit handles information go to ${CONTACT_EMAIL}.`,
         },
       ]}
     />

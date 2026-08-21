@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DocPage } from "@/components/DocPage";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Terms — WhatBit",
@@ -17,7 +18,7 @@ export default function Page() {
           text: "This site describes WhatBit and its products. Pages marked in development are exactly that — not an offer of a finished product.",
         },
         {
-          text: "For anything you’d normally find in terms and conditions, write to hello@whatbit.io.",
+          text: `For anything you’d normally find in terms and conditions, write to ${CONTACT_EMAIL}.`,
         },
       ]}
     />

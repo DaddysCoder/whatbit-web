@@ -1,4 +1,5 @@
 import { FRAME_APP_URL } from "@/lib/products";
+import { CONTACT_MAILTO } from "@/lib/site";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
@@ -144,7 +145,7 @@ export function FramePage() {
             >
               Open Frame
             </a>
-            <a href="mailto:hello@whatbit.io" className={styles.ctaSecondary}>
+            <a href={CONTACT_MAILTO} className={styles.ctaSecondary}>
               Get in touch
             </a>
           </div>

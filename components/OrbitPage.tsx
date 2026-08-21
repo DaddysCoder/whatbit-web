@@ -1,6 +1,7 @@
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
+import { CONTACT_MAILTO } from "@/lib/site";
 import styles from "./OrbitPage.module.css";
 
 export function OrbitPage() {
@@ -153,7 +154,7 @@ export function OrbitPage() {
       <div className={styles.ctaBlock}>
         <div className={styles.ctaInner}>
           <h2 className={styles.ctaTitle}>Ready to see your week differently?</h2>
-          <a href="mailto:hello@whatbit.io" className={styles.ctaBtn}>
+          <a href={CONTACT_MAILTO} className={styles.ctaBtn}>
             Get in touch
           </a>
         </div>

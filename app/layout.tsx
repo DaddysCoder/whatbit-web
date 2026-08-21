@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat, Nunito } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -15,6 +16,7 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "WhatBit — We figure out what's actually going on",
   description:
     "WhatBit is a small Australian problem-solving company — and the family of tools we've built along the way.",

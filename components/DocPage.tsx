@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/site";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
 import styles from "./DocPage.module.css";
@@ -46,7 +47,7 @@ export function DocPage({
           </p>
         ) : null}
         <p className={styles.mail}>
-          <a href="mailto:hello@whatbit.io">hello@whatbit.io</a>
+          <a href={CONTACT_MAILTO}>{CONTACT_EMAIL}</a>
         </p>
         <Link href="/" className={styles.back}>
           ← Back home

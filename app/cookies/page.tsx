@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DocPage } from "@/components/DocPage";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Cookies — WhatBit",
@@ -17,7 +18,7 @@ export default function Page() {
           text: "This site is a brochure. If we use cookies beyond what’s needed to run the pages, we’ll describe them here.",
         },
         {
-          text: "Questions about cookies on this site go to hello@whatbit.io.",
+          text: `Questions about cookies on this site go to ${CONTACT_EMAIL}.`,
         },
       ]}
     />

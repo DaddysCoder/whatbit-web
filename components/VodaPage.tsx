@@ -5,6 +5,7 @@ import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
 import { VODA_PRODUCT } from "@/lib/products";
+import { CONTACT_MAILTO } from "@/lib/site";
 import styles from "./VodaPage.module.css";
 
 const NODE_COLORS = ["#0B0B0C", "#B9C6FF", "#3452FF", "#B9C6FF", "#0B0B0C"];
@@ -24,7 +25,7 @@ export function VodaPage() {
   const [doneSteps, setDoneSteps] = useState<number[]>([]);
 
   const forecast = FORECASTS[forecastIdx];
-  const mailto = `mailto:hello@whatbit.io?subject=${encodeURIComponent(
+  const mailto = `${CONTACT_MAILTO}?subject=${encodeURIComponent(
     "Notify me about VODA"
   )}&body=${encodeURIComponent(email ? `Please notify ${email} when VODA is ready.` : "")}`;
 

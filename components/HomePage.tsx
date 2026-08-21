@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
+import { CONTACT_MAILTO } from "@/lib/site";
 import styles from "./HomePage.module.css";
 
 const defaultTilt = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0)";
@@ -436,7 +437,7 @@ export function HomePage() {
       <section id="cta" className={styles.ctaBlock} ref={setNode("cta")}>
         <div className={styles.ctaInner} style={revealStyle(r("cta"), 0)}>
           <h2 className={styles.ctaTitle}>Got a problem worth solving?</h2>
-          <a href="mailto:hello@whatbit.io" className={styles.ctaBtn}>
+          <a href={CONTACT_MAILTO} className={styles.ctaBtn}>
             Get in touch
           </a>
         </div>

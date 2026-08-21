@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { WaitlistProduct } from "@/lib/products";
+import { CONTACT_MAILTO } from "@/lib/site";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
@@ -10,7 +11,7 @@ import styles from "./WaitlistPage.module.css";
 export function WaitlistPage({ product }: { product: WaitlistProduct }) {
   const [email, setEmail] = useState("");
 
-  const mailto = `mailto:hello@whatbit.io?subject=${encodeURIComponent(
+  const mailto = `${CONTACT_MAILTO}?subject=${encodeURIComponent(
     `Notify me about ${product.name}`
   )}&body=${encodeURIComponent(email ? `Please notify ${email} when ${product.name} is ready.` : "")}`;
 
