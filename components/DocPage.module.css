@@ -58,10 +58,35 @@
   margin-bottom: 8px;
 }
 
+.cta {
+  margin-top: 40px;
+}
+
+.cta a {
+  display: inline-block;
+  background: var(--doc-accent, #7b2ff7);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 12px 20px;
+  border-radius: 8px;
+}
+
+.cta a:hover {
+  color: #ffffff;
+  filter: brightness(0.92);
+  text-decoration: none;
+}
+
 .mail {
   margin-top: 40px;
   font-size: 15px;
   font-weight: 700;
+}
+
+.cta + .mail {
+  margin-top: 20px;
 }
 
 .mail a {

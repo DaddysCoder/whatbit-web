@@ -14,6 +14,7 @@ type DocPageProps = {
   lede?: string;
   blocks: DocBlock[];
   accent?: string;
+  cta?: { href: string; label: string };
 };
 
 export function DocPage({
@@ -22,6 +23,7 @@ export function DocPage({
   lede,
   blocks,
   accent = "#7B2FF7",
+  cta,
 }: DocPageProps) {
   return (
     <div className={styles.page} style={{ ["--doc-accent" as string]: accent }}>
@@ -38,6 +40,11 @@ export function DocPage({
             </div>
           ))}
         </div>
+        {cta ? (
+          <p className={styles.cta}>
+            <a href={cta.href}>{cta.label}</a>
+          </p>
+        ) : null}
         <p className={styles.mail}>
           <a href="mailto:hello@whatbit.io">hello@whatbit.io</a>
         </p>
