@@ -84,6 +84,16 @@ export function SiteNav({
             About
           </Link>
         ) : null}
+        {variant === "inner" ? (
+          <>
+            <Link href="/rft" className={styles.textLink}>
+              RFT
+            </Link>
+            <Link href="/elsewhere" className={styles.textLink}>
+              Elsewhere
+            </Link>
+          </>
+        ) : null}
         <Link href={ctaHref} className={styles.cta}>
           Get in touch
         </Link>
@@ -109,6 +119,12 @@ export function SiteNav({
           </Link>
           <Link href="/about" onClick={() => setOpen(false)}>
             About
+          </Link>
+          <Link href="/rft" onClick={() => setOpen(false)}>
+            RFT
+          </Link>
+          <Link href="/elsewhere" onClick={() => setOpen(false)}>
+            Elsewhere
           </Link>
           <Link href={ctaHref} className={styles.cta} onClick={() => setOpen(false)}>
             Get in touch

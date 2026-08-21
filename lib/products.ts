@@ -5,10 +5,27 @@ export type ProductSlug =
   | "vector"
   | "frame"
   | "field"
-  | "arc";
+  | "arc"
+  | "voda";
+
+export const FRAME_APP_URL = "https://screen-fba.polina-67d.workers.dev/";
+
+export const VODA_PRODUCT = {
+  slug: "voda" as const,
+  name: "VODA",
+  tagline: "See the business as a graph. Then see what happens next.",
+  description:
+    "VODA is WhatBit's intelligence engine. It maps how work actually moves through a business, then runs predictive models against that map to say what's coming — a bottleneck, a risk, an opening.",
+  accent: "#3452FF",
+  accentHover: "#1E3AB8",
+  selection: "#E1E7FF",
+  gradient: "linear-gradient(135deg,#6E8CFF,#3452FF)",
+  glow: "rgba(52,82,255,0.3)",
+  notifyHover: "#6E8CFF",
+};
 
 export type WaitlistProduct = {
-  slug: Exclude<ProductSlug, "orbit">;
+  slug: Exclude<ProductSlug, "orbit" | "frame" | "voda">;
   name: string;
   tagline: string;
   accent: string;
@@ -50,16 +67,6 @@ export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
     glow: "rgba(139,92,246,0.3)",
   },
   {
-    slug: "frame",
-    name: "Frame",
-    tagline: "The shape you build inside.",
-    accent: "#E8542E",
-    accentHover: "#B5391B",
-    selection: "#FBDDD3",
-    gradient: "linear-gradient(135deg,#F07655,#E8542E)",
-    glow: "rgba(232,84,46,0.3)",
-  },
-  {
     slug: "field",
     name: "Field",
     tagline: "Everywhere your data lives, together.",
@@ -83,10 +90,11 @@ export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
 
 export const PRODUCT_LINKS: { href: string; label: string }[] = [
   { href: "/orbit", label: "Orbit" },
+  { href: "/frame", label: "Frame" },
+  { href: "/voda", label: "VODA" },
   { href: "/axil", label: "Axil" },
   { href: "/trace", label: "Trace" },
   { href: "/vector", label: "Vector" },
-  { href: "/frame", label: "Frame" },
   { href: "/field", label: "Field" },
   { href: "/arc", label: "Arc" },
 ];

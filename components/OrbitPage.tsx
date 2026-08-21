@@ -114,7 +114,10 @@ export function OrbitPage() {
         </div>
 
         <div className={`${styles.feat} ${styles.featReverse}`}>
-          <div className={styles.viz} style={{ background: "linear-gradient(160deg,#FFF8F2,#FFFFFF)" }}>
+          <div
+            className={`${styles.viz} ${styles.vizDelay1}`}
+            style={{ background: "linear-gradient(160deg,#FFF8F2,#FFFFFF)" }}
+          >
             <div className={styles.rate}>
               $354<span className={styles.rateUnit}>/hr</span>
             </div>
@@ -136,7 +139,10 @@ export function OrbitPage() {
               Splose, Google and Outlook feed straight into the same week. Turn any source off and its events disappear from view — nothing deleted, just out of the way.
             </p>
           </div>
-          <div className={`${styles.viz} ${styles.sources}`} style={{ background: "linear-gradient(160deg,#F2FBF9,#FFFFFF)" }}>
+          <div
+            className={`${styles.viz} ${styles.sources} ${styles.vizDelay2}`}
+            style={{ background: "linear-gradient(160deg,#F2FBF9,#FFFFFF)" }}
+          >
             <div className={styles.source}>Splose</div>
             <div className={styles.source}>Google</div>
             <div className={`${styles.source} ${styles.sourceOff}`}>Outlook</div>

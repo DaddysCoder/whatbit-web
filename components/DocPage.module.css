@@ -1,0 +1,98 @@
+.page {
+  min-height: 100vh;
+  background: #ffffff;
+  color: #0b0b0c;
+  display: flex;
+  flex-direction: column;
+}
+
+.body {
+  flex: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 140px 24px 80px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--doc-accent, #7b2ff7);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 52px);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+.lede {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-top: 24px;
+  color: #0b0b0c;
+}
+
+.blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 36px;
+}
+
+.block p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #6b6b6b;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: #0b0b0c;
+  margin-bottom: 8px;
+}
+
+.mail {
+  margin-top: 40px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.mail a {
+  color: var(--doc-accent, #7b2ff7);
+}
+
+.mail a:hover {
+  color: #5b21b6;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 28px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0b0b0c;
+}
+
+.back:hover {
+  color: #0b0b0c;
+  text-decoration: none;
+}
+
+.footer {
+  background: #0b0b0c;
+  color: #ffffff;
+  padding: 48px 40px;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 20px;
+  }
+}

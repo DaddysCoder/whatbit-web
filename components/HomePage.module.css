@@ -195,11 +195,12 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
 }
 
 .card {
+  grid-column: span 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -219,8 +220,9 @@
   color: inherit;
 }
 
-.orbitCard {
-  grid-column: span 2;
+.orbitCard,
+.frameCard {
+  grid-column: span 3;
   padding: 40px;
   gap: 28px;
   min-height: unset;
@@ -230,6 +232,18 @@
   transform: translateY(-10px) scale(1.05);
   box-shadow: 0 30px 70px rgba(123, 47, 247, 0.16);
   background: rgba(123, 47, 247, 0.03);
+}
+
+.frameCard:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 30px 70px rgba(232, 84, 46, 0.16);
+  background: rgba(232, 84, 46, 0.04);
+}
+
+.voda:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 26px 60px rgba(52, 82, 255, 0.18);
+  background: rgba(52, 82, 255, 0.05);
 }
 
 .axil:hover {
@@ -248,12 +262,6 @@
   transform: translateY(-10px) scale(1.05);
   box-shadow: 0 26px 60px rgba(123, 47, 247, 0.16);
   background: rgba(123, 47, 247, 0.03);
-}
-
-.frame:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 26px 60px rgba(232, 84, 46, 0.18);
-  background: rgba(232, 84, 46, 0.05);
 }
 
 .field:hover {
@@ -284,6 +292,11 @@
   border-radius: 20px;
 }
 
+.frameLive {
+  color: #e8542e;
+  background: #fbddd3;
+}
+
 .cardName {
   font-family: var(--font-display);
   font-weight: 700;
@@ -307,7 +320,8 @@
   font-size: 14px;
 }
 
-.orbitHeadline {
+.orbitHeadline,
+.frameHeadline {
   font-size: 16px;
   font-weight: 700;
   color: #111111;
@@ -337,8 +351,13 @@
   transition: gap 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.orbitCard:hover .explore {
+.orbitCard:hover .explore,
+.frameCard:hover .explore {
   gap: 11px;
+}
+
+.frameExplore {
+  color: #e8542e;
 }
 
 .pricing {
@@ -568,6 +587,31 @@
   margin: 32px auto 0;
   font-size: 12px;
   color: #6b6b6b;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.legal a {
+  color: #6b6b6b;
+}
+
+.legal a:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card,
+  .orbitCard,
+  .frameCard {
+    grid-column: auto;
+  }
 }
 
 @media (max-width: 768px) {
@@ -582,8 +626,14 @@
     padding-right: 20px;
   }
 
-  .orbitCard {
-    grid-column: span 1;
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card,
+  .orbitCard,
+  .frameCard {
+    grid-column: auto;
   }
 
   .aboutBand {
@@ -591,7 +641,8 @@
   }
 
   .card:hover,
-  .orbitCard:hover {
+  .orbitCard:hover,
+  .frameCard:hover {
     transform: none;
   }
 }

@@ -1,0 +1,148 @@
+.ctaRow {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  display: inline-block;
+  background: #e8542e;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 30px;
+  border-radius: 10px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.ctaPrimary:hover {
+  background: #f07655;
+  color: #ffffff;
+  text-decoration: none;
+  transform: scale(1.03);
+}
+
+.ctaPrimary:active {
+  transform: scale(0.97);
+}
+
+.ctaSecondary {
+  display: inline-block;
+  background: transparent;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 30px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  transition: border-color 0.3s ease, transform 0.2s ease, background 0.3s ease;
+}
+
+.ctaSecondary:hover {
+  color: #ffffff;
+  text-decoration: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.06);
+  transform: scale(1.03);
+}
+
+.ctaSecondary:active {
+  transform: scale(0.97);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  background: #fafafa;
+  border-top: 1px solid #f0f0f0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1.3fr 1.4fr 0.9fr;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 36px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.rowName {
+  font-weight: 700;
+  color: #111111;
+}
+
+.rowNote {
+  color: #6b6b6b;
+}
+
+.chip {
+  display: inline-block;
+  justify-self: start;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #fbddd3;
+  color: #e8542e;
+}
+
+.chipQuiet {
+  background: #f0f0f0;
+  color: #6b6b6b;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.step {
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b6b6b;
+  padding-left: 12px;
+  border-left: 2px solid #e8542e;
+}
+
+.stepMuted {
+  border-left-style: dashed;
+  border-left-color: #cfcfcf;
+  color: #b5b5b5;
+}
+
+.people {
+  display: flex;
+  gap: 10px;
+}
+
+.person {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #f07655, #e8542e);
+  box-shadow: 0 8px 18px rgba(232, 84, 46, 0.25);
+}
+
+.personMid {
+  background: linear-gradient(135deg, #f7a876, #f07655);
+}
+
+.personSoft {
+  background: #fbddd3;
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 16px 20px;
+  }
+}

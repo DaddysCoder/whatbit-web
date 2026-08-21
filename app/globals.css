@@ -148,6 +148,16 @@ p {
   }
 }
 
+@keyframes pulseglow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(123, 47, 247, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(123, 47, 247, 0.28);
+  }
+}
+
 @keyframes ringglow {
   0%,
   86%,

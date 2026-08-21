@@ -137,7 +137,7 @@ export function HomePage() {
         }}
         style={revealStyle(r("orbit"), 0)}
       >
-        <h2 className={styles.orbitTitle}>One approach. Seven tools.</h2>
+        <h2 className={styles.orbitTitle}>One approach. Eight tools.</h2>
         <p className={styles.orbitCopy}>
           Every product carries the same name suffix for a reason. Same method, same standard — a different problem each time. “By WhatBit” means we did the thinking so you don&apos;t have to.
         </p>
@@ -246,7 +246,45 @@ export function HomePage() {
             </div>
           </Link>
 
-          <Link href="/axil" className={`${styles.card} ${styles.axil}`} style={revealStyle(r("products"), 0.05, true)}>
+          <Link
+            href="/frame"
+            className={`${styles.card} ${styles.frameCard}`}
+            style={revealStyle(r("products"), 0.05, true)}
+          >
+            <div className={styles.cardTop}>
+              <BarMark
+                size={56}
+                radius={16}
+                gradient="linear-gradient(135deg,#F07655,#E8542E)"
+              />
+              <div className={`${styles.live} ${styles.frameLive}`}>LIVE</div>
+            </div>
+            <div>
+              <div className={`${styles.cardName} ${styles.orbitName}`}>
+                Frame <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span>
+              </div>
+              <div className={styles.frameHeadline}>The shape you build inside.</div>
+              <p className={styles.cardTag}>
+                A behaviour-support workspace for seeing a person clearly — observations, patterns, and the next useful step, held in one place.
+              </p>
+            </div>
+            <div className={`${styles.explore} ${styles.frameExplore}`}>
+              Explore Frame <span>→</span>
+            </div>
+          </Link>
+
+          <Link href="/voda" className={`${styles.card} ${styles.voda}`} style={revealStyle(r("products"), 0.08, true)}>
+            <BarMark size={44} gradient="linear-gradient(135deg,#6E8CFF,#3452FF)" />
+            <div>
+              <div className={styles.cardName}>
+                VODA <span className={styles.by}>by WhatBit</span>
+              </div>
+              <p className={styles.cardTag}>See the business as a graph. Then see what happens next.</p>
+            </div>
+            <div className={styles.dev}>IN DEVELOPMENT</div>
+          </Link>
+
+          <Link href="/axil" className={`${styles.card} ${styles.axil}`} style={revealStyle(r("products"), 0.1, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#F7A876,#F2925C)" />
             <div>
               <div className={styles.cardName}>
@@ -279,18 +317,7 @@ export function HomePage() {
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
 
-          <Link href="/frame" className={`${styles.card} ${styles.frame}`} style={revealStyle(r("products"), 0.2, true)}>
-            <BarMark size={44} gradient="linear-gradient(135deg,#F07655,#E8542E)" />
-            <div>
-              <div className={styles.cardName}>
-                Frame <span className={styles.by}>by WhatBit</span>
-              </div>
-              <p className={styles.cardTag}>The shape you build inside.</p>
-            </div>
-            <div className={styles.dev}>IN DEVELOPMENT</div>
-          </Link>
-
-          <Link href="/field" className={`${styles.card} ${styles.field}`} style={revealStyle(r("products"), 0.25, true)}>
+          <Link href="/field" className={`${styles.card} ${styles.field}`} style={revealStyle(r("products"), 0.2, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#22B393,#0E8F71)" />
             <div>
               <div className={styles.cardName}>
@@ -301,7 +328,7 @@ export function HomePage() {
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
 
-          <Link href="/arc" className={`${styles.card} ${styles.arc}`} style={revealStyle(r("products"), 0.3, true)}>
+          <Link href="/arc" className={`${styles.card} ${styles.arc}`} style={revealStyle(r("products"), 0.25, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#7C4FD1,#5B21B6)" />
             <div>
               <div className={styles.cardName}>
@@ -414,7 +441,12 @@ export function HomePage() {
           </a>
         </div>
         <SiteFooter />
-        <div className={styles.legal}>WhatBit · Australia</div>
+        <div className={styles.legal}>
+          WhatBit · Australia
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
+          <Link href="/cookies">Cookies</Link>
+        </div>
       </section>
     </div>
   );
