@@ -5,7 +5,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
-import { CONTACT_MAILTO } from "@/lib/site";
 import styles from "./HomePage.module.css";
 
 const defaultTilt = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0)";
@@ -106,7 +105,7 @@ export function HomePage() {
 
   return (
     <div className={styles.page}>
-      <SiteNav variant="home" ctaHref="#cta" />
+      <SiteNav variant="home" ctaHref="/contact" />
 
       <section className={styles.hero}>
         <div className={styles.spotlight} style={{ background: spotlight }} />
@@ -437,9 +436,9 @@ export function HomePage() {
       <section id="cta" className={styles.ctaBlock} ref={setNode("cta")}>
         <div className={styles.ctaInner} style={revealStyle(r("cta"), 0)}>
           <h2 className={styles.ctaTitle}>Got a problem worth solving?</h2>
-          <a href={CONTACT_MAILTO} className={styles.ctaBtn}>
+          <Link href="/contact" className={styles.ctaBtn}>
             Get in touch
-          </a>
+          </Link>
         </div>
         <SiteFooter />
         <div className={styles.legal}>

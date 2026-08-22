@@ -14,7 +14,7 @@ type SiteNavProps = {
 export function SiteNav({
   variant = "inner",
   accent = "#7B2FF7",
-  ctaHref = "/#cta",
+  ctaHref = "/contact",
 }: SiteNavProps) {
   const [solid, setSolid] = useState(variant !== "home");
   const [open, setOpen] = useState(false);
@@ -84,16 +84,12 @@ export function SiteNav({
             About
           </Link>
         ) : null}
-        {variant === "inner" ? (
-          <>
-            <Link href="/rft" className={styles.textLink}>
-              RFT
-            </Link>
-            <Link href="/elsewhere" className={styles.textLink}>
-              Elsewhere
-            </Link>
-          </>
-        ) : null}
+        <Link href="/rft" className={styles.textLink}>
+          RFT
+        </Link>
+        <Link href="/elsewhere" className={styles.textLink}>
+          Elsewhere
+        </Link>
         <Link href={ctaHref} className={styles.cta}>
           Get in touch
         </Link>

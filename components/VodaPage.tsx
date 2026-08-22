@@ -31,7 +31,7 @@ export function VodaPage() {
 
   return (
     <div className={styles.page}>
-      <SiteNav variant="inner" accent={VODA_PRODUCT.accent} ctaHref="/#cta" />
+      <SiteNav variant="inner" accent={VODA_PRODUCT.accent} ctaHref="/contact" />
 
       <div className={styles.heroWrap}>
         <svg

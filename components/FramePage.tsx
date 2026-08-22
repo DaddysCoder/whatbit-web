@@ -9,7 +9,7 @@ import styles from "./FramePage.module.css";
 export function FramePage() {
   return (
     <div className={orbit.page}>
-      <SiteNav variant="inner" accent="#E8542E" ctaHref="/#cta" />
+      <SiteNav variant="inner" accent="#E8542E" ctaHref="/contact" />
 
       <div className={orbit.hero}>
         <div className={orbit.heroMark}>

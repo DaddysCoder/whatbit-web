@@ -91,7 +91,7 @@
   display: none;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .nav {
     padding: 0 20px;
   }

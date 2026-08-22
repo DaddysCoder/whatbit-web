@@ -7,7 +7,7 @@ import styles from "./OrbitPage.module.css";
 export function OrbitPage() {
   return (
     <div className={styles.page}>
-      <SiteNav variant="inner" ctaHref="/#cta" />
+      <SiteNav variant="inner" ctaHref="/contact" />
 
       <div className={styles.hero}>
         <div className={styles.heroMark}>

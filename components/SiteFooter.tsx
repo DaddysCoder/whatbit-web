@@ -74,7 +74,7 @@ export function SiteFooter({ variant = "full", accent = "#B794FF" }: SiteFooterP
           <Link href="/rft" className={styles.link}>
             RFT
           </Link>
-          <Link href="/#cta" className={styles.link}>
+          <Link href="/contact" className={styles.link}>
             Contact
           </Link>
         </div>
