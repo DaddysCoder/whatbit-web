@@ -62,6 +62,9 @@ export function SiteFooter({ variant = "full", accent = "#B794FF" }: SiteFooterP
         </div>
         <div className={styles.col}>
           <div className={styles.head}>COMPANY</div>
+          <Link href="/digital-services" className={styles.link}>
+            Digital Services
+          </Link>
           <Link href="/#philosophy" className={styles.link}>
             Philosophy
           </Link>

@@ -46,6 +46,12 @@
   text-decoration: none;
 }
 
+.current {
+  font-size: 13px;
+  font-weight: 700;
+  color: #7b2ff7;
+}
+
 .cta {
   font-size: 13px;
   font-weight: 700;
@@ -118,10 +124,15 @@
     z-index: 99;
   }
 
-  .sheet a {
+  .sheet a,
+  .sheet .current {
     font-size: 18px;
     font-weight: 700;
     color: #0b0b0c;
+  }
+
+  .sheet .current {
+    color: #7b2ff7;
   }
 
   .sheet .cta {

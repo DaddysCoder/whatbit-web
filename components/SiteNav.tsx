@@ -6,15 +6,17 @@ import { Wordmark } from "./Wordmark";
 import styles from "./SiteNav.module.css";
 
 type SiteNavProps = {
-  variant?: "home" | "inner" | "about" | "waitlist";
+  variant?: "home" | "inner" | "about" | "waitlist" | "digital";
   accent?: string;
   ctaHref?: string;
+  ctaLabel?: string;
 };
 
 export function SiteNav({
   variant = "inner",
   accent = "#7B2FF7",
   ctaHref = "/contact",
+  ctaLabel = "Get in touch",
 }: SiteNavProps) {
   const [solid, setSolid] = useState(variant !== "home");
   const [open, setOpen] = useState(false);
@@ -66,13 +68,25 @@ export function SiteNav({
     );
   }
 
+  const digitalCurrent = variant === "digital";
+  const solidNav = variant === "inner" || variant === "digital";
+
   return (
     <header
-      className={`${styles.nav} ${variant === "inner" ? styles.solid : ""} ${solid && variant === "home" ? styles.homeSolid : ""}`}
+      className={`${styles.nav} ${solidNav ? styles.solid : ""} ${solid && variant === "home" ? styles.homeSolid : ""}`}
       style={navStyle}
     >
       <Wordmark accent={accent} />
       <nav className={styles.desktop} aria-label="Primary">
+        {digitalCurrent ? (
+          <span className={styles.current} aria-current="page">
+            Digital Services
+          </span>
+        ) : (
+          <Link href="/digital-services" className={styles.textLink}>
+            Digital Services
+          </Link>
+        )}
         <Link href="/#products" className={styles.textLink}>
           Products
         </Link>
@@ -91,7 +105,7 @@ export function SiteNav({
           Elsewhere
         </Link>
         <Link href={ctaHref} className={styles.cta}>
-          Get in touch
+          {ctaLabel}
         </Link>
       </nav>
       <button
@@ -107,6 +121,15 @@ export function SiteNav({
       </button>
       {open ? (
         <div className={styles.sheet} role="dialog" aria-label="Menu">
+          {digitalCurrent ? (
+            <span className={styles.current} aria-current="page">
+              Digital Services
+            </span>
+          ) : (
+            <Link href="/digital-services" onClick={() => setOpen(false)}>
+              Digital Services
+            </Link>
+          )}
           <Link href="/#products" onClick={() => setOpen(false)}>
             Products
           </Link>
@@ -123,7 +146,7 @@ export function SiteNav({
             Elsewhere
           </Link>
           <Link href={ctaHref} className={styles.cta} onClick={() => setOpen(false)}>
-            Get in touch
+            {ctaLabel}
           </Link>
         </div>
       ) : null}
