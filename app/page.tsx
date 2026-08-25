@@ -1,1 +1,5 @@
-export { default, metadata } from "@/proof-and-path/app/page";
+import { HomePage } from "@/components/HomePage";
+
+export default function Page() {
+  return <HomePage />;
+}

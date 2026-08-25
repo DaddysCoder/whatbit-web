@@ -1,29 +1,31 @@
 import type { Metadata } from "next";
-import { Source_Sans_3 } from "next/font/google";
-import { AppProviders } from "@/components/providers";
+import { Montserrat, Nunito } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const sourceSans3 = Source_Sans_3({
-  variable: "--font-source-sans-3",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600", "700", "800"],
+});
+
+const nunito = Nunito({
+  variable: "--font-nunito",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Proof & Path",
-    template: "%s · Proof & Path",
-  },
+  metadataBase: new URL(SITE_URL),
+  title: "WhatBit — We figure out what's actually going on",
   description:
-    "A calmer way to sort out a purchase problem. Organise what happened, gather evidence, prepare a clear request, and track what comes next.",
+    "WhatBit is a small Australian problem-solving company — and the family of tools we've built along the way.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en-AU" className={sourceSans3.variable}>
-      <body>
-        <AppProviders>{children}</AppProviders>
-      </body>
+    <html lang="en" className={`${montserrat.variable} ${nunito.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }
