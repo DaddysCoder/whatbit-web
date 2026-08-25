@@ -1,0 +1,89 @@
+.card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  transition: border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  border-color: rgba(28, 36, 48, 0.14);
+}
+
+.cardStatic {
+  composes: card;
+  cursor: default;
+}
+
+.cardStatic:hover {
+  border-color: var(--color-border);
+}
+
+.eyebrow {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-ink-subtle);
+  margin: 0 0 var(--space-3);
+}
+
+.eyebrowCaution {
+  composes: eyebrow;
+  color: var(--color-caution-text);
+  letter-spacing: var(--letter-spacing-wider);
+  font-size: var(--font-size-xs);
+}
+
+.eyebrowPositive {
+  composes: eyebrow;
+  color: var(--color-positive-text);
+  letter-spacing: var(--letter-spacing-wider);
+  font-size: var(--font-size-xs);
+}
+
+.eyebrowSource {
+  composes: eyebrow;
+  letter-spacing: var(--letter-spacing-wider);
+  font-size: var(--font-size-xs);
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+  margin: 0 0 var(--space-3);
+  line-height: var(--line-height-snug);
+}
+
+.body {
+  font-size: var(--font-size-base);
+  color: var(--color-ink-muted);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+.action {
+  font-size: var(--font-size-base);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-ink-subtle);
+  margin: 0;
+  line-height: var(--line-height-snug);
+}
+
+.footer {
+  margin-top: var(--space-5);
+}

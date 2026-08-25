@@ -19,7 +19,18 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "@/components/layout/*": ["./proof-and-path/components/layout/*"],
+      "@/components/ui": ["./proof-and-path/components/ui/index.ts"],
+      "@/components/ui/*": ["./proof-and-path/components/ui/*"],
+      "@/components/providers": ["./proof-and-path/components/providers/index.ts"],
+      "@/components/providers/*": ["./proof-and-path/components/providers/*"],
+      "@/components/screens/*": ["./proof-and-path/components/screens/*"],
+      "@/components/shared/*": ["./proof-and-path/components/shared/*"],
+      "@/lib/constants/*": ["./proof-and-path/lib/constants/*"],
+      "@/lib/hooks/*": ["./proof-and-path/lib/hooks/*"],
+      "@/lib/types": ["./proof-and-path/lib/types/index.ts"],
+      "@/lib/types/*": ["./proof-and-path/lib/types/*"]
     }
   },
   "include": [
@@ -30,5 +41,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "proof-and-path/node_modules"]
 }

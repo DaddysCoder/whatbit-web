@@ -1,0 +1,171 @@
+/**
+ * Proof & Path design tokens
+ * Emerald palette (Option A) · Source Sans 3 · pending final client sign-off
+ */
+
+:root {
+  /* Ink & text */
+  --color-ink: #1c2430;
+  --color-ink-muted: #3b4452;
+  --color-ink-subtle: #6b7280;
+  --color-ink-nav: #3b4452;
+  --color-ink-disabled: #9aa0a6;
+
+  /* Primary (emerald) */
+  --color-primary: #0f9d74;
+  --color-primary-hover: #0b7a5c;
+  --color-primary-tint: #dcefe7;
+  --color-primary-on: #ffffff;
+
+  /* Surfaces */
+  --color-bg-page: #f1f2f4;
+  --color-bg-header: #fafafa;
+  --color-bg-card: #ffffff;
+  --color-bg-warm: #fbf8f2;
+  --color-bg-cream: #fef9ee;
+
+  /* Borders */
+  --color-border: rgba(28, 36, 48, 0.08);
+  --color-border-strong: rgba(28, 36, 48, 0.18);
+  --color-border-warm: #c9bfa9;
+  --color-border-divider: #ede6d8;
+
+  /* Caution / ochre */
+  --color-caution-bg: rgba(184, 121, 40, 0.14);
+  --color-caution-text: #8a5a16;
+  --color-caution-surface: #fcf1df;
+  --color-caution-border: #e9ce99;
+  --color-caution-ink: #6b4a16;
+  --color-caution-guidance: #5c4315;
+
+  /* Positive / green */
+  --color-positive-text: #2f6e4b;
+  --color-positive-bg: #eef3f0;
+  --color-positive-border: #c9dacd;
+  --color-positive-ink: #294e37;
+
+  /* Error / red */
+  --color-error: #9e3a2e;
+  --color-error-bg: #f7e6e2;
+  --color-error-border: #e3b5a9;
+  --color-error-ink: #5c2e27;
+
+  /* Neutral status */
+  --color-neutral-bg: #efeae0;
+
+  /* Typography — Source Sans 3 loaded via next/font in layout */
+  --font-family: var(--font-source-sans-3), "Source Sans 3", ui-sans-serif,
+    system-ui, -apple-system, sans-serif;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-size-xs: 11px;
+  --font-size-sm: 13px;
+  --font-size-base: 15px;
+  --font-size-md: 16px;
+  --font-size-lg: 17px;
+  --font-size-xl: 19px;
+  --font-size-2xl: 22px;
+  --font-size-3xl: 26px;
+  --font-size-4xl: 32px;
+
+  --line-height-tight: 1.15;
+  --line-height-snug: 1.5;
+  --line-height-normal: 1.55;
+
+  --letter-spacing-tight: -0.2px;
+  --letter-spacing-wide: 0.03em;
+  --letter-spacing-wider: 0.04em;
+  --letter-spacing-widest: 0.06em;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 8px;
+  --space-4: 10px;
+  --space-5: 12px;
+  --space-6: 14px;
+  --space-7: 16px;
+  --space-8: 18px;
+  --space-9: 20px;
+  --space-10: 22px;
+  --space-11: 24px;
+  --space-12: 28px;
+  --space-13: 32px;
+  --space-14: 40px;
+  --space-15: 60px;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(28, 36, 48, 0.05);
+
+  /* Layout */
+  --content-max-width-mobile: 480px;
+  --content-max-width-desktop: 760px;
+  --breakpoint-desktop: 900px;
+  --header-padding-x: 20px;
+  --header-padding-y: 16px;
+  --content-padding-x: 20px;
+  --content-padding-y: 24px;
+  --content-padding-bottom: 60px;
+
+  /* Focus */
+  --focus-ring-color: var(--color-primary);
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+
+  /* Motion */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.4s ease;
+
+  /* Control sizes */
+  --control-height: 44px;
+  --input-padding-x: 14px;
+  --input-padding-y: 12px;
+  --button-padding-x: 20px;
+  --button-padding-y: 15px;
+}
+
+/* Large text mode — typographic scaling (not zoom) */
+html[data-large-text="true"] {
+  --font-size-xs: 13px;
+  --font-size-sm: 15px;
+  --font-size-base: 18px;
+  --font-size-md: 19px;
+  --font-size-lg: 20px;
+  --font-size-xl: 22px;
+  --font-size-2xl: 26px;
+  --font-size-3xl: 31px;
+  --font-size-4xl: 38px;
+
+  --space-1: 5px;
+  --space-2: 7px;
+  --space-3: 9px;
+  --space-4: 12px;
+  --space-5: 14px;
+  --space-6: 17px;
+  --space-7: 19px;
+  --space-8: 21px;
+  --space-9: 24px;
+  --space-10: 26px;
+  --space-11: 28px;
+  --space-12: 33px;
+  --space-13: 38px;
+  --space-14: 47px;
+  --space-15: 71px;
+
+  --control-height: 52px;
+  --input-padding-x: 17px;
+  --input-padding-y: 14px;
+  --button-padding-x: 24px;
+  --button-padding-y: 18px;
+}

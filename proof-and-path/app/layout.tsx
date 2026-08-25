@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
-import { AppProviders } from "@/components/providers";
+import { AppProviders } from "@/components/providers/AppProviders";
 import "./globals.css";
 
 const sourceSans3 = Source_Sans_3({
@@ -18,7 +18,11 @@ export const metadata: Metadata = {
     "A calmer way to sort out a purchase problem. Organise what happened, gather evidence, prepare a clear request, and track what comes next.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en-AU" className={sourceSans3.variable}>
       <body>

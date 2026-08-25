@@ -1,0 +1,189 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+    border-color var(--transition-fast), color var(--transition-fast);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Primary — outline emerald (default prototype style) */
+.primary {
+  background: var(--color-bg-card);
+  color: var(--color-primary-hover);
+  border: 1.5px solid var(--color-primary);
+  padding: var(--button-padding-y) var(--button-padding-x);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--color-primary-tint);
+  color: var(--color-primary-hover);
+}
+
+.primaryActive {
+  background: var(--color-primary);
+  color: var(--color-primary-on);
+  border: 1.5px solid var(--color-primary);
+  padding: calc(var(--button-padding-y) - 1.5px) calc(var(--button-padding-x) - 1.5px);
+}
+
+.primaryActive:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+/* Secondary — neutral outline */
+.secondary {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1.5px solid var(--color-border-strong);
+  padding: var(--button-padding-y) var(--button-padding-x);
+}
+
+.secondary:hover:not(:disabled) {
+  background: var(--color-bg-warm);
+}
+
+/* Ghost — no border */
+.ghost {
+  background: none;
+  border: none;
+  color: var(--color-ink-subtle);
+  padding: var(--space-2) var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+}
+
+.ghost:hover:not(:disabled) {
+  color: var(--color-ink);
+}
+
+/* Text link style button */
+.text {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  padding: var(--space-1) 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.text:hover:not(:disabled) {
+  color: var(--color-primary-hover);
+}
+
+.textDestructive {
+  composes: text;
+  color: var(--color-error);
+}
+
+.textDestructive:hover:not(:disabled) {
+  color: var(--color-error);
+}
+
+/* Destructive */
+.destructive {
+  background: var(--color-error);
+  color: var(--color-primary-on);
+  border: none;
+  padding: var(--space-6) var(--button-padding-x);
+}
+
+.destructive:hover:not(:disabled) {
+  filter: brightness(0.95);
+}
+
+.destructiveOutline {
+  background: none;
+  color: var(--color-error);
+  border: 1.5px solid var(--color-error);
+  padding: calc(var(--space-7) - 1.5px) var(--button-padding-x);
+}
+
+.destructiveOutline:hover:not(:disabled) {
+  background: var(--color-error-bg);
+}
+
+/* Dashed add button */
+.dashed {
+  background: none;
+  color: var(--color-ink);
+  border: 1.5px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  font-size: var(--font-size-base);
+  width: 100%;
+}
+
+.dashed:hover:not(:disabled) {
+  background: var(--color-bg-warm);
+}
+
+/* Selection pill/chip */
+.chip {
+  padding: var(--space-4) var(--space-7);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+  background: var(--color-bg-warm);
+  border: 1.5px solid var(--color-border-warm);
+}
+
+.chipSelected {
+  composes: chip;
+  background: var(--color-primary-tint);
+  border-color: var(--color-primary);
+}
+
+/* Option card (intake choices) */
+.option {
+  width: 100%;
+  text-align: left;
+  padding: var(--space-6) var(--space-7);
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border-warm);
+  background: var(--color-bg-warm);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+}
+
+.option:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.optionSelected {
+  composes: option;
+  background: var(--color-primary-tint);
+  border-color: var(--color-primary);
+}
+
+/* Small variant */
+.small {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-sm);
+}
+
+/* Full width */
+.fullWidth {
+  width: 100%;
+}
+
+/* Compact header sign-in */
+.compact {
+  padding: 9px 16px;
+  font-size: var(--font-size-sm);
+}
