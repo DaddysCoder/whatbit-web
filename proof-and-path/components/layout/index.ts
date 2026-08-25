@@ -8,3 +8,4 @@ export { ContentColumn } from "./ContentColumn";
 export type { ContentColumnProps } from "./ContentColumn";
 
 export { PublicPageShell } from "./PublicPageShell";
+export { PublicPageShell as PublicLayout } from "./PublicPageShell";
