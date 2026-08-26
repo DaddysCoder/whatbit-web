@@ -1,0 +1,178 @@
+/* [project]/components/ui/Button.module.css [app-client] (css) */
+.Button-module__VMVMAW__button {
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+    border-color var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+  line-height: 1.2;
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.Button-module__VMVMAW__button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+.Button-module__VMVMAW__primary {
+  background: var(--color-bg-card);
+  color: var(--color-primary-hover);
+  border: 1.5px solid var(--color-primary);
+  padding: var(--button-padding-y) var(--button-padding-x);
+}
+
+.Button-module__VMVMAW__primary:hover:not(:disabled) {
+  background: var(--color-primary-tint);
+  color: var(--color-primary-hover);
+}
+
+.Button-module__VMVMAW__primaryActive {
+  background: var(--color-primary);
+  color: var(--color-primary-on);
+  border: 1.5px solid var(--color-primary);
+  padding: calc(var(--button-padding-y) - 1.5px) calc(var(--button-padding-x) - 1.5px);
+}
+
+.Button-module__VMVMAW__primaryActive:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+.Button-module__VMVMAW__secondary {
+  color: var(--color-ink);
+  border: 1.5px solid var(--color-border-strong);
+  padding: var(--button-padding-y) var(--button-padding-x);
+  background: none;
+}
+
+.Button-module__VMVMAW__secondary:hover:not(:disabled) {
+  background: var(--color-bg-warm);
+}
+
+.Button-module__VMVMAW__ghost {
+  color: var(--color-ink-subtle);
+  padding: var(--space-2) var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  background: none;
+  border: none;
+}
+
+.Button-module__VMVMAW__ghost:hover:not(:disabled) {
+  color: var(--color-ink);
+}
+
+.Button-module__VMVMAW__text {
+  color: var(--color-primary);
+  padding: var(--space-1) 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  background: none;
+  border: none;
+}
+
+.Button-module__VMVMAW__text:hover:not(:disabled) {
+  color: var(--color-primary-hover);
+}
+
+.Button-module__VMVMAW__textDestructive {
+  color: var(--color-error);
+}
+
+.Button-module__VMVMAW__textDestructive:hover:not(:disabled) {
+  color: var(--color-error);
+}
+
+.Button-module__VMVMAW__destructive {
+  background: var(--color-error);
+  color: var(--color-primary-on);
+  padding: var(--space-6) var(--button-padding-x);
+  border: none;
+}
+
+.Button-module__VMVMAW__destructive:hover:not(:disabled) {
+  filter: brightness(.95);
+}
+
+.Button-module__VMVMAW__destructiveOutline {
+  color: var(--color-error);
+  border: 1.5px solid var(--color-error);
+  padding: calc(var(--space-7) - 1.5px) var(--button-padding-x);
+  background: none;
+}
+
+.Button-module__VMVMAW__destructiveOutline:hover:not(:disabled) {
+  background: var(--color-error-bg);
+}
+
+.Button-module__VMVMAW__dashed {
+  color: var(--color-ink);
+  border: 1.5px dashed var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  font-size: var(--font-size-base);
+  background: none;
+  width: 100%;
+}
+
+.Button-module__VMVMAW__dashed:hover:not(:disabled) {
+  background: var(--color-bg-warm);
+}
+
+.Button-module__VMVMAW__chip {
+  padding: var(--space-4) var(--space-7);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+  background: var(--color-bg-warm);
+  border: 1.5px solid var(--color-border-warm);
+}
+
+.Button-module__VMVMAW__chipSelected {
+  background: var(--color-primary-tint);
+  border-color: var(--color-primary);
+}
+
+.Button-module__VMVMAW__option {
+  text-align: left;
+  width: 100%;
+  padding: var(--space-6) var(--space-7);
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border-warm);
+  background: var(--color-bg-warm);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-ink);
+}
+
+.Button-module__VMVMAW__option:hover:not(:disabled) {
+  border-color: var(--color-primary);
+}
+
+.Button-module__VMVMAW__optionSelected {
+  background: var(--color-primary-tint);
+  border-color: var(--color-primary);
+}
+
+.Button-module__VMVMAW__small {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-sm);
+}
+
+.Button-module__VMVMAW__fullWidth {
+  width: 100%;
+}
+
+.Button-module__VMVMAW__compact {
+  font-size: var(--font-size-sm);
+  padding: 9px 16px;
+}
+
+/*# sourceMappingURL=components_ui_Button_module_css_1igg3k2._.single.css.map*/

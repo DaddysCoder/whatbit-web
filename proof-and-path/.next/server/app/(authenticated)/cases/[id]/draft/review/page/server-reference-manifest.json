@@ -1,0 +1,16 @@
+{
+  "node": {
+    "786e15d4e9b51a7622915a1039a1a0f01c0806e38f": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/draft/review/page": {
+          "moduleId": 44755,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "saveDraftAction",
+      "filename": "lib/actions/app-actions.ts"
+    }
+  },
+  "edge": {}
+}

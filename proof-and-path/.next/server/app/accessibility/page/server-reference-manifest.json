@@ -1,0 +1,16 @@
+{
+  "node": {
+    "40897d45f1a1d2a74c648bd8a63af386349be0687d": {
+      "workers": {
+        "app/accessibility/page": {
+          "moduleId": 40559,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "setLargeTextPreferenceAction",
+      "filename": "lib/actions/app-actions.ts"
+    }
+  },
+  "edge": {}
+}

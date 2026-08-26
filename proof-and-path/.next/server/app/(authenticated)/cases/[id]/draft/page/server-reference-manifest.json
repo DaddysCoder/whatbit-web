@@ -1,0 +1,16 @@
+{
+  "node": {
+    "609e810cee071fc4f7bc0cb5d967137382aea34fd1": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/draft/page": {
+          "moduleId": 72340,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "generateDraftAction",
+      "filename": "lib/actions/app-actions.ts"
+    }
+  },
+  "edge": {}
+}

@@ -1,0 +1,16 @@
+{
+  "node": {
+    "70a2c8f0d909ac5f9b2311cae64a17218528d88cc8": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/support/page": {
+          "moduleId": 77989,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "inviteSupportAction",
+      "filename": "lib/actions/app-actions.ts"
+    }
+  },
+  "edge": {}
+}

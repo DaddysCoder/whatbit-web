@@ -1,0 +1,23 @@
+/* [project]/components/layout/ContentColumn.module.css [app-client] (css) */
+.ContentColumn-module__zRlSyq__shell {
+  padding: 0 0 var(--content-padding-bottom);
+  flex: 1;
+  justify-content: center;
+  display: flex;
+}
+
+.ContentColumn-module__zRlSyq__column {
+  width: 100%;
+  padding: var(--content-padding-y) var(--content-padding-x);
+  transition: max-width var(--transition-normal);
+}
+
+.ContentColumn-module__zRlSyq__mobile {
+  max-width: var(--content-max-width-mobile);
+}
+
+.ContentColumn-module__zRlSyq__desktop {
+  max-width: var(--content-max-width-desktop);
+}
+
+/*# sourceMappingURL=components_layout_ContentColumn_module_css_1igg3k2._.single.css.map*/

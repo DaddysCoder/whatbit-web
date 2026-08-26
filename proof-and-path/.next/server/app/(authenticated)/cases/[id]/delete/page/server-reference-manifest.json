@@ -1,0 +1,236 @@
+{
+  "node": {
+    "00604e75f80ae5a196f407b69dce92571b95a7ccf0": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "createCaseAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "00a6179e38998cf947fb46d488be3aa11ea84bd5c9": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "signOutAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "00c63004682c00e8950ec2db728a6ac4b85f4ae8ff": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "getSessionAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "00d75a2d6346c5d9c9fd7e3941f1dea1d2ed07950c": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "getDashboardDataAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "40037eae72e8e6530d43960a845c23948f5a22bfb3": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "finishIntakeAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "40045fe4ef335b3f43824a75cb08dd4bf59153a9c5": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "getCaseForEditAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "4024f44808e96f9b735b5110d498f1f704c595663c": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "verifyMagicLinkAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "402d63916f9e5638ba9dcddb597989237ad4695ffd": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "deleteCaseAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "40338ff50753cc91fde321cfb718c3fe8d7c6f8657": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "revokeSupportAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "4039f0945898ca8421279c02ab0c02f2496f44b667": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "getCaseBundleAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "4059385516a6d7aa98f1b6ec458f471f3a7922f93d": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "sendMagicLinkAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "4084c97458f2fb05aa4476dffdd1f41563a2cd1459": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "exportCasePdfAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "40897d45f1a1d2a74c648bd8a63af386349be0687d": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "setLargeTextPreferenceAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "60151b72595c06c46a32f9c2bab11a3bc9b05106d9": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "uploadEvidenceAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "6060d464a4f5551fdc142da460ce090526bae9f79a": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "updateCaseAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "609e810cee071fc4f7bc0cb5d967137382aea34fd1": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "generateDraftAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "60aa311d4373f525ca1be21e0d7c468d12cd1f19db": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "updateSupportPermissionsAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "60b962fd9327a7860d51fd1b0ed1af113875f475f2": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "confirmExtractionAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "60e7ac60a5834feb7d342dd13e38debeb0b4d65e39": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "addTimelineEventAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "70a2c8f0d909ac5f9b2311cae64a17218528d88cc8": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "inviteSupportAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "786e15d4e9b51a7622915a1039a1a0f01c0806e38f": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/delete/page": {
+          "moduleId": 63827,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "saveDraftAction",
+      "filename": "lib/actions/app-actions.ts"
+    }
+  },
+  "edge": {}
+}

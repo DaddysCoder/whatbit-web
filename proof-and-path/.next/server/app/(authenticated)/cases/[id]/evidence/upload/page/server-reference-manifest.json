@@ -1,0 +1,16 @@
+{
+  "node": {
+    "60151b72595c06c46a32f9c2bab11a3bc9b05106d9": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/evidence/upload/page": {
+          "moduleId": 98142,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "uploadEvidenceAction",
+      "filename": "lib/actions/app-actions.ts"
+    }
+  },
+  "edge": {}
+}

@@ -1,0 +1,16 @@
+{
+  "node": {
+    "60b962fd9327a7860d51fd1b0ed1af113875f475f2": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/evidence/review/page": {
+          "moduleId": 88540,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "confirmExtractionAction",
+      "filename": "lib/actions/app-actions.ts"
+    }
+  },
+  "edge": {}
+}

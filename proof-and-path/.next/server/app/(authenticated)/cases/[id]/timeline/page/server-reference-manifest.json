@@ -1,0 +1,16 @@
+{
+  "node": {
+    "60e7ac60a5834feb7d342dd13e38debeb0b4d65e39": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/timeline/page": {
+          "moduleId": 78152,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "addTimelineEventAction",
+      "filename": "lib/actions/app-actions.ts"
+    }
+  },
+  "edge": {}
+}

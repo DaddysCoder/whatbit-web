@@ -1,0 +1,27 @@
+{
+  "node": {
+    "40338ff50753cc91fde321cfb718c3fe8d7c6f8657": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/support/active/page": {
+          "moduleId": 23373,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "revokeSupportAction",
+      "filename": "lib/actions/app-actions.ts"
+    },
+    "60aa311d4373f525ca1be21e0d7c468d12cd1f19db": {
+      "workers": {
+        "app/(authenticated)/cases/[id]/support/active/page": {
+          "moduleId": 23373,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "updateSupportPermissionsAction",
+      "filename": "lib/actions/app-actions.ts"
+    }
+  },
+  "edge": {}
+}

@@ -1,0 +1,3 @@
+{
+  "/(authenticated)/cases/[id]/delete/page": "app/(authenticated)/cases/[id]/delete/page.js"
+}

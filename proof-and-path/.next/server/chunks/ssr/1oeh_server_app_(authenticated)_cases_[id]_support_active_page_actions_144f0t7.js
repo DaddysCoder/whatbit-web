@@ -1,0 +1,3 @@
+module.exports=[76084,a=>a.a(async(b,c)=>{try{var d=a.i(18592),e=b([d]);[d]=e.then?(await e)():e,a.s([]),c()}catch(a){c(a)}},!1),23373,a=>a.a(async(b,c)=>{try{var d=a.i(76084),e=a.i(18592),f=b([d,e]);[d,e]=f.then?(await f)():f,a.s(["40338ff50753cc91fde321cfb718c3fe8d7c6f8657",()=>e.revokeSupportAction,"60aa311d4373f525ca1be21e0d7c468d12cd1f19db",()=>e.updateSupportPermissionsAction]),c()}catch(a){c(a)}},!1)];
+
+//# sourceMappingURL=1oeh_server_app_%28authenticated%29_cases_%5Bid%5D_support_active_page_actions_144f0t7.js.map

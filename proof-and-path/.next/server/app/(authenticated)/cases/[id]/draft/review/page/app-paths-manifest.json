@@ -1,0 +1,3 @@
+{
+  "/(authenticated)/cases/[id]/draft/review/page": "app/(authenticated)/cases/[id]/draft/review/page.js"
+}

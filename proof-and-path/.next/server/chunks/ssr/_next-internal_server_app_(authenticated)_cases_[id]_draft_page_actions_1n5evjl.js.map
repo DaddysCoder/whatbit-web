@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../.next-internal/server/app/%28authenticated%29/cases/%5Bid%5D/draft/page/actions.js%20%28server%20actions%20loader%29"],"sourcesContent":["export {generateDraftAction as '609e810cee071fc4f7bc0cb5d967137382aea34fd1'} from 'ACTIONS_MODULE0'\n"],"names":[],"mappings":"8CAAA,IAAA,EAAA,EAAA,CAAA,CAAA"}

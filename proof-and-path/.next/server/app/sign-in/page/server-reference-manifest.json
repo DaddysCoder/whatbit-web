@@ -1,0 +1,16 @@
+{
+  "node": {
+    "4059385516a6d7aa98f1b6ec458f471f3a7922f93d": {
+      "workers": {
+        "app/sign-in/page": {
+          "moduleId": 56491,
+          "async": true,
+          "codeHash": null
+        }
+      },
+      "exportedName": "sendMagicLinkAction",
+      "filename": "lib/actions/app-actions.ts"
+    }
+  },
+  "edge": {}
+}

@@ -1,0 +1,91 @@
+/* [project]/components/layout/AppHeader.module.css [app-client] (css) */
+.AppHeader-module__TaJ39a__header {
+  padding: var(--header-padding-y) var(--header-padding-x);
+  background: var(--color-bg-header);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 10;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  position: sticky;
+  top: 0;
+}
+
+.AppHeader-module__TaJ39a__brand {
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--color-ink);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  display: flex;
+}
+
+.AppHeader-module__TaJ39a__brand:hover {
+  color: var(--color-ink);
+}
+
+.AppHeader-module__TaJ39a__wordmark {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.AppHeader-module__TaJ39a__actions {
+  align-items: center;
+  gap: var(--space-6);
+  display: flex;
+}
+
+.AppHeader-module__TaJ39a__backButton {
+  color: var(--color-ink);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  padding: var(--space-2) var(--space-1);
+  background: none;
+  border: none;
+}
+
+.AppHeader-module__TaJ39a__backButton:hover {
+  color: var(--color-ink-muted);
+}
+
+.AppHeader-module__TaJ39a__navLink {
+  color: var(--color-ink-nav);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  padding: var(--space-2) var(--space-1);
+  background: none;
+  border: none;
+  text-decoration: none;
+}
+
+.AppHeader-module__TaJ39a__navLink:hover {
+  color: var(--color-ink);
+}
+
+.AppHeader-module__TaJ39a__dashboardLink {
+  color: var(--color-ink);
+  font-size: var(--font-size-sm);
+}
+
+.AppHeader-module__TaJ39a__signInLink {
+  background: var(--color-bg-card);
+  color: var(--color-primary-hover);
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  justify-content: center;
+  align-items: center;
+  padding: 9px 16px;
+  line-height: 1.2;
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.AppHeader-module__TaJ39a__signInLink:hover {
+  background: var(--color-primary-tint);
+  color: var(--color-primary-hover);
+}
+
+/*# sourceMappingURL=components_layout_AppHeader_module_css_1igg3k2._.single.css.map*/

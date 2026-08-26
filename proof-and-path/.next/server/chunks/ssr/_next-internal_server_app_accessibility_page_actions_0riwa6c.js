@@ -1,0 +1,3 @@
+module.exports=[82878,a=>a.a(async(b,c)=>{try{var d=a.i(18592),e=b([d]);[d]=e.then?(await e)():e,a.s([]),c()}catch(a){c(a)}},!1),40559,a=>a.a(async(b,c)=>{try{var d=a.i(82878),e=a.i(18592),f=b([d,e]);[d,e]=f.then?(await f)():f,a.s(["40897d45f1a1d2a74c648bd8a63af386349be0687d",()=>e.setLargeTextPreferenceAction]),c()}catch(a){c(a)}},!1)];
+
+//# sourceMappingURL=_next-internal_server_app_accessibility_page_actions_0riwa6c.js.map

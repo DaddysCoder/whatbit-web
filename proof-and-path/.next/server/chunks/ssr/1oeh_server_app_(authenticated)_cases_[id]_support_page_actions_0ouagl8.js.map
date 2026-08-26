@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../.next-internal/server/app/%28authenticated%29/cases/%5Bid%5D/support/page/actions.js%20%28server%20actions%20loader%29"],"sourcesContent":["export {inviteSupportAction as '70a2c8f0d909ac5f9b2311cae64a17218528d88cc8'} from 'ACTIONS_MODULE0'\n"],"names":[],"mappings":"8CAAA,IAAA,EAAA,EAAA,CAAA,CAAA"}

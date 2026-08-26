@@ -1,0 +1,10 @@
+{
+  "pages": {},
+  "app": {
+    "[project]/app/auth/verify/page": [
+      "static/media/47df9ba1c7236d3b-s.p.137759vg1sbmi.woff2"
+    ]
+  },
+  "appUsingSizeAdjust": true,
+  "pagesUsingSizeAdjust": false
+}
