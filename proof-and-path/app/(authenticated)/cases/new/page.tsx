@@ -1,14 +1,9 @@
-import { Suspense } from "react";
-import NewCaseWizard from "./wizard";
+import { redirect } from "next/navigation";
+import { requireSession } from "@/lib/auth/session";
+import { createCase } from "@/lib/services/cases";
 
-export default function NewCasePage() {
-  return (
-    <Suspense
-      fallback={
-        <div style={{ fontSize: 15, color: "#6B7280" }}>Loading intake…</div>
-      }
-    >
-      <NewCaseWizard />
-    </Suspense>
-  );
+export default async function NewCasePage() {
+  const session = await requireSession();
+  const id = await createCase(session.id);
+  redirect(`/cases/${id}?step=1`);
 }

@@ -1,19 +1,37 @@
-"use client";
-
 import Link from "next/link";
-import { use } from "react";
-import { useDemoCase } from "@/lib/demo-case-context";
-import { EVIDENCE_BANNER_COPY } from "@/lib/content/evidence-templates";
+import { notFound } from "next/navigation";
+import { requireSession } from "@/lib/auth/session";
+import { assertCaseAccess, getEvidenceForCase } from "@/lib/services/cases";
+import {
+  EVIDENCE_BANNER_COPY,
+  EVIDENCE_TEMPLATES,
+} from "@/lib/content/evidence-templates";
 import { caseHref, pp, PrimaryButton } from "@/components/proof-path/shell";
 
-export default function EvidencePage({
+function statusStyle(status: string, level: string) {
+  if (status === "confirmed") {
+    return { label: "Confirmed", bg: "#EEF3F0", color: "#2F6E4B" };
+  }
+  if (level === "Optional") {
+    return { label: "Not added", bg: "#EFEAE0", color: pp.subtle };
+  }
+  return { label: "Missing", bg: "#FCF1DF", color: "#8A5A16" };
+}
+
+export default async function EvidencePage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = use(params);
-  const { getEvidenceItems } = useDemoCase();
-  const evidenceItems = getEvidenceItems();
+  const session = await requireSession();
+  const { id } = await params;
+  try {
+    await assertCaseAccess(id, session);
+  } catch {
+    notFound();
+  }
+
+  const evidence = await getEvidenceForCase(id);
 
   return (
     <div>
@@ -37,80 +55,70 @@ export default function EvidencePage({
         {EVIDENCE_BANNER_COPY}
       </div>
 
-      {evidenceItems.map((ev) => (
-        <div
-          key={ev.id}
-          style={{
-            border: `1px solid ${pp.border}`,
-            borderRadius: 16,
-            padding: "14px 16px",
-            marginBottom: 10,
-            background: pp.warm,
-          }}
-        >
+      {evidence.map((item) => {
+        const template = EVIDENCE_TEMPLATES.find((t) => t.id === item.templateId);
+        if (!template) return null;
+        const style = statusStyle(item.status, template.level);
+        return (
           <div
+            key={item.id}
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              gap: 10,
-              marginBottom: 6,
+              border: `1px solid ${pp.border}`,
+              borderRadius: 16,
+              padding: "14px 16px",
+              marginBottom: 10,
+              background: pp.warm,
             }}
           >
-            <div style={{ fontWeight: 700, fontSize: 15 }}>{ev.name}</div>
             <div
               style={{
-                fontSize: 12,
-                fontWeight: 700,
-                color: pp.subtle,
-                whiteSpace: "nowrap",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                gap: 10,
+                marginBottom: 6,
               }}
             >
-              {ev.level}
+              <div style={{ fontWeight: 700, fontSize: 15 }}>{template.name}</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: pp.subtle, whiteSpace: "nowrap" }}>
+                {template.level}
+              </div>
             </div>
-          </div>
-          <div style={{ fontSize: 14, color: pp.muted, marginBottom: 10 }}>
-            {ev.why}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <span
-              style={{
-                fontSize: 13,
-                fontWeight: 600,
-                padding: "3px 10px",
-                borderRadius: 999,
-                background: ev.statusBg,
-                color: ev.statusColor,
-              }}
-            >
-              {ev.statusLabel}
-            </span>
-            {!ev.confirmed ? (
-              <Link
-                href={caseHref(id, "/evidence/upload")}
+            <div style={{ fontSize: 14, color: pp.muted, marginBottom: 10 }}>{template.why}</div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span
                 style={{
-                  background: "none",
-                  border: `1.5px solid ${pp.accent}`,
-                  color: pp.accent,
-                  borderRadius: 8,
-                  padding: "7px 14px",
                   fontSize: 13,
                   fontWeight: 600,
-                  textDecoration: "none",
+                  padding: "3px 10px",
+                  borderRadius: 999,
+                  background: style.bg,
+                  color: style.color,
                 }}
               >
-                Add
-              </Link>
-            ) : null}
+                {style.label}
+              </span>
+              {item.status !== "confirmed" ? (
+                <Link
+                  href={caseHref(id, "/evidence/upload")}
+                  style={{
+                    background: "none",
+                    border: `1.5px solid ${pp.accent}`,
+                    color: pp.accent,
+                    borderRadius: 8,
+                    padding: "7px 14px",
+                    fontSize: 13,
+                    fontWeight: 600,
+                    textDecoration: "none",
+                  }}
+                >
+                  Add
+                </Link>
+              ) : null}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       <div style={{ marginTop: 12 }}>
         <PrimaryButton href={caseHref(id, "/evidence/upload")} fullWidth>

@@ -1,15 +1,63 @@
 "use client";
 
 import Link from "next/link";
-import { useDemoCase } from "@/lib/demo-case-context";
 import { caseHref, pp } from "@/components/proof-path/shell";
+import type { Case, EvidenceItem, TimelineEvent } from "@/db/schema";
+import {
+  evidenceSummary,
+  getProgressSteps,
+  progressIndexForCase,
+  whatHappensNext,
+} from "@/lib/services/case-presenters";
 
-export function CaseOverviewContent({ caseId }: { caseId: string }) {
-  const { progressSteps, evidenceSummary, timelineSummary } = useDemoCase();
+export function CaseOverviewContent({
+  caseId,
+  caseRecord,
+  evidence,
+  timeline,
+}: {
+  caseId: string;
+  caseRecord: Case;
+  evidence: EvidenceItem[];
+  timeline: TimelineEvent[];
+}) {
+  const progressSteps = getProgressSteps(progressIndexForCase(caseRecord));
+  const evSummary = evidenceSummary(evidence);
+  const timelineSummary =
+    timeline.length > 1
+      ? `${timeline.length - 1} update${timeline.length > 2 ? "s" : ""}`
+      : "No responses recorded yet";
   const base = caseHref(caseId);
 
   return (
     <>
+      <div
+        style={{
+          background: pp.card,
+          border: `1px solid ${pp.border}`,
+          boxShadow: "0 1px 3px rgba(28,36,48,0.05)",
+          borderRadius: 16,
+          padding: 16,
+          marginBottom: 18,
+        }}
+      >
+        <div
+          style={{
+            fontSize: 13,
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "0.03em",
+            color: pp.subtle,
+            marginBottom: 8,
+          }}
+        >
+          What happens next
+        </div>
+        <div style={{ fontSize: 15, color: pp.ink, lineHeight: 1.5 }}>
+          {whatHappensNext(caseRecord, evidence)}
+        </div>
+      </div>
+
       <div style={{ marginBottom: 22 }}>
         <div
           style={{
@@ -35,7 +83,16 @@ export function CaseOverviewContent({ caseId }: { caseId: string }) {
               color: step.color,
             }}
           >
-            <span style={{ fontWeight: 700 }}>{step.mark}</span>
+            <span style={{ fontWeight: 700 }} aria-hidden="true">
+              {step.mark}
+            </span>
+            <span className="sr-only">
+              {step.mark === "✓"
+                ? "Completed: "
+                : step.mark === "→"
+                  ? "Current step: "
+                  : "Upcoming: "}
+            </span>
             {step.label}
           </div>
         ))}
@@ -44,7 +101,7 @@ export function CaseOverviewContent({ caseId }: { caseId: string }) {
       <SectionLink
         href={`${base}/evidence`}
         label="Evidence"
-        summary={`${evidenceSummary} — View evidence →`}
+        summary={`${evSummary} — View evidence →`}
       />
       <SectionLink
         href={`${base}/guidance`}
@@ -79,13 +136,42 @@ export function CaseOverviewContent({ caseId }: { caseId: string }) {
           paddingTop: 16,
         }}
       >
-        <FooterLink href={`${base}/support`}>Invite a support person</FooterLink>
-        <FooterLink href={`${base}/export/success`}>
+        <Link
+          href={`${base}/support`}
+          style={{
+            textAlign: "left",
+            color: pp.accent,
+            fontSize: 14,
+            fontWeight: 600,
+            textDecoration: "none",
+          }}
+        >
+          Invite a support person
+        </Link>
+        <a
+          href={`/api/export/${caseId}`}
+          style={{
+            textAlign: "left",
+            color: pp.accent,
+            fontSize: 14,
+            fontWeight: 600,
+            textDecoration: "none",
+          }}
+        >
           Export case summary
-        </FooterLink>
-        <FooterLink href={`${base}/delete`} danger>
+        </a>
+        <Link
+          href={`${base}/delete`}
+          style={{
+            textAlign: "left",
+            color: pp.danger,
+            fontSize: 14,
+            fontWeight: 600,
+            textDecoration: "none",
+          }}
+        >
           Delete case
-        </FooterLink>
+        </Link>
       </div>
     </>
   );
@@ -102,7 +188,6 @@ function SectionLink({
   summary: string;
   accentOnly?: boolean;
 }) {
-  const parts = summary.split(" — ");
   return (
     <Link
       href={href}
@@ -132,51 +217,15 @@ function SectionLink({
       >
         {label}
       </div>
-      <div style={{ fontSize: 15, color: accentOnly ? pp.accent : pp.ink }}>
-        {accentOnly ? (
-          <span style={{ fontWeight: 600 }}>{summary}</span>
-        ) : (
-          <>
-            {parts[0]}
-            {parts[1] ? (
-              <>
-                {" — "}
-                <span style={{ color: pp.accent, fontWeight: 600 }}>
-                  {parts[1]}
-                </span>
-              </>
-            ) : null}
-          </>
-        )}
+      <div
+        style={{
+          fontSize: 15,
+          color: accentOnly ? pp.accent : pp.ink,
+          fontWeight: accentOnly ? 600 : 400,
+        }}
+      >
+        {summary}
       </div>
-    </Link>
-  );
-}
-
-function FooterLink({
-  href,
-  children,
-  danger,
-}: {
-  href: string;
-  children: React.ReactNode;
-  danger?: boolean;
-}) {
-  return (
-    <Link
-      href={href}
-      style={{
-        textAlign: "left",
-        background: "none",
-        border: "none",
-        color: danger ? pp.danger : pp.accent,
-        fontSize: 14,
-        fontWeight: 600,
-        padding: "2px 0",
-        textDecoration: "none",
-      }}
-    >
-      {children}
     </Link>
   );
 }

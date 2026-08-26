@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { caseHref, pp, PrimaryButton } from "@/components/proof-path/shell";
 
 export default async function ExportSuccessPage({
@@ -22,21 +23,28 @@ export default async function ExportSuccessPage({
           justifyContent: "center",
           margin: "0 auto 18px",
         }}
+        aria-hidden
       >
         ✓
       </div>
       <h1 style={{ fontSize: 21, margin: "0 0 8px" }}>Case summary ready</h1>
-      <p
+      <p style={{ fontSize: 15, color: pp.muted, margin: "0 0 16px" }}>
+        Your case facts, evidence index, draft and timeline have been prepared as a PDF.
+      </p>
+      <a
+        href={`/api/export/${id}`}
         style={{
-          fontSize: 15,
-          color: pp.muted,
-          margin: "0 0 24px",
+          display: "inline-block",
+          marginBottom: 16,
+          color: pp.accent,
+          fontWeight: 600,
         }}
       >
-        Your case facts, evidence index, draft and timeline have been prepared
-        as a PDF.
-      </p>
-      <PrimaryButton href={caseHref(id)}>Back to case</PrimaryButton>
+        Download PDF
+      </a>
+      <div>
+        <PrimaryButton href={caseHref(id)}>Back to case</PrimaryButton>
+      </div>
     </div>
   );
 }

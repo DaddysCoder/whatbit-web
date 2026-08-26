@@ -2,6 +2,7 @@
 
 import { Button, SectionCard } from "@/components/ui";
 import { useLargeTextContext } from "@/components/providers";
+import { setLargeTextPreferenceAction } from "@/lib/actions/app-actions";
 import styles from "./public-screens.module.css";
 
 const ACCESSIBILITY_SECTIONS = [
@@ -47,7 +48,14 @@ export function AccessibilityScreen() {
         <Button
           type="button"
           variant={largeText ? "primaryActive" : "primary"}
-          onClick={toggleLargeText}
+          onClick={async () => {
+            toggleLargeText();
+            try {
+              await setLargeTextPreferenceAction(!largeText);
+            } catch {
+              /* not signed in — local preference only */
+            }
+          }}
         >
           {largeText ? "Large text on" : "Turn on large text"}
         </Button>
