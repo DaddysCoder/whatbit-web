@@ -10,6 +10,11 @@ export type ProductSlug =
 
 export const FRAME_APP_URL = "https://screen-fba.polina-67d.workers.dev/";
 
+export const PROOF_AND_PATH_APP_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3001"
+    : "https://proofandpath.whatbit.dev";
+
 export const VODA_PRODUCT = {
   slug: "voda" as const,
   name: "VODA",
@@ -91,6 +96,7 @@ export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
 export const PRODUCT_LINKS: { href: string; label: string }[] = [
   { href: "/orbit", label: "Orbit" },
   { href: "/frame", label: "Frame" },
+  { href: "/proof-and-path", label: "Proof & Path" },
   { href: "/voda", label: "VODA" },
   { href: "/axil", label: "Axil" },
   { href: "/trace", label: "Trace" },
