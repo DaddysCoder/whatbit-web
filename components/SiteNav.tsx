@@ -20,6 +20,15 @@ export function SiteNav({
 }: SiteNavProps) {
   const [solid, setSolid] = useState(variant !== "home");
   const [open, setOpen] = useState(false);
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 1100px)");
+    const sync = () => setCompact(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     if (variant !== "home") return;
@@ -38,12 +47,19 @@ export function SiteNav({
 
   const navStyle =
     variant === "home"
-      ? {
-          background: solid ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0)",
-          backdropFilter: solid ? "blur(12px)" : "none",
-          WebkitBackdropFilter: solid ? "blur(12px)" : "none",
-          borderBottom: solid ? "1px solid #E5E5E5" : "1px solid transparent",
-        }
+      ? compact || solid
+        ? {
+            background: compact ? "#ffffff" : "rgba(255,255,255,0.85)",
+            backdropFilter: compact ? "none" : "blur(12px)",
+            WebkitBackdropFilter: compact ? "none" : "blur(12px)",
+            borderBottom: solid || compact ? "1px solid #E5E5E5" : "1px solid transparent",
+          }
+        : {
+            background: "rgba(255,255,255,0)",
+            backdropFilter: "none",
+            WebkitBackdropFilter: "none",
+            borderBottom: "1px solid transparent",
+          }
       : undefined;
 
   if (variant === "about") {

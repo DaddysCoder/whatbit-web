@@ -102,6 +102,12 @@
     padding: 0 16px;
   }
 
+  .solid {
+    background: #ffffff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .desktop {
     display: none;
   }
