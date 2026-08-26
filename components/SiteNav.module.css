@@ -23,6 +23,12 @@
   /* background set inline for home scroll */
 }
 
+.aboutLinks {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
 .desktop {
   display: flex;
   align-items: center;
@@ -100,6 +106,14 @@
 @media (max-width: 1100px) {
   .nav {
     padding: 0 20px;
+  }
+
+  .aboutLinks {
+    gap: 14px;
+  }
+
+  .aboutLinks .textLink {
+    font-size: 12px;
   }
 
   .desktop {
