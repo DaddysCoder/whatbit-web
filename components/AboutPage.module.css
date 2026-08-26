@@ -335,10 +335,70 @@
 
 @media (max-width: 768px) {
   .storyCard {
-    padding: 24px 20px;
+    padding: 22px 18px;
+    max-height: 58vh;
+  }
+
+  .quoteCard {
+    padding: 22px 16px 18px;
+    max-height: 58vh;
   }
 
   .num {
-    font-size: 40px;
+    font-size: 36px;
+  }
+
+  .hero {
+    padding: 96px 16px 64px;
+    min-height: 100svh;
+  }
+
+  .field {
+    width: min(440px, 72vw);
+    height: min(440px, 72vw);
+    max-width: 72vw;
+    max-height: 72vw;
+    margin-bottom: 28px;
+  }
+
+  .title {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+
+  .lede {
+    font-size: 15px;
+  }
+
+  .storyHead {
+    padding: 28px 16px 0;
+  }
+
+  .storyTitle {
+    font-size: clamp(22px, 6vw, 30px);
+  }
+
+  .imgWrap {
+    height: 160px;
+  }
+
+  .quoteText {
+    font-size: clamp(18px, 5vw, 26px);
+  }
+
+  .body {
+    font-size: 15px;
+    gap: 12px;
+  }
+
+  .dots {
+    padding: 10px 16px 18px;
+  }
+
+  .close {
+    padding: 96px 16px 72px;
+  }
+
+  .footer {
+    padding: 40px 16px;
   }
 }

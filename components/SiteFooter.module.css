@@ -82,3 +82,24 @@
   align-items: center;
   gap: 16px;
 }
+
+@media (max-width: 768px) {
+  .full,
+  .minimalWrap {
+    gap: 28px;
+    padding-top: 32px;
+  }
+
+  .cols {
+    gap: 28px 40px;
+    width: 100%;
+  }
+
+  .tiny {
+    padding: 28px 16px;
+  }
+
+  .legalRow {
+    gap: 12px 16px;
+  }
+}

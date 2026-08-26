@@ -2,6 +2,7 @@
   min-height: 100vh;
   background: #ffffff;
   color: #0b0b0c;
+  overflow-x: hidden;
 }
 
 .inner {
@@ -45,7 +46,7 @@
 
 .heroCopy {
   flex: 1;
-  min-width: 340px;
+  min-width: min(340px, 100%);
   max-width: 620px;
 }
 
@@ -116,7 +117,7 @@
 
 .heroFrame {
   flex: 1;
-  min-width: 320px;
+  min-width: min(320px, 100%);
   border: 1px solid #f0f0f0;
   border-radius: 14px;
   overflow: hidden;
@@ -177,7 +178,7 @@
 
 .svcGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 32px;
 }
 
@@ -304,13 +305,13 @@
 
 .a11yCol {
   flex: 1;
-  min-width: 320px;
+  min-width: min(320px, 100%);
   max-width: 560px;
 }
 
 .a11yColWide {
   flex: 1;
-  min-width: 320px;
+  min-width: min(320px, 100%);
 }
 
 .a11yBody {
@@ -564,13 +565,13 @@
 
 .splitCopy {
   flex: 1;
-  min-width: 320px;
+  min-width: min(320px, 100%);
   max-width: 520px;
 }
 
 .splitList {
   flex: 1;
-  min-width: 320px;
+  min-width: min(320px, 100%);
 }
 
 .splitLede {
@@ -693,29 +694,101 @@
   .engage,
   .ctaBand,
   .brandLine {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .inner {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .hero {
-    padding-top: 120px;
-    padding-bottom: 64px;
+    padding-top: 112px;
+    padding-bottom: 56px;
   }
 
-  .heroCopy {
+  .section,
+  .sectionFlush,
+  .a11y,
+  .engage {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .ctaBand {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .h1 {
+    font-size: clamp(28px, 8vw, 40px);
+    max-width: none;
+  }
+
+  .lede {
+    font-size: 17px;
+  }
+
+  .heroCopy,
+  .heroFrame,
+  .a11yCol,
+  .a11yColWide,
+  .splitCopy,
+  .splitList {
     min-width: 0;
+    max-width: none;
   }
 
-  .heroFrame {
-    min-width: 0;
+  .heroRow,
+  .a11yRow,
+  .split {
+    gap: 28px;
   }
 
-  .svcGrid {
+  .svcGrid,
+  .workGrid,
+  .steps,
+  .flowGrid {
     grid-template-columns: 1fr;
   }
 
-  .workGrid {
-    grid-template-columns: 1fr;
+  .svcCard {
+    padding: 22px 20px;
+  }
+
+  .workBody {
+    padding: 20px;
+  }
+
+  .workImgWrap,
+  .workImg {
+    height: 200px;
+  }
+
+  .conditionRow {
+    padding: 12px 16px;
+  }
+
+  .conditionFoot {
+    padding: 16px;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+  }
+
+  .btnPrimary,
+  .btnGhost,
+  .btnLight {
+    width: 100%;
+    text-align: center;
+  }
+
+  .workCard:hover,
+  .conditions:hover,
+  .svcCard {
+    transform: none;
   }
 }
 

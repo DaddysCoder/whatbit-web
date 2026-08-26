@@ -550,8 +550,13 @@
   .body,
   .teaserWrap,
   .footer {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero {
+    padding: 120px 16px 72px;
+    min-height: 100svh;
   }
 
   .window,
@@ -560,11 +565,19 @@
   }
 
   .h2 {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .teaser,
   .fieldNote {
-    padding: 36px 24px;
+    padding: 28px 20px;
+  }
+
+  .approach {
+    grid-template-columns: 1fr;
+  }
+
+  .attrOrb {
+    margin: 0 auto;
   }
 }

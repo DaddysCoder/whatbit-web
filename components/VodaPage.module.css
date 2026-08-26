@@ -319,14 +319,14 @@
   .hero,
   .features,
   .ctaBlock {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .feat {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
   }
 
   .featReverse {
@@ -335,5 +335,13 @@
 
   .features {
     gap: 72px;
+  }
+
+  .featTitle {
+    font-size: 24px;
+  }
+
+  .ctaBlock {
+    padding-top: 80px;
   }
 }
