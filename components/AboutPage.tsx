@@ -1,110 +1,262 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ABOUT_CARDS, ABOUT_DOT_COLORS } from "@/lib/about-cards";
-import { SiteFooter } from "./SiteFooter";
+import { ABOUT_CARDS, ABOUT_DOT_COLORS, type AboutBodyLine, type AboutCard } from "@/lib/about-cards";
+import { Wordmark } from "./Wordmark";
 import { SiteNav } from "./SiteNav";
 import styles from "./AboutPage.module.css";
 
 const CARD_COUNT = ABOUT_CARDS.length;
 
-function cardStyle(i: number, scrollIndex: number, reduced: boolean) {
+type Phase = "pre" | "in" | "settled";
+
+function cardVisual(i: number, phase: Phase, accentRgb: string, reduced: boolean) {
   if (reduced) {
-    const active = i === Math.round(scrollIndex);
-    return { transform: "none", opacity: active ? 1 : 0 };
+    return {
+      transform: "none",
+      opacity: 1,
+      transition: "none",
+      shadow: i % 2 === 0 ? "0 20px 50px rgba(0,0,0,0.09)" : "0 16px 40px rgba(0,0,0,0.14)",
+      anim: "none",
+    };
   }
-  const rel = i - scrollIndex;
-  let ty: number;
-  let scale: number;
-  let opacity: number;
-  if (rel >= 0) {
-    const t = Math.min(rel, 1);
-    ty = t * 90;
-    scale = 1 - t * 0.08;
-    opacity = 1 - t;
-  } else {
-    const d = Math.min(-rel, 4);
-    ty = -d * 16;
-    scale = 1 - d * 0.035;
-    opacity = Math.max(0, 1 - d * 0.4);
+
+  const dir = i % 3;
+  let transform = "none";
+  if (phase === "pre") {
+    if (dir === 0) transform = "translateY(56px) scale(0.94)";
+    else if (dir === 1) transform = "translateX(-64px) rotate(-2deg) scale(0.94)";
+    else transform = "translateX(64px) rotate(2deg) scale(0.94)";
   }
+
+  const baseShadow = i % 2 === 0 ? "0 20px 50px rgba(0,0,0,0.09)" : "0 16px 40px rgba(0,0,0,0.14)";
+  const shadow =
+    phase === "in" ? `${baseShadow}, 0 0 46px rgba(${accentRgb},0.55)` : baseShadow;
+
   return {
-    transform: `translateY(${ty.toFixed(1)}px) scale(${scale.toFixed(3)})`,
-    opacity,
+    transform,
+    opacity: phase === "pre" ? 0 : 1,
+    transition:
+      "transform 0.85s cubic-bezier(0.16,1,0.3,1), opacity 0.7s ease, box-shadow 0.9s ease",
+    shadow,
+    anim:
+      phase === "settled"
+        ? `cardwobble ${(5 + (i % 4) * 0.6).toFixed(1)}s ease-in-out infinite ${(i * 0.15).toFixed(2)}s`
+        : "none",
   };
 }
 
+function StoryBody({ lines, accent }: { lines: AboutBodyLine[]; accent: string }) {
+  return (
+    <div className={styles.body}>
+      {lines.map((p, idx) => {
+        if (p.variant === "lead" || p.variant === "leadStrong" || p.variant === "section") {
+          return (
+            <p
+              key={idx}
+              className={
+                p.variant === "section"
+                  ? styles.sectionHead
+                  : p.variant === "leadStrong"
+                    ? styles.leadStrong
+                    : styles.lead
+              }
+            >
+              {p.text}
+            </p>
+          );
+        }
+        if (p.variant === "italic") {
+          return (
+            <p key={idx} className={styles.italic} style={{ color: accent }}>
+              {p.text}
+            </p>
+          );
+        }
+        if (p.variant === "italicQuote") {
+          return (
+            <p key={idx}>
+              Or somebody says:{" "}
+              <span className={styles.italic} style={{ color: accent }}>
+                “{p.text}”
+              </span>
+            </p>
+          );
+        }
+        if (p.boldPrefix) {
+          return (
+            <p key={idx}>
+              <span className={styles.bold}>{p.boldPrefix}</span>
+              {p.text}
+            </p>
+          );
+        }
+        return <p key={idx}>{p.text}</p>;
+      })}
+    </div>
+  );
+}
+
+function CardInner({ card }: { card: AboutCard }) {
+  if (card.kind === "quote") {
+    return (
+      <div
+        className={styles.quoteCard}
+        style={{
+          borderRadius: card.radius,
+          border: card.border ?? "none",
+        }}
+      >
+        <div className={styles.quoteLines}>
+          <span style={{ color: "rgba(255,255,255,0.85)" }}>{card.lines[0]}</span>
+          <span style={{ color: "rgba(255,255,255,0.5)" }}>{card.lines[1]}</span>
+          <span style={{ color: "rgba(255,255,255,0.25)" }}>{card.lines[2]}</span>
+        </div>
+        <div className={styles.imgSlot} aria-hidden="true" />
+        <div className={styles.quoteText} style={{ color: card.quoteColor }}>
+          {card.quote}
+        </div>
+      </div>
+    );
+  }
+
+  if (card.kind === "values") {
+    return (
+      <div
+        className={styles.storyCard}
+        style={{
+          borderRadius: card.radius,
+          border: card.border ?? "none",
+        }}
+      >
+        <div className={styles.num} style={{ color: card.accent, opacity: 0.16 }}>
+          {card.number}
+        </div>
+        <div className={styles.cardEyebrow} style={{ color: card.accent }}>
+          {card.eyebrow}
+        </div>
+        <div className={styles.values}>
+          {card.items.map((item) => (
+            <div key={item.title} className={styles.valueItem}>
+              <div className={styles.valueTitle}>{item.title}</div>
+              <p>
+                {item.body}
+                {item.italicSuffix ? (
+                  <>
+                    {" "}
+                    <span className={styles.italic} style={{ color: card.accent }}>
+                      {item.italicSuffix}
+                    </span>
+                  </>
+                ) : null}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={styles.storyCard}
+      style={{
+        borderRadius: card.radius,
+        border: card.border ?? "none",
+      }}
+    >
+      <div className={styles.num} style={{ color: card.accent, opacity: 0.14 }}>
+        {card.number}
+      </div>
+      <div className={styles.cardEyebrow} style={{ color: card.accent }}>
+        {card.eyebrow}
+      </div>
+      {card.heading ? <div className={styles.cardHeading}>{card.heading}</div> : null}
+      <StoryBody lines={card.body} accent={card.accent} />
+    </div>
+  );
+}
+
 export function AboutPage() {
-  const sectionRef = useRef<HTMLDivElement | null>(null);
-  const [sectionHeight, setSectionHeight] = useState(5000);
-  const [scrollIndex, setScrollIndex] = useState(0);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [phase, setPhase] = useState<Phase[]>(() => Array(CARD_COUNT).fill("pre"));
   const [reduced, setReduced] = useState(false);
 
-  const computeHeight = useCallback(() => {
-    return (CARD_COUNT - 1) * window.innerHeight * 0.9 + window.innerHeight;
+  const goTo = useCallback((i: number) => {
+    const clamped = Math.max(0, Math.min(CARD_COUNT - 1, i));
+    const el = cardRefs.current[clamped];
+    if (!el) return;
+    const top = window.scrollY + el.getBoundingClientRect().top - 100;
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
   }, []);
 
-  const handleScroll = useCallback(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const travel = sectionHeight - window.innerHeight;
-    if (travel <= 0) return;
-    let progress = -rect.top / travel;
-    progress = Math.max(0, Math.min(1, progress));
-    const idx = progress * (CARD_COUNT - 1);
-    setScrollIndex(idx);
-    setActiveIndex(Math.round(idx));
-  }, [sectionHeight]);
-
-  const goTo = useCallback(
-    (i: number) => {
-      const clamped = Math.max(0, Math.min(CARD_COUNT - 1, i));
-      const el = sectionRef.current;
-      if (!el) {
-        setActiveIndex(clamped);
-        setScrollIndex(clamped);
-        return;
-      }
-      const rect = el.getBoundingClientRect();
-      const travel = sectionHeight - window.innerHeight;
-      const docTop = window.scrollY + rect.top;
-      const target = docTop + travel * (clamped / (CARD_COUNT - 1));
-      window.scrollTo({ top: Math.max(0, target), behavior: reduced ? "auto" : "smooth" });
-    },
-    [reduced, sectionHeight]
-  );
-
   useEffect(() => {
-    const resize = () => setSectionHeight(computeHeight());
-    resize();
-    window.addEventListener("resize", resize);
-    window.addEventListener("scroll", handleScroll, { passive: true });
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const onMq = () => setReduced(mq.matches);
-    onMq();
-    mq.addEventListener("change", onMq);
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        goTo(activeIndex + 1);
-      } else if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        goTo(activeIndex - 1);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    handleScroll();
+    const syncMq = () => setReduced(mq.matches);
+    syncMq();
+    mq.addEventListener("change", syncMq);
+
+    const navObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const idx = cardRefs.current.findIndex((el) => el === entry.target);
+          if (idx !== -1) setActiveIndex(idx);
+        });
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const idx = cardRefs.current.findIndex((el) => el === entry.target);
+          if (idx === -1 || !entry.isIntersecting) return;
+
+          if (mq.matches) {
+            setPhase((prev) => {
+              if (prev[idx] === "settled") return prev;
+              const next = prev.slice();
+              next[idx] = "settled";
+              return next;
+            });
+            return;
+          }
+
+          setPhase((prev) => {
+            if (prev[idx] !== "pre") return prev;
+            const next = prev.slice();
+            next[idx] = "in";
+            return next;
+          });
+
+          window.setTimeout(() => {
+            setPhase((prev) => {
+              if (prev[idx] !== "in") return prev;
+              const next = prev.slice();
+              next[idx] = "settled";
+              return next;
+            });
+          }, 600);
+        });
+      },
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+    );
+
+    cardRefs.current.forEach((el) => {
+      if (!el) return;
+      navObserver.observe(el);
+      revealObserver.observe(el);
+    });
+
     return () => {
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("keydown", onKey);
-      mq.removeEventListener("change", onMq);
+      mq.removeEventListener("change", syncMq);
+      navObserver.disconnect();
+      revealObserver.disconnect();
     };
-  }, [activeIndex, computeHeight, goTo, handleScroll]);
+  }, []);
 
   const label = `${String(activeIndex + 1).padStart(2, "0")} / ${String(CARD_COUNT).padStart(2, "0")}`;
 
@@ -283,101 +435,53 @@ export function AboutPage() {
         </div>
       </section>
 
-      <div className={styles.story} ref={sectionRef} style={{ height: sectionHeight }}>
-        <div className={styles.sticky}>
-          <div className={styles.storyHead}>
-            <div className={styles.storyEyebrow}>THE STORY, IN PIECES</div>
-            <div className={styles.storyTitle}>Keep scrolling.</div>
-            <div className={styles.storyCount}>{label}</div>
-          </div>
-          <div className={styles.stage}>
-            {ABOUT_CARDS.map((card, i) => {
-              const s = cardStyle(i, scrollIndex, reduced);
-              const width = card.kind === "quote" ? "min(560px,88vw)" : "min(640px,88vw)";
-              return (
-                <div
-                  key={i}
-                  className={styles.card}
-                  onClick={() => goTo(i)}
-                  style={{
-                    width,
-                    zIndex: 10 + i * 10,
-                    transform: `translate(-50%, -50%) ${s.transform === "none" ? "" : s.transform}`,
-                    opacity: s.opacity,
-                    transition: reduced ? "opacity 0.3s ease" : "none",
-                  }}
-                >
-                  {card.kind === "quote" ? (
-                    <div className={styles.quoteCard}>
-                      <div className={styles.quoteLines}>
-                        <span style={{ color: "rgba(255,255,255,0.85)" }}>{card.lines[0]}</span>
-                        <span style={{ color: "rgba(255,255,255,0.5)" }}>{card.lines[1]}</span>
-                        <span style={{ color: "rgba(255,255,255,0.25)" }}>{card.lines[2]}</span>
-                      </div>
-                      <div className={styles.imgWrap}>
-                        <Image src={card.image} alt="" fill sizes="560px" style={{ objectFit: "cover" }} />
-                      </div>
-                      <div className={styles.quoteText} style={{ color: card.quoteColor }}>
-                        {card.quote}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className={`wb-card-body ${styles.storyCard}`}>
-                      <div className={styles.num} style={{ color: card.accent }}>
-                        {card.number}
-                      </div>
-                      <div className={styles.cardEyebrow} style={{ color: card.accent }}>
-                        {card.eyebrow}
-                      </div>
-                      {card.heading ? <div className={styles.cardHeading}>{card.heading}</div> : null}
-                      <div className={styles.body} style={{ gap: card.eyebrow === "OUR VALUES" ? 22 : 16 }}>
-                        {card.body.map((p, idx) => {
-                          if (p.variant === "lead") {
-                            return (
-                              <p key={idx} className={styles.lead}>
-                                {p.text}
-                              </p>
-                            );
-                          }
-                          if (p.variant === "italic") {
-                            return (
-                              <p key={idx} className={styles.italic} style={{ color: card.accent }}>
-                                {p.text}
-                              </p>
-                            );
-                          }
-                          if (p.variant === "italicAccent") {
-                            return (
-                              <p key={idx}>
-                                <span style={{ fontStyle: "italic", color: card.accent }}>{p.text}</span>
-                              </p>
-                            );
-                          }
-                          return <p key={idx}>{p.text}</p>;
-                        })}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-          <div className={styles.dots}>
-            {ABOUT_DOT_COLORS.map((color, i) => (
-              <button
+      <div className={styles.story}>
+        <div className={styles.storyHead}>
+          <div className={styles.storyEyebrow}>THE STORY, IN PIECES</div>
+          <div className={styles.storyTitle}>Keep scrolling.</div>
+          <div className={styles.storyCount}>{label}</div>
+        </div>
+
+        <div className={styles.dots}>
+          {ABOUT_DOT_COLORS.map((color, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Go to card ${i + 1}`}
+              className={styles.dot}
+              onClick={() => goTo(i)}
+              style={{
+                width: i === activeIndex ? 26 : 8,
+                background: color,
+                opacity: i === activeIndex ? 1 : 0.3,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className={styles.stack}>
+          {ABOUT_CARDS.map((card, i) => {
+            const v = cardVisual(i, phase[i], card.accentRgb, reduced);
+            return (
+              <div
                 key={i}
-                type="button"
-                aria-label={`Go to card ${i + 1}`}
-                className={styles.dot}
-                onClick={() => goTo(i)}
-                style={{
-                  width: i === activeIndex ? 26 : 8,
-                  background: color,
-                  opacity: i === activeIndex ? 1 : 0.3,
+                ref={(el) => {
+                  cardRefs.current[i] = el;
                 }}
-              />
-            ))}
-          </div>
+                className={styles.card}
+                style={{
+                  width: card.width,
+                  transform: v.transform,
+                  opacity: v.opacity,
+                  transition: v.transition,
+                }}
+              >
+                <div style={{ boxShadow: v.shadow, animation: v.anim, borderRadius: card.radius }}>
+                  <CardInner card={card} />
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -389,8 +493,12 @@ export function AboutPage() {
           ← Back home
         </Link>
       </div>
+
       <div className={styles.footer}>
-        <SiteFooter variant="minimal" />
+        <div className={styles.footerInner}>
+          <Wordmark accent="#B794FF" ink="#FFFFFF" size={17} />
+          <div className={styles.footerMark}>WhatBit · Australia</div>
+        </div>
       </div>
     </div>
   );

@@ -112,22 +112,12 @@
 }
 
 .story {
-  position: relative;
-}
-
-.sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  padding: 100px 24px 40px;
 }
 
 .storyHead {
-  padding: 48px 24px 4px;
   text-align: center;
-  flex-shrink: 0;
+  margin-bottom: 12px;
 }
 
 .storyEyebrow {
@@ -151,36 +141,44 @@
   color: #9b9b9b;
 }
 
-.stage {
-  position: relative;
-  flex: 1;
-  min-height: 0;
+.dots {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 32px 0 56px;
+}
+
+.dot {
+  height: 8px;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
 }
 
 .card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  cursor: pointer;
+  will-change: transform, opacity;
 }
 
 .storyCard {
   background: #ffffff;
-  border-radius: 24px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
   padding: 36px 32px;
-  max-height: 60vh;
-  overflow-y: auto;
 }
 
 .quoteCard {
   background: #0b0b0c;
-  border-radius: 24px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
   padding: 32px 24px 24px;
   display: flex;
   flex-direction: column;
-  max-height: 60vh;
 }
 
 .num {
@@ -188,7 +186,6 @@
   font-weight: 800;
   font-size: 64px;
   line-height: 0.8;
-  opacity: 0.14;
   margin-bottom: -8px;
 }
 
@@ -224,9 +221,49 @@
   line-height: 1.4;
 }
 
+.leadStrong {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #0b0b0c;
+  font-size: 19px;
+  line-height: 1.4;
+}
+
+.sectionHead {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #0b0b0c;
+  margin-top: 8px;
+}
+
 .italic {
   font-style: italic;
-  color: #7b2ff7;
+}
+
+.bold {
+  font-weight: 700;
+  color: #0b0b0c;
+}
+
+.values {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #2b2b2b;
+}
+
+.valueItem p {
+  margin: 0;
+}
+
+.valueTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: #0b0b0c;
+  margin-bottom: 6px;
 }
 
 .quoteLines {
@@ -244,12 +281,10 @@
   letter-spacing: 0.14em;
 }
 
-.imgWrap {
+.imgSlot {
   background: #ffffff;
   border-radius: 16px;
   height: 220px;
-  overflow: hidden;
-  position: relative;
 }
 
 .quoteText {
@@ -259,23 +294,6 @@
   font-size: clamp(22px, 3vw, 32px);
   letter-spacing: -0.02em;
   text-align: center;
-}
-
-.dots {
-  display: flex;
-  justify-content: center;
-  gap: 9px;
-  padding: 14px 24px 26px;
-  flex-shrink: 0;
-}
-
-.dot {
-  height: 8px;
-  border-radius: 5px;
-  border: 0;
-  cursor: pointer;
-  padding: 0;
-  transition: all 0.3s ease;
 }
 
 .close {
@@ -333,12 +351,64 @@
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.footerInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footerMark {
+  font-size: 12px;
+  color: #6b6b6b;
+}
+
 @media (max-width: 768px) {
+  .hero {
+    padding: 96px 16px 64px;
+  }
+
+  .story {
+    padding: 72px 16px 32px;
+  }
+
   .storyCard {
-    padding: 24px 20px;
+    padding: 28px 20px;
+  }
+
+  .quoteCard {
+    padding: 24px 18px 18px;
   }
 
   .num {
-    font-size: 40px;
+    font-size: 44px;
+  }
+
+  .dots {
+    margin: 24px 0 40px;
+    gap: 7px;
+  }
+
+  .stack {
+    gap: 36px;
+  }
+
+  .imgSlot {
+    height: 180px;
+  }
+
+  .close {
+    padding: 100px 16px 72px;
+  }
+
+  .footer {
+    padding: 40px 16px;
+  }
+
+  .body {
+    font-size: 15px;
   }
 }

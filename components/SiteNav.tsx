@@ -50,9 +50,17 @@ export function SiteNav({
     return (
       <header className={`${styles.nav} ${styles.solid}`}>
         <Wordmark />
-        <Link href="/" className={styles.textLink}>
-          ← Back home
-        </Link>
+        <nav className={styles.aboutLinks} aria-label="About">
+          <Link href="/rft" className={styles.textLink}>
+            RFT
+          </Link>
+          <Link href="/elsewhere" className={styles.textLink}>
+            Elsewhere
+          </Link>
+          <Link href="/" className={styles.textLink}>
+            ← Back home
+          </Link>
+        </nav>
       </header>
     );
   }
