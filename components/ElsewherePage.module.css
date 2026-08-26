@@ -741,15 +741,20 @@
   .teaserWrap,
   .notify,
   .footer {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero {
+    padding: 120px 16px 72px;
+    min-height: 100svh;
   }
 
   .feat,
   .featReverse {
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: 24px;
     direction: ltr;
   }
 
@@ -758,16 +763,34 @@
   }
 
   .teaser {
-    padding: 36px 24px;
+    padding: 28px 20px;
   }
 
   .featTitle {
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  .features {
+    gap: 72px;
   }
 }
 
 @media (max-width: 520px) {
   .pipeGrid {
     grid-template-columns: 1fr;
+  }
+
+  .form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .notifyBtn {
+    width: 100%;
+    text-align: center;
   }
 }

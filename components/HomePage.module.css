@@ -111,14 +111,15 @@
   height: 460px;
   max-width: 90vw;
   max-height: 90vw;
+  container-type: inline-size;
 }
 
 .core {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 150px;
-  height: 150px;
+  width: 32.6%;
+  height: 32.6%;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: radial-gradient(circle at 35% 30%, #a78bfa, #6d28d9 60%, #4c1d95);
@@ -141,6 +142,7 @@
 .dot {
   position: absolute;
   left: 170px;
+  left: 37cqi;
   border-radius: 50%;
 }
 
@@ -622,27 +624,134 @@
   .philosophy,
   .trust,
   .ctaBlock {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero {
+    padding: 100px 16px 64px;
+    min-height: 100svh;
+  }
+
+  .heroTitle {
+    font-size: clamp(32px, 9vw, 44px);
+  }
+
+  .heroSub {
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  .scrollHint {
+    margin-top: 40px;
+  }
+
+  .orbit {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .orbitCopy {
+    margin-bottom: 48px;
+    font-size: 15px;
+  }
+
+  .orbitStage {
+    width: min(460px, 86vw);
+    height: min(460px, 86vw);
+    max-width: 86vw;
+    max-height: 86vw;
+  }
+
+  .products {
+    padding-top: 80px;
+    padding-bottom: 48px;
+  }
+
+  .sectionHead {
+    margin-bottom: 40px;
   }
 
   .grid {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .card,
   .orbitCard,
   .frameCard {
     grid-column: auto;
+    min-height: unset;
+    padding: 24px 20px;
+    gap: 18px;
+    border-radius: 18px;
+  }
+
+  .orbitCard,
+  .frameCard {
+    padding: 28px 20px;
+  }
+
+  .orbitName {
+    font-size: 20px;
+  }
+
+  .pricing {
+    padding-top: 32px;
+    padding-bottom: 80px;
+  }
+
+  .priceGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .priceCard {
+    padding: 28px 22px;
+  }
+
+  .aboutWrap {
+    padding-bottom: 80px;
   }
 
   .aboutBand {
-    padding: 36px 24px;
+    padding: 28px 20px;
+    gap: 24px;
+    border-radius: 20px;
+  }
+
+  .philosophy {
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+
+  .trust {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .ctaBlock {
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+
+  .ctaInner {
+    margin-bottom: 56px;
+  }
+
+  .legal {
+    gap: 12px 16px;
   }
 
   .card:hover,
   .orbitCard:hover,
   .frameCard:hover {
     transform: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .priceGrid {
+    grid-template-columns: 1fr;
   }
 }

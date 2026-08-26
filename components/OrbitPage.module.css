@@ -334,35 +334,90 @@
   .previewWrap,
   .features,
   .ctaBlock {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
-  .stats,
-  .week,
-  .feat {
-    display: flex;
-    flex-direction: column;
+  .hero {
+    padding-top: 120px;
+    padding-bottom: 64px;
   }
 
-  .week {
+  .previewWrap {
+    margin-bottom: 80px;
+  }
+
+  .stats {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+    padding: 20px 16px;
   }
 
   .stat + .stat {
     border-left: 0;
-    border-top: 1px solid #f0f0f0;
     padding-left: 0;
-    padding-top: 16px;
-    margin-top: 16px;
+  }
+
+  .stat:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  .traj {
+    padding: 4px 16px 20px;
+  }
+
+  .trajRow {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .week {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+
+  .day {
+    flex: 0 0 118px;
+    min-height: 88px;
+    scroll-snap-align: start;
+    border-right: 1px solid #f0f0f0;
+    padding: 14px 12px;
+  }
+
+  .day:last-child {
+    border-right: 0;
   }
 
   .feat {
-    gap: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
   }
 
   .featReverse {
     flex-direction: column-reverse;
+  }
+
+  .features {
+    gap: 72px;
+    padding-bottom: 48px;
+  }
+
+  .featTitle {
+    font-size: 24px;
+  }
+
+  .ctaBlock {
+    padding-top: 80px;
+  }
+
+  .ctaInner {
+    margin-bottom: 64px;
   }
 }
