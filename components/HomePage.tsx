@@ -193,8 +193,8 @@ export function HomePage() {
             </div>
             <div>
               <div className={`${styles.cardName} ${styles.orbitName}`}>Frame <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
-              <div className={styles.frameHeadline}>The shape you build inside.</div>
-              <p className={styles.cardTag}>A behaviour-support workspace for seeing a person clearly — observations, patterns, and the next useful step, held in one place.</p>
+              <div className={styles.frameHeadline}>Behaviour support evidence, from observation to hypothesis.</div>
+              <p className={styles.cardTag}>Record observations, gather structured screening, compare evidence and keep uncertainty visible.</p>
             </div>
             <div className={`${styles.explore} ${styles.frameExplore}`}>Explore Frame <span>→</span></div>
           </Link>
