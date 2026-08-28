@@ -71,4 +71,5 @@ export const PRODUCT_LINKS: { href: string; label: string }[] = [
   { href: "/vector", label: "Vector" },
   { href: "/field", label: "Field" },
   { href: "/arc", label: "Arc" },
+  { href: "/ai-blueprint", label: "AI Blueprint" },
 ];
