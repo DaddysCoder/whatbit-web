@@ -17,6 +17,16 @@ export const FRAME_PRO_TRIAL_URL = "https://frame.whatbit.dev/trial";
 export function getFrameStatusBadge(): string {
   return FRAME_COMMERCIAL_LIVE ? "LIVE · FREE + PRO" : "COMING SOON";
 }
+
+export const FIELD_APP_URL = "https://field.whatbit.dev";
+/** When true, Field commercial CTAs and homepage badge switch to live pricing. */
+export const FIELD_COMMERCIAL_LIVE = false;
+export const FIELD_FREE_URL = "https://field.whatbit.dev";
+export const FIELD_PRO_TRIAL_URL = "https://field.whatbit.dev/trial";
+
+export function getFieldStatusBadge(): string {
+  return FIELD_COMMERCIAL_LIVE ? "LIVE · FREE + PRO" : "COMING SOON";
+}
 export const PACE_APP_URL = "https://orbit.whatbit.tech";
 export const AXIS_APP_URL = "https://axis.whatbit.tech";
 export const TRACE_APP_URL = "https://trace.whatbit.dev";
@@ -36,7 +46,7 @@ export const VODA_PRODUCT = {
 };
 
 export type WaitlistProduct = {
-  slug: Exclude<ProductSlug, "orbit" | "axis" | "frame" | "trace" | "voda" | "vector">;
+  slug: Exclude<ProductSlug, "orbit" | "axis" | "frame" | "trace" | "voda" | "vector" | "field">;
   name: string;
   tagline: string;
   accent: string;
@@ -47,16 +57,6 @@ export type WaitlistProduct = {
 };
 
 export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
-  {
-    slug: "field",
-    name: "Field",
-    tagline: "Everywhere your data lives, together.",
-    accent: "#0E8F71",
-    accentHover: "#0A6B55",
-    selection: "#D2F0E6",
-    gradient: "linear-gradient(135deg,#22B393,#0E8F71)",
-    glow: "rgba(14,143,113,0.3)",
-  },
   {
     slug: "arc",
     name: "Arc",

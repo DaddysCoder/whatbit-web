@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getFrameStatusBadge } from "@/lib/products";
+import { getFieldStatusBadge, getFrameStatusBadge } from "@/lib/products";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
@@ -237,9 +237,15 @@ export function HomePage() {
           </Link>
 
           <Link href="/field" className={`${styles.card} ${styles.field}`} style={revealStyle(r("products"), 0.2, true)}>
-            <BarMark size={44} gradient="linear-gradient(135deg,#22B393,#0E8F71)" />
-            <div><div className={styles.cardName}>Field <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>Everywhere your data lives, together.</p></div>
-            <div className={styles.dev}>IN DEVELOPMENT</div>
+            <div className={styles.cardTop}>
+              <BarMark size={44} gradient="linear-gradient(135deg,#22B393,#0E8F71)" />
+              <div className={styles.live}>{getFieldStatusBadge()}</div>
+            </div>
+            <div>
+              <div className={styles.cardName}>Field <span className={styles.by}>by WhatBit</span></div>
+              <p className={styles.cardTag}>Evidence-based strategies, personalised in under a minute.</p>
+            </div>
+            <div className={styles.explore}>Explore Field <span>→</span></div>
           </Link>
 
           <Link href="/arc" className={`${styles.card} ${styles.arc}`} style={revealStyle(r("products"), 0.25, true)}>
