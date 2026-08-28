@@ -213,6 +213,128 @@
   color: #e8542e;
 }
 
+.formSection {
+  max-width: 920px;
+  margin: 72px auto 0;
+  padding: 56px;
+  background: #faf7ff;
+  border: 1px solid #ede4fb;
+  border-radius: 28px;
+}
+
+.formIntro {
+  max-width: 620px;
+  margin-bottom: 36px;
+}
+
+.formIntro p {
+  margin-top: 14px;
+  color: #666;
+  line-height: 1.65;
+  font-size: 14px;
+}
+
+.form {
+  display: grid;
+  gap: 22px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: 1px solid #ded6ea;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #0b0b0c;
+  font: inherit;
+  font-weight: 500;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 160px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #7b2ff7;
+  box-shadow: 0 0 0 3px rgba(123, 47, 247, 0.12);
+}
+
+.formActions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.submitBtn {
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 999px;
+  background: #0b0b0c;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 800;
+  padding: 14px 22px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #7b2ff7;
+}
+
+.submitBtn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.privacyNote {
+  margin: 0;
+  max-width: 520px;
+  color: #777;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.formStatus {
+  min-height: 20px;
+  color: #5b21b6;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .skip {
   padding: 100px 24px 120px;
   display: flex;
@@ -311,13 +433,25 @@
     padding: 64px 16px 32px;
   }
 
-  .grid {
+  .grid,
+  .formRow {
     grid-template-columns: 1fr;
     gap: 14px;
   }
 
   .card {
     padding: 24px 20px;
+  }
+
+  .formSection {
+    margin: 48px 16px 0;
+    padding: 32px 20px;
+    border-radius: 22px;
+  }
+
+  .formActions {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .title {
