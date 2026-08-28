@@ -63,7 +63,7 @@ export const ABOUT_CARDS: AboutCard[] = [
       },
       { text: "The format changes. The principle does not." },
       {
-        text: "Work out what is really happening. Find the bit that matters. Build around that. That is WHATBIT.",
+        text: "Work out what is really happening. Find the bit that matters. Build around that. That is WhatBit.",
         variant: "lead",
       },
       { text: "A surprising amount of work begins with the wrong question." },
@@ -77,7 +77,7 @@ export const ABOUT_CARDS: AboutCard[] = [
         text: "We are interested in that point — the moment where you stop treating the visible problem as the whole problem and start asking:",
       },
       { text: "What is actually causing this?", variant: "italic" },
-      { text: "WHATBIT exists to investigate that question and then do something useful with the answer." },
+      { text: "WhatBit exists to investigate that question and then do something useful with the answer." },
     ],
   },
   {
@@ -184,7 +184,7 @@ export const ABOUT_CARDS: AboutCard[] = [
     border: "1px solid rgba(0,0,0,0.08)",
     body: [
       {
-        text: "WHATBIT works across a growing mix of products, client projects, research and experiments. Some projects begin with a very specific operational problem and grow into reusable tools. Others remain deliberately small: one workflow improved, one calculation made reliable, one piece of information made easier to understand.",
+        text: "WhatBit works across a growing mix of products, client projects, research and experiments. Some projects begin with a very specific operational problem and grow into reusable tools. Others remain deliberately small: one workflow improved, one calculation made reliable, one piece of information made easier to understand.",
       },
       {
         text: "Our work can include: digital products and internal tools, AI-assisted workflows, automation and system integration, research and investigation, decision-support tools, operational modelling, service and process design, rapid prototypes and experiments, and complex problem analysis.",
@@ -248,7 +248,7 @@ export const ABOUT_CARDS: AboutCard[] = [
     radius: 20,
     border: "1px solid rgba(0,0,0,0.06)",
     body: [
-      { text: "WHATBIT has two people. That is not quite the whole story.", variant: "leadStrong" },
+      { text: "WhatBit has two people. That is not quite the whole story.", variant: "leadStrong" },
       {
         text: "Behind the visible company sits what we call The Elsewhere Department — our internal layer of specialised AI systems, models, agents and automations. Different systems do different jobs.",
       },
@@ -260,7 +260,7 @@ export const ABOUT_CARDS: AboutCard[] = [
       },
       { text: "Why “Elsewhere”?", variant: "section" },
       {
-        text: "Before WHATBIT became WHATBIT, Elsewhere was one of the names we seriously considered for the company. We liked the idea too much to completely abandon it. It also turned out to be a fairly good description of where a growing amount of our work happens — not entirely inside a traditional organisation, not entirely inside a piece of software. Somewhere between human judgement, machines, systems and an increasing number of processes happening beyond the visible edge of the company. So Elsewhere stayed. Just in a different department.",
+        text: "Before WhatBit became WhatBit, Elsewhere was one of the names we seriously considered for the company. We liked the idea too much to completely abandon it. It also turned out to be a fairly good description of where a growing amount of our work happens — not entirely inside a traditional organisation, not entirely inside a piece of software. Somewhere between human judgement, machines, systems and an increasing number of processes happening beyond the visible edge of the company. So Elsewhere stayed. Just in a different department.",
       },
       { text: "What it is not", variant: "section" },
       {
@@ -288,12 +288,12 @@ export const ABOUT_CARDS: AboutCard[] = [
     radius: 28,
     border: null,
     body: [
-      { text: "Technology is central to WHATBIT. So are people." },
+      { text: "Technology is central to WhatBit. So are people." },
       {
         text: "Ultimately, someone has to understand the problem. Someone has to care whether the solution is useful. Someone has to notice the thing the data did not capture. Someone has to decide when the technically elegant answer is the wrong one. And someone has to be accountable for what gets built.",
       },
       { text: "That remains us.", variant: "lead" },
-      { text: "WHATBIT is led by Pol and Josh, combining different ways of looking at the same problem." },
+      { text: "WhatBit is led by Pol and Josh, combining different ways of looking at the same problem." },
       {
         text: " work centres on investigation, behavioural science, research, product thinking and finding patterns across complicated systems.",
         boldPrefix: "Pol's",
@@ -303,7 +303,7 @@ export const ABOUT_CARDS: AboutCard[] = [
         boldPrefix: "Josh",
       },
       {
-        text: "The overlap is where WHATBIT tends to happen. One side keeps asking why. The other keeps asking how. Neither question is particularly useful without the other.",
+        text: "The overlap is where WhatBit tends to happen. One side keeps asking why. The other keeps asking how. Neither question is particularly useful without the other.",
       },
     ],
   },
@@ -318,7 +318,7 @@ export const ABOUT_CARDS: AboutCard[] = [
     border: "1px solid rgba(0,0,0,0.08)",
     body: [
       {
-        text: "We want WHATBIT to become the kind of company people come to when the problem does not fit neatly inside one discipline.",
+        text: "We want WhatBit to become the kind of company people come to when the problem does not fit neatly inside one discipline.",
       },
       {
         text: "When there is a complicated system nobody has quite untangled. When an organisation knows something is inefficient but cannot identify exactly where. When a useful idea exists but needs to become something real.",

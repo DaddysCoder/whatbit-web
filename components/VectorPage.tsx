@@ -130,6 +130,9 @@ export function VectorPage() {
           <Link href="#templates" className={styles.navLink} onClick={() => setMenuOpen(false)}>
             Templates
           </Link>
+          <Link href="/#products" className={styles.navLink} onClick={() => setMenuOpen(false)}>
+            ← All products
+          </Link>
           <a href={VECTOR_FORMS_URL} className={styles.navCta} onClick={() => setMenuOpen(false)}>
             Open Vector
           </a>
@@ -278,7 +281,7 @@ export function VectorPage() {
 
             <div className={styles.paidCard}>
               <div className={styles.tierName}>Vector</div>
-              <div className={styles.tierPrice}>A$9 / month</div>
+              <div className={styles.tierPrice}>A$9/month</div>
               <p className={styles.toolCopy} style={{ marginBottom: 16 }}>
                 Everything in Free, plus:
               </p>
@@ -320,6 +323,7 @@ export function VectorPage() {
         <nav className={styles.footerLinks} aria-label="Vector legal">
           <Link href="/vector/privacy">Privacy</Link>
           <Link href="/vector/terms">Terms</Link>
+          <Link href="/cookies">Cookies</Link>
         </nav>
       </footer>
     </div>

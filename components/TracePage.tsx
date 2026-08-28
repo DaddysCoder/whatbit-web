@@ -23,7 +23,7 @@ export function TracePage() {
             float
           />
         </div>
-        <div className={styles.live}>FREE CORE · TRACE PRO A$9/MO</div>
+        <div className={styles.live}>FREE CORE · TRACE PRO A$9/MONTH</div>
         <h1 className={styles.title}>
           Know whether the plan
           <br />

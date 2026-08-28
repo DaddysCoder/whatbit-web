@@ -516,7 +516,7 @@ export function FramePage() {
             Open Frame
           </a>
           <Link href="/#products" className={styles.btnSecondaryLight}>
-            About WhatBit
+            All products
           </Link>
         </div>
       </section>

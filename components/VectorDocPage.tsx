@@ -31,6 +31,7 @@ export function VectorDocPage({ eyebrow, title, lede, blocks }: VectorDocPagePro
         <nav className={styles.legalRow} aria-label="Vector legal">
           <Link href="/vector/privacy">Privacy</Link>
           <Link href="/vector/terms">Terms</Link>
+          <Link href="/cookies">Cookies</Link>
         </nav>
       </article>
       <footer className={styles.footer}>

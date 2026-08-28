@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ABOUT_CARDS, ABOUT_DOT_COLORS, type AboutBodyLine, type AboutCard } from "@/lib/about-cards";
-import { Wordmark } from "./Wordmark";
+import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
 import styles from "./AboutPage.module.css";
 
@@ -428,7 +428,7 @@ export function AboutPage() {
         </div>
         <div className={styles.eyebrow}>ABOUT WHATBIT</div>
         <h1 className={styles.title}>We find the bit that actually matters.</h1>
-        <p className={styles.lede}>WHATBIT is an Australian research, technology and problem-solving company.</p>
+        <p className={styles.lede}>WhatBit is an Australian research, technology and problem-solving company.</p>
         <div className={styles.line}>Human where it matters. Clever where it counts.</div>
         <div className={styles.scrollHint}>
           <div className={styles.scrollDot} />
@@ -495,10 +495,7 @@ export function AboutPage() {
       </div>
 
       <div className={styles.footer}>
-        <div className={styles.footerInner}>
-          <Wordmark accent="#B794FF" ink="#FFFFFF" size={17} />
-          <div className={styles.footerMark}>WhatBit · Australia</div>
-        </div>
+        <SiteFooter variant="minimal" accent="#B794FF" />
       </div>
     </div>
   );
