@@ -52,7 +52,7 @@
 }
 
 .navLink:hover {
-  color: #8b5cf6;
+  color: #7b2ff7;
   text-decoration: none;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .navCta:hover {
-  background: #8b5cf6;
+  background: #7b2ff7;
   color: #ffffff;
   text-decoration: none;
   transform: scale(1.03);
@@ -91,7 +91,7 @@
 }
 
 .billingLink:hover {
-  color: #8b5cf6;
+  color: #7b2ff7;
 }
 
 .successBanner {
@@ -122,7 +122,7 @@
 .eyebrow {
   font-size: 11px;
   letter-spacing: 0.14em;
-  color: #8b5cf6;
+  color: #7b2ff7;
   font-weight: 700;
   margin-bottom: 20px;
 }
@@ -167,7 +167,7 @@
 }
 
 .btnPrimary:hover {
-  background: #8b5cf6;
+  background: #7b2ff7;
   color: #ffffff;
   text-decoration: none;
   transform: scale(1.02);
@@ -193,7 +193,7 @@
 }
 
 .btnOutline:hover {
-  border-color: #8b5cf6;
+  border-color: #7b2ff7;
   background: #f7f5fc;
   color: #0b0b0c;
   text-decoration: none;
@@ -264,7 +264,7 @@
 }
 
 .lineAccent {
-  background: #8b5cf6;
+  background: #7b2ff7;
   animation: dotglow 3s ease-in-out infinite;
 }
 
@@ -330,7 +330,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #8b5cf6;
+  background: #7b2ff7;
   animation: dotglow 2.4s ease-in-out infinite;
   flex-shrink: 0;
 }
@@ -369,7 +369,7 @@
 }
 
 .toolLink:hover {
-  color: #8b5cf6;
+  color: #7b2ff7;
   text-decoration: none;
 }
 
@@ -415,7 +415,7 @@
 }
 
 .paidItemButton:hover {
-  border-color: #8b5cf6;
+  border-color: #7b2ff7;
   background: #f7f5fc;
 }
 
@@ -446,7 +446,7 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.06em;
-  color: #8b5cf6;
+  color: #7b2ff7;
   background: #ede4fb;
   padding: 4px 8px;
   border-radius: 20px;
@@ -490,6 +490,38 @@
   margin-bottom: 24px;
 }
 
+.tierOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tierOption {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tierOptionName {
+  font-size: 12px;
+  font-weight: 700;
+  color: #9b9b9b;
+  min-width: 60px;
+}
+
+.tierOptionPrice {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.tierOptionNote {
+  font-size: 12px;
+  color: #7b2ff7;
+  font-weight: 700;
+}
+
 .featureList {
   display: flex;
   flex-direction: column;
@@ -512,7 +544,7 @@
 
 .btnUpgrade {
   display: inline-block;
-  background: #8b5cf6;
+  background: #7b2ff7;
   color: #ffffff;
   font-size: 14px;
   font-weight: 700;
@@ -526,7 +558,7 @@
 }
 
 .btnUpgrade:hover {
-  background: #7141e0;
+  background: #6521d9;
   transform: scale(1.02);
 }
 
@@ -548,7 +580,7 @@
 }
 
 .btnFree:hover {
-  border-color: #8b5cf6;
+  border-color: #7b2ff7;
   color: #0b0b0c;
   text-decoration: none;
 }
@@ -615,7 +647,7 @@
 }
 
 .templatesAction:hover {
-  color: #8b5cf6;
+  color: #7b2ff7;
 }
 
 .footer {

@@ -13,4 +13,4 @@ export const VECTOR_REFERRAL_URL = `${VECTOR_APP_URL}/referral`;
 export const VECTOR_TRIAGE_URL = `${VECTOR_APP_URL}/practitioner-triage`;
 export const VECTOR_REGISTER_URL = `${VECTOR_APP_URL}/source-consultation-register`;
 
-export const VECTOR_UNLOCK_LABEL = "Unlock with Vector — A$9/month";
+export const VECTOR_UNLOCK_LABEL = "Unlock with Vector — from A$5/document";
