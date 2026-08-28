@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
