@@ -8,7 +8,7 @@ export type ProductSlug =
   | "arc"
   | "voda";
 
-export const FRAME_APP_URL = "https://screen-fba.polina-67d.workers.dev/";
+export const FRAME_APP_URL = "https://frame.whatbit.dev";
 /** When true, Frame commercial CTAs and homepage badge switch to live pricing. */
 export const FRAME_COMMERCIAL_LIVE = false;
 export const FRAME_FREE_URL = "https://frame.whatbit.dev";
