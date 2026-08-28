@@ -150,7 +150,7 @@ export function TracePage() {
           <div className={styles.featEyebrow}>USE TRACE YOUR WAY</div>
           <h2 className={styles.featTitle}>Browser first, installable when you want it.</h2>
           <p className={styles.featCopy}>
-            Trace is a web app. Open it in your browser, or add it to your device from the browser so it launches like an app without an app-store download.
+            Trace is a web app hosted on Cloudflare. Open it in your browser, or add it to your device from the browser so it launches like an app without an app-store download.
           </p>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 16 }}>
