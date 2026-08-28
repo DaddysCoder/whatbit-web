@@ -25,7 +25,7 @@ export const VECTOR_TERMS_BLOCKS: DocBlock[] = [
   },
   {
     heading: "Payment processing",
-    text: "Vector paid subscriptions are processed by Stripe. When you choose to upgrade, you are redirected to Stripe Checkout or the Stripe customer portal to enter payment details and manage billing. We do not store full payment card numbers on our systems. Stripe collects and processes billing details, contact details, payment-method information, and ordinary transaction records under Stripe's own terms and privacy practices. Your use of Stripe is also subject to Stripe's terms and policies.",
+    text: "Vector paid subscriptions are processed by Stripe. When you choose to upgrade, you are redirected to Stripe Checkout or the Stripe customer portal to enter payment details and manage billing. We do not store full payment card numbers on our systems. Stripe collects and processes billing details, contact details, payment-method information, and ordinary transaction records under Stripe's own terms and privacy practices. Participant and client clinical, form, consultation, behaviour, assessment, restrictive-practice and Behaviour Support Plan content is not included in Vector billing payloads or Stripe subscription metadata. Your use of Stripe is also subject to Stripe's terms and policies.",
   },
   {
     heading: "Cancelling your subscription",
@@ -49,11 +49,11 @@ export const VECTOR_TERMS_BLOCKS: DocBlock[] = [
   },
   {
     heading: "Participant and client information",
-    text: "Vector forms may invite you to enter information about participants, clients, families, staff, or other individuals. Enter only information you genuinely need for the record you are creating and that you are authorised to handle. Avoid entering identifying or sensitive information unless necessary for your professional purpose. You are responsible for deciding what to record, export, store elsewhere, and share outside Vector.",
+    text: "Vector is designed so participant and client clinical, form and support-template content remains in the browser on the device you are using. This includes identifying details, health information, behaviour information, consultation records, restrictive-practice information and Behaviour Support Plan content. Vector does not transmit or store that content on WHATBIT servers as part of normal use. You remain responsible for deciding what information is appropriate to record and for any copy you export, print, save or share outside Vector.",
   },
   {
     heading: "Local storage and loss of data",
-    text: "Vector is designed so substantial working data can remain in the browser on the device you are using. You are responsible for device access, backups where needed, and any professional record-keeping obligations that apply to you. Clearing browser data, using private browsing, switching browsers or devices, or uninstalling software may remove locally stored information unless you have exported or backed it up elsewhere. We do not intentionally maintain a general-purpose server-side database of completed form contents for ordinary free use.",
+    text: "Participant and client form and template working data is kept locally in the browser for the current session where the relevant feature uses browser storage. It is not stored in a WHATBIT server-side form database, D1, R2 or other application storage. Clearing browser data, closing a session where session storage is used, using private browsing, switching browsers or devices, or otherwise removing local browser data may remove your working information. You are responsible for exporting or otherwise retaining records where your professional or organisational obligations require it.",
   },
   {
     heading: "Accounts and paid access",
@@ -65,7 +65,7 @@ export const VECTOR_TERMS_BLOCKS: DocBlock[] = [
   },
   {
     heading: "Your content",
-    text: "You retain responsibility for information and materials you enter into Vector, configure for export, or generate through the service, including organisation branding and saved company details. You grant us a limited licence to host, process, transmit, and display that information only as needed to operate Vector and provide the features you request, such as export, billing verification, and technical delivery. We do not claim ownership of your form contents or exported documents.",
+    text: "You remain responsible for information and materials you enter into Vector and for documents you export, print, save or share. Participant and client clinical, form and support-template content is processed locally in your browser and is not licensed to WHATBIT for server-side hosting, storage or unrelated use. For paid commercial features, you authorise us to store and process only the limited commercial information needed to provide those features, such as your Vector account or browser identifier, subscription status and organisation branding profile. We do not claim ownership of your form contents or exported documents.",
   },
   {
     heading: "Vector intellectual property",
@@ -85,7 +85,7 @@ export const VECTOR_TERMS_BLOCKS: DocBlock[] = [
   },
   {
     heading: "Third-party services",
-    text: "Vector relies on third-party services to operate, including Stripe for billing and Cloudflare and other hosting or delivery providers for internet infrastructure. Those providers may process information under their own terms and policies. We are not responsible for third-party services outside our reasonable control, but we choose providers that help us deliver Vector securely and reliably.",
+    text: "Vector relies on third-party services to operate, including Stripe for billing and Cloudflare and other hosting or delivery providers for internet infrastructure. Those providers may process ordinary commercial, billing and technical delivery information under their own terms and policies. Vector is designed so participant and client clinical, form and support-template values are not sent to those services as stored application content. We are not responsible for third-party services outside our reasonable control, but we choose providers that help us deliver Vector securely and reliably.",
   },
   {
     heading: "Disclaimer and liability",
@@ -114,56 +114,56 @@ export const VECTOR_PRIVACY_BLOCKS: DocBlock[] = [
     text: `This Privacy Policy explains how Vector, operated by ${VECTOR_LEGAL_OPERATOR} on behalf of WhatBit ("we", "us" or "our"), handles information when you use the service. Effective ${VECTOR_LEGAL_EFFECTIVE_DATE}.`,
   },
   {
-    heading: "Information entered into Vector forms",
-    text: "Vector may handle information you enter directly into the forms, including referral details, triage information, consultation records, organisation branding, saved company details, and other fields needed to complete or export a document. You control what you enter. We do not intentionally use ordinary form field values for advertising, cross-site tracking, or unrelated profiling.",
+    heading: "Participant and client form content",
+    text: "Participant and client clinical, form and support-template content is kept client-side during normal Vector use. This includes names, dates of birth, NDIS numbers, health and diagnosis information, behaviour data, consultation information, functional assessment information, restrictive-practice information and Behaviour Support Plan content. The Vector application does not send this content to WHATBIT servers, Stripe, analytics services or a server-side form database. It is not intentionally placed in URLs or query strings, billing payloads, D1, R2, Worker storage or application logs.",
   },
   {
     heading: "Local browser storage",
-    text: "Substantial portions of Vector working data are intended to remain locally in your browser on the device being used. This may include draft form values, branding preferences, and similar working state. Clearing browser data, using a private browsing mode, or switching devices may remove locally stored information unless you have exported it elsewhere. Vector does not intentionally maintain a general-purpose server-side database of completed form contents for ordinary free use.",
+    text: "Form and support-template working data remains in the browser on the device being used. Where Vector saves working state, it uses browser session storage rather than a WHATBIT server-side participant database. Clearing browser data, closing the relevant browser session, using private browsing or switching browser or device may remove locally stored information. DOCX generation and print or save-PDF functions process the form content in the browser; completed document content is not uploaded to WHATBIT for export.",
   },
   {
-    heading: "Information WHATBIT may collect",
-    text: `${VECTOR_LEGAL_OPERATOR}, as operator of Vector for WhatBit, may collect limited information needed to run the service, process subscriptions, respond to support requests, maintain security, and improve reliability. This may include account identifiers, billing-related metadata, support messages, and technical delivery information. We do not sell personal information.`,
+    heading: "Information WHATBIT stores",
+    text: `${VECTOR_LEGAL_OPERATOR}, as operator of Vector for WhatBit, stores only limited commercial and operational information required to provide Vector. This may include a browser or account identifier, Stripe customer and subscription identifiers, subscription status and price, billing-event records, organisation branding settings, support messages and ordinary technical delivery information. This commercial and operational information is kept separate from participant and client form content. We do not sell personal information.`,
   },
   {
     heading: "Billing information",
-    text: "Vector paid subscriptions are processed by Stripe. When you choose to upgrade, Stripe may collect and process billing details, contact details, payment-method information, and ordinary transaction information under Stripe's own privacy practices. We store only the identifiers and subscription metadata needed to verify whether the current browser session is entitled to paid features. Form contents and exported document data are not intentionally placed into Stripe customer or subscription metadata.",
+    text: "Vector paid subscriptions are processed by Stripe. When you choose to upgrade, Stripe may collect and process billing details, contact details, payment-method information and ordinary transaction information under Stripe's own privacy practices. Vector sends Stripe only information required to create and manage the subscription and entitlement. Participant or client clinical, form, consultation, behaviour, assessment, restrictive-practice or Behaviour Support Plan content is not included in Stripe Checkout, customer, subscription or billing metadata.",
   },
   {
     heading: "Organisation branding",
-    text: "If you use paid organisation branding features, Vector may store branding settings such as organisation name, colours, contact line, footer text, and related export preferences so they can be applied to documents you generate. Logo or image uploads, if offered, are stored only as needed to provide the branding feature. You should not upload branding assets you do not have the right to use.",
+    text: "If you use paid organisation branding features, Vector may store commercial branding settings such as organisation name, colours, contact line and footer text so they can be applied to documents you generate. These organisation settings are commercial metadata and are kept separate from participant and client form content. Do not place participant or client information in organisation branding fields.",
   },
   {
     heading: "Technical information",
-    text: "Like any website or web application, Vector is delivered through internet infrastructure that may process ordinary request information such as IP address, browser type, requested URL, timestamps, referrer, and technical error information for security, delivery, and troubleshooting. Vector does not intentionally include ordinary form field values in those delivery requests.",
+    text: "As with any website, internet infrastructure may process ordinary technical request information such as IP address, browser type, requested application route, timestamps, referrer and technical error information for delivery, security and troubleshooting. Vector is designed so participant and client form values are not included in those application requests, URLs or query strings.",
   },
   {
     heading: "Support communications",
-    text: `If you contact us about Vector, we collect the information you choose to provide, such as your name, email address, message content, and any attachments or screenshots needed to investigate the issue. We use that information to respond, maintain records of the enquiry, and improve the service. Support messages may be retained for a reasonable period.`,
+    text: `If you contact us about Vector, we collect the information you choose to provide, such as your name, email address, message content, and any attachments or screenshots needed to investigate the issue. Do not send participant or client clinical content to support unless it is genuinely necessary and you are authorised to disclose it. We use support information to respond, maintain records of the enquiry, and improve the service. Support messages may be retained for a reasonable period.`,
   },
   {
     heading: "Why we use personal information",
-    text: "We use personal information to provide and operate Vector, verify paid entitlements, process billing through Stripe, maintain security, troubleshoot errors, respond to enquiries, comply with law, and improve reliability. We use it only for purposes connected to operating Vector or related WhatBit services, not for unrelated marketing unless you separately consent.",
+    text: "We use personal information that WHATBIT actually receives to provide and operate Vector's commercial and technical services, verify paid entitlements, process billing through Stripe, maintain security, troubleshoot errors, respond to enquiries, comply with law and improve reliability. Participant and client form content that remains locally in the browser is not collected by WHATBIT for those purposes.",
   },
   {
     heading: "Third-party service providers",
-    text: "We share information with service providers only where necessary to operate the requested functionality. This includes Stripe for subscription billing and payment processing and Cloudflare and similar providers for hosting, content delivery, security, and performance. Those providers handle information under their own terms and privacy policies and are permitted to use it only to provide services to us or as otherwise required by law.",
+    text: "We use service providers where necessary to operate Vector, including Stripe for subscription billing and Cloudflare and similar providers for hosting, content delivery, security and performance. They may process commercial, billing and ordinary technical delivery information under their own terms and privacy policies. Vector does not intentionally send participant and client clinical, form or support-template values to those providers as stored application content.",
   },
   {
     heading: "Overseas processing",
-    text: "Some of our service providers, including Stripe and Cloudflare, may process or store information outside Australia. Where information is handled overseas, we take reasonable steps to ensure that providers handle it in a way that is consistent with applicable privacy requirements and the purpose for which it was collected.",
+    text: "Some service providers, including Stripe and Cloudflare, may process or store commercial, billing or technical information outside Australia. Participant and client form content is designed to remain in the user's browser and is not intentionally transferred overseas by Vector as server-side application data. Where information we actually hold is handled overseas, we take reasonable steps to ensure providers handle it consistently with applicable privacy requirements and the purpose for which it was collected.",
   },
   {
     heading: "Security",
-    text: "We use reasonable technical and organisational measures designed to protect information handled by Vector, including secure transport, access controls, and careful use of third-party providers. No method of transmission or storage is completely secure. You are responsible for securing the devices and browsers you use to access Vector and for decisions about what information you enter, export, or share.",
+    text: "Vector's privacy design keeps participant and client working content client-side rather than placing it in a WHATBIT server-side form database. We also use reasonable technical and organisational measures for the commercial and operational information we do hold, including secure transport, access controls and careful use of third-party providers. No device, browser, transmission method or storage system is completely secure. You are responsible for securing the devices and browsers you use and for decisions about what information you export or share outside Vector.",
   },
   {
     heading: "Data retention",
-    text: "We retain information only for as long as needed to operate Vector, meet legal obligations, resolve disputes, and maintain billing and support records. Subscription and billing metadata may be retained for accounting and audit purposes. Locally stored form information remains on your device until you remove it through your browser or device settings.",
+    text: "WHATBIT does not retain participant and client form or support-template content on its servers as part of normal Vector use. Subscription, billing, organisation-branding, technical and support information that we actually hold may be retained only as long as needed to operate Vector, meet legal obligations, resolve disputes and maintain appropriate commercial records. Locally stored form information remains under the control of the browser session or device until it is removed or the session ends.",
   },
   {
     heading: "Access and correction",
-    text: `You may request access to personal information we hold about you and ask us to correct information that is inaccurate, out of date, incomplete, irrelevant, or misleading, subject to exceptions under applicable law. Because much Vector working data may remain in your browser, you can also review, edit, or remove much of it directly in Vector or through your browser settings. Contact ${VECTOR_PRIVACY_EMAIL} to make a request.`,
+    text: `You may request access to or correction of personal information that WHATBIT actually holds, such as relevant commercial, billing or support information, subject to exceptions under applicable law. Participant and client form and template content that remains locally in your browser is not held by WHATBIT and therefore cannot be retrieved from our servers. You can review or remove that local content through Vector or your browser session and storage controls. Contact ${VECTOR_PRIVACY_EMAIL} to make a request.`,
   },
   {
     heading: "Privacy complaints",
@@ -171,11 +171,11 @@ export const VECTOR_PRIVACY_BLOCKS: DocBlock[] = [
   },
   {
     heading: "Data breaches",
-    text: "If we become aware of a data breach involving personal information that we hold and that is likely to result in serious harm, we will assess the breach and, where required by law, notify affected individuals and relevant regulators. Our response will depend on the nature of the incident and our legal obligations at the time.",
+    text: "If we become aware of a data breach involving personal information that we actually hold and that is likely to result in serious harm, we will assess the breach and, where required by law, notify affected individuals and relevant regulators. Our response will depend on the nature of the incident and our legal obligations at the time.",
   },
   {
     heading: "Children and participant information",
-    text: "Vector is a professional documentation tool, not a service directed at children for personal use. If you enter information about children, young people, or other participants in the course of professional work, you remain responsible for having a lawful basis to collect and handle that information and for meeting the privacy and record-keeping obligations that apply to your organisation.",
+    text: "Vector is a professional documentation tool, not a service directed at children for personal use. If you enter information about children, young people, or other participants in the course of professional work, you remain responsible for having a lawful basis to collect and handle that information and for meeting the privacy and record-keeping obligations that apply to your organisation. That participant content remains subject to Vector's local-only form-content design described above.",
   },
   {
     heading: "Changes to this Policy",
