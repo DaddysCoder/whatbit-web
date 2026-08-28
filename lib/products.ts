@@ -8,7 +8,7 @@ export type ProductSlug =
   | "arc"
   | "voda";
 
-export const FRAME_APP_URL = "https://screen-fba.polina-67d.workers.dev/";
+export const FRAME_APP_URL = "https://frame.whatbit.dev";
 export const PACE_APP_URL = "https://orbit.whatbit.tech";
 export const AXIS_APP_URL = "https://axis.whatbit.tech";
 export const TRACE_APP_URL = "https://trace.whatbit.dev";
