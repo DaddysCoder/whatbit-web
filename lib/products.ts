@@ -10,6 +10,7 @@ export type ProductSlug =
 
 export const FRAME_APP_URL = "https://screen-fba.polina-67d.workers.dev/";
 export const PACE_APP_URL = "https://orbit.whatbit.tech";
+export const TRACE_APP_URL = "https://trace.website.dev";
 
 export const VODA_PRODUCT = {
   slug: "voda" as const,
@@ -26,7 +27,7 @@ export const VODA_PRODUCT = {
 };
 
 export type WaitlistProduct = {
-  slug: Exclude<ProductSlug, "orbit" | "frame" | "voda">;
+  slug: Exclude<ProductSlug, "orbit" | "trace" | "frame" | "voda">;
   name: string;
   tagline: string;
   accent: string;
@@ -46,16 +47,6 @@ export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
     selection: "#FCE8DA",
     gradient: "linear-gradient(135deg,#F7A876,#F2925C)",
     glow: "rgba(242,146,92,0.3)",
-  },
-  {
-    slug: "trace",
-    name: "Trace",
-    tagline: "A record of how you got here.",
-    accent: "#1FBFA3",
-    accentHover: "#0E8F71",
-    selection: "#D6F5EE",
-    gradient: "linear-gradient(135deg,#3FD4B8,#1FBFA3)",
-    glow: "rgba(31,191,163,0.3)",
   },
   {
     slug: "vector",
