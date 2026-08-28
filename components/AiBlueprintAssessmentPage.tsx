@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AssessmentWizard } from "./ai-blueprint/assessment/AssessmentWizard";
 import { loadAssessment } from "./ai-blueprint/assessment/api";
@@ -11,6 +11,7 @@ import styles from "./ai-blueprint/assessment/assessment.module.css";
 type LoadState = "loading" | "ready" | "missing-token" | "not-found" | "already-submitted" | "error";
 
 export function AiBlueprintAssessmentPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token") || "";
 
@@ -29,7 +30,11 @@ export function AiBlueprintAssessmentPage() {
         return;
       }
       if (result.kind === "already_submitted") {
-        setLoadState("already-submitted");
+        // Route-level enforcement, not just an editable form with disabled
+        // fields: a submitted assessment sends the customer straight to the
+        // confirmation page, which already carries the correct "received
+        // for review" messaging (spec §12 — no instant result).
+        router.replace("/ai-blueprint/submitted");
         return;
       }
       if (result.kind === "error") {
