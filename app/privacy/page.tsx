@@ -28,7 +28,7 @@ export default function Page() {
         },
         {
           heading: "Contact-form delivery",
-          text: "Messages submitted through the WhatBit contact form are sent to Primitive AI using an email-delivery service. The information in the form is transmitted for that purpose and may be processed by the relevant technology provider as necessary to deliver the message. Please do not include passwords, API keys, payment-card numbers, health information or other highly sensitive information in an ordinary website enquiry unless it is genuinely necessary and you are authorised to provide it.",
+          text: "Messages submitted through the WhatBit contact form are sent to hello@primitiveai.com.au using Cloudflare Email Service. The name, email address, contact reason and message are transmitted to Cloudflare for the purpose of delivering the enquiry to our business inbox. Please do not include passwords, API keys, payment-card numbers, health information or other highly sensitive information in an ordinary website enquiry unless it is genuinely necessary and you are authorised to provide it.",
         },
         {
           heading: "Technical information",
