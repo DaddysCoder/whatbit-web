@@ -9,24 +9,17 @@ export type ProductSlug =
   | "voda";
 
 export const FRAME_APP_URL = "https://frame.whatbit.dev";
-/** When true, Frame commercial CTAs and homepage badge switch to live pricing. */
+/** When true, Frame's Pro pricing CTA switches from "Coming soon" to a live trial link. */
 export const FRAME_COMMERCIAL_LIVE = false;
 export const FRAME_FREE_URL = "https://frame.whatbit.dev";
 export const FRAME_PRO_TRIAL_URL = "https://frame.whatbit.dev/trial";
 
-export function getFrameStatusBadge(): string {
-  return FRAME_COMMERCIAL_LIVE ? "LIVE · FREE + PRO" : "COMING SOON";
-}
-
 export const FIELD_APP_URL = "https://field.whatbit.dev";
-/** When true, Field commercial CTAs and homepage badge switch to live pricing. */
+/** When true, Field's Pro pricing CTA switches from "Coming soon" to a live trial link. */
 export const FIELD_COMMERCIAL_LIVE = false;
 export const FIELD_FREE_URL = "https://field.whatbit.dev";
 export const FIELD_PRO_TRIAL_URL = "https://field.whatbit.dev/trial";
 
-export function getFieldStatusBadge(): string {
-  return FIELD_COMMERCIAL_LIVE ? "LIVE · FREE + PRO" : "COMING SOON";
-}
 export const PACE_APP_URL = "https://orbit.whatbit.tech";
 export const AXIS_APP_URL = "https://axis.whatbit.tech";
 export const TRACE_APP_URL = "https://trace.whatbit.dev";

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getFieldStatusBadge, getFrameStatusBadge } from "@/lib/products";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
@@ -190,7 +189,7 @@ export function HomePage() {
           <Link href="/frame" className={`${styles.card} ${styles.frameCard}`} style={revealStyle(r("products"), 0.05, true)}>
             <div className={styles.cardTop}>
               <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#F07655,#E8542E)" />
-              <div className={`${styles.live} ${styles.frameLive}`}>{getFrameStatusBadge()}</div>
+              <div className={`${styles.live} ${styles.frameLive}`}>LIVE · FREE</div>
             </div>
             <div>
               <div className={`${styles.cardName} ${styles.orbitName}`}>Frame <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
@@ -239,7 +238,7 @@ export function HomePage() {
           <Link href="/field" className={`${styles.card} ${styles.field}`} style={revealStyle(r("products"), 0.2, true)}>
             <div className={styles.cardTop}>
               <BarMark size={44} gradient="linear-gradient(135deg,#22B393,#0E8F71)" />
-              <div className={styles.live}>{getFieldStatusBadge()}</div>
+              <div className={styles.live}>LIVE · FREE</div>
             </div>
             <div>
               <div className={styles.cardName}>Field <span className={styles.by}>by WhatBit</span></div>
