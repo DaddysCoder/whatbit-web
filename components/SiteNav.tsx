@@ -21,7 +21,14 @@ export function SiteNav({
   const [solid, setSolid] = useState(variant !== "home");
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
-  const resolvedCtaLabel = ctaHref === "https://orbit.whatbit.tech" && ctaLabel === "Get in touch" ? "Open Pace" : ctaLabel;
+  const resolvedCtaLabel =
+    ctaLabel !== "Get in touch"
+      ? ctaLabel
+      : ctaHref === "https://orbit.whatbit.tech"
+        ? "Open Pace"
+        : ctaHref === "https://trace.whatbit.dev"
+          ? "Open Trace"
+          : ctaLabel;
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 1100px)");
