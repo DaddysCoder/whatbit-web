@@ -205,11 +205,17 @@ export function HomePage() {
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
 
-          <Link href="/axil" className={`${styles.card} ${styles.axil}`} style={revealStyle(r("products"), 0.1, true)}>
-            <BarMark size={44} gradient="linear-gradient(135deg,#F7A876,#F2925C)" />
-            <div><div className={styles.cardName}>Axil <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The point where new work starts.</p></div>
-            <div className={styles.dev}>IN DEVELOPMENT</div>
-          </Link>
+          <a href="https://axis.whatbit.tech" className={`${styles.card} ${styles.axil}`} style={revealStyle(r("products"), 0.1, true)}>
+            <div className={styles.cardTop}>
+              <BarMark size={44} gradient="linear-gradient(135deg,#F7A876,#F2925C)" />
+              <div className={styles.live}>LIVE · FREE + PRO</div>
+            </div>
+            <div>
+              <div className={styles.cardName}>Axis <span className={styles.by}>by WhatBit</span></div>
+              <p className={styles.cardTag}>Voice-first task capture and daily planning. Speak what needs doing, review the tasks, then plan the day and week.</p>
+            </div>
+            <div className={styles.explore}>Open Axis <span>→</span></div>
+          </a>
 
           <Link href="/trace" className={`${styles.card} ${styles.trace}`} style={revealStyle(r("products"), 0.1, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#3FD4B8,#1FBFA3)" />
