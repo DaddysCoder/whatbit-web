@@ -41,11 +41,10 @@ export async function POST(request: Request) {
     );
   }
 
-  const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
-  const emailApiToken = process.env.CLOUDFLARE_EMAIL_API_TOKEN;
+  const apiKey = process.env.RESEND_API_KEY;
 
-  if (!accountId || !emailApiToken) {
-    console.error("Cloudflare Email Service is not configured for the WhatBit contact form.");
+  if (!apiKey) {
+    console.error("Resend is not configured for the WhatBit contact form.");
     return NextResponse.json(
       { error: "The contact form is temporarily unavailable. Please email us directly." },
       { status: 503 },
@@ -64,33 +63,28 @@ export async function POST(request: Request) {
     message,
   ].join("\n");
 
-  const response = await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(accountId)}/email/sending/send`,
-    {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${emailApiToken}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: { address: fromEmail, name: "WhatBit Website" },
-        to: CONTACT_EMAIL,
-        reply_to: email,
-        subject,
-        text: plainText,
-      }),
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
     },
-  );
+    body: JSON.stringify({
+      from: `WhatBit Website <${fromEmail}>`,
+      to: CONTACT_EMAIL,
+      reply_to: email,
+      subject,
+      text: plainText,
+    }),
+  });
 
-  const result = (await response.json().catch(() => null)) as
-    | { success?: boolean; errors?: Array<{ message?: string }> }
-    | null;
+  const result = (await response.json().catch(() => null)) as { message?: string } | null;
 
-  if (!response.ok || result?.success === false) {
+  if (!response.ok) {
     console.error(
-      "Cloudflare Email Service rejected a WhatBit contact-form message.",
+      "Resend rejected a WhatBit contact-form message.",
       response.status,
-      result?.errors?.[0]?.message || "Unknown error",
+      result?.message || "Unknown error",
     );
     return NextResponse.json(
       { error: "We couldn't send that message just now. Please try again or email us directly." },
