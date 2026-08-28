@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat, Nunito } from "next/font/google";
+import { Geist_Mono, Montserrat, Nunito } from "next/font/google";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -15,6 +15,12 @@ const nunito = Nunito({
   weight: ["400", "600", "700"],
 });
 
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  weight: ["500", "600"],
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "WhatBit — We figure out what's actually going on",
@@ -24,7 +30,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${nunito.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${nunito.variable} ${geistMono.variable}`}>
       <body>{children}</body>
     </html>
   );
