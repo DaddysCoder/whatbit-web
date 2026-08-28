@@ -122,6 +122,9 @@ export function SiteNav({
         <Link href="/#products" className={styles.textLink}>
           Products
         </Link>
+        <Link href="/voda" className={styles.textLink}>
+          VODA
+        </Link>
         <Link href="/#philosophy" className={styles.textLink}>
           Philosophy
         </Link>
@@ -164,6 +167,9 @@ export function SiteNav({
           )}
           <Link href="/#products" onClick={() => setOpen(false)}>
             Products
+          </Link>
+          <Link href="/voda" onClick={() => setOpen(false)}>
+            VODA
           </Link>
           <Link href="/#philosophy" onClick={() => setOpen(false)}>
             Philosophy
