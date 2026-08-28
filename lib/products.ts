@@ -9,6 +9,7 @@ export type ProductSlug =
   | "voda";
 
 export const FRAME_APP_URL = "https://screen-fba.polina-67d.workers.dev/";
+export const PACE_APP_URL = "https://orbit.whatbit.tech";
 
 export const VODA_PRODUCT = {
   slug: "voda" as const,
@@ -89,7 +90,7 @@ export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
 ];
 
 export const PRODUCT_LINKS: { href: string; label: string }[] = [
-  { href: "/orbit", label: "Orbit" },
+  { href: "/pace", label: "Pace" },
   { href: "/frame", label: "Frame" },
   { href: "/voda", label: "VODA" },
   { href: "/axil", label: "Axil" },

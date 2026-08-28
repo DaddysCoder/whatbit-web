@@ -21,6 +21,7 @@ export function SiteNav({
   const [solid, setSolid] = useState(variant !== "home");
   const [open, setOpen] = useState(false);
   const [compact, setCompact] = useState(false);
+  const resolvedCtaLabel = ctaHref === "https://orbit.whatbit.tech" && ctaLabel === "Get in touch" ? "Open Pace" : ctaLabel;
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 1100px)");
@@ -129,7 +130,7 @@ export function SiteNav({
           Elsewhere
         </Link>
         <Link href={ctaHref} className={styles.cta}>
-          {ctaLabel}
+          {resolvedCtaLabel}
         </Link>
       </nav>
       <button
@@ -170,7 +171,7 @@ export function SiteNav({
             Elsewhere
           </Link>
           <Link href={ctaHref} className={styles.cta} onClick={() => setOpen(false)}>
-            {ctaLabel}
+            {resolvedCtaLabel}
           </Link>
         </div>
       ) : null}
