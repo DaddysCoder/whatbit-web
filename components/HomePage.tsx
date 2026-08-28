@@ -137,7 +137,7 @@ export function HomePage() {
         }}
         style={revealStyle(r("orbit"), 0)}
       >
-        <h2 className={styles.orbitTitle}>One approach. Eight tools.</h2>
+        <h2 className={styles.orbitTitle}>One approach. Seven tools.</h2>
         <p className={styles.orbitCopy}>
           Every product carries the same name suffix for a reason. Same method, same standard — a different problem each time. “By WhatBit” means we did the thinking so you don&apos;t have to.
         </p>
@@ -197,12 +197,6 @@ export function HomePage() {
               <p className={styles.cardTag}>Record observations, gather structured screening, compare evidence and keep uncertainty visible.</p>
             </div>
             <div className={`${styles.explore} ${styles.frameExplore}`}>Explore Frame <span>→</span></div>
-          </Link>
-
-          <Link href="/voda" className={`${styles.card} ${styles.voda}`} style={revealStyle(r("products"), 0.08, true)}>
-            <BarMark size={44} gradient="linear-gradient(135deg,#6E8CFF,#3452FF)" />
-            <div><div className={styles.cardName}>VODA <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>See the business as a graph. Then see what happens next.</p></div>
-            <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
 
           <a href="https://axis.whatbit.tech" className={`${styles.card} ${styles.axil}`} style={revealStyle(r("products"), 0.1, true)}>
