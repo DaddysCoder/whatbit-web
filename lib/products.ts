@@ -65,7 +65,6 @@ export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
 export const PRODUCT_LINKS: { href: string; label: string }[] = [
   { href: "/pace", label: "Pace" },
   { href: "/frame", label: "Frame" },
-  { href: "/voda", label: "VODA" },
   { href: AXIS_APP_URL, label: "Axis" },
   { href: "/trace", label: "Trace" },
   { href: "/vector", label: "Vector" },
