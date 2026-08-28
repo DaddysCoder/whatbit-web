@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 const CONTACT_EMAIL = "hello@primitiveai.com.au";
+const DEFAULT_FROM_EMAIL = "website@whatbit.dev";
 const MAX_NAME = 120;
 const MAX_EMAIL = 254;
 const MAX_REASON = 120;
@@ -40,18 +41,22 @@ export async function POST(request: Request) {
     );
   }
 
-  const resendApiKey = process.env.RESEND_API_KEY;
-  if (!resendApiKey) {
-    console.error("RESEND_API_KEY is not configured for the WhatBit contact form.");
+  const accountId = process.env.CLOUDFLARE_ACCOUNT_ID;
+  const emailApiToken = process.env.CLOUDFLARE_EMAIL_API_TOKEN;
+
+  if (!accountId || !emailApiToken) {
+    console.error("Cloudflare Email Service is not configured for the WhatBit contact form.");
     return NextResponse.json(
       { error: "The contact form is temporarily unavailable. Please email us directly." },
       { status: 503 },
     );
   }
 
-  const from = process.env.CONTACT_FROM_EMAIL || `WhatBit <${CONTACT_EMAIL}>`;
+  const fromEmail = process.env.CONTACT_FROM_EMAIL || DEFAULT_FROM_EMAIL;
   const subject = `[WhatBit] ${reason}`;
   const plainText = [
+    "New WhatBit website enquiry",
+    "",
     `Name: ${name}`,
     `Email: ${email}`,
     `Reason: ${reason}`,
@@ -59,23 +64,34 @@ export async function POST(request: Request) {
     message,
   ].join("\n");
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      "Content-Type": "application/json",
+  const response = await fetch(
+    `https://api.cloudflare.com/client/v4/accounts/${encodeURIComponent(accountId)}/email/sending/send`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${emailApiToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: { address: fromEmail, name: "WhatBit Website" },
+        to: CONTACT_EMAIL,
+        reply_to: email,
+        subject,
+        text: plainText,
+      }),
     },
-    body: JSON.stringify({
-      from,
-      to: [CONTACT_EMAIL],
-      reply_to: email,
-      subject,
-      text: plainText,
-    }),
-  });
+  );
 
-  if (!response.ok) {
-    console.error("Resend rejected a WhatBit contact-form message.", response.status);
+  const result = (await response.json().catch(() => null)) as
+    | { success?: boolean; errors?: Array<{ message?: string }> }
+    | null;
+
+  if (!response.ok || result?.success === false) {
+    console.error(
+      "Cloudflare Email Service rejected a WhatBit contact-form message.",
+      response.status,
+      result?.errors?.[0]?.message || "Unknown error",
+    );
     return NextResponse.json(
       { error: "We couldn't send that message just now. Please try again or email us directly." },
       { status: 502 },
