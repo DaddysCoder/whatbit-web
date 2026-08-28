@@ -1,14 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useCallback, useState } from "react";
 import {
+  VECTOR_FORMS_URL,
+  VECTOR_PRICING_URL,
+  VECTOR_REFERRAL_URL,
+  VECTOR_REGISTER_URL,
+  VECTOR_TRIAGE_URL,
+  VECTOR_TEMPLATES_URL,
   VECTOR_UNLOCK_LABEL,
-  fetchVectorBillingStatus,
-  openVectorBillingPortal,
-  startVectorCheckout,
-} from "@/lib/vector-billing";
+} from "@/lib/vector-urls";
 import styles from "./VectorPage.module.css";
 
 const FORMS = [
@@ -18,6 +20,7 @@ const FORMS = [
     title: "Start the record clearly.",
     copy: "Capture the essential information needed to begin the process without turning the referral into an enormous intake exercise.",
     linkLabel: "Open Referral",
+    href: VECTOR_REFERRAL_URL,
   },
   {
     id: "triage",
@@ -25,6 +28,7 @@ const FORMS = [
     title: "Work out what needs attention next.",
     copy: "A structured practitioner triage form that helps organise the information needed for the next step.",
     linkLabel: "Open Triage",
+    href: VECTOR_TRIAGE_URL,
   },
   {
     id: "register",
@@ -32,6 +36,7 @@ const FORMS = [
     title: "Keep the people and information behind the work together.",
     copy: "Record consultations, information sources and supporting material in one structured place.",
     linkLabel: "Open Register",
+    href: VECTOR_REGISTER_URL,
   },
 ] as const;
 
@@ -47,6 +52,21 @@ const PAID_FEATURES = [
   {
     title: "Support templates",
     copy: "Access the reference template library for common referral and triage scenarios.",
+  },
+] as const;
+
+const SUPPORT_TEMPLATES = [
+  {
+    title: "Behaviour Support Plan",
+    copy: "No-RP pathway template for cases where no restrictive practice has been identified — goals, proactive strategies, and implementation without interim RRP scaffolding.",
+  },
+  {
+    title: "Interim Behaviour Support Plan",
+    copy: "For confirmed RRP cases that need immediate safeguards while assessment continues — temporary safeguards, RRP protocol, and an assessment plan in parallel with the FBA.",
+  },
+  {
+    title: "Comprehensive Behaviour Support Plan",
+    copy: "Full RRP plan once the functional analysis is approved — strategy instances, regulated restrictive practices, reduction pathways, and implementation monitoring.",
   },
 ] as const;
 
@@ -74,23 +94,8 @@ function VectorBadge() {
 }
 
 export function VectorPage() {
-  const searchParams = useSearchParams();
-  const billingSuccess = searchParams.get("billing") === "success";
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isPaid, setIsPaid] = useState(false);
-  const [canManage, setCanManage] = useState(false);
-  const [checkoutError, setCheckoutError] = useState<string | null>(null);
-  const [checkoutLoading, setCheckoutLoading] = useState(false);
-
-  useEffect(() => {
-    fetchVectorBillingStatus().then((status) => {
-      setIsPaid(status.isPaid || billingSuccess);
-      setCanManage(status.canManage);
-    });
-  }, [billingSuccess]);
-
-  const isVectorPaid = isPaid || billingSuccess;
 
   const onTiltMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -109,27 +114,6 @@ export function VectorPage() {
     return `translate(-50%,-50%) translate(${tx}px,${ty}px) rotate(${baseRotate}deg) rotateX(${rx}deg) rotateY(${ry}deg)`;
   };
 
-  const handleUpgrade = async () => {
-    setCheckoutError(null);
-    setCheckoutLoading(true);
-    try {
-      await startVectorCheckout();
-    } catch (err) {
-      setCheckoutError(err instanceof Error ? err.message : "Checkout failed.");
-      setCheckoutLoading(false);
-    }
-  };
-
-  const handlePortal = async () => {
-    setCheckoutError(null);
-    try {
-      await openVectorBillingPortal();
-    } catch (err) {
-      setCheckoutError(err instanceof Error ? err.message : "Unable to open billing portal.");
-    }
-  };
-
-
   return (
     <div className={`${styles.page} ${menuOpen ? styles.sheetOpen : ""}`}>
       <header className={styles.nav}>
@@ -146,18 +130,9 @@ export function VectorPage() {
           <Link href="#templates" className={styles.navLink} onClick={() => setMenuOpen(false)}>
             Templates
           </Link>
-          {canManage || isVectorPaid ? (
-            <button type="button" className={styles.billingLink} onClick={() => void handlePortal()}>
-              Manage subscription
-            </button>
-          ) : (
-            <Link href="#pricing" className={styles.navLink} onClick={() => setMenuOpen(false)}>
-              Sign in
-            </Link>
-          )}
-          <Link href="#forms" className={styles.navCta} onClick={() => setMenuOpen(false)}>
+          <a href={VECTOR_FORMS_URL} className={styles.navCta} onClick={() => setMenuOpen(false)}>
             Open Vector
-          </Link>
+          </a>
         </nav>
         <button
           type="button"
@@ -172,12 +147,6 @@ export function VectorPage() {
         </button>
       </header>
 
-      {billingSuccess ? (
-        <div className={styles.successBanner} role="status">
-          Vector unlocked. Downloads, branding and templates are now available.
-        </div>
-      ) : null}
-
       <div id="top" />
 
       <section className={styles.hero}>
@@ -190,9 +159,9 @@ export function VectorPage() {
             Referral, practitioner triage and consultation records — structured, usable and ready when you need them.
           </p>
           <div className={styles.ctaRow}>
-            <Link href="#forms" className={styles.btnPrimary}>
+            <a href={VECTOR_FORMS_URL} className={styles.btnPrimary}>
               Start with a form
-            </Link>
+            </a>
             <Link href="#pricing" className={styles.btnOutline}>
               See what&apos;s included
             </Link>
@@ -245,49 +214,40 @@ export function VectorPage() {
               </div>
               <h3 className={styles.toolTitle}>{form.title}</h3>
               <p className={styles.toolCopy}>{form.copy}</p>
-              <Link href={`#${form.id}`} className={styles.toolLink}>
+              <a href={form.href} className={styles.toolLink}>
                 {form.linkLabel} →
-              </Link>
+              </a>
             </div>
           ))}
         </div>
 
-        {!isVectorPaid ? (
-          <div className={styles.paidFeatures}>
-            <div className={styles.paidIntro}>
-              <div className={styles.eyebrow}>VECTOR PAID</div>
-              <h3 className={styles.sectionTitle}>Paid features stay visible — unlock when you need them.</h3>
-            </div>
-            <div className={styles.paidGrid}>
-              {PAID_FEATURES.map((feature) => (
-                <button
-                  key={feature.title}
-                  type="button"
-                  className={styles.paidItemButton}
-                  onClick={() => void handleUpgrade()}
-                  disabled={checkoutLoading}
-                >
-                  <div className={styles.paidItemTop}>
-                    <span className={styles.paidItemTitle}>{feature.title}</span>
-                    <VectorBadge />
-                  </div>
-                  <p className={styles.paidItemCopy}>{feature.copy}</p>
-                </button>
-              ))}
-            </div>
-            <div style={{ textAlign: "center", marginTop: 24 }}>
-              <button type="button" className={styles.btnUpgrade} onClick={() => void handleUpgrade()} disabled={checkoutLoading}>
-                {checkoutLoading ? "Redirecting…" : VECTOR_UNLOCK_LABEL}
-              </button>
-              {checkoutError ? <p className={styles.checkoutError}>{checkoutError}</p> : null}
-            </div>
+        <div className={styles.paidFeatures}>
+          <div className={styles.paidIntro}>
+            <div className={styles.eyebrow}>VECTOR PAID</div>
+            <h3 className={styles.sectionTitle}>Paid features stay visible — unlock when you need them.</h3>
           </div>
-        ) : null}
+          <div className={styles.paidGrid}>
+            {PAID_FEATURES.map((feature) => (
+              <a key={feature.title} href={VECTOR_PRICING_URL} className={styles.paidItemButton}>
+                <div className={styles.paidItemTop}>
+                  <span className={styles.paidItemTitle}>{feature.title}</span>
+                  <VectorBadge />
+                </div>
+                <p className={styles.paidItemCopy}>{feature.copy}</p>
+              </a>
+            ))}
+          </div>
+          <div style={{ textAlign: "center", marginTop: 24 }}>
+            <a href={VECTOR_PRICING_URL} className={styles.btnUpgrade}>
+              {VECTOR_UNLOCK_LABEL}
+            </a>
+          </div>
+        </div>
 
         <div style={{ textAlign: "center", marginTop: 48 }}>
-          <Link href="#forms" className={styles.btnFree}>
+          <a href={VECTOR_FORMS_URL} className={styles.btnFree}>
             Use Vector free
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -311,9 +271,9 @@ export function VectorPage() {
                   </div>
                 ))}
               </div>
-              <Link href="#forms" className={styles.btnFree}>
+              <a href={VECTOR_FORMS_URL} className={styles.btnFree}>
                 Use Vector free
-              </Link>
+              </a>
             </div>
 
             <div className={styles.paidCard}>
@@ -329,21 +289,9 @@ export function VectorPage() {
                   </div>
                 ))}
               </div>
-              {isVectorPaid ? (
-                <button type="button" className={styles.btnUpgrade} onClick={() => void handlePortal()}>
-                  Manage subscription
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className={styles.btnUpgrade}
-                  onClick={() => void handleUpgrade()}
-                  disabled={checkoutLoading}
-                >
-                  {checkoutLoading ? "Redirecting…" : "Upgrade to Vector"}
-                </button>
-              )}
-              {checkoutError ? <p className={styles.checkoutError}>{checkoutError}</p> : null}
+              <a href={VECTOR_PRICING_URL} className={styles.btnUpgrade}>
+                Upgrade to Vector
+              </a>
             </div>
           </div>
         </div>
@@ -352,13 +300,20 @@ export function VectorPage() {
       <section id="templates" className={styles.templates}>
         <h2 className={styles.templatesTitle}>Support templates, included with Vector.</h2>
         <p className={styles.templatesCopy}>
-          A small library of reference templates for common referral and triage scenarios, ready to adapt when you upgrade.
+          Paid Vector includes reference templates for the three behaviour support plan pathways — structured to match
+          NDIS PBS document requirements and ready to adapt in the app.
         </p>
-        {!isVectorPaid ? (
-          <button type="button" className={styles.templatesAction} onClick={() => void handleUpgrade()} disabled={checkoutLoading}>
-            Access templates <VectorBadge />
-          </button>
-        ) : null}
+        <div className={styles.templateGrid}>
+          {SUPPORT_TEMPLATES.map((template) => (
+            <div key={template.title} className={styles.templateCard}>
+              <h3 className={styles.templateTitle}>{template.title}</h3>
+              <p className={styles.templateCopy}>{template.copy}</p>
+            </div>
+          ))}
+        </div>
+        <a href={VECTOR_TEMPLATES_URL} className={styles.templatesAction}>
+          Access templates on Vector <VectorBadge />
+        </a>
       </section>
 
       <footer className={styles.footer}>
