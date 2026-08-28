@@ -1,19 +1,25 @@
 import { NextResponse } from "next/server";
 import {
-  formFromRow,
+  draftFromRow,
   getAssessmentByToken,
-  saveAssessmentProgress,
-  submitAssessment,
-  type AssessmentForm,
+  saveAssessmentDraft,
+  submitAssessmentFinal,
+  type AssessmentDraft,
 } from "@/lib/ai-blueprint/db";
 import { sendAiBlueprintEmail } from "@/lib/ai-blueprint/email";
 import { requireCloudflareConfigured } from "@/lib/ai-blueprint/http";
 import { SITE_URL } from "@/lib/site";
 
 const CONTACT_EMAIL = "hello@primitiveai.com.au";
+const SUBMITTED_STATUSES = new Set(["Submitted", "Reviewing", "Ready", "Delivered"]);
+const MAX_BODY_BYTES = 300_000;
 
 type RouteParams = { params: Promise<{ token: string }> };
 
+// NOTE: this response shape must never include `submission_json` /
+// `computed` triage data (E/G points, S/U flags, draft attention) — those
+// are reviewer-only (see lib/ai-blueprint/db.ts's submissionFromRow doc
+// comment) and are simply never read here.
 export async function GET(_request: Request, { params }: RouteParams) {
   const configError = requireCloudflareConfigured();
   if (configError) return configError;
@@ -22,20 +28,60 @@ export async function GET(_request: Request, { params }: RouteParams) {
   const row = await getAssessmentByToken(token);
   if (!row) return NextResponse.json({ error: "Assessment not found." }, { status: 404 });
 
+  if (SUBMITTED_STATUSES.has(row.status)) {
+    return NextResponse.json({ status: row.status, updatedAt: row.updated_at });
+  }
+
   return NextResponse.json({
     status: row.status,
-    step: row.step,
-    form: formFromRow(row),
+    updatedAt: row.updated_at,
+    assessmentId: row.id,
+    startedAt: row.started_at || row.purchased_at || row.created_at,
+    draft: draftFromRow(row),
   });
 }
 
-function text(value: unknown, max = 2000) {
-  return typeof value === "string" ? value.trim().slice(0, max) : "";
-}
+/** Caps array/object sizes generously — the client already enforces per-field
+ * character limits and record counts; this is a blunt defence against abuse,
+ * not a re-implementation of the spec's exact field-level validation. */
+function sanitizeDraftPatch(input: unknown): Partial<AssessmentDraft> {
+  const patch: Partial<AssessmentDraft> = {};
+  if (!input || typeof input !== "object") return patch;
+  const body = input as Record<string, unknown>;
 
-function stringArray(value: unknown, max = 20) {
-  if (!Array.isArray(value)) return [];
-  return value.filter((v): v is string => typeof v === "string").slice(0, max);
+  if (typeof body.consentedToScope === "boolean") patch.consentedToScope = body.consentedToScope;
+
+  if (body.organisationAnswers && typeof body.organisationAnswers === "object" && !Array.isArray(body.organisationAnswers)) {
+    patch.organisationAnswers = body.organisationAnswers as Record<string, unknown>;
+  }
+
+  if (Array.isArray(body.tools)) {
+    patch.tools = body.tools.slice(0, 10) as AssessmentDraft["tools"];
+  }
+
+  if (Array.isArray(body.useCases)) {
+    // Never trust a client-supplied `.computed` block — strip it if present
+    // so a tampered request can't smuggle a fabricated triage result in.
+    patch.useCases = body.useCases.slice(0, 3).map((uc) => {
+      if (uc && typeof uc === "object") {
+        const rest = { ...(uc as Record<string, unknown>) };
+        delete rest.computed;
+        return rest;
+      }
+      return uc;
+    }) as AssessmentDraft["useCases"];
+  }
+
+  if (Array.isArray(body.attachments)) {
+    patch.attachments = body.attachments.slice(0, 20) as AssessmentDraft["attachments"];
+  }
+
+  if (typeof body.step === "number") patch.step = Math.max(0, Math.min(8, Math.round(body.step)));
+  if (typeof body.activeUseCaseIndex === "number") {
+    patch.activeUseCaseIndex = Math.max(0, Math.min(2, Math.round(body.activeUseCaseIndex)));
+  }
+
+  return patch;
 }
 
 export async function PUT(request: Request, { params }: RouteParams) {
@@ -46,63 +92,45 @@ export async function PUT(request: Request, { params }: RouteParams) {
   const row = await getAssessmentByToken(token);
   if (!row) return NextResponse.json({ error: "Assessment not found." }, { status: 404 });
 
-  if (row.status === "Submitted" || row.status === "Reviewing" || row.status === "Ready" || row.status === "Delivered") {
+  if (SUBMITTED_STATUSES.has(row.status)) {
     return NextResponse.json({ error: "This assessment has already been submitted." }, { status: 409 });
   }
 
-  let body: { form?: Partial<AssessmentForm>; step?: number; submit?: boolean };
+  const rawBody = await request.text();
+  if (rawBody.length > MAX_BODY_BYTES) {
+    return NextResponse.json({ error: "Request too large." }, { status: 413 });
+  }
+
+  let body: { draft?: unknown; submit?: boolean };
   try {
-    body = await request.json();
+    body = JSON.parse(rawBody);
   } catch {
     return NextResponse.json({ error: "Invalid request." }, { status: 400 });
   }
 
-  const patch: Partial<AssessmentForm> & { step?: number } = {};
-  if (body.form) {
-    const f = body.form;
-    if (f.businessName !== undefined) patch.businessName = text(f.businessName, 200);
-    if (f.industry !== undefined) patch.industry = text(f.industry, 200);
-    if (f.teamSize !== undefined) patch.teamSize = text(f.teamSize, 20);
-    if (f.tools !== undefined) patch.tools = stringArray(f.tools);
-    if (f.otherTool !== undefined) patch.otherTool = text(f.otherTool, 300);
-    if (f.mainTask !== undefined) patch.mainTask = text(f.mainTask, 1000);
-    if (f.mainData !== undefined) patch.mainData = text(f.mainData, 1000);
-    if (f.reviewed !== undefined) patch.reviewed = text(f.reviewed, 20);
-    if (f.extraNotes !== undefined) patch.extraNotes = text(f.extraNotes, 4000);
-    if (f.controls !== undefined) patch.controls = stringArray(f.controls);
-  }
-  if (typeof body.step === "number") patch.step = Math.max(0, Math.min(4, Math.round(body.step)));
-
-  const saved = await saveAssessmentProgress(token, patch);
-  if (!saved) return NextResponse.json({ error: "Assessment not found." }, { status: 404 });
+  const patch = sanitizeDraftPatch(body.draft);
 
   if (body.submit) {
-    const form = formFromRow(saved);
-    if (!form.businessName || !form.mainTask || !form.mainData) {
-      return NextResponse.json(
-        { error: "Please complete your business name and the material use case before submitting." },
-        { status: 400 },
-      );
-    }
-
-    const submitted = await submitAssessment(token);
+    const merged: AssessmentDraft = { ...draftFromRow(row), ...patch };
+    const result = await submitAssessmentFinal(token, merged);
+    if (!result) return NextResponse.json({ error: "Assessment not found." }, { status: 404 });
+    if ("error" in result) return NextResponse.json({ error: result.error }, { status: 400 });
 
     await sendAiBlueprintEmail(
       CONTACT_EMAIL,
-      `[AI Blueprint] Assessment submitted — ${form.businessName}`,
+      `[AI Blueprint] Assessment submitted — ${result.row.business_name || "(no name)"}`,
       [
-        `${form.businessName} has submitted their AI Blueprint assessment.`,
+        `${result.row.business_name || "A customer"} has submitted their AI Blueprint assessment.`,
         "",
         `Review it in the admin queue: ${SITE_URL}/admin/ai-blueprint`,
       ].join("\n"),
     );
 
-    return NextResponse.json({
-      status: submitted?.status || "Submitted",
-      step: submitted?.step ?? patch.step ?? row.step,
-      form: submitted ? formFromRow(submitted) : formFromRow(saved),
-    });
+    return NextResponse.json({ status: result.row.status, updatedAt: result.row.updated_at });
   }
 
-  return NextResponse.json({ status: saved.status, step: saved.step, form: formFromRow(saved) });
+  const saved = await saveAssessmentDraft(token, patch);
+  if (!saved) return NextResponse.json({ error: "Assessment not found." }, { status: 404 });
+
+  return NextResponse.json({ status: saved.status, updatedAt: saved.updated_at });
 }
