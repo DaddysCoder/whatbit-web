@@ -343,6 +343,13 @@
   font-weight: 700;
 }
 
+.vectorLive {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: #8b5cf6;
+  font-weight: 700;
+}
+
 .explore {
   font-size: 13px;
   font-weight: 700;

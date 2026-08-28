@@ -28,7 +28,7 @@ export const VODA_PRODUCT = {
 };
 
 export type WaitlistProduct = {
-  slug: Exclude<ProductSlug, "orbit" | "axis" | "frame" | "trace" | "voda">;
+  slug: Exclude<ProductSlug, "orbit" | "axis" | "frame" | "trace" | "voda" | "vector">;
   name: string;
   tagline: string;
   accent: string;
@@ -39,16 +39,6 @@ export type WaitlistProduct = {
 };
 
 export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
-  {
-    slug: "vector",
-    name: "Vector",
-    tagline: "Direction, and how fast.",
-    accent: "#8B5CF6",
-    accentHover: "#5B21B6",
-    selection: "#EDE4FB",
-    gradient: "linear-gradient(135deg,#B294F5,#8B5CF6)",
-    glow: "rgba(139,92,246,0.3)",
-  },
   {
     slug: "field",
     name: "Field",

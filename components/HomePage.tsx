@@ -228,8 +228,11 @@ export function HomePage() {
 
           <Link href="/vector" className={`${styles.card} ${styles.vector}`} style={revealStyle(r("products"), 0.15, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#B294F5,#8B5CF6)" />
-            <div><div className={styles.cardName}>Vector <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>Direction, and how fast.</p></div>
-            <div className={styles.dev}>IN DEVELOPMENT</div>
+            <div>
+              <div className={styles.cardName}>Vector <span className={styles.by}>by WhatBit</span></div>
+              <p className={styles.cardTag}>The forms you need, without the paperwork feeling like paperwork.</p>
+            </div>
+            <div className={styles.vectorLive}>LIVE</div>
           </Link>
 
           <Link href="/field" className={`${styles.card} ${styles.field}`} style={revealStyle(r("products"), 0.2, true)}>
