@@ -128,7 +128,7 @@ export function HomePage() {
         </div>
       </section>
 
-        <section
+      <section
         className={styles.orbit}
         ref={(el) => {
           orbitEl.current = el;
@@ -151,62 +151,18 @@ export function HomePage() {
             { dur: 44, rot: 240, size: 18, top: -9, color: "#0E8F71", shadow: "rgba(14,143,113,0.5)" },
             { dur: 30, rot: 300, size: 14, top: -7, color: "#C9B8F5", shadow: "rgba(201,184,245,0.4)" },
           ].map((d) => (
-            <div
-              key={d.rot}
-              className={styles.spin}
-              style={{ animation: `orbitspin ${d.dur}s linear infinite` }}
-            >
+            <div key={d.rot} className={styles.spin} style={{ animation: `orbitspin ${d.dur}s linear infinite` }}>
               <div className={styles.spinInner} style={{ transform: `rotate(${d.rot}deg)` }}>
-                <div
-                  className={styles.dot}
-                  style={{
-                    top: d.top,
-                    width: d.size,
-                    height: d.size,
-                    background: d.color,
-                    boxShadow: `0 4px 16px ${d.shadow}`,
-                  }}
-                />
+                <div className={styles.dot} style={{ top: d.top, width: d.size, height: d.size, background: d.color, boxShadow: `0 4px 16px ${d.shadow}` }} />
               </div>
             </div>
           ))}
           <div className={styles.rings}>
-            <div
-              className={styles.ring}
-              style={{
-                width: "100%",
-                height: "100%",
-                background: "radial-gradient(circle,rgba(123,47,247,0.16) 0%,rgba(123,47,247,0) 68%)",
-                opacity: orbitProgress,
-                transform: `scale(${(0.25 + orbitProgress * 1.15).toFixed(3)})`,
-              }}
-            />
-            <div
-              className={styles.ring}
-              style={{
-                width: "78%",
-                height: "78%",
-                background: "radial-gradient(circle,rgba(31,191,163,0.14) 0%,rgba(31,191,163,0) 68%)",
-                opacity: orbitProgress * 0.85,
-                transform: `scale(${(0.15 + orbitProgress * 1.05).toFixed(3)})`,
-              }}
-            />
+            <div className={styles.ring} style={{ width: "100%", height: "100%", background: "radial-gradient(circle,rgba(123,47,247,0.16) 0%,rgba(123,47,247,0) 68%)", opacity: orbitProgress, transform: `scale(${(0.25 + orbitProgress * 1.15).toFixed(3)})` }} />
+            <div className={styles.ring} style={{ width: "78%", height: "78%", background: "radial-gradient(circle,rgba(31,191,163,0.14) 0%,rgba(31,191,163,0) 68%)", opacity: orbitProgress * 0.85, transform: `scale(${(0.15 + orbitProgress * 1.05).toFixed(3)})` }} />
           </div>
           <svg className={styles.svg} viewBox="0 0 460 460">
-            <circle
-              cx="230"
-              cy="230"
-              r="170"
-              fill="none"
-              stroke={orbitCircleStroke}
-              strokeWidth="1"
-              style={{
-                transformBox: "fill-box",
-                transformOrigin: "center",
-                transform: `scale(${orbitCircleScale})`,
-                transition: "transform 0.9s cubic-bezier(.22,1,.36,1), stroke 0.9s ease",
-              }}
-            />
+            <circle cx="230" cy="230" r="170" fill="none" stroke={orbitCircleStroke} strokeWidth="1" style={{ transformBox: "fill-box", transformOrigin: "center", transform: `scale(${orbitCircleScale})`, transition: "transform 0.9s cubic-bezier(.22,1,.36,1), stroke 0.9s ease" }} />
           </svg>
         </div>
       </section>
@@ -214,128 +170,71 @@ export function HomePage() {
       <section id="products" className={styles.products}>
         <div className={styles.sectionHead}>
           <h2 className={styles.sectionTitle}>The tools</h2>
-          <p className={styles.sectionSub}>
-            Each one solves a specific problem. None of them exist just because we could build them.
-          </p>
+          <p className={styles.sectionSub}>Each one solves a specific problem. None of them exist just because we could build them.</p>
         </div>
         <div className={styles.grid} ref={setNode("products")}>
-          <Link
-            href="/pace"
-            className={`${styles.card} ${styles.orbitCard}`}
-            style={revealStyle(r("products"), 0, true)}
-          >
+          <Link href="/pace" className={`${styles.card} ${styles.orbitCard}`} style={revealStyle(r("products"), 0, true)}>
             <div className={styles.cardTop}>
-              <BarMark
-                size={56}
-                radius={16}
-                gradient="linear-gradient(135deg,#9B6EF3,#7B2FF7)"
-              />
+              <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#9B6EF3,#7B2FF7)" />
               <div className={styles.live}>FREE · LIVE</div>
             </div>
             <div>
-              <div className={`${styles.cardName} ${styles.orbitName}`}>
-                Pace <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span>
-              </div>
+              <div className={`${styles.cardName} ${styles.orbitName}`}>Pace <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
               <div className={styles.orbitHeadline}>Your week, your hours, what they&apos;re worth.</div>
-              <p className={styles.cardTag}>
-                A free calendar and hours workspace for practitioners who bill by the hour — logged time, billed value, and pace toward target, all in one place.
-              </p>
+              <p className={styles.cardTag}>A free calendar and hours workspace for practitioners who bill by the hour — logged time, billed value, and pace toward target, all in one place.</p>
             </div>
-            <div className={styles.explore}>
-              Open Pace <span>→</span>
-            </div>
+            <div className={styles.explore}>Open Pace <span>→</span></div>
           </Link>
 
-          <Link
-            href="/frame"
-            className={`${styles.card} ${styles.frameCard}`}
-            style={revealStyle(r("products"), 0.05, true)}
-          >
+          <Link href="/frame" className={`${styles.card} ${styles.frameCard}`} style={revealStyle(r("products"), 0.05, true)}>
             <div className={styles.cardTop}>
-              <BarMark
-                size={56}
-                radius={16}
-                gradient="linear-gradient(135deg,#F07655,#E8542E)"
-              />
+              <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#F07655,#E8542E)" />
               <div className={`${styles.live} ${styles.frameLive}`}>LIVE</div>
             </div>
             <div>
-              <div className={`${styles.cardName} ${styles.orbitName}`}>
-                Frame <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span>
-              </div>
+              <div className={`${styles.cardName} ${styles.orbitName}`}>Frame <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
               <div className={styles.frameHeadline}>The shape you build inside.</div>
-              <p className={styles.cardTag}>
-                A behaviour-support workspace for seeing a person clearly — observations, patterns, and the next useful step, held in one place.
-              </p>
+              <p className={styles.cardTag}>A behaviour-support workspace for seeing a person clearly — observations, patterns, and the next useful step, held in one place.</p>
             </div>
-            <div className={`${styles.explore} ${styles.frameExplore}`}>
-              Explore Frame <span>→</span>
-            </div>
+            <div className={`${styles.explore} ${styles.frameExplore}`}>Explore Frame <span>→</span></div>
           </Link>
 
           <Link href="/voda" className={`${styles.card} ${styles.voda}`} style={revealStyle(r("products"), 0.08, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#6E8CFF,#3452FF)" />
-            <div>
-              <div className={styles.cardName}>
-                VODA <span className={styles.by}>by WhatBit</span>
-              </div>
-              <p className={styles.cardTag}>See the business as a graph. Then see what happens next.</p>
-            </div>
+            <div><div className={styles.cardName}>VODA <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>See the business as a graph. Then see what happens next.</p></div>
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
 
           <Link href="/axil" className={`${styles.card} ${styles.axil}`} style={revealStyle(r("products"), 0.1, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#F7A876,#F2925C)" />
-            <div>
-              <div className={styles.cardName}>
-                Axil <span className={styles.by}>by WhatBit</span>
-              </div>
-              <p className={styles.cardTag}>The point where new work starts.</p>
-            </div>
+            <div><div className={styles.cardName}>Axil <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The point where new work starts.</p></div>
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
 
           <Link href="/trace" className={`${styles.card} ${styles.trace}`} style={revealStyle(r("products"), 0.1, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#3FD4B8,#1FBFA3)" />
             <div>
-              <div className={styles.cardName}>
-                Trace <span className={styles.by}>by WhatBit</span>
-              </div>
-              <p className={styles.cardTag}>A record of how you got here.</p>
+              <div className={styles.cardName}>Trace <span className={styles.by}>by WhatBit</span></div>
+              <p className={styles.cardTag}>Free behaviour-support budget and pacing calculator. Pro unlocks downloadable reports and document exports.</p>
             </div>
-            <div className={styles.dev}>IN DEVELOPMENT</div>
+            <div className={styles.live}>FREE · PRO</div>
           </Link>
 
           <Link href="/vector" className={`${styles.card} ${styles.vector}`} style={revealStyle(r("products"), 0.15, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#B294F5,#8B5CF6)" />
-            <div>
-              <div className={styles.cardName}>
-                Vector <span className={styles.by}>by WhatBit</span>
-              </div>
-              <p className={styles.cardTag}>Direction, and how fast.</p>
-            </div>
+            <div><div className={styles.cardName}>Vector <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>Direction, and how fast.</p></div>
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
 
           <Link href="/field" className={`${styles.card} ${styles.field}`} style={revealStyle(r("products"), 0.2, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#22B393,#0E8F71)" />
-            <div>
-              <div className={styles.cardName}>
-                Field <span className={styles.by}>by WhatBit</span>
-              </div>
-              <p className={styles.cardTag}>Everywhere your data lives, together.</p>
-            </div>
+            <div><div className={styles.cardName}>Field <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>Everywhere your data lives, together.</p></div>
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
 
           <Link href="/arc" className={`${styles.card} ${styles.arc}`} style={revealStyle(r("products"), 0.25, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#7C4FD1,#5B21B6)" />
-            <div>
-              <div className={styles.cardName}>
-                Arc <span className={styles.by}>by WhatBit</span>
-              </div>
-              <p className={styles.cardTag}>The shape of getting there.</p>
-            </div>
+            <div><div className={styles.cardName}>Arc <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The shape of getting there.</p></div>
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
         </div>
@@ -345,49 +244,19 @@ export function HomePage() {
         <div className={styles.sectionHead}>
           <div className={styles.priceEyebrow}>PRICING</div>
           <h2 className={styles.sectionTitle}>However you want to pay for it.</h2>
-          <p className={styles.sectionSub} style={{ maxWidth: 520 }}>
-            Every product stands alone. Most of them also plug into each other — use one, or stack a few.
-          </p>
+          <p className={styles.sectionSub} style={{ maxWidth: 520 }}>Every product stands alone. Most of them also plug into each other — use one, or stack a few.</p>
         </div>
         <div className={styles.priceGrid} ref={setNode("price")}>
           {[
-            {
-              title: "Free",
-              body: "Full access to a single tool, no card required. Good for finding out if it fits how you work.",
-              meta: "$0",
-              metaColor: "#7B2FF7",
-              className: "",
-            },
-            {
-              title: "Subscription",
-              body: "Ongoing access, billed monthly. Add tools as you go — each one talks to the others automatically.",
-              meta: "PER PRODUCT / MONTH",
-              metaColor: "#B794FF",
-              className: styles.priceDark,
-            },
-            {
-              title: "Own it",
-              body: "One-time purchase per product. Yours outright, updates included.",
-              meta: "ONE-TIME / PRODUCT",
-              metaColor: "#E8542E",
-              className: styles.priceOrange,
-            },
+            { title: "Free", body: "Full access to a single tool, no card required. Good for finding out if it fits how you work.", meta: "$0", metaColor: "#7B2FF7", className: "" },
+            { title: "Subscription", body: "Ongoing access, billed monthly. Add tools as you go — each one talks to the others automatically.", meta: "PER PRODUCT / MONTH", metaColor: "#B794FF", className: styles.priceDark },
+            { title: "Own it", body: "One-time purchase per product. Yours outright, updates included.", meta: "ONE-TIME / PRODUCT", metaColor: "#E8542E", className: styles.priceOrange },
           ].map((card, i) => (
             <div key={card.title} style={revealStyle(r("price"), [0, 0.08, 0.16][i], true)}>
-              <div
-                ref={(el) => {
-                  priceNodes.current[i] = el;
-                }}
-                className={`${styles.priceCard} ${card.className}`}
-                style={{ transform: priceTilt[i] || defaultTilt }}
-                onMouseMove={onPriceMove(i)}
-                onMouseLeave={onPriceLeave(i)}
-              >
+              <div ref={(el) => { priceNodes.current[i] = el; }} className={`${styles.priceCard} ${card.className}`} style={{ transform: priceTilt[i] || defaultTilt }} onMouseMove={onPriceMove(i)} onMouseLeave={onPriceLeave(i)}>
                 <div className={styles.priceTitle}>{card.title}</div>
                 <p className={styles.priceBody}>{card.body}</p>
-                <div className={styles.priceMeta} style={{ color: card.metaColor }}>
-                  {card.meta}
-                </div>
+                <div className={styles.priceMeta} style={{ color: card.metaColor }}>{card.meta}</div>
               </div>
             </div>
           ))}
@@ -396,49 +265,31 @@ export function HomePage() {
       </section>
 
       <section className={styles.aboutWrap} ref={setNode("about")}>
-        <Link
-          href="/about"
-          className={styles.aboutBand}
-          style={revealStyle(r("about"), 0)}
-        >
+        <Link href="/about" className={styles.aboutBand} style={revealStyle(r("about"), 0)}>
           <div>
             <div className={styles.aboutEyebrow}>HOW WE GOT HERE</div>
             <div className={styles.aboutTitle}>It&apos;s a longer story than most software companies have.</div>
-            <p className={styles.aboutCopy}>
-              The engine behind every WhatBit product started somewhere unexpected. Here&apos;s the whole thing.
-            </p>
+            <p className={styles.aboutCopy}>The engine behind every WhatBit product started somewhere unexpected. Here&apos;s the whole thing.</p>
           </div>
-          <div className={styles.aboutCta}>
-            Read the story <span>→</span>
-          </div>
+          <div className={styles.aboutCta}>Read the story <span>→</span></div>
         </Link>
       </section>
 
       <section id="philosophy" className={styles.philosophy} ref={setNode("philosophy")}>
-        <div className={styles.philLine} style={revealStyle(r("philosophy"), 0)}>
-          We don&apos;t lead with the technology.
-        </div>
-        <div className={`${styles.philLine} ${styles.philAccent}`} style={revealStyle(r("philosophy"), 0.15)}>
-          We lead with the problem.
-        </div>
-        <div className={`${styles.philLine} ${styles.philSub}`} style={revealStyle(r("philosophy"), 0.3)}>
-          The technology should disappear into the work.
-        </div>
+        <div className={styles.philLine} style={revealStyle(r("philosophy"), 0)}>We don&apos;t lead with the technology.</div>
+        <div className={`${styles.philLine} ${styles.philAccent}`} style={revealStyle(r("philosophy"), 0.15)}>We lead with the problem.</div>
+        <div className={`${styles.philLine} ${styles.philSub}`} style={revealStyle(r("philosophy"), 0.3)}>The technology should disappear into the work.</div>
       </section>
 
       <section className={styles.trust} ref={setNode("trust")} style={revealStyle(r("trust"), 0)}>
         <h2 className={styles.trustTitle}>There&apos;s very little black box about how we work.</h2>
-        <p className={styles.trustCopy}>
-          If we build something for you, you should be able to see how it works, why it works, and what it&apos;s built on. Trust is the whole product — not a line in the terms and conditions.
-        </p>
+        <p className={styles.trustCopy}>If we build something for you, you should be able to see how it works, why it works, and what it&apos;s built on. Trust is the whole product — not a line in the terms and conditions.</p>
       </section>
 
       <section id="cta" className={styles.ctaBlock} ref={setNode("cta")}>
         <div className={styles.ctaInner} style={revealStyle(r("cta"), 0)}>
           <h2 className={styles.ctaTitle}>Got a problem worth solving?</h2>
-          <Link href="/contact" className={styles.ctaBtn}>
-            Get in touch
-          </Link>
+          <Link href="/contact" className={styles.ctaBtn}>Get in touch</Link>
         </div>
         <SiteFooter />
         <div className={styles.legal}>
