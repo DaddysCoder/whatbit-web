@@ -596,6 +596,26 @@
   padding: 32px 40px;
   text-align: center;
   font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.footerLinks {
+  display: flex;
+  gap: 16px;
+}
+
+.footerLinks a {
+  color: #9b9b9b;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.footerLinks a:hover {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .burger {

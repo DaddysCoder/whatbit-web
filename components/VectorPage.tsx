@@ -361,7 +361,13 @@ export function VectorPage() {
         ) : null}
       </section>
 
-      <footer className={styles.footer}>WhatBit · Australia</footer>
+      <footer className={styles.footer}>
+        <span>WhatBit · Australia</span>
+        <nav className={styles.footerLinks} aria-label="Vector legal">
+          <Link href="/vector/privacy">Privacy</Link>
+          <Link href="/vector/terms">Terms</Link>
+        </nav>
+      </footer>
     </div>
   );
 }
