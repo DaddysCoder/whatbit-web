@@ -1,4 +1,4 @@
-import type { AssessmentSubmissionV1 } from "../types";
+import type { AssessmentSubmissionV1 } from "./types";
 
 /**
  * Non-scoring flags that don't affect the attention level but must surface

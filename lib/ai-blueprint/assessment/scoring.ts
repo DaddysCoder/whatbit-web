@@ -4,7 +4,7 @@ import type {
   ScreeningFlag,
   UrgentFlag,
   UseCaseRecord,
-} from "../types";
+} from "./types";
 
 /**
  * Internal triage engine implementing spec §6 (weighting), §6.5 (screening
