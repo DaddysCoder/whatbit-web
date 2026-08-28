@@ -7,7 +7,7 @@ export const VECTOR_APP_URL = "https://vector.whatbit.dev";
  */
 export const VECTOR_FORMS_URL = `${VECTOR_APP_URL}/referral`;
 export const VECTOR_PRICING_URL = VECTOR_APP_URL;
-export const VECTOR_TEMPLATES_URL = VECTOR_APP_URL;
+export const VECTOR_TEMPLATES_URL = `${VECTOR_APP_URL}/support-templates`;
 
 export const VECTOR_REFERRAL_URL = `${VECTOR_APP_URL}/referral`;
 export const VECTOR_TRIAGE_URL = `${VECTOR_APP_URL}/practitioner-triage`;
