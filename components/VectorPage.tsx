@@ -85,6 +85,12 @@ const PAID_FEATURES_LIST = [
   "support template library",
 ];
 
+const PAID_TIERS = [
+  { name: "Monthly", price: "A$19 / month", note: "" },
+  { name: "Annual", price: "A$180 / year", note: "2 months free" },
+  { name: "One-off", price: "A$5 / document", note: "no subscription" },
+] as const;
+
 function VectorBadge() {
   return (
     <span className={styles.badge} aria-hidden>
@@ -278,8 +284,16 @@ export function VectorPage() {
 
             <div className={styles.paidCard}>
               <div className={styles.tierName}>Vector</div>
-              <div className={styles.tierPrice}>A$9 / month</div>
-              <p className={styles.toolCopy} style={{ marginBottom: 16 }}>
+              <div className={styles.tierOptions}>
+                {PAID_TIERS.map((tier) => (
+                  <div key={tier.name} className={styles.tierOption}>
+                    <span className={styles.tierOptionName}>{tier.name}</span>
+                    <span className={styles.tierOptionPrice}>{tier.price}</span>
+                    {tier.note ? <span className={styles.tierOptionNote}>{tier.note}</span> : null}
+                  </div>
+                ))}
+              </div>
+              <p className={styles.toolCopy} style={{ marginBottom: 16, marginTop: 16 }}>
                 Everything in Free, plus:
               </p>
               <div className={styles.featureList}>
