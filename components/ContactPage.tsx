@@ -3,28 +3,28 @@
 import { useRef, useState, type FormEvent } from "react";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
-import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/site";
+import { CONTACT_EMAIL } from "@/lib/site";
 import styles from "./ContactPage.module.css";
 
 const REASONS = [
   {
-    href: `${CONTACT_MAILTO}?subject=${encodeURIComponent("A problem worth solving")}`,
+    reason: "A problem worth solving",
     emoji: "🧩",
     title: "I have a problem",
     copy: "Something is more complicated than it should be. Tell us about it — we like this part.",
-    cta: "Email us about it →",
+    cta: "Tell us →",
     className: "problem",
   },
   {
-    href: `${CONTACT_MAILTO}?subject=${encodeURIComponent("An idea for WhatBit")}`,
+    reason: "An idea for WhatBit",
     emoji: "💡",
     title: "I have an idea",
     copy: "A product, a partnership, a ‘what if’ you can’t stop thinking about. Send it over.",
-    cta: "Pitch us →",
+    cta: "Pitch it →",
     className: "idea",
   },
   {
-    href: `${CONTACT_MAILTO}?subject=${encodeURIComponent("Hello!")}`,
+    reason: "Something else",
     emoji: "👋",
     title: "Just say hi",
     copy: "No agenda required. We enjoy hearing from people who like the same weird problems we do.",
@@ -37,6 +37,7 @@ export function ContactPage() {
   const [copyStatus, setCopyStatus] = useState("");
   const [formStatus, setFormStatus] = useState("");
   const [sending, setSending] = useState(false);
+  const [selectedReason, setSelectedReason] = useState("A problem worth solving");
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const copyEmail = async () => {
@@ -79,6 +80,7 @@ export function ContactPage() {
       }
 
       form.reset();
+      setSelectedReason("A problem worth solving");
       setFormStatus("Sent. A real human will see it.");
     } catch {
       setFormStatus("That didn’t send. Please try again or email us directly.");
@@ -114,7 +116,8 @@ export function ContactPage() {
           {REASONS.map((r) => (
             <a
               key={r.title}
-              href={r.href}
+              href="#contact-form"
+              onClick={() => setSelectedReason(r.reason)}
               className={`${styles.card} ${
                 r.className === "problem"
                   ? styles.problem
@@ -134,7 +137,7 @@ export function ContactPage() {
 
       <section className={styles.formSection} id="contact-form">
         <div className={styles.formIntro}>
-          <div className={styles.pick}>OR USE THE FORM</div>
+          <div className={styles.pick}>SEND AN ENQUIRY</div>
           <h2 className={styles.reasonsTitle}>Put it in our inbox.</h2>
           <p>
             Name, email, reason, message. That’s it. Please don’t put passwords, API keys or sensitive client information in here.
@@ -155,7 +158,11 @@ export function ContactPage() {
 
           <label className={styles.field}>
             <span>What’s this about?</span>
-            <select name="reason" defaultValue="A problem worth solving">
+            <select
+              name="reason"
+              value={selectedReason}
+              onChange={(event) => setSelectedReason(event.target.value)}
+            >
               <option>A problem worth solving</option>
               <option>An idea for WhatBit</option>
               <option>Product support</option>
