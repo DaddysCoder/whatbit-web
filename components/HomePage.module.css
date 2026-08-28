@@ -278,6 +278,36 @@
   background: rgba(91, 33, 182, 0.05);
 }
 
+.aiBlueprint:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 26px 60px rgba(8, 145, 178, 0.18);
+  background: rgba(8, 145, 178, 0.05);
+}
+
+.aiBlueprintBadge {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #0891b2;
+  font-weight: 700;
+  background: #e0f6fb;
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.aiBlueprintFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.aiBlueprintPrice {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0891b2;
+}
+
 .cardTop {
   display: flex;
   align-items: center;

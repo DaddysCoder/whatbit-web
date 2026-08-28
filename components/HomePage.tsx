@@ -246,6 +246,21 @@ export function HomePage() {
             <div><div className={styles.cardName}>Arc <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The shape of getting there.</p></div>
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
+
+          <Link href="/ai-blueprint" className={`${styles.card} ${styles.aiBlueprint}`} style={revealStyle(r("products"), 0.28, true)}>
+            <div className={styles.cardTop}>
+              <BarMark size={44} gradient="linear-gradient(135deg,#5EC4E8,#0891B2)" />
+              <div className={styles.aiBlueprintBadge}>HUMAN-REVIEWED</div>
+            </div>
+            <div>
+              <div className={styles.cardName}>AI Blueprint <span className={styles.by}>by WhatBit</span></div>
+              <p className={styles.cardTag}>Responsible AI readiness assessment + governance toolkit.</p>
+            </div>
+            <div className={styles.aiBlueprintFooter}>
+              <div className={styles.aiBlueprintPrice}>Founding Client: A$495</div>
+              <div className={styles.explore}>Explore AI Blueprint <span>→</span></div>
+            </div>
+          </Link>
         </div>
       </section>
 
