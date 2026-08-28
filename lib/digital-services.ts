@@ -210,7 +210,7 @@ export const DS_WORK: WorkExample[] = [
   },
   {
     image: "/assets/ds/products-montage.png",
-    alt: "Orbit, Trace and Frame product interfaces shown together.",
+    alt: "Pace, Trace and Frame product interfaces shown together.",
     badge: "PRODUCT PORTFOLIO",
     badgeTone: "concept",
     title: "WhatBit products",
