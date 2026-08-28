@@ -18,6 +18,20 @@ Product application URLs are kept in `lib/products.ts` where possible. Current l
 
 The `/trace` product page describes Trace Free and Trace Pro; Trace itself is deployed separately from `DaddysCoder/fracta-flow-trace` to Cloudflare Workers.
 
+## Contact form
+
+The public `/contact` form posts to `/api/contact` and sends website enquiries to `hello@primitiveai.com.au` through Cloudflare Email Service.
+
+Required production runtime configuration:
+
+- `CLOUDFLARE_ACCOUNT_ID`
+- `CLOUDFLARE_EMAIL_API_TOKEN` — secret with the minimum Email Sending permission required
+- `CONTACT_FROM_EMAIL` — optional; defaults to `website@whatbit.dev`
+
+Before enabling production delivery, onboard the sender domain in Cloudflare Email Service and verify the business inbox as a destination where required by the Cloudflare account/plan. Never expose the email API token to browser-side code.
+
+The form collects only name, email, reason and message, includes a honeypot field for basic bot filtering, and uses the visitor's address as the email Reply-To value so the business can reply normally from its inbox.
+
 ## Development
 
 ```bash
