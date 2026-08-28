@@ -125,6 +125,10 @@ export function DigitalServicesPage() {
               digital systems. The result might be a website, an interactive tool, a consultation
               pathway, a content system or a practical mix of them.
             </p>
+            <p className={styles.bodyLast}>
+              It is the same instinct behind everything WhatBit builds: find the bit that actually
+              matters, then build around that.
+            </p>
             <div className={styles.ctaRow}>
               <Link href="/contact" className={styles.btnPrimary}>
                 Talk to us about a project

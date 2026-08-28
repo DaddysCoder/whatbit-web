@@ -167,6 +167,15 @@ export function HomePage() {
         </div>
       </section>
 
+      <section id="philosophy" className={styles.philosophy} ref={setNode("philosophy")}>
+        <div className={styles.philLine} style={revealStyle(r("philosophy"), 0)}>We don&apos;t lead with the technology.</div>
+        <div className={`${styles.philLine} ${styles.philAccent}`} style={revealStyle(r("philosophy"), 0.15)}>We lead with the problem.</div>
+        <div className={`${styles.philLine} ${styles.philSub}`} style={revealStyle(r("philosophy"), 0.3)}>The technology should disappear into the work.</div>
+        <Link href="/about" className={styles.philTeaser} style={revealStyle(r("philosophy"), 0.45)}>
+          Most of that work happens in what we call the Elsewhere Department. <span>Meet Elsewhere →</span>
+        </Link>
+      </section>
+
       <section id="products" className={styles.products}>
         <div className={styles.sectionHead}>
           <h2 className={styles.sectionTitle}>The tools</h2>
@@ -201,7 +210,7 @@ export function HomePage() {
 
           <Link href="/voda" className={`${styles.card} ${styles.voda}`} style={revealStyle(r("products"), 0.08, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#6E8CFF,#3452FF)" />
-            <div><div className={styles.cardName}>VODA <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>See the business as a graph. Then see what happens next.</p></div>
+            <div><div className={styles.cardName}>VODA <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>See where the time, money and effort in the business actually go — then what happens if something changes.</p></div>
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
 
@@ -249,7 +258,7 @@ export function HomePage() {
 
           <Link href="/arc" className={`${styles.card} ${styles.arc}`} style={revealStyle(r("products"), 0.25, true)}>
             <BarMark size={44} gradient="linear-gradient(135deg,#7C4FD1,#5B21B6)" />
-            <div><div className={styles.cardName}>Arc <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The shape of getting there.</p></div>
+            <div><div className={styles.cardName}>Arc <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>Every client, every step, in one place — instead of fifteen open tabs.</p></div>
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
         </div>
@@ -288,12 +297,6 @@ export function HomePage() {
           </div>
           <div className={styles.aboutCta}>Read the story <span>→</span></div>
         </Link>
-      </section>
-
-      <section id="philosophy" className={styles.philosophy} ref={setNode("philosophy")}>
-        <div className={styles.philLine} style={revealStyle(r("philosophy"), 0)}>We don&apos;t lead with the technology.</div>
-        <div className={`${styles.philLine} ${styles.philAccent}`} style={revealStyle(r("philosophy"), 0.15)}>We lead with the problem.</div>
-        <div className={`${styles.philLine} ${styles.philSub}`} style={revealStyle(r("philosophy"), 0.3)}>The technology should disappear into the work.</div>
       </section>
 
       <section className={styles.trust} ref={setNode("trust")} style={revealStyle(r("trust"), 0)}>

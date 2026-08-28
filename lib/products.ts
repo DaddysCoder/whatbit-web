@@ -27,7 +27,7 @@ export const TRACE_APP_URL = "https://trace.whatbit.dev";
 export const VODA_PRODUCT = {
   slug: "voda" as const,
   name: "VODA",
-  tagline: "See the business as a graph. Then see what happens next.",
+  tagline: "See where the time, money and effort in the business actually go — then what happens if something changes.",
   description:
     "VODA is WhatBit's intelligence engine. It maps how work actually moves through a business, then runs predictive models against that map to say what's coming — a bottleneck, a risk, an opening.",
   accent: "#3452FF",
@@ -53,7 +53,7 @@ export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
   {
     slug: "arc",
     name: "Arc",
-    tagline: "The shape of getting there.",
+    tagline: "Every client, every step, in one place — instead of fifteen open tabs.",
     accent: "#7C4FD1",
     accentHover: "#5B21B6",
     selection: "#E9DEFA",

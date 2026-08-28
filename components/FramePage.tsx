@@ -232,9 +232,12 @@ export function FramePage() {
         <div className={styles.heroCopy}>
           <div className={styles.eyebrow}>FRAME · BY WHATBIT</div>
           <h1 className={styles.heroTitleDesktop}>
-            Behaviour support evidence, from observation to hypothesis.
+            Turn what you&apos;re seeing in a session into evidence you can actually stand behind.
           </h1>
-          <h1 className={styles.heroTitleMobile}>From observation to hypothesis.</h1>
+          <h1 className={styles.heroTitleMobile}>
+            Turn what you see into evidence you can stand behind.
+          </h1>
+          <p className={styles.heroSubhead}>Behaviour support evidence, from observation to hypothesis.</p>
           <p className={styles.heroBodyDesktop}>
             Define the behaviour. Record what happened. Bring structured screening and observed patterns
             together — then see where the evidence agrees, where it doesn&apos;t, and what needs a closer look.

@@ -529,6 +529,21 @@
   margin-top: 16px;
 }
 
+.philTeaser {
+  font-size: 14px;
+  color: #6b6b6b;
+  margin-top: 20px;
+}
+
+.philTeaser span {
+  color: #b794ff;
+  font-weight: 700;
+}
+
+.philTeaser:hover span {
+  text-decoration: underline;
+}
+
 .trust {
   padding: 140px 40px;
   max-width: 760px;

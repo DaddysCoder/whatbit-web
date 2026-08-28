@@ -116,7 +116,7 @@ export function VodaPage() {
           </div>
           <div className={styles.status}>IN DEVELOPMENT</div>
           <h1 className={styles.title}>
-            See the business as a graph.
+            See where the effort actually goes.
             <br />
             Then see what happens next.
           </h1>
