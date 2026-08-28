@@ -12,7 +12,7 @@ export default function Page() {
     <DocPage
       eyebrow="PRIVACY POLICY"
       title="Privacy, without the mystery."
-      lede="WhatBit is operated by Primitive AI Labs PTY Limited. This notice explains how personal information is handled across the WhatBit website and services. Effective 26 August 2026."
+      lede="WhatBit is operated by Primitive AI Labs Limited (trading as Primitive AI). This notice explains how personal information is handled across the WhatBit website and services. Effective 26 August 2026."
       blocks={[
         {
           heading: "Our approach",
