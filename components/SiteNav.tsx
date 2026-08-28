@@ -125,6 +125,9 @@ export function SiteNav({
         <Link href="/#philosophy" className={styles.textLink}>
           Philosophy
         </Link>
+        <Link href="/voda" className={styles.textLink}>
+          VODA
+        </Link>
         {variant === "home" ? (
           <Link href="/about" className={styles.textLink}>
             About
@@ -167,6 +170,9 @@ export function SiteNav({
           </Link>
           <Link href="/#philosophy" onClick={() => setOpen(false)}>
             Philosophy
+          </Link>
+          <Link href="/voda" onClick={() => setOpen(false)}>
+            VODA
           </Link>
           <Link href="/about" onClick={() => setOpen(false)}>
             About

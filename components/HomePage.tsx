@@ -199,12 +199,6 @@ export function HomePage() {
             <div className={`${styles.explore} ${styles.frameExplore}`}>Explore Frame <span>→</span></div>
           </Link>
 
-          <Link href="/voda" className={`${styles.card} ${styles.voda}`} style={revealStyle(r("products"), 0.08, true)}>
-            <BarMark size={44} gradient="linear-gradient(135deg,#6E8CFF,#3452FF)" />
-            <div><div className={styles.cardName}>VODA <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>See the business as a graph. Then see what happens next.</p></div>
-            <div className={styles.dev}>IN DEVELOPMENT</div>
-          </Link>
-
           <a href="https://axis.whatbit.tech" className={`${styles.card} ${styles.axil}`} style={revealStyle(r("products"), 0.1, true)}>
             <div className={styles.cardTop}>
               <BarMark size={44} gradient="linear-gradient(135deg,#F7A876,#F2925C)" />
