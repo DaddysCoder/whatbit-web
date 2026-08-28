@@ -1,9 +1,9 @@
+import { TRACE_APP_URL } from "@/lib/products";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
 import styles from "./OrbitPage.module.css";
 
-const TRACE_APP_URL = "https://trace.whatbit.dev";
 const TRACE_PRO_URL = `${TRACE_APP_URL}/pro`;
 const TRACE_PRIVACY_URL = `${TRACE_APP_URL}/privacy`;
 const TRACE_TERMS_URL = `${TRACE_APP_URL}/terms`;
