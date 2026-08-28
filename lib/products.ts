@@ -10,7 +10,7 @@ export type ProductSlug =
 
 export const FRAME_APP_URL = "https://screen-fba.polina-67d.workers.dev/";
 export const PACE_APP_URL = "https://orbit.whatbit.tech";
-export const TRACE_APP_URL = "https://trace.website.dev";
+export const TRACE_APP_URL = "https://trace.whatbit.dev";
 
 export const VODA_PRODUCT = {
   slug: "voda" as const,
@@ -27,7 +27,7 @@ export const VODA_PRODUCT = {
 };
 
 export type WaitlistProduct = {
-  slug: Exclude<ProductSlug, "orbit" | "trace" | "frame" | "voda">;
+  slug: Exclude<ProductSlug, "orbit" | "frame" | "trace" | "voda">;
   name: string;
   tagline: string;
   accent: string;
