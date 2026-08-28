@@ -49,7 +49,7 @@ export function AiBlueprintAssessmentPage() {
       });
       setLoadState("ready");
     });
-  }, [token]);
+  }, [token, router]);
 
   if (loadState === "missing-token") {
     return (
