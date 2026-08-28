@@ -220,7 +220,7 @@ export function HomePage() {
         </div>
         <div className={styles.grid} ref={setNode("products")}>
           <Link
-            href="/orbit"
+            href="/pace"
             className={`${styles.card} ${styles.orbitCard}`}
             style={revealStyle(r("products"), 0, true)}
           >
@@ -230,19 +230,19 @@ export function HomePage() {
                 radius={16}
                 gradient="linear-gradient(135deg,#9B6EF3,#7B2FF7)"
               />
-              <div className={styles.live}>LIVE</div>
+              <div className={styles.live}>FREE · LIVE</div>
             </div>
             <div>
               <div className={`${styles.cardName} ${styles.orbitName}`}>
-                Orbit <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span>
+                Pace <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span>
               </div>
               <div className={styles.orbitHeadline}>Your week, your hours, what they&apos;re worth.</div>
               <p className={styles.cardTag}>
-                A calendar and hours workspace for practitioners who bill by the hour — logged time, billed value, and pace toward target, all in one place.
+                A free calendar and hours workspace for practitioners who bill by the hour — logged time, billed value, and pace toward target, all in one place.
               </p>
             </div>
             <div className={styles.explore}>
-              Explore Orbit <span>→</span>
+              Open Pace <span>→</span>
             </div>
           </Link>
 
