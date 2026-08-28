@@ -767,6 +767,183 @@
   line-height: 1.55;
 }
 
+/* Pricing */
+.pricing {
+  padding: 100px 24px;
+  background: #fef1ec;
+}
+
+.pricingGrid {
+  max-width: 880px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.pricingCard {
+  background: #ffffff;
+  border: 1px solid #f0ddd6;
+  border-radius: 16px;
+  padding: 28px 24px;
+  min-width: 0;
+}
+
+.pricingCardPro {
+  border-color: #e8542e;
+  box-shadow: 0 12px 40px rgba(232, 84, 46, 0.12);
+}
+
+.pricingTier {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+.pricingPrice {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: #0b0b0c;
+  margin-bottom: 4px;
+}
+
+.pricingPriceAlt {
+  font-size: 14px;
+  color: #6b6b6b;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.pricingTagline,
+.pricingPlus {
+  font-size: 14px;
+  color: #6b6b6b;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.pricingSave {
+  font-size: 12px;
+  color: #e8542e;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.pricingTrial {
+  font-size: 13px;
+  color: #3a3a3a;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.pricingFeatures {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.pricingFeatures li {
+  font-size: 13px;
+  color: #3a3a3a;
+  line-height: 1.5;
+  padding-left: 16px;
+  position: relative;
+}
+
+.pricingFeatures li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e8542e;
+}
+
+.pricingBtnFree,
+.pricingBtnPro {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 22px;
+  border-radius: 9px;
+  box-sizing: border-box;
+  transition: background 0.25s ease, transform 0.15s ease, border-color 0.25s ease;
+}
+
+.pricingBtnFree {
+  background: transparent !important;
+  color: #0b0b0c !important;
+  border: 1px solid #e5e5e5;
+}
+
+.pricingBtnFree:hover {
+  border-color: #e8542e;
+  background: #fef1ec !important;
+  color: #0b0b0c !important;
+}
+
+.pricingBtnPro {
+  background: #0b0b0c !important;
+  color: #ffffff !important;
+  border: 0;
+}
+
+.pricingBtnPro:hover {
+  background: #e8542e !important;
+  color: #ffffff !important;
+  transform: scale(1.02);
+}
+
+.pricingBtnDisabled,
+.pricingBtnDisabledPro {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 22px;
+  border-radius: 9px;
+  box-sizing: border-box;
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.pricingBtnDisabled {
+  background: #f5f5f5;
+  color: #6b6b6b !important;
+  border: 1px solid #e5e5e5;
+}
+
+.pricingBtnDisabledPro {
+  background: #d5d5d5;
+  color: #6b6b6b !important;
+}
+
+.pricingSafety,
+.pricingNote {
+  max-width: 640px;
+  margin: 28px auto 0;
+  font-size: 13px;
+  color: #6b6b6b;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.pricingNote {
+  margin-top: 12px;
+}
+
 /* Final CTA */
 .finalCta {
   padding: 110px 24px;
@@ -834,6 +1011,11 @@
   .docGrid {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+
+  .pricingGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .privacyGrid {
@@ -1057,6 +1239,21 @@
 
   .trustList li {
     font-size: 13px;
+  }
+
+  .pricing {
+    padding: 48px 20px;
+  }
+
+  .pricing .sectionIntro {
+    text-align: left;
+    margin-bottom: 28px;
+  }
+
+  .pricingSafety,
+  .pricingNote {
+    text-align: left;
+    font-size: 12px;
   }
 
   .finalCta {

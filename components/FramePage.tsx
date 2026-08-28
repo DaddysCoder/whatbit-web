@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FRAME_APP_URL } from "@/lib/products";
+import { FRAME_APP_URL, FRAME_COMMERCIAL_LIVE, FRAME_FREE_URL, FRAME_PRO_TRIAL_URL } from "@/lib/products";
 import { SiteFooter } from "./SiteFooter";
 import styles from "./FramePage.module.css";
 
@@ -101,6 +101,52 @@ const DOC_CARDS = [
   },
 ];
 
+const FRAME_FREE_FEATURES = [
+  "Up to 2 active participants",
+  "Operational behaviour definitions",
+  "ABC / episode logging",
+  "Setting events, antecedents and consequences",
+  "Structured practitioner screener",
+  "Evidence comparison",
+  "Agreement and confidence",
+  "Rule-based risk flags",
+  "Local browser storage",
+  "Offline-capable workspace",
+  "JSON backup and import",
+] as const;
+
+const FRAME_PRO_FEATURES = [
+  "Unlimited participants",
+  "Multi-informant QR screener workflow",
+  "Multiple-informant evidence comparison",
+  "Clinical Report generation",
+  "Behaviour Support Plan Appendix generation",
+  "Basic Staff Training Summary generation",
+  "Vector instrument import",
+  "Future premium integrations where explicitly included",
+] as const;
+
+function FramePricingCta({ label, href, variant }: { label: string; href: string; variant: "free" | "pro" }) {
+  if (!FRAME_COMMERCIAL_LIVE) {
+    return (
+      <span className={variant === "pro" ? styles.pricingBtnDisabledPro : styles.pricingBtnDisabled} aria-disabled="true">
+        Coming soon
+      </span>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      className={variant === "pro" ? styles.pricingBtnPro : styles.pricingBtnFree}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {label}
+    </a>
+  );
+}
+
 function QrChip({ pattern }: { pattern: boolean[] }) {
   return (
     <div className={styles.qrChip} aria-hidden>
@@ -133,6 +179,7 @@ export function FramePage() {
         <nav className={styles.desktopNav} aria-label="Frame page">
           <a href="#workflow">How it works</a>
           <a href="#evidence">Evidence</a>
+          <a href="#pricing">Pricing</a>
           <a href="#privacy">Privacy</a>
           <Link href="/#products">← All products</Link>
           <a {...OPEN_FRAME_PROPS} className={styles.headerCta}>
@@ -162,6 +209,9 @@ export function FramePage() {
             </a>
             <a href="#evidence" onClick={() => setMenuOpen(false)}>
               Evidence
+            </a>
+            <a href="#pricing" onClick={() => setMenuOpen(false)}>
+              Pricing
             </a>
             <a href="#privacy" onClick={() => setMenuOpen(false)}>
               Privacy
@@ -407,6 +457,52 @@ export function FramePage() {
             ))}
           </ul>
         </div>
+      </section>
+
+      <section id="pricing" className={styles.pricing}>
+        <div className={styles.sectionIntro}>
+          <div className={styles.eyebrow}>PRICING</div>
+          <h2 className={styles.sectionTitle}>Choose how far you want to take the evidence.</h2>
+          <p className={styles.leadCentered}>
+            Frame Free includes the core practitioner evidence workflow. Frame Pro adds multi-informant
+            collection, practitioner documentation and unlimited participant workspaces.
+          </p>
+        </div>
+        <div className={styles.pricingGrid}>
+          <article className={styles.pricingCard}>
+            <div className={styles.pricingTier}>Frame Free</div>
+            <div className={styles.pricingPrice}>A$0</div>
+            <p className={styles.pricingTagline}>Core behaviour-support evidence workflow.</p>
+            <ul className={styles.pricingFeatures}>
+              {FRAME_FREE_FEATURES.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+            <FramePricingCta label="Use Frame free" href={FRAME_FREE_URL} variant="free" />
+          </article>
+          <article className={`${styles.pricingCard} ${styles.pricingCardPro}`}>
+            <div className={styles.pricingTier}>Frame Pro</div>
+            <div className={styles.pricingPrice}>A$29/month</div>
+            <div className={styles.pricingPriceAlt}>A$290/year</div>
+            <p className={styles.pricingSave}>Save A$58 annually.</p>
+            <p className={styles.pricingTrial}>14 days of Frame Pro · No card required</p>
+            <p className={styles.pricingPlus}>Everything in Free, plus:</p>
+            <ul className={styles.pricingFeatures}>
+              {FRAME_PRO_FEATURES.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+            <FramePricingCta label="Start 14-day Pro trial" href={FRAME_PRO_TRIAL_URL} variant="pro" />
+          </article>
+        </div>
+        <p className={styles.pricingSafety}>
+          Rule-based risk flags, JSON backup and export remain available in Frame Free. Downgrading does not
+          remove your local participant records.
+        </p>
+        <p className={styles.pricingNote}>
+          Your Frame plan can follow your account, but participant records remain local to the browser by
+          default. Frame does not automatically sync participant records between devices.
+        </p>
       </section>
 
       <section id="cta" className={styles.finalCta}>

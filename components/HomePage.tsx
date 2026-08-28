@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { getFrameStatusBadge } from "@/lib/products";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
@@ -189,7 +190,7 @@ export function HomePage() {
           <Link href="/frame" className={`${styles.card} ${styles.frameCard}`} style={revealStyle(r("products"), 0.05, true)}>
             <div className={styles.cardTop}>
               <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#F07655,#E8542E)" />
-              <div className={`${styles.live} ${styles.frameLive}`}>LIVE</div>
+              <div className={`${styles.live} ${styles.frameLive}`}>{getFrameStatusBadge()}</div>
             </div>
             <div>
               <div className={`${styles.cardName} ${styles.orbitName}`}>Frame <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
