@@ -1,6 +1,6 @@
 export type ProductSlug =
   | "orbit"
-  | "axil"
+  | "axis"
   | "trace"
   | "vector"
   | "frame"
@@ -10,6 +10,7 @@ export type ProductSlug =
 
 export const FRAME_APP_URL = "https://screen-fba.polina-67d.workers.dev/";
 export const PACE_APP_URL = "https://orbit.whatbit.tech";
+export const AXIS_APP_URL = "https://axis.whatbit.tech";
 export const TRACE_APP_URL = "https://trace.whatbit.dev";
 
 export const VODA_PRODUCT = {
@@ -27,7 +28,7 @@ export const VODA_PRODUCT = {
 };
 
 export type WaitlistProduct = {
-  slug: Exclude<ProductSlug, "orbit" | "frame" | "trace" | "voda">;
+  slug: Exclude<ProductSlug, "orbit" | "axis" | "frame" | "trace" | "voda">;
   name: string;
   tagline: string;
   accent: string;
@@ -38,16 +39,6 @@ export type WaitlistProduct = {
 };
 
 export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
-  {
-    slug: "axil",
-    name: "Axil",
-    tagline: "The point where new work starts.",
-    accent: "#F2925C",
-    accentHover: "#D9502C",
-    selection: "#FCE8DA",
-    gradient: "linear-gradient(135deg,#F7A876,#F2925C)",
-    glow: "rgba(242,146,92,0.3)",
-  },
   {
     slug: "vector",
     name: "Vector",
@@ -84,7 +75,7 @@ export const PRODUCT_LINKS: { href: string; label: string }[] = [
   { href: "/pace", label: "Pace" },
   { href: "/frame", label: "Frame" },
   { href: "/voda", label: "VODA" },
-  { href: "/axil", label: "Axil" },
+  { href: AXIS_APP_URL, label: "Axis" },
   { href: "/trace", label: "Trace" },
   { href: "/vector", label: "Vector" },
   { href: "/field", label: "Field" },
