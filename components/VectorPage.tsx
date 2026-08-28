@@ -47,26 +47,26 @@ const PAID_FEATURES = [
   },
   {
     title: "Add organisation branding",
-    copy: "Apply your logo and organisation details to exported documents.",
+    copy: "Apply your organisation name, colours and saved details to exported documents.",
   },
   {
     title: "Support templates",
-    copy: "Access the reference template library for common referral and triage scenarios.",
+    copy: "Access three structured behaviour support plan templates inside Vector.",
   },
 ] as const;
 
 const SUPPORT_TEMPLATES = [
   {
     title: "Behaviour Support Plan",
-    copy: "No-RP pathway template for cases where no restrictive practice has been identified — goals, proactive strategies, and implementation without interim RRP scaffolding.",
+    copy: "A practical behaviour support plan template for goals, proactive strategies, responsive strategies and implementation planning.",
   },
   {
     title: "Interim Behaviour Support Plan",
-    copy: "For confirmed RRP cases that need immediate safeguards while assessment continues — temporary safeguards, RRP protocol, and an assessment plan in parallel with the FBA.",
+    copy: "An interim plan for immediate support and safeguards while fuller assessment work continues. A completed FBA is not required to start.",
   },
   {
     title: "Comprehensive Behaviour Support Plan",
-    copy: "Full RRP plan once the functional analysis is approved — strategy instances, regulated restrictive practices, reduction pathways, and implementation monitoring.",
+    copy: "A comprehensive plan informed by the practitioner’s behaviour support assessment and functional behaviour assessment, with strategies, monitoring and restrictive-practice planning where relevant.",
   },
 ] as const;
 
@@ -300,8 +300,7 @@ export function VectorPage() {
       <section id="templates" className={styles.templates}>
         <h2 className={styles.templatesTitle}>Support templates, included with Vector.</h2>
         <p className={styles.templatesCopy}>
-          Paid Vector includes reference templates for the three behaviour support plan pathways — structured to match
-          NDIS PBS document requirements and ready to adapt in the app.
+          Paid Vector includes three structured behaviour support plan templates. Use them independently or carry local form details forward where available.
         </p>
         <div className={styles.templateGrid}>
           {SUPPORT_TEMPLATES.map((template) => (
