@@ -246,20 +246,22 @@ export function HomePage() {
             <div><div className={styles.cardName}>Arc <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The shape of getting there.</p></div>
             <div className={styles.dev}>IN DEVELOPMENT</div>
           </Link>
+        </div>
+      </section>
 
-          <Link href="/ai-blueprint" className={`${styles.card} ${styles.aiBlueprint}`} style={revealStyle(r("products"), 0.28, true)}>
-            <div className={styles.cardTop}>
-              <BarMark size={44} gradient="linear-gradient(135deg,#5EC4E8,#0891B2)" />
-              <div className={styles.aiBlueprintBadge}>HUMAN-REVIEWED</div>
-            </div>
-            <div>
-              <div className={styles.cardName}>AI Blueprint <span className={styles.by}>by WhatBit</span></div>
-              <p className={styles.cardTag}>Responsible AI readiness assessment + governance toolkit.</p>
-            </div>
-            <div className={styles.aiBlueprintFooter}>
-              <div className={styles.aiBlueprintPrice}>Founding Client: A$495</div>
-              <div className={styles.explore}>Explore AI Blueprint <span>→</span></div>
-            </div>
+      <section className={styles.aiBlueprintSpotlight} ref={setNode("aiBlueprint")}>
+        <div className={styles.aiBlueprintSpotlightInner} style={revealStyle(r("aiBlueprint"), 0)}>
+          <div className={styles.aiBlueprintSpotlightBadge}>COMING SOON · A DIFFERENT KIND OF PRODUCT</div>
+          <h2 className={styles.aiBlueprintSpotlightTitle}>
+            AI Blueprint <span className={styles.by}>by WhatBit</span>
+          </h2>
+          <p className={styles.aiBlueprintSpotlightSub}>
+            Every business is quietly using AI already, and almost none of them could explain how if asked. AI
+            Blueprint is a human-reviewed responsible AI readiness assessment and governance toolkit — not another
+            dashboard, not a subscription, its own thing entirely. Five Founding Client spots are opening soon.
+          </p>
+          <Link href="/ai-blueprint#early-access" className={styles.aiBlueprintSpotlightCta}>
+            Get early access <span>→</span>
           </Link>
         </div>
       </section>

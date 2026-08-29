@@ -1,11 +1,9 @@
 /**
- * AI Blueprint checkout link (Stripe Payment Link). Set
- * NEXT_PUBLIC_AI_BLUEPRINT_CHECKOUT_URL in the deployment environment once a
- * real Stripe Payment Link exists; until then CTAs fall back to the offer
- * section so the page still works end-to-end.
+ * AI Blueprint is pre-launch: purchasing isn't open yet, so every CTA points
+ * at the early-access email signup on the sales page instead of a live
+ * checkout link.
  */
-export const AI_BLUEPRINT_CHECKOUT_URL =
-  process.env.NEXT_PUBLIC_AI_BLUEPRINT_CHECKOUT_URL || "#offer";
+export const AI_BLUEPRINT_EARLY_ACCESS_HREF = "/ai-blueprint#early-access";
 
 export const AI_BLUEPRINT_PRICE_LABEL = "A$495";
-export const AI_BLUEPRINT_CTA_LABEL = `Become a Founding Client — ${AI_BLUEPRINT_PRICE_LABEL}`;
+export const AI_BLUEPRINT_CTA_LABEL = "Get Early Access";

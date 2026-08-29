@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { AI_BLUEPRINT_CHECKOUT_URL, AI_BLUEPRINT_CTA_LABEL, AI_BLUEPRINT_PRICE_LABEL } from "@/lib/ai-blueprint";
+import { AI_BLUEPRINT_CTA_LABEL, AI_BLUEPRINT_PRICE_LABEL } from "@/lib/ai-blueprint";
 import styles from "./AiBlueprintPage.module.css";
 
 const PROOF_ITEMS = [
@@ -105,6 +105,77 @@ function Reveal({ children, className = "" }: { children: React.ReactNode; class
   );
 }
 
+function EarlyAccessForm({ id }: { id?: string }) {
+  const [email, setEmail] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("submitting");
+    setError("");
+    try {
+      const res = await fetch("/api/ai-blueprint/early-access", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, businessName }),
+      });
+      const data = (await res.json().catch(() => null)) as { error?: string } | null;
+      if (!res.ok) {
+        setError(data?.error || "Something went wrong. Please try again.");
+        setStatus("error");
+        return;
+      }
+      setStatus("success");
+    } catch {
+      setError("Something went wrong. Please try again.");
+      setStatus("error");
+    }
+  };
+
+  if (status === "success") {
+    return (
+      <div id={id} className={styles.earlyAccessSuccess}>
+        <span className={styles.check}>✓</span>
+        You&apos;re on the list — we&apos;ll email you the moment early access opens.
+      </div>
+    );
+  }
+
+  return (
+    <div id={id} className={styles.earlyAccessBlock}>
+      <form onSubmit={handleSubmit} className={styles.earlyAccessForm}>
+        <input
+          type="email"
+          required
+          placeholder="you@yourbusiness.com.au"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className={styles.earlyAccessInput}
+          aria-label="Work email"
+        />
+        <input
+          type="text"
+          placeholder="Business name (optional)"
+          value={businessName}
+          onChange={(e) => setBusinessName(e.target.value)}
+          className={styles.earlyAccessInput}
+          aria-label="Business name"
+        />
+        <button type="submit" disabled={status === "submitting"} className={styles.btnPrimary}>
+          {status === "submitting" ? "Reserving…" : "Reserve my founding spot"}
+        </button>
+      </form>
+      {error && <div className={styles.earlyAccessError}>{error}</div>}
+      <div className={styles.earlyAccessAlt}>
+        or email us directly at{" "}
+        <a href="mailto:hello@primitiveai.com.au?subject=AI%20Blueprint%20early%20access">hello@primitiveai.com.au</a>
+      </div>
+    </div>
+  );
+}
+
 export function AiBlueprintPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -119,13 +190,13 @@ export function AiBlueprintPage() {
           <span>/</span>
           <span className={styles.crumbCurrent}>AI Blueprint</span>
         </div>
-        <a href={AI_BLUEPRINT_CHECKOUT_URL} className={styles.navCta}>
-          Become a Founding Client
+        <a href="#early-access" className={styles.navCta}>
+          {AI_BLUEPRINT_CTA_LABEL}
         </a>
       </header>
 
       <section className={styles.hero}>
-        <div className={styles.badge}>FOUNDING CLIENT OFFER · 5 SPOTS</div>
+        <div className={styles.badge}>COMING SOON · 5 FOUNDING SPOTS</div>
         <h1 className={styles.headline}>
           If someone asked how your business uses AI, could you actually answer?
         </h1>
@@ -134,10 +205,11 @@ export function AiBlueprintPage() {
           buried in the tools they use every day, and no one&apos;s mapped what&apos;s going in, what&apos;s coming
           out, or who&apos;s responsible if it goes wrong. AI Blueprint fixes that: a 15-minute assessment, a
           human-reviewed readiness report, and a practical toolkit — so when someone does ask, you&apos;ve got a
-          real answer.
+          real answer. We&apos;re opening five Founding Client spots before general access — early access gets you
+          in first, at the lowest price it will ever be.
         </p>
         <div className={styles.heroCtas}>
-          <a href={AI_BLUEPRINT_CHECKOUT_URL} className={styles.btnPrimary}>
+          <a href="#early-access" className={styles.btnPrimary}>
             {AI_BLUEPRINT_CTA_LABEL}
           </a>
           <a href="#what-you-get" className={styles.textCta}>
@@ -271,24 +343,22 @@ export function AiBlueprintPage() {
       </Reveal>
 
       <Reveal className={styles.pricing}>
-        <div id="offer" className={styles.pricingCard}>
-          <div className={styles.pricingEyebrow}>FOUNDING CLIENT PRICING · 5 SPOTS ONLY</div>
+        <div className={styles.pricingCard}>
+          <div className={styles.pricingEyebrow}>EARLY ACCESS · 5 FOUNDING SPOTS ONLY</div>
           <div className={styles.spots} aria-hidden>
             {Array.from({ length: 5 }).map((_, i) => (
               <span key={i} className={styles.spot} />
             ))}
           </div>
           <div className={styles.price}>{AI_BLUEPRINT_PRICE_LABEL}</div>
-          <div className={styles.priceCaption}>one-time · full assessment, report and toolkit</div>
+          <div className={styles.priceCaption}>locked in for early access · full assessment, report and toolkit</div>
           <p className={styles.pricingBody}>
-            We&apos;re opening AI Blueprint to five Founding Clients at {AI_BLUEPRINT_PRICE_LABEL}. You&apos;ll get
-            the full assessment, human-reviewed report, and complete toolkit — the same pack every future client
-            receives, at the price we&apos;re using to shape the product with real businesses first.
+            AI Blueprint isn&apos;t open yet — and that&apos;s exactly why now is the time to get on the list. We&apos;re
+            taking five Founding Clients through first, at {AI_BLUEPRINT_PRICE_LABEL}, before this opens more widely
+            at a higher price. Early access means first pick of the five spots, first look at the assessment, and a
+            price that won&apos;t be offered again once this round closes.
           </p>
-          <a href={AI_BLUEPRINT_CHECKOUT_URL} className={styles.btnPrimary}>
-            {AI_BLUEPRINT_CTA_LABEL}
-          </a>
-          <div className={styles.finePrint}>Once the five spots are filled, this round closes.</div>
+          <EarlyAccessForm id="early-access" />
         </div>
       </Reveal>
 
@@ -326,9 +396,9 @@ export function AiBlueprintPage() {
           </h2>
           <p className={styles.finalBody}>
             Five Founding Client spots, {AI_BLUEPRINT_PRICE_LABEL}. A clear report, a real toolkit, and an actual
-            answer the next time someone asks.
+            answer the next time someone asks — but only if you&apos;re on the list before it opens.
           </p>
-          <a href={AI_BLUEPRINT_CHECKOUT_URL} className={styles.btnPrimary}>
+          <a href="#early-access" className={styles.btnPrimary}>
             {AI_BLUEPRINT_CTA_LABEL}
           </a>
         </div>
