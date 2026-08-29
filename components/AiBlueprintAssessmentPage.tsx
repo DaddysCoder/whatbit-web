@@ -10,16 +10,36 @@ import styles from "./ai-blueprint/assessment/assessment.module.css";
 
 type LoadState = "loading" | "ready" | "missing-token" | "not-found" | "already-submitted" | "error";
 
+/** Empty in-memory state for ?preview=1 — no token, no backend calls, nothing saved. */
+function emptyPreviewInitial(): WizardInitialState {
+  const now = new Date().toISOString();
+  return {
+    assessmentId: "preview",
+    startedAt: now,
+    updatedAt: now,
+    draft: {
+      consentedToScope: false,
+      organisationAnswers: {},
+      tools: [],
+      useCases: [],
+      attachments: [],
+      step: 0,
+      activeUseCaseIndex: 0,
+    },
+  };
+}
+
 export function AiBlueprintAssessmentPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token") || "";
+  const isPreview = searchParams.get("preview") === "1";
 
-  const [loadState, setLoadState] = useState<LoadState>(token ? "loading" : "missing-token");
-  const [initial, setInitial] = useState<WizardInitialState | null>(null);
+  const [loadState, setLoadState] = useState<LoadState>(isPreview ? "ready" : token ? "loading" : "missing-token");
+  const [initial, setInitial] = useState<WizardInitialState | null>(isPreview ? emptyPreviewInitial() : null);
 
   useEffect(() => {
-    if (!token) return;
+    if (!token || isPreview) return;
 
     // Server state is authoritative on load — loadAssessment() only falls
     // back to the crash-resilience local cache when the fetch itself fails,
@@ -49,7 +69,7 @@ export function AiBlueprintAssessmentPage() {
       });
       setLoadState("ready");
     });
-  }, [token, router]);
+  }, [token, router, isPreview]);
 
   if (loadState === "missing-token") {
     return (
@@ -91,7 +111,7 @@ export function AiBlueprintAssessmentPage() {
     return <StatusScreen title="Loading your assessment…" body="One moment." />;
   }
 
-  return <AssessmentWizard token={token} initial={initial} />;
+  return <AssessmentWizard token={isPreview ? "preview" : token} initial={initial} preview={isPreview} />;
 }
 
 function StatusScreen({ title, body }: { title: string; body: string }) {

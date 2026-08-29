@@ -27,7 +27,15 @@ const STEP_TITLES = [
   "Review & Submit",
 ];
 
-export function AssessmentWizard({ token, initial }: { token: string; initial: WizardInitialState }) {
+export function AssessmentWizard({
+  token,
+  initial,
+  preview = false,
+}: {
+  token: string;
+  initial: WizardInitialState;
+  preview?: boolean;
+}) {
   const router = useRouter();
   const {
     step,
@@ -51,7 +59,7 @@ export function AssessmentWizard({ token, initial }: { token: string; initial: W
     isSaving,
     validateStep,
     submit,
-  } = useAssessmentWizard(token, initial);
+  } = useAssessmentWizard(token, initial, { preview });
 
   const [stepErrors, setStepErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -112,6 +120,21 @@ export function AssessmentWizard({ token, initial }: { token: string; initial: W
 
   return (
     <div className={styles.root}>
+      {preview && (
+        <div
+          style={{
+            background: "#171717",
+            color: "#fff",
+            fontSize: 12,
+            fontWeight: 700,
+            textAlign: "center",
+            padding: "6px 12px",
+            letterSpacing: "0.03em",
+          }}
+        >
+          PREVIEW MODE — nothing here is saved or submitted
+        </div>
+      )}
       <ProgressBar
         currentStep={step}
         totalSteps={STEP_TITLES.length}

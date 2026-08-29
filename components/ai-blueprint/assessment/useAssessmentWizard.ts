@@ -27,8 +27,17 @@ export interface WizardInitialState {
  * work. Every change after that autosaves to both the local cache and the
  * server.
  */
-export function useAssessmentWizard(token: string, initial: WizardInitialState) {
+export interface WizardOptions {
+  /** Design/content preview only — no token exists, so never touch the
+   * network or localStorage. Used by /ai-blueprint/assessment?preview=1. */
+  preview?: boolean;
+}
+
+export function useAssessmentWizard(token: string, initial: WizardInitialState, options: WizardOptions = {}) {
+  const { preview = false } = options;
+
   const recovered = (() => {
+    if (preview) return null;
     const cached = loadLocalDraft(token);
     if (cached && cached.savedAt > initial.updatedAt) return cached.state;
     return null;
@@ -68,7 +77,7 @@ export function useAssessmentWizard(token: string, initial: WizardInitialState) 
   }, []);
 
   useEffect(() => {
-    if (!isInitialized.current) return;
+    if (!isInitialized.current || preview) return;
 
     if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
 
@@ -105,7 +114,7 @@ export function useAssessmentWizard(token: string, initial: WizardInitialState) 
     return () => {
       if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
     };
-  }, [token, initial.assessmentId, initial.startedAt, step, activeUseCaseIndex, consentedToScope, organisationAnswers, tools, useCases, attachments]);
+  }, [preview, token, initial.assessmentId, initial.startedAt, step, activeUseCaseIndex, consentedToScope, organisationAnswers, tools, useCases, attachments]);
 
   const setAnswer = useCallback((key: string, value: unknown) => {
     setOrganisationAnswers((prev) => ({ ...prev, [key]: value }));
@@ -208,6 +217,8 @@ export function useAssessmentWizard(token: string, initial: WizardInitialState) 
   );
 
   const submit = useCallback(async () => {
+    if (preview) return { ok: true as const };
+
     const draft: AssessmentDraftPayload = {
       consentedToScope,
       organisationAnswers,
@@ -220,7 +231,7 @@ export function useAssessmentWizard(token: string, initial: WizardInitialState) 
     const result = await submitAssessmentDraft(token, draft);
     if (result.ok) clearLocalDraft(token);
     return result;
-  }, [token, consentedToScope, organisationAnswers, tools, useCases, attachments, step, activeUseCaseIndex]);
+  }, [preview, token, consentedToScope, organisationAnswers, tools, useCases, attachments, step, activeUseCaseIndex]);
 
   return {
     assessmentId: initial.assessmentId,
