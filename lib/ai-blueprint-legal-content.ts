@@ -12,7 +12,7 @@ export const AI_BLUEPRINT_TERMS_METADATA = {
 export const AI_BLUEPRINT_TERMS_BLOCKS: DocBlock[] = [
   {
     heading: "What you're buying",
-    text: "AI Blueprint is a fixed-scope readiness product: one online assessment, one human-reviewed AI Readiness Report, and one nine-document governance toolkit, built from your answers. It is a one-time engagement, not an ongoing subscription or advisory relationship.",
+    text: "AI Blueprint is a fixed-scope readiness product: one online assessment, one AI Readiness Report reviewed by a person before it's sent to you, and one nine-document governance toolkit, built from your answers. It is a one-time engagement, not an ongoing subscription or advisory relationship.",
   },
   {
     heading: "What it is not",

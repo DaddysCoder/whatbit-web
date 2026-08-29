@@ -257,8 +257,9 @@ export function HomePage() {
           </h2>
           <p className={styles.aiBlueprintSpotlightSub}>
             Every business is quietly using AI already, and almost none of them could explain how if asked. AI
-            Blueprint is a human-reviewed responsible AI readiness assessment and governance toolkit — not another
-            dashboard, not a subscription, its own thing entirely. Five Founding Client spots are opening soon.
+            Blueprint is a responsible AI readiness assessment and governance toolkit that a real person actually
+            reviews — not another dashboard, not a subscription, its own thing entirely. Five Founding Client spots
+            are opening soon.
           </p>
           <Link href="/ai-blueprint#early-access" className={styles.aiBlueprintSpotlightCta}>
             Get early access <span>→</span>

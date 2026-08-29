@@ -21,7 +21,7 @@ export function ConsentStep({ consented, onConsentChange, onProceed, error }: Co
           A structured, practical assessment for Australian organisations to review AI adoption, identify governance gaps, and
           receive tailored next steps.
         </p>
-        <p className={styles.subcopy}>~15–20 minutes • Human-reviewed report within 5 business days</p>
+        <p className={styles.subcopy}>~15–20 minutes • A real person reviews your report within 5 business days</p>
       </div>
 
       <div className={styles.noticeCard}>

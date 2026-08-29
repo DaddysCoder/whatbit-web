@@ -7,7 +7,7 @@ import styles from "./AiBlueprintPage.module.css";
 
 const PROOF_ITEMS = [
   "15–20 minutes to complete the assessment",
-  "Human-reviewed report and toolkit back within 5 business days",
+  "A real person reviews your report and toolkit — back within 5 business days",
   "9 practical documents — policy, registers, checklists, staff guidance and more",
   "Built for Australian small businesses, not global enterprise box-ticking",
 ];
@@ -204,9 +204,9 @@ export function AiBlueprintPage() {
           Most businesses can&apos;t — not properly. Staff are already using ChatGPT, Copilot, Gemini or AI features
           buried in the tools they use every day, and no one&apos;s mapped what&apos;s going in, what&apos;s coming
           out, or who&apos;s responsible if it goes wrong. AI Blueprint fixes that: a 15-minute assessment, a
-          human-reviewed readiness report, and a practical toolkit — so when someone does ask, you&apos;ve got a
-          real answer. We&apos;re opening five Founding Client spots before general access — early access gets you
-          in first, at the lowest price it will ever be.
+          readiness report a real person actually reads and reviews, and a practical toolkit — so when someone does
+          ask, you&apos;ve got a real answer. We&apos;re opening five Founding Client spots before general access —
+          early access gets you in first, at the lowest price it will ever be.
         </p>
         <div className={styles.heroCtas}>
           <a href="#early-access" className={styles.btnPrimary}>
@@ -331,8 +331,8 @@ export function AiBlueprintPage() {
           <p className={styles.isntBody}>
             AI Blueprint is not legal advice. It&apos;s not a certification. It&apos;s not an assurance that
             you&apos;re &ldquo;compliant&rdquo; with anything — and we won&apos;t pretend it is. What it is: a
-            clear, honest, human-reviewed look at how your business is using AI right now, and a practical set of
-            documents to help you manage it sensibly from here.
+            clear, honest look at how your business is using AI right now — checked over by a real person, not just
+            spat out by a form — and a practical set of documents to help you manage it sensibly from here.
           </p>
           <div className={styles.rule} />
           <p className={styles.isntBody}>
