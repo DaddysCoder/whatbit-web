@@ -7,20 +7,21 @@ import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
 import styles from "./HomePage.module.css";
 
-const defaultTilt = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0)";
+const defaultTilt = "perspective(900px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0)";
+const defaultCardTilt = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0)";
 
 function revealStyle(on: boolean, delay: number, pop = false) {
   if (pop) {
     return {
       opacity: on ? 1 : 0,
-      transform: on ? "scale(1) translateY(0)" : "scale(0.82) translateY(36px)",
-      transition: `opacity 0.6s cubic-bezier(.34,1.56,.64,1) ${delay}s, transform 0.6s cubic-bezier(.34,1.56,.64,1) ${delay}s`,
+      transform: on ? "scale(1) translateY(0)" : "scale(0.96) translateY(24px)",
+      transition: `opacity 0.6s var(--wb-ease-settle) ${delay}s, transform 0.6s var(--wb-ease-settle) ${delay}s`,
     } as const;
   }
   return {
     opacity: on ? 1 : 0,
     transform: on ? "translateY(0)" : "translateY(28px)",
-    transition: `opacity 0.7s cubic-bezier(.16,1,.3,1) ${delay}s, transform 0.7s cubic-bezier(.16,1,.3,1) ${delay}s`,
+    transition: `opacity 0.7s var(--wb-ease-settle) ${delay}s, transform 0.7s var(--wb-ease-settle) ${delay}s`,
   } as const;
 }
 
@@ -29,9 +30,20 @@ export function HomePage() {
   const [mouse, setMouse] = useState({ x: 0.5, y: 0.25 });
   const [orbitProgress, setOrbitProgress] = useState(0);
   const [priceTilt, setPriceTilt] = useState<Record<number, string>>({});
+  const [cardTilt, setCardTilt] = useState<Record<string, React.CSSProperties>>({});
+  const [hoverCapable, setHoverCapable] = useState(false);
   const nodes = useRef<Record<string, HTMLElement | null>>({});
   const priceNodes = useRef<(HTMLDivElement | null)[]>([]);
+  const cardNodes = useRef<Record<string, HTMLElement | null>>({});
   const orbitEl = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const sync = () => setHoverCapable(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   const setNode = useCallback((id: string) => (el: HTMLElement | null) => {
     nodes.current[id] = el;
@@ -81,21 +93,47 @@ export function HomePage() {
   }, []);
 
   const onPriceMove = (i: number) => (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!hoverCapable) return;
     const el = priceNodes.current[i];
     if (!el) return;
     const r = el.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width;
     const py = (e.clientY - r.top) / r.height;
-    const rotY = (px - 0.5) * 16;
-    const rotX = (0.5 - py) * 16;
+    const rotY = (px - 0.5) * 7;
+    const rotX = (0.5 - py) * 7;
+    el.style.setProperty("--mx", `${(px * 100).toFixed(1)}%`);
+    el.style.setProperty("--my", `${(py * 100).toFixed(1)}%`);
     setPriceTilt((s) => ({
       ...s,
-      [i]: `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.08) translateY(-10px)`,
+      [i]: `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.03) translateY(-6px)`,
     }));
   };
 
   const onPriceLeave = (i: number) => () => {
     setPriceTilt((s) => ({ ...s, [i]: defaultTilt }));
+  };
+
+  const onCardMove = (id: string) => (e: React.MouseEvent<HTMLElement>) => {
+    if (!hoverCapable) return;
+    const el = cardNodes.current[id];
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width;
+    const py = (e.clientY - r.top) / r.height;
+    const rotY = (px - 0.5) * 6;
+    const rotX = (0.5 - py) * 6;
+    el.style.setProperty("--mx", `${(px * 100).toFixed(1)}%`);
+    el.style.setProperty("--my", `${(py * 100).toFixed(1)}%`);
+    setCardTilt((s) => ({
+      ...s,
+      [id]: {
+        transform: `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.025) translateY(-6px)`,
+      },
+    }));
+  };
+
+  const onCardLeave = (id: string) => () => {
+    setCardTilt((s) => ({ ...s, [id]: { transform: defaultCardTilt } }));
   };
 
   const r = (id: string) => !!revealed[id];
@@ -173,7 +211,16 @@ export function HomePage() {
           <p className={styles.sectionSub}>Each one solves a specific problem. None of them exist just because we could build them.</p>
         </div>
         <div className={styles.grid} ref={setNode("products")}>
-          <Link href="/pace" className={`${styles.card} ${styles.orbitCard}`} style={revealStyle(r("products"), 0, true)}>
+          <Link
+            href="/pace"
+            className={`${styles.card} ${styles.orbitCard}`}
+            ref={(el) => { cardNodes.current.pace = el; }}
+            style={{ ...revealStyle(r("products"), 0, true), ...(cardTilt.pace ?? {}) }}
+            onMouseMove={onCardMove("pace")}
+            onMouseLeave={onCardLeave("pace")}
+          >
+            <span className="wb-illum" aria-hidden />
+            <span className="wb-illum-light" aria-hidden />
             <div className={styles.cardTop}>
               <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#9B6EF3,#7B2FF7)" />
               <div className={styles.live}>FREE · LIVE</div>
@@ -186,7 +233,16 @@ export function HomePage() {
             <div className={styles.explore}>Open Pace <span>→</span></div>
           </Link>
 
-          <Link href="/frame" className={`${styles.card} ${styles.frameCard}`} style={revealStyle(r("products"), 0.05, true)}>
+          <Link
+            href="/frame"
+            className={`${styles.card} ${styles.frameCard}`}
+            ref={(el) => { cardNodes.current.frame = el; }}
+            style={{ ...revealStyle(r("products"), 0.05, true), ...(cardTilt.frame ?? {}) }}
+            onMouseMove={onCardMove("frame")}
+            onMouseLeave={onCardLeave("frame")}
+          >
+            <span className="wb-illum" aria-hidden />
+            <span className="wb-illum-light" aria-hidden />
             <div className={styles.cardTop}>
               <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#F07655,#E8542E)" />
               <div className={`${styles.live} ${styles.frameLive}`}>LIVE · FREE</div>
@@ -241,7 +297,16 @@ export function HomePage() {
             <div className={styles.explore}>Explore Field <span>→</span></div>
           </Link>
 
-          <Link href="/arc" className={`${styles.card} ${styles.arc}`} style={revealStyle(r("products"), 0.25, true)}>
+          <Link
+            href="/arc"
+            className={`${styles.card} ${styles.arc}`}
+            ref={(el) => { cardNodes.current.arc = el; }}
+            style={{ ...revealStyle(r("products"), 0.25, true), ...(cardTilt.arc ?? {}) }}
+            onMouseMove={onCardMove("arc")}
+            onMouseLeave={onCardLeave("arc")}
+          >
+            <span className="wb-illum" aria-hidden />
+            <span className="wb-illum-light" aria-hidden />
             <BarMark size={44} gradient="linear-gradient(135deg,#7C4FD1,#5B21B6)" />
             <div><div className={styles.cardName}>Arc <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The shape of getting there.</p></div>
             <div className={styles.dev}>IN DEVELOPMENT</div>
@@ -281,6 +346,12 @@ export function HomePage() {
           ].map((card, i) => (
             <div key={card.title} style={revealStyle(r("price"), [0, 0.08, 0.16][i], true)}>
               <div ref={(el) => { priceNodes.current[i] = el; }} className={`${styles.priceCard} ${card.className}`} style={{ transform: priceTilt[i] || defaultTilt }} onMouseMove={onPriceMove(i)} onMouseLeave={onPriceLeave(i)}>
+                {card.className === styles.priceDark ? (
+                  <>
+                    <span className="wb-illum" aria-hidden />
+                    <span className="wb-illum-light" aria-hidden />
+                  </>
+                ) : null}
                 <div className={styles.priceTitle}>{card.title}</div>
                 <p className={styles.priceBody}>{card.body}</p>
                 <div className={styles.priceMeta} style={{ color: card.metaColor }}>{card.meta}</div>

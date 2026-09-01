@@ -10,6 +10,77 @@
   --surface: #ffffff;
   --font-display: var(--font-montserrat), Arial, sans-serif;
   --font-body: var(--font-nunito), Arial, sans-serif;
+
+  /* Motion system: a physical, spring-like ease for hover/press response,
+     and a smoother settle for entrances/returns. */
+  --wb-ease-spring: cubic-bezier(0.34, 1.4, 0.4, 1);
+  --wb-ease-settle: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@property --wb-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* Illuminated-edge treatment: "light travelling through glass", not a
+   permanent rainbow border. At rest it's invisible; a hover/active
+   ancestor fades in a soft spectral ring. Reserve for a small number of
+   high-value surfaces (hero object, Arc/product cards, featured panels,
+   primary CTAs) — never as a default card border. */
+.wb-illum {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  background: conic-gradient(
+    from var(--wb-angle, 0deg),
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(56, 189, 248, 0.55) 35deg,
+    rgba(139, 92, 246, 0.55) 90deg,
+    rgba(236, 72, 153, 0.45) 145deg,
+    rgba(242, 146, 92, 0.35) 190deg,
+    rgba(255, 255, 255, 0) 230deg,
+    rgba(255, 255, 255, 0) 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@keyframes wb-illum-spin {
+  to {
+    --wb-angle: 360deg;
+  }
+}
+
+/* Pointer-reactive companion layer: brightens the edge nearest the
+   cursor. --mx/--my are set from pointermove in percent. */
+.wb-illum-light {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  mix-blend-mode: screen;
+  background: radial-gradient(
+    240px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.85),
+    rgba(139, 92, 246, 0.4) 45%,
+    rgba(255, 255, 255, 0) 72%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
 }
 
 * {
