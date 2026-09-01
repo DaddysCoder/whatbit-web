@@ -35,7 +35,8 @@
   padding: 1.5px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  animation: wb-illum-spin 7s linear infinite;
+  animation-play-state: paused;
   background: conic-gradient(
     from var(--wb-angle, 0deg),
     rgba(255, 255, 255, 0) 0deg,
@@ -68,7 +69,6 @@
   padding: 1.5px;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.4s ease;
   mix-blend-mode: screen;
   background: radial-gradient(
     240px circle at var(--mx, 50%) var(--my, 50%),

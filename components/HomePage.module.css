@@ -233,9 +233,10 @@
 }
 
 /* Featured tiles (Pace, Frame, Arc) carry the full illuminated-edge
-   treatment; the transform itself is driven from JS per pointer
-   position (see onCardMove) for the subtle perspective tilt, so only
-   the resting/base state and glow live here. */
+   treatment via <ProductCard>/<GlowCard> (components/motion) — lift,
+   pointer tilt and glow tracking are all Motion-driven there, so only
+   the resting/base state and non-Motion hover styling (box-shadow,
+   background wash) live here. */
 .orbitCard,
 .frameCard,
 .arc {
@@ -258,25 +259,6 @@
 
 .arc:hover {
   background: rgba(91, 33, 182, 0.05);
-}
-
-.orbitCard:hover :global(.wb-illum),
-.frameCard:hover :global(.wb-illum),
-.arc:hover :global(.wb-illum) {
-  opacity: 1;
-  animation: wb-illum-spin 7s linear infinite;
-}
-
-.orbitCard:active :global(.wb-illum),
-.frameCard:active :global(.wb-illum),
-.arc:active :global(.wb-illum) {
-  opacity: 1;
-}
-
-.orbitCard:hover :global(.wb-illum-light),
-.frameCard:hover :global(.wb-illum-light),
-.arc:hover :global(.wb-illum-light) {
-  opacity: 1;
 }
 
 .voda:hover {
@@ -506,17 +488,13 @@
   border-radius: 24px;
   padding: 40px 32px;
   background: #f7f5fc;
-  transition: transform 0.4s var(--wb-ease-spring), box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease;
   box-shadow: 0 20px 50px rgba(123, 47, 247, 0.08);
 }
 
 .priceDark:hover :global(.wb-illum) {
   opacity: 1;
   animation: wb-illum-spin 7s linear infinite;
-}
-
-.priceDark:hover :global(.wb-illum-light) {
-  opacity: 1;
 }
 
 .priceDark {
