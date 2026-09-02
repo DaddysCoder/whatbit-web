@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ABOUT_CARDS, ABOUT_DOT_COLORS, type AboutBodyLine, type AboutCard } from "@/lib/about-cards";
+import { Reveal } from "./motion/Reveal";
 import { Wordmark } from "./Wordmark";
 import { SiteNav } from "./SiteNav";
 import styles from "./AboutPage.module.css";
@@ -426,21 +427,25 @@ export function AboutPage() {
             <div className={styles.core} />
           </div>
         </div>
-        <div className={styles.eyebrow}>ABOUT WHATBIT</div>
-        <h1 className={styles.title}>We find the bit that actually matters.</h1>
-        <p className={styles.lede}>WHATBIT is an Australian research, technology and problem-solving company.</p>
-        <div className={styles.line}>Human where it matters. Clever where it counts.</div>
+        <Reveal>
+          <div className={styles.eyebrow}>ABOUT WHATBIT</div>
+          <h1 className={styles.title}>We find the bit that actually matters.</h1>
+          <p className={styles.lede}>WHATBIT is an Australian research, technology and problem-solving company.</p>
+          <div className={styles.line}>Human where it matters. Clever where it counts.</div>
+        </Reveal>
         <div className={styles.scrollHint}>
           <div className={styles.scrollDot} />
         </div>
       </section>
 
       <div className={styles.story}>
-        <div className={styles.storyHead}>
-          <div className={styles.storyEyebrow}>THE STORY, IN PIECES</div>
-          <div className={styles.storyTitle}>Keep scrolling.</div>
-          <div className={styles.storyCount}>{label}</div>
-        </div>
+        <Reveal>
+          <div className={styles.storyHead}>
+            <div className={styles.storyEyebrow}>THE STORY, IN PIECES</div>
+            <div className={styles.storyTitle}>Keep scrolling.</div>
+            <div className={styles.storyCount}>{label}</div>
+          </div>
+        </Reveal>
 
         <div className={styles.dots}>
           {ABOUT_DOT_COLORS.map((color, i) => (
@@ -486,12 +491,14 @@ export function AboutPage() {
       </div>
 
       <div className={styles.close}>
-        <div className={styles.closeBrand}>WHATBIT</div>
-        <div className={styles.closeTitle}>Find the bit that matters.</div>
-        <div className={`${styles.closeTitle} ${styles.closeMuted}`}>Then build from there.</div>
-        <Link href="/" className={styles.back}>
-          ← Back home
-        </Link>
+        <Reveal>
+          <div className={styles.closeBrand}>WHATBIT</div>
+          <div className={styles.closeTitle}>Find the bit that matters.</div>
+          <div className={`${styles.closeTitle} ${styles.closeMuted}`}>Then build from there.</div>
+          <Link href="/" className={styles.back}>
+            ← Back home
+          </Link>
+        </Reveal>
       </div>
 
       <div className={styles.footer}>

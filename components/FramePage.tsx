@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FRAME_APP_URL, FRAME_COMMERCIAL_LIVE, FRAME_FREE_URL, FRAME_PRO_TRIAL_URL } from "@/lib/products";
 import { SiteFooter } from "./SiteFooter";
+import { Reveal, StaggerGroup, StaggerItem } from "./motion/Reveal";
+import { MagneticButton } from "./motion/MagneticButton";
 import styles from "./FramePage.module.css";
 
 const OPEN_FRAME_PROPS = {
@@ -229,7 +231,7 @@ export function FramePage() {
       <div id="top" />
 
       <section className={styles.hero}>
-        <div className={styles.heroCopy}>
+        <Reveal className={styles.heroCopy}>
           <div className={styles.eyebrow}>FRAME · BY WHATBIT</div>
           <h1 className={styles.heroTitleDesktop}>
             Behaviour support evidence, from observation to hypothesis.
@@ -254,8 +256,8 @@ export function FramePage() {
               See how it works →
             </a>
           </div>
-        </div>
-        <div className={styles.heroVisual}>
+        </Reveal>
+        <Reveal direction="right" delay={0.1} className={styles.heroVisual}>
           <div className={styles.heroFloat}>
             <Image
               src="/products/frame/frame-workspace.webp"
@@ -266,14 +268,14 @@ export function FramePage() {
               priority
             />
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section id="workflow" className={styles.workflow}>
-        <div className={styles.sectionIntro}>
+        <Reveal className={styles.sectionIntro}>
           <div className={styles.eyebrow}>FROM OBSERVATION TO EVIDENCE</div>
           <h2 className={styles.sectionTitle}>Build the picture before you write the conclusion.</h2>
-        </div>
+        </Reveal>
         <div className={styles.workflowDesktop}>
           <div className={styles.workflowLine} aria-hidden />
           {WORKFLOW_STEPS.map((step, i) => (
@@ -300,7 +302,7 @@ export function FramePage() {
 
       <section id="evidence" className={styles.evidence}>
         <div className={styles.evidenceGrid}>
-          <div className={styles.evidenceCopy}>
+          <Reveal className={styles.evidenceCopy}>
             <div className={styles.eyebrow}>SHOW THE WORKING</div>
             <h2 className={styles.sectionTitle}>A hypothesis should come with its evidence.</h2>
             <p className={styles.lead}>
@@ -318,8 +320,8 @@ export function FramePage() {
               ))}
             </ul>
             <p className={styles.evidenceNote}>Practitioner interpretation required.</p>
-          </div>
-          <div className={styles.evidenceVisual}>
+          </Reveal>
+          <Reveal direction="right" className={styles.evidenceVisual}>
             <Image
               src="/products/frame/frame-evidence.webp"
               alt="Frame evidence comparison showing agreement and confidence"
@@ -327,19 +329,19 @@ export function FramePage() {
               height={800}
               className={styles.evidenceImage}
             />
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section id="informants" className={styles.informants}>
-        <div className={styles.sectionIntro}>
+        <Reveal className={styles.sectionIntro}>
           <div className={styles.eyebrow}>MORE THAN ONE PERSPECTIVE</div>
           <h2 className={styles.sectionTitle}>Gather another view without another account.</h2>
           <p className={styles.leadCentered}>
             Invite a support worker, parent, sibling, teacher or other informant to complete the structured
             screener from their own phone.
           </p>
-        </div>
+        </Reveal>
         <div className={styles.informantFlow}>
           <div className={styles.flowNode}>
             <div className={styles.avatarPractitioner}>P</div>
@@ -400,55 +402,65 @@ export function FramePage() {
 
       <section id="privacy" className={styles.privacy}>
         <div className={styles.privacyInner}>
-          <div className={styles.eyebrowDark}>LOCAL-FIRST BY DESIGN</div>
-          <h2 className={styles.privacyTitle}>Participant records stay in your browser by default.</h2>
-          <p className={styles.privacyLead}>
-            Frame is designed without a central participant database. The practitioner workspace stores its
-            records locally in the browser, and the core product does not need to upload participant records to
-            a central Frame server to work.
-          </p>
-          <div className={styles.privacyGrid}>
+          <Reveal>
+            <div className={styles.eyebrowDark}>LOCAL-FIRST BY DESIGN</div>
+            <h2 className={styles.privacyTitle}>Participant records stay in your browser by default.</h2>
+            <p className={styles.privacyLead}>
+              Frame is designed without a central participant database. The practitioner workspace stores its
+              records locally in the browser, and the core product does not need to upload participant records to
+              a central Frame server to work.
+            </p>
+          </Reveal>
+          <StaggerGroup className={styles.privacyGrid}>
             {PRIVACY_POINTS.map((point) => (
-              <div key={point.title} className={styles.privacyPoint}>
-                <div className={styles.privacyPointTitle}>{point.title}</div>
-                <p>{point.body}</p>
-              </div>
+              <StaggerItem key={point.title}>
+                <div className={styles.privacyPoint}>
+                  <div className={styles.privacyPointTitle}>{point.title}</div>
+                  <p>{point.body}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
-          <p className={styles.privacyQual}>
-            Browser storage can be cleared or lost, particularly when changing devices or browsers. Regular
-            backups are recommended.
-          </p>
+          </StaggerGroup>
+          <Reveal>
+            <p className={styles.privacyQual}>
+              Browser storage can be cleared or lost, particularly when changing devices or browsers. Regular
+              backups are recommended.
+            </p>
+          </Reveal>
         </div>
       </section>
 
       <section id="documentation" className={styles.documentation}>
-        <div className={styles.sectionIntro}>
+        <Reveal className={styles.sectionIntro}>
           <div className={styles.eyebrow}>FROM RECORD TO DOCUMENT</div>
           <h2 className={styles.sectionTitle}>Use the evidence you have already collected.</h2>
           <p className={styles.leadCentered}>
             Frame can generate practitioner documentation from participant, behaviour, episode, screener,
             hypothesis and flag information already recorded in the workspace.
           </p>
-        </div>
-        <div className={styles.docGrid}>
+        </Reveal>
+        <StaggerGroup className={styles.docGrid}>
           {DOC_CARDS.map((card) => (
-            <article key={card.title} className={styles.docCard}>
-              <div className={styles.docImageWrap}>
-                <Image src={card.image} alt={card.alt} width={640} height={360} className={styles.docImage} />
-              </div>
-              <h3 className={styles.docTitle}>{card.title}</h3>
-              <p className={styles.docBody}>{card.body}</p>
-            </article>
+            <StaggerItem key={card.title}>
+              <article className={styles.docCard}>
+                <div className={styles.docImageWrap}>
+                  <Image src={card.image} alt={card.alt} width={640} height={360} className={styles.docImage} />
+                </div>
+                <h3 className={styles.docTitle}>{card.title}</h3>
+                <p className={styles.docBody}>{card.body}</p>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
-        <p className={styles.docQual}>
-          The current staff-training summary does not generate matched support strategies.
-        </p>
+        </StaggerGroup>
+        <Reveal>
+          <p className={styles.docQual}>
+            The current staff-training summary does not generate matched support strategies.
+          </p>
+        </Reveal>
       </section>
 
       <section id="trust" className={styles.trust}>
-        <div className={styles.trustInner}>
+        <Reveal className={styles.trustInner}>
           <div className={styles.eyebrowTrust}>DECISION SUPPORT, NOT DIAGNOSIS</div>
           <h2 className={styles.trustTitle}>Frame supports practitioner reasoning. It does not replace it.</h2>
           <ul className={styles.trustList}>
@@ -456,69 +468,77 @@ export function FramePage() {
               <li key={line}>{line}</li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       </section>
 
       <section id="pricing" className={styles.pricing}>
-        <div className={styles.sectionIntro}>
+        <Reveal className={styles.sectionIntro}>
           <div className={styles.eyebrow}>PRICING</div>
           <h2 className={styles.sectionTitle}>Choose how far you want to take the evidence.</h2>
           <p className={styles.leadCentered}>
             Frame Free includes the core practitioner evidence workflow. Frame Pro adds multi-informant
             collection, practitioner documentation and unlimited participant workspaces.
           </p>
-        </div>
-        <div className={styles.pricingGrid}>
-          <article className={styles.pricingCard}>
-            <div className={styles.pricingTier}>Frame Free</div>
-            <div className={styles.pricingPrice}>A$0</div>
-            <p className={styles.pricingTagline}>Core behaviour-support evidence workflow.</p>
-            <ul className={styles.pricingFeatures}>
-              {FRAME_FREE_FEATURES.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
-            <FramePricingCta label="Use Frame free" href={FRAME_FREE_URL} variant="free" />
-          </article>
-          <article className={`${styles.pricingCard} ${styles.pricingCardPro}`}>
-            <div className={styles.pricingTier}>Frame Pro</div>
-            <div className={styles.pricingPrice}>A$29/month</div>
-            <div className={styles.pricingPriceAlt}>A$290/year</div>
-            <p className={styles.pricingSave}>Save A$58 annually.</p>
-            <p className={styles.pricingTrial}>14 days of Frame Pro · No card required</p>
-            <p className={styles.pricingPlus}>Everything in Free, plus:</p>
-            <ul className={styles.pricingFeatures}>
-              {FRAME_PRO_FEATURES.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
-            <FramePricingCta label="Start 14-day Pro trial" href={FRAME_PRO_TRIAL_URL} variant="pro" />
-          </article>
-        </div>
-        <p className={styles.pricingSafety}>
-          Rule-based risk flags, JSON backup and export remain available in Frame Free. Downgrading does not
-          remove your local participant records.
-        </p>
-        <p className={styles.pricingNote}>
-          Your Frame plan can follow your account, but participant records remain local to the browser by
-          default. Frame does not automatically sync participant records between devices.
-        </p>
+        </Reveal>
+        <StaggerGroup className={styles.pricingGrid}>
+          <StaggerItem>
+            <article className={styles.pricingCard}>
+              <div className={styles.pricingTier}>Frame Free</div>
+              <div className={styles.pricingPrice}>A$0</div>
+              <p className={styles.pricingTagline}>Core behaviour-support evidence workflow.</p>
+              <ul className={styles.pricingFeatures}>
+                {FRAME_FREE_FEATURES.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
+              <FramePricingCta label="Use Frame free" href={FRAME_FREE_URL} variant="free" />
+            </article>
+          </StaggerItem>
+          <StaggerItem>
+            <article className={`${styles.pricingCard} ${styles.pricingCardPro}`}>
+              <div className={styles.pricingTier}>Frame Pro</div>
+              <div className={styles.pricingPrice}>A$29/month</div>
+              <div className={styles.pricingPriceAlt}>A$290/year</div>
+              <p className={styles.pricingSave}>Save A$58 annually.</p>
+              <p className={styles.pricingTrial}>14 days of Frame Pro · No card required</p>
+              <p className={styles.pricingPlus}>Everything in Free, plus:</p>
+              <ul className={styles.pricingFeatures}>
+                {FRAME_PRO_FEATURES.map((feature) => (
+                  <li key={feature}>{feature}</li>
+                ))}
+              </ul>
+              <FramePricingCta label="Start 14-day Pro trial" href={FRAME_PRO_TRIAL_URL} variant="pro" />
+            </article>
+          </StaggerItem>
+        </StaggerGroup>
+        <Reveal>
+          <p className={styles.pricingSafety}>
+            Rule-based risk flags, JSON backup and export remain available in Frame Free. Downgrading does not
+            remove your local participant records.
+          </p>
+          <p className={styles.pricingNote}>
+            Your Frame plan can follow your account, but participant records remain local to the browser by
+            default. Frame does not automatically sync participant records between devices.
+          </p>
+        </Reveal>
       </section>
 
       <section id="cta" className={styles.finalCta}>
-        <h2 className={styles.finalCtaTitle}>Follow the evidence. Keep the uncertainty visible.</h2>
-        <p className={styles.finalCtaLead}>
-          Bring observations, structured screening and practitioner reasoning into one behaviour support
-          workspace.
-        </p>
-        <div className={styles.finalCtaButtons}>
-          <a {...OPEN_FRAME_PROPS} className={styles.btnPrimary}>
-            Open Frame
-          </a>
-          <Link href="/#products" className={styles.btnSecondaryLight}>
-            About WhatBit
-          </Link>
-        </div>
+        <Reveal>
+          <h2 className={styles.finalCtaTitle}>Follow the evidence. Keep the uncertainty visible.</h2>
+          <p className={styles.finalCtaLead}>
+            Bring observations, structured screening and practitioner reasoning into one behaviour support
+            workspace.
+          </p>
+          <div className={styles.finalCtaButtons}>
+            <a {...OPEN_FRAME_PROPS} className={styles.btnPrimary}>
+              Open Frame
+            </a>
+            <MagneticButton href="/#products" className={styles.btnSecondaryLight}>
+              About WhatBit
+            </MagneticButton>
+          </div>
+        </Reveal>
       </section>
 
       <SiteFooter variant="tiny" />

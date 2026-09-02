@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { FIELD_APP_URL, FIELD_COMMERCIAL_LIVE, FIELD_FREE_URL, FIELD_PRO_TRIAL_URL } from "@/lib/products";
 import { SiteFooter } from "./SiteFooter";
+import { Reveal } from "./motion/Reveal";
 import styles from "./FieldPage.module.css";
 
 const OPEN_FIELD_PROPS = {
@@ -189,7 +190,7 @@ export function FieldPage() {
       <div id="top" />
 
       <section className={styles.hero}>
-        <div className={styles.heroCopy}>
+        <Reveal className={styles.heroCopy}>
           <div className={styles.eyebrow}>FIELD · BY WHATBIT</div>
           <h1 className={styles.heroTitleDesktop}>Evidence-based strategies, personalised in under a minute.</h1>
           <h1 className={styles.heroTitleMobile}>Evidence-based strategies, personalised fast.</h1>
@@ -211,8 +212,8 @@ export function FieldPage() {
               See how it works →
             </a>
           </div>
-        </div>
-        <div className={styles.heroVisual}>
+        </Reveal>
+        <Reveal direction="right" delay={0.1} className={styles.heroVisual}>
           <div className={styles.heroFloat}>
             <div className={`${styles.heroFrame} ${styles.gradientBorder}`}>
               <div className={styles.gradientBorderInner}>
@@ -225,14 +226,14 @@ export function FieldPage() {
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section id="workflow" className={styles.workflow}>
-        <div className={styles.sectionIntro}>
+        <Reveal className={styles.sectionIntro}>
           <div className={styles.eyebrow}>FROM STRATEGY TO SESSION</div>
           <h2 className={styles.sectionTitle}>The mechanism never moves. Only the delivery does.</h2>
-        </div>
+        </Reveal>
         <div className={styles.workflowDesktop}>
           <div className={styles.workflowLine} aria-hidden />
           {WORKFLOW_STEPS.map((step, i) => (
@@ -303,14 +304,14 @@ export function FieldPage() {
       </section>
 
       <section id="pair-frame" className={styles.pairFrame}>
-        <div className={styles.sectionIntro}>
+        <Reveal className={styles.sectionIntro}>
           <div className={styles.eyebrow}>WORKS ALONE, WORKS BETTER CONNECTED</div>
           <h2 className={styles.sectionTitle}>Pair it with Frame.</h2>
           <p className={styles.lead}>
             Frame builds the evidence picture. Field turns it into a personalised strategy. Used together, Field
             reads the participant profile Frame already has — no second intake form.
           </p>
-        </div>
+        </Reveal>
         <div ref={reveal.ref(2)} className={`${reveal.className(2)} ${styles.pairRow}`}>
           <div className={styles.pairChip}>
             <div className={styles.pairSwatch} style={{ background: "#e8542e" }} />
@@ -327,10 +328,10 @@ export function FieldPage() {
       </section>
 
       <section id="pricing" className={styles.pricing}>
-        <div className={styles.sectionIntro}>
+        <Reveal className={styles.sectionIntro}>
           <div className={styles.eyebrow}>PRICING</div>
           <h2 className={styles.sectionTitle}>Browse for free. Pay for the drafting.</h2>
-        </div>
+        </Reveal>
         <div ref={reveal.ref(3)} className={`${reveal.className(3)} ${styles.pricingGrid}`}>
           <article className={styles.pricingCard}>
             <div className={styles.pricingTier}>Field Free</div>
@@ -365,14 +366,16 @@ export function FieldPage() {
       </section>
 
       <section className={styles.disclaimer}>
-        <p className={styles.disclaimerText}>
-          Field is a personalisation aid, not a substitute for clinical judgement. Strategy selection and
-          personalisation remain practitioner acts. Check current evidence, participant consent and
-          organisational policy before relying on any output.
-        </p>
-        <a {...OPEN_FIELD_PROPS} className={styles.btnPrimary}>
-          Open Field
-        </a>
+        <Reveal>
+          <p className={styles.disclaimerText}>
+            Field is a personalisation aid, not a substitute for clinical judgement. Strategy selection and
+            personalisation remain practitioner acts. Check current evidence, participant consent and
+            organisational policy before relying on any output.
+          </p>
+          <a {...OPEN_FIELD_PROPS} className={styles.btnPrimary}>
+            Open Field
+          </a>
+        </Reveal>
       </section>
 
       <SiteFooter variant="tiny" />

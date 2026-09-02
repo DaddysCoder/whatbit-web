@@ -4,6 +4,8 @@ import { Fragment, useState } from "react";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
+import { Reveal } from "./motion/Reveal";
+import { MagneticButton } from "./motion/MagneticButton";
 import { VODA_PRODUCT } from "@/lib/products";
 import { CONTACT_MAILTO } from "@/lib/site";
 import styles from "./VodaPage.module.css";
@@ -104,7 +106,7 @@ export function VodaPage() {
             style={{ animationDuration: "6.2s", animationDelay: "3s" }}
           />
         </svg>
-        <div className={styles.hero}>
+        <Reveal className={styles.hero}>
           <div className={styles.heroMark}>
             <BarMark
               size={76}
@@ -121,7 +123,7 @@ export function VodaPage() {
             Then see what happens next.
           </h1>
           <p className={styles.lede}>{VODA_PRODUCT.description}</p>
-        </div>
+        </Reveal>
       </div>
 
       <div className={styles.features}>
@@ -155,7 +157,7 @@ export function VodaPage() {
         </svg>
 
         <div className={styles.feat}>
-          <div>
+          <Reveal>
             <div className={styles.featEyebrow}>THE MAP</div>
             <h2 className={styles.featTitle}>Every task, decision and handoff, as a graph.</h2>
             <p className={styles.featCopy}>
@@ -163,7 +165,7 @@ export function VodaPage() {
               decisions, edges for what depends on what. It&apos;s the same structure underneath
               very different businesses, which is why one engine can serve all of them.
             </p>
-          </div>
+          </Reveal>
           <div className={styles.viz}>
             <div className={styles.nodes}>
               {NODE_COLORS.map((color, i) => {
@@ -198,7 +200,7 @@ export function VodaPage() {
               <span>{forecast.label}</span>
             </div>
           </button>
-          <div>
+          <Reveal>
             <div className={styles.featEyebrow}>THE FORECAST</div>
             <h2 className={styles.featTitle}>See the bottleneck before it costs you anything.</h2>
             <p className={styles.featCopy}>
@@ -206,11 +208,11 @@ export function VodaPage() {
               pattern in the data starts to resemble a past slowdown or a past win, VODA flags it
               while there&apos;s still time to act.
             </p>
-          </div>
+          </Reveal>
         </div>
 
         <div className={styles.feat}>
-          <div>
+          <Reveal>
             <div className={styles.featEyebrow}>THE PLAN</div>
             <h2 className={styles.featTitle}>Not just a warning — a plan, start to finish.</h2>
             <p className={styles.featCopy}>
@@ -218,7 +220,7 @@ export function VodaPage() {
               a sequenced plan of action, so the output is something a team can actually run — not
               another dashboard to interpret.
             </p>
-          </div>
+          </Reveal>
           <div className={styles.viz}>
             <div className={styles.plan}>
               {PLAN_STEPS.map((text, i) => {
@@ -244,7 +246,7 @@ export function VodaPage() {
       </div>
 
       <div className={styles.ctaBlock}>
-        <div className={styles.ctaInner}>
+        <Reveal className={styles.ctaInner}>
           <h2 className={styles.ctaTitle}>Want to know when VODA is ready?</h2>
           <form
             className={styles.form}
@@ -261,11 +263,11 @@ export function VodaPage() {
               onChange={(e) => setEmail(e.target.value)}
               className={styles.input}
             />
-            <a href={mailto} className={styles.notify}>
+            <MagneticButton externalHref={mailto} className={styles.notify}>
               Notify me
-            </a>
+            </MagneticButton>
           </form>
-        </div>
+        </Reveal>
         <SiteFooter variant="minimal" accent="#8FA3FF" />
       </div>
     </div>

@@ -11,6 +11,9 @@ import {
   VECTOR_TEMPLATES_URL,
   VECTOR_UNLOCK_LABEL,
 } from "@/lib/vector-urls";
+import { Reveal, StaggerGroup, StaggerItem } from "./motion/Reveal";
+import { LiftCard } from "./motion/LiftCard";
+import { MagneticButton } from "./motion/MagneticButton";
 import styles from "./VectorPage.module.css";
 
 const FORMS = [
@@ -156,7 +159,7 @@ export function VectorPage() {
       <div id="top" />
 
       <section className={styles.hero}>
-        <div>
+        <Reveal>
           <div className={styles.eyebrow}>VECTOR · BY WHATBIT</div>
           <h1 className={styles.headline}>
             The forms you need. Without the paperwork feeling like paperwork.
@@ -165,15 +168,15 @@ export function VectorPage() {
             Referral, practitioner triage and consultation records — structured, usable and ready when you need them.
           </p>
           <div className={styles.ctaRow}>
-            <a href={VECTOR_FORMS_URL} className={styles.btnPrimary}>
+            <MagneticButton externalHref={VECTOR_FORMS_URL} className={styles.btnPrimary}>
               Start with a form
-            </a>
+            </MagneticButton>
             <Link href="#pricing" className={styles.btnOutline}>
               See what&apos;s included
             </Link>
           </div>
           <p className={styles.reassurance}>No account required to get started.</p>
-        </div>
+        </Reveal>
 
         <div className={styles.stack} onMouseMove={onTiltMove} onMouseLeave={onTiltLeave}>
           <div className={`${styles.card} ${styles.card1}`} style={{ transform: cardTransform(-8, -60, 20) }}>
@@ -206,15 +209,15 @@ export function VectorPage() {
       </section>
 
       <section id="forms" className={styles.forms}>
-        <div className={styles.sectionIntro}>
+        <Reveal className={styles.sectionIntro}>
           <div className={styles.eyebrow}>THREE TOOLS</div>
           <h2 className={styles.sectionTitle}>Each one works on its own.</h2>
-        </div>
+        </Reveal>
 
-        <div className={styles.toolGrid}>
+        <StaggerGroup className={styles.toolGrid}>
           {FORMS.map((form, index) => (
-            <div key={form.id} id={form.id} className={styles.toolCol}>
-              <div className={styles.toolLabel}>
+            <StaggerItem key={form.id} className={styles.toolCol}>
+              <div id={form.id} className={styles.toolLabel}>
                 <span className={`${styles.dot} ${index === 1 ? styles.dotDelay1 : ""} ${index === 2 ? styles.dotDelay2 : ""}`} />
                 {form.label}
               </div>
@@ -223,26 +226,28 @@ export function VectorPage() {
               <a href={form.href} className={styles.toolLink}>
                 {form.linkLabel} →
               </a>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
 
         <div className={styles.paidFeatures}>
-          <div className={styles.paidIntro}>
+          <Reveal className={styles.paidIntro}>
             <div className={styles.eyebrow}>VECTOR PAID</div>
             <h3 className={styles.sectionTitle}>Paid features stay visible — unlock when you need them.</h3>
-          </div>
-          <div className={styles.paidGrid}>
+          </Reveal>
+          <StaggerGroup className={styles.paidGrid}>
             {PAID_FEATURES.map((feature) => (
-              <a key={feature.title} href={VECTOR_PRICING_URL} className={styles.paidItemButton}>
-                <div className={styles.paidItemTop}>
-                  <span className={styles.paidItemTitle}>{feature.title}</span>
-                  <VectorBadge />
-                </div>
-                <p className={styles.paidItemCopy}>{feature.copy}</p>
-              </a>
+              <StaggerItem key={feature.title}>
+                <LiftCard externalHref={VECTOR_PRICING_URL} className={styles.paidItemButton}>
+                  <div className={styles.paidItemTop}>
+                    <span className={styles.paidItemTitle}>{feature.title}</span>
+                    <VectorBadge />
+                  </div>
+                  <p className={styles.paidItemCopy}>{feature.copy}</p>
+                </LiftCard>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
           <div style={{ textAlign: "center", marginTop: 24 }}>
             <a href={VECTOR_PRICING_URL} className={styles.btnUpgrade}>
               {VECTOR_UNLOCK_LABEL}
@@ -259,12 +264,12 @@ export function VectorPage() {
 
       <section id="pricing" className={styles.pricing}>
         <div className={styles.pricingInner}>
-          <div className={styles.pricingIntro}>
+          <Reveal className={styles.pricingIntro}>
             <h2 className={styles.sectionTitle}>Use Vector for free. Pay when you need the finished version.</h2>
-          </div>
+          </Reveal>
 
-          <div className={styles.priceGrid}>
-            <div>
+          <StaggerGroup className={styles.priceGrid}>
+            <StaggerItem>
               <div className={styles.tierName}>Free</div>
               <div className={styles.tierPrice}>$0</div>
               <p className={styles.toolCopy} style={{ marginBottom: 16 }}>
@@ -280,9 +285,9 @@ export function VectorPage() {
               <a href={VECTOR_FORMS_URL} className={styles.btnFree}>
                 Use Vector free
               </a>
-            </div>
+            </StaggerItem>
 
-            <div className={styles.paidCard}>
+            <StaggerItem className={styles.paidCard}>
               <div className={styles.tierName}>Vector</div>
               <div className={styles.tierOptions}>
                 {PAID_TIERS.map((tier) => (
@@ -306,24 +311,26 @@ export function VectorPage() {
               <a href={VECTOR_PRICING_URL} className={styles.btnUpgrade}>
                 Upgrade to Vector
               </a>
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerGroup>
         </div>
       </section>
 
       <section id="templates" className={styles.templates}>
-        <h2 className={styles.templatesTitle}>Support templates, included with Vector.</h2>
-        <p className={styles.templatesCopy}>
-          Paid Vector includes three structured behaviour support plan templates. Use them independently or carry local form details forward where available.
-        </p>
-        <div className={styles.templateGrid}>
+        <Reveal>
+          <h2 className={styles.templatesTitle}>Support templates, included with Vector.</h2>
+          <p className={styles.templatesCopy}>
+            Paid Vector includes three structured behaviour support plan templates. Use them independently or carry local form details forward where available.
+          </p>
+        </Reveal>
+        <StaggerGroup className={styles.templateGrid}>
           {SUPPORT_TEMPLATES.map((template) => (
-            <div key={template.title} className={styles.templateCard}>
+            <StaggerItem key={template.title} className={styles.templateCard}>
               <h3 className={styles.templateTitle}>{template.title}</h3>
               <p className={styles.templateCopy}>{template.copy}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
         <a href={VECTOR_TEMPLATES_URL} className={styles.templatesAction}>
           Access templates on Vector <VectorBadge />
         </a>
