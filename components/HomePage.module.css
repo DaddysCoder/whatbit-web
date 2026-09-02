@@ -431,6 +431,9 @@
   letter-spacing: 0.08em;
   color: #6b6b6b;
   font-weight: 700;
+  background: #f0f0f0;
+  padding: 6px 12px;
+  border-radius: 20px;
 }
 
 .vectorLive {
@@ -438,6 +441,9 @@
   letter-spacing: 0.08em;
   color: #7b2ff7;
   font-weight: 700;
+  background: #f2ecfb;
+  padding: 6px 12px;
+  border-radius: 20px;
 }
 
 .explore {

@@ -157,6 +157,7 @@
   position: relative;
   border-radius: 18px;
   isolation: isolate;
+  overflow: hidden;
 }
 
 .gradientBorder::before {

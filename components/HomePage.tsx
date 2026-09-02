@@ -155,21 +155,25 @@ export function HomePage() {
             </LiftCard>
 
             <LiftCard href="/trace" className={`${styles.card} ${styles.trace}`} variants={cardEntranceVariants}>
-              <BarMark size={44} gradient="linear-gradient(135deg,#3FD4B8,#1FBFA3)" />
+              <div className={styles.cardTop}>
+                <BarMark size={44} gradient="linear-gradient(135deg,#3FD4B8,#1FBFA3)" />
+                <div className={styles.live}>FREE · PRO</div>
+              </div>
               <div>
                 <div className={styles.cardName}>Trace <span className={styles.by}>by WhatBit</span></div>
                 <p className={styles.cardTag}>Free behaviour-support budget and pacing calculator. Pro unlocks downloadable reports and document exports.</p>
               </div>
-              <div className={styles.live}>FREE · PRO</div>
             </LiftCard>
 
             <LiftCard href="/vector" className={`${styles.card} ${styles.vector}`} variants={cardEntranceVariants}>
-              <BarMark size={44} gradient="linear-gradient(135deg,#B294F5,#8B5CF6)" />
+              <div className={styles.cardTop}>
+                <BarMark size={44} gradient="linear-gradient(135deg,#B294F5,#8B5CF6)" />
+                <div className={styles.vectorLive}>LIVE</div>
+              </div>
               <div>
                 <div className={styles.cardName}>Vector <span className={styles.by}>by WhatBit</span></div>
                 <p className={styles.cardTag}>The forms you need, without the paperwork feeling like paperwork.</p>
               </div>
-              <div className={styles.vectorLive}>LIVE</div>
             </LiftCard>
 
             <LiftCard href="/field" className={`${styles.card} ${styles.field}`} variants={cardEntranceVariants}>
@@ -185,9 +189,11 @@ export function HomePage() {
             </LiftCard>
 
             <ProductCard href="/arc" strong className={`${styles.card} ${styles.arc}`} variants={cardEntranceVariants}>
-              <BarMark size={44} gradient="linear-gradient(135deg,#7C4FD1,#5B21B6)" />
+              <div className={styles.cardTop}>
+                <BarMark size={44} gradient="linear-gradient(135deg,#7C4FD1,#5B21B6)" />
+                <div className={styles.dev}>IN DEVELOPMENT</div>
+              </div>
               <div><div className={styles.cardName}>Arc <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The shape of getting there.</p></div>
-              <div className={styles.dev}>IN DEVELOPMENT</div>
             </ProductCard>
         </StaggerGroup>
       </section>

@@ -149,6 +149,9 @@ export function DigitalServicesPage() {
             <picture style={heroReady ? undefined : ({ display: "none" } as CSSProperties)}>
               <source media="(max-width:640px)" srcSet={HERO_MOBILE} />
               <img
+                ref={(el) => {
+                  if (el?.complete && el.naturalWidth > 0) setHeroReady(true);
+                }}
                 src={HERO_DESKTOP}
                 alt="Three overlapping WhatBit product interfaces showing weekly workload, behaviour-support budget planning and a functional assessment screener."
                 className={styles.heroImg}
@@ -288,6 +291,7 @@ export function DigitalServicesPage() {
                       fill
                       sizes="(max-width: 640px) 100vw, 33vw"
                       unoptimized
+                      loading="eager"
                       className={styles.workImg}
                       style={ready ? undefined : { display: "none" }}
                       onLoad={() => setWorkReady((s) => ({ ...s, [item.image]: true }))}
