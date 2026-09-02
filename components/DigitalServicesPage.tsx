@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import {
@@ -281,11 +282,14 @@ export function DigitalServicesPage() {
                 <div className={styles.workCard}>
                   <div className={styles.workImgWrap}>
                     {ready ? null : <div className={styles.imgMissing}>Image pending</div>}
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      unoptimized
                       className={styles.workImg}
-                      style={ready ? undefined : ({ display: "none" } as CSSProperties)}
+                      style={ready ? undefined : { display: "none" }}
                       onLoad={() => setWorkReady((s) => ({ ...s, [item.image]: true }))}
                       onError={() => setWorkReady((s) => ({ ...s, [item.image]: false }))}
                     />

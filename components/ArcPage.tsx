@@ -333,6 +333,7 @@ export function ArcPage() {
             className={styles.form}
             onSubmit={(e) => {
               e.preventDefault();
+              // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- mailto: link, not an internal route
               window.location.href = earlyAccessMailto;
             }}
           >
