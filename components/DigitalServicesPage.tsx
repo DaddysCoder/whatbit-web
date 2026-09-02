@@ -13,6 +13,8 @@ import {
   DS_WORK,
 } from "@/lib/digital-services";
 import { SiteNav } from "./SiteNav";
+import { Reveal, StaggerGroup, StaggerItem } from "./motion/Reveal";
+import { MagneticButton } from "./motion/MagneticButton";
 import styles from "./DigitalServicesPage.module.css";
 
 const REVEAL_KEYS = ["Hero", "What", "How", "Work", "Env", "Engage"] as const;
@@ -110,7 +112,7 @@ export function DigitalServicesPage() {
         <div className={styles.eyebrow}>DIGITAL SERVICES BY WHATBIT — A PRIMITIVE AI BRAND</div>
         <h1 className={styles.h1}>Digital services for information people actually need to use.</h1>
         <div className={styles.heroRow}>
-          <div className={styles.heroCopy}>
+          <Reveal className={styles.heroCopy}>
             <p className={styles.lede}>
               We design and build websites, digital tools, accessible content and engagement systems
               for work that cannot afford to be confusing.
@@ -126,14 +128,14 @@ export function DigitalServicesPage() {
               pathway, a content system or a practical mix of them.
             </p>
             <div className={styles.ctaRow}>
-              <Link href="/contact" className={styles.btnPrimary}>
+              <MagneticButton href="/contact" className={styles.btnPrimary}>
                 Talk to us about a project
-              </Link>
+              </MagneticButton>
               <a href="#work" className={styles.btnGhost}>
                 See our work
               </a>
             </div>
-          </div>
+          </Reveal>
           <div className={styles.heroFrame}>
             <div className={styles.chrome} aria-hidden>
               <div className={styles.dot} />
@@ -161,67 +163,76 @@ export function DigitalServicesPage() {
         <h2 className={`${styles.h2} ${revealClass(!!revealed.What)}`} ref={setNode("What")}>
           What we do
         </h2>
-        <p className={styles.sectionLede}>
-          From a focused website to a complete participation pathway, we shape the work around the
-          information, people and operating environment — then build only what the project needs.
-        </p>
-        <div className={styles.svcGrid}>
-          {DS_SERVICES.map((svc, i) => (
-            <div
-              key={svc.title}
-              ref={(el) => {
-                svcRefs.current[i] = el;
-              }}
-              className={styles.svcCard}
-              style={{
-                transform: tilt[i] || "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)",
-                boxShadow: shadow[i] || "0 0 0 rgba(0,0,0,0)",
-              }}
-              onMouseMove={onSvcMove(i)}
-              onMouseLeave={onSvcLeave(i)}
-            >
-              <h3 className={styles.h3}>{svc.title}</h3>
-              <p className={styles.svcBody}>{svc.body}</p>
-              <ul className={styles.list}>
-                {svc.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className={styles.note}>
-          <div className={styles.noteLabel}>A NOTE ON LANGUAGE SERVICES</div>
-          <p className={styles.noteBody}>
-            Our direct capability is accessible-format and plain-language production. Where a project
-            requires professional language translation or interpreting, that work is scoped with
-            appropriately qualified external providers rather than represented as an in-house service.
+        <Reveal>
+          <p className={styles.sectionLede}>
+            From a focused website to a complete participation pathway, we shape the work around the
+            information, people and operating environment — then build only what the project needs.
           </p>
-        </div>
+        </Reveal>
+        <StaggerGroup className={styles.svcGrid}>
+          {DS_SERVICES.map((svc, i) => (
+            <StaggerItem key={svc.title}>
+              <div
+                ref={(el) => {
+                  svcRefs.current[i] = el;
+                }}
+                className={styles.svcCard}
+                style={{
+                  transform: tilt[i] || "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)",
+                  boxShadow: shadow[i] || "0 0 0 rgba(0,0,0,0)",
+                }}
+                onMouseMove={onSvcMove(i)}
+                onMouseLeave={onSvcLeave(i)}
+              >
+                <h3 className={styles.h3}>{svc.title}</h3>
+                <p className={styles.svcBody}>{svc.body}</p>
+                <ul className={styles.list}>
+                  {svc.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+        <Reveal>
+          <div className={styles.note}>
+            <div className={styles.noteLabel}>A NOTE ON LANGUAGE SERVICES</div>
+            <p className={styles.noteBody}>
+              Our direct capability is accessible-format and plain-language production. Where a project
+              requires professional language translation or interpreting, that work is scoped with
+              appropriately qualified external providers rather than represented as an in-house service.
+            </p>
+          </div>
+        </Reveal>
       </section>
 
       <section className={styles.section}>
         <h2 className={`${styles.h2} ${revealClass(!!revealed.How)}`} ref={setNode("How")}>
           How we work
         </h2>
-        <p className={styles.sectionLede} style={{ marginBottom: 40 }}>
-          A clear delivery process makes complex work easier to govern. Each stage produces something
-          that can be reviewed, tested and approved before the project moves on.
-        </p>
-        <div className={styles.steps}>
+        <Reveal>
+          <p className={styles.sectionLede} style={{ marginBottom: 40 }}>
+            A clear delivery process makes complex work easier to govern. Each stage produces something
+            that can be reviewed, tested and approved before the project moves on.
+          </p>
+        </Reveal>
+        <StaggerGroup className={styles.steps}>
           {DS_STEPS.map((step) => (
-            <div key={step.n} className={styles.step}>
-              <div className={styles.stepN}>{step.n}</div>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
-              <p className={styles.stepBody}>{step.body}</p>
-              <div className={styles.stepArtefact}>{step.artefact}</div>
-            </div>
+            <StaggerItem key={step.n}>
+              <div className={styles.step}>
+                <div className={styles.stepN}>{step.n}</div>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepBody}>{step.body}</p>
+                <div className={styles.stepArtefact}>{step.artefact}</div>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
 
       <section className={styles.a11y}>
-        <div className={styles.a11yInner}>
+        <Reveal className={styles.a11yInner}>
           <h2 className={styles.h2}>Accessibility is part of the product</h2>
           <div className={styles.a11yRow}>
             <div className={styles.a11yCol}>
@@ -249,78 +260,86 @@ export function DigitalServicesPage() {
               </ul>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       <section id="work" className={styles.sectionFlush}>
         <h2 className={`${styles.h2} ${revealClass(!!revealed.Work)}`} ref={setNode("Work")}>
           Selected work
         </h2>
-        <p className={styles.sectionLede}>
-          Evidence matters. These examples are labelled for what they are so a working prototype is
-          never presented as commissioned client work.
-        </p>
-        <div className={styles.workGrid}>
+        <Reveal>
+          <p className={styles.sectionLede}>
+            Evidence matters. These examples are labelled for what they are so a working prototype is
+            never presented as commissioned client work.
+          </p>
+        </Reveal>
+        <StaggerGroup className={styles.workGrid}>
           {DS_WORK.map((item) => {
             const ready = !!workReady[item.image];
             return (
-              <div key={item.title} className={styles.workCard}>
-                <div className={styles.workImgWrap}>
-                  {ready ? null : <div className={styles.imgMissing}>Image pending</div>}
-                  <img
-                    src={item.image}
-                    alt={item.alt}
-                    className={styles.workImg}
-                    style={ready ? undefined : ({ display: "none" } as CSSProperties)}
-                    onLoad={() => setWorkReady((s) => ({ ...s, [item.image]: true }))}
-                    onError={() => setWorkReady((s) => ({ ...s, [item.image]: false }))}
-                  />
-                </div>
-                <div className={styles.workBody}>
-                  <div
-                    className={`${styles.badge} ${
-                      item.badgeTone === "concept" ? styles.badgeConcept : styles.badgeNeutral
-                    }`}
-                  >
-                    {item.badge}
+              <StaggerItem key={item.title}>
+                <div className={styles.workCard}>
+                  <div className={styles.workImgWrap}>
+                    {ready ? null : <div className={styles.imgMissing}>Image pending</div>}
+                    <img
+                      src={item.image}
+                      alt={item.alt}
+                      className={styles.workImg}
+                      style={ready ? undefined : ({ display: "none" } as CSSProperties)}
+                      onLoad={() => setWorkReady((s) => ({ ...s, [item.image]: true }))}
+                      onError={() => setWorkReady((s) => ({ ...s, [item.image]: false }))}
+                    />
                   </div>
-                  <h3 className={styles.workTitle}>{item.title}</h3>
-                  <p className={styles.workCopy}>{item.body}</p>
-                  {item.footer === "products" ? (
-                    <Link href="/#products" className={styles.workLink}>
-                      Explore WhatBit products <span aria-hidden>→</span>
-                    </Link>
-                  ) : (
-                    <div className={styles.workMeta}>Screenshot-led example. No public link.</div>
-                  )}
+                  <div className={styles.workBody}>
+                    <div
+                      className={`${styles.badge} ${
+                        item.badgeTone === "concept" ? styles.badgeConcept : styles.badgeNeutral
+                      }`}
+                    >
+                      {item.badge}
+                    </div>
+                    <h3 className={styles.workTitle}>{item.title}</h3>
+                    <p className={styles.workCopy}>{item.body}</p>
+                    {item.footer === "products" ? (
+                      <Link href="/#products" className={styles.workLink}>
+                        Explore WhatBit products <span aria-hidden>→</span>
+                      </Link>
+                    ) : (
+                      <div className={styles.workMeta}>Screenshot-led example. No public link.</div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerGroup>
       </section>
 
       <section className={styles.section}>
         <h2 className={`${styles.h2} ${revealClass(!!revealed.Env)}`} ref={setNode("Env")}>
           Built for real operating environments
         </h2>
-        <p className={styles.sectionLede} style={{ marginBottom: 36 }}>
-          A digital service has to work outside the ideal demo. We plan for the conditions in which
-          people will actually use, review, update and be accountable for it.
-        </p>
-        <div className={styles.conditions}>
+        <Reveal>
+          <p className={styles.sectionLede} style={{ marginBottom: 36 }}>
+            A digital service has to work outside the ideal demo. We plan for the conditions in which
+            people will actually use, review, update and be accountable for it.
+          </p>
+        </Reveal>
+        <StaggerGroup className={styles.conditions}>
           {DS_CONDITIONS.map((condition) => (
-            <div key={condition} className={styles.conditionRow}>
-              <div className={styles.conditionDot} aria-hidden />
-              <div className={styles.conditionText}>{condition}</div>
-            </div>
+            <StaggerItem key={condition}>
+              <div className={styles.conditionRow}>
+                <div className={styles.conditionDot} aria-hidden />
+                <div className={styles.conditionText}>{condition}</div>
+              </div>
+            </StaggerItem>
           ))}
           <div className={styles.conditionFoot}>
             The solution should still make sense after the launch team has moved on. That is why
             maintainability, documentation and content ownership are design decisions, not
             end-of-project admin.
           </div>
-        </div>
+        </StaggerGroup>
       </section>
 
       <section className={styles.engage}>
@@ -328,41 +347,47 @@ export function DigitalServicesPage() {
           <h2 className={`${styles.h2} ${revealClass(!!revealed.Engage)}`} ref={setNode("Engage")}>
             Engagement tools that close the loop
           </h2>
-          <p className={styles.sectionLede} style={{ marginBottom: 40 }}>
-            Collecting responses is not the same as engagement. A useful participation system helps
-            people understand why they are being asked, contribute in a way that works for them, and
-            see what happened after the decision.
-          </p>
-          <div className={styles.flowGrid}>
-            {DS_FLOW.map((stage) => (
-              <div key={stage.n} className={styles.flowCard}>
-                <div className={styles.flowHead}>
-                  <div className={styles.flowN}>{stage.n}</div>
-                  <div className={styles.flowRule} aria-hidden />
-                </div>
-                <h3 className={styles.flowTitle}>{stage.title}</h3>
-                <p className={styles.flowBody}>{stage.body}</p>
-              </div>
-            ))}
-          </div>
-          <p className={styles.engageExtra}>
-            Where useful and appropriate, the system can also support stakeholder segmentation,
-            multiple response formats, transparent summaries and follow-up communication.
-          </p>
-          <div className={styles.engageNote}>
-            <p>
-              Good engagement design makes its boundaries visible: who is being asked, why their input
-              is needed, how it will be used and what cannot be promised. Where cultural knowledge or
-              authority is required, we work within the role and relationships agreed for the project;
-              we do not claim to speak for communities.
+          <Reveal>
+            <p className={styles.sectionLede} style={{ marginBottom: 40 }}>
+              Collecting responses is not the same as engagement. A useful participation system helps
+              people understand why they are being asked, contribute in a way that works for them, and
+              see what happened after the decision.
             </p>
-          </div>
+          </Reveal>
+          <StaggerGroup className={styles.flowGrid}>
+            {DS_FLOW.map((stage) => (
+              <StaggerItem key={stage.n}>
+                <div className={styles.flowCard}>
+                  <div className={styles.flowHead}>
+                    <div className={styles.flowN}>{stage.n}</div>
+                    <div className={styles.flowRule} aria-hidden />
+                  </div>
+                  <h3 className={styles.flowTitle}>{stage.title}</h3>
+                  <p className={styles.flowBody}>{stage.body}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+          <Reveal>
+            <p className={styles.engageExtra}>
+              Where useful and appropriate, the system can also support stakeholder segmentation,
+              multiple response formats, transparent summaries and follow-up communication.
+            </p>
+            <div className={styles.engageNote}>
+              <p>
+                Good engagement design makes its boundaries visible: who is being asked, why their input
+                is needed, how it will be used and what cannot be promised. Where cultural knowledge or
+                authority is required, we work within the role and relationships agreed for the project;
+                we do not claim to speak for communities.
+              </p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       <section className={styles.sectionFlush}>
         <div className={styles.split}>
-          <div className={styles.splitCopy}>
+          <Reveal className={styles.splitCopy}>
             <h2 className={styles.h2}>Working with public-sector and community organisations</h2>
             <p className={styles.splitLede}>
               Public and community-facing work has to be understandable to the user and defensible to
@@ -373,20 +398,20 @@ export function DigitalServicesPage() {
               We do not add process for its own sake. We make the necessary governance visible enough
               that the work can move with fewer surprises.
             </p>
-          </div>
-          <div className={styles.splitList}>
+          </Reveal>
+          <Reveal className={styles.splitList} direction="right">
             <ul className={styles.splitItems}>
               {DS_PUBLIC_ITEMS.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className={styles.section}>
         <div className={styles.split}>
-          <div className={styles.splitCopy}>
+          <Reveal className={styles.splitCopy}>
             <h2 className={styles.h2}>Support after launch</h2>
             <p className={styles.splitLede}>
               Launch is a handover point, not an exit. Support can be scoped to the product, platform
@@ -396,27 +421,29 @@ export function DigitalServicesPage() {
               Support scope, responsibilities, channels and response times are agreed for each project
               rather than hidden behind a vague promise of always-on support.
             </p>
-          </div>
-          <div className={styles.splitList}>
+          </Reveal>
+          <Reveal className={styles.splitList} direction="right">
             <ul className={styles.splitItems}>
               {DS_SUPPORT_ITEMS.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className={styles.ctaBand}>
-        <h2 className={styles.ctaTitle}>
-          Have something complicated that people need to understand, use or respond to?
-        </h2>
-        <p className={styles.ctaLede}>
-          Tell us what needs to work. We’ll help work out what should be built.
-        </p>
-        <Link href="/contact" className={styles.btnLight}>
-          Start a project
-        </Link>
+        <Reveal>
+          <h2 className={styles.ctaTitle}>
+            Have something complicated that people need to understand, use or respond to?
+          </h2>
+          <p className={styles.ctaLede}>
+            Tell us what needs to work. We’ll help work out what should be built.
+          </p>
+          <MagneticButton href="/contact" className={styles.btnLight}>
+            Start a project
+          </MagneticButton>
+        </Reveal>
       </section>
 
       <div className={styles.brandLine}>

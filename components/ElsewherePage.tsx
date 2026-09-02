@@ -2,6 +2,9 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { Reveal, StaggerGroup, StaggerItem } from "./motion/Reveal";
+import { LiftCard } from "./motion/LiftCard";
+import { MagneticButton } from "./motion/MagneticButton";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
 import { CONTACT_MAILTO } from "@/lib/site";
@@ -111,24 +114,26 @@ export function ElsewherePage() {
           <div className={styles.ringInner} />
           <div className={styles.orb} />
         </div>
-        <div className={styles.status}>SPECIMEN STATUS · IN DEVELOPMENT</div>
-        <h1 className={styles.title}>The Elsewhere Department</h1>
-        <p className={styles.lede}>
-          Where WhatBit builds, benchmarks and evaluates agentic AI — before any of it gets near a real product.
-        </p>
-        <p className={styles.aside}>It works while everyone&apos;s asleep, and still hasn&apos;t figured out how to make coffee.</p>
+        <Reveal>
+          <div className={styles.status}>SPECIMEN STATUS · IN DEVELOPMENT</div>
+          <h1 className={styles.title}>The Elsewhere Department</h1>
+          <p className={styles.lede}>
+            Where WhatBit builds, benchmarks and evaluates agentic AI — before any of it gets near a real product.
+          </p>
+          <p className={styles.aside}>It works while everyone&apos;s asleep, and still hasn&apos;t figured out how to make coffee.</p>
+        </Reveal>
       </section>
 
       <div className={styles.features}>
         <div className={styles.feat}>
-          <div>
+          <Reveal>
             <div className={styles.featEyebrow}>EXPERIMENTS</div>
             <h2 className={styles.featTitle}>Every idea starts as an agent, not a slide deck.</h2>
             <p className={styles.featCopy}>
               If it&apos;s worth doing, it&apos;s worth trying. The Elsewhere Department runs agentic experiments against
               real tasks first — before anything is pitched, scoped or named.
             </p>
-          </div>
+          </Reveal>
           <div className={styles.viz}>
             <span className={styles.cornerTl} />
             <span className={styles.cornerBr} />
@@ -142,7 +147,7 @@ export function ElsewherePage() {
         </div>
 
         <div className={`${styles.feat} ${styles.featReverse}`}>
-          <div>
+          <Reveal>
             <div className={styles.featEyebrow}>BENCHMARKING</div>
             <h2 className={styles.featTitle}>Measured against what already exists.</h2>
             <p className={styles.featCopy}>
@@ -150,7 +155,7 @@ export function ElsewherePage() {
               to a human doing the same task. Impressive and useful aren&apos;t the same thing, and only one of them gets
               to ship.
             </p>
-          </div>
+          </Reveal>
           <div className={styles.viz}>
             <span className={styles.cornerTl} />
             <span className={styles.cornerBr} />
@@ -174,14 +179,14 @@ export function ElsewherePage() {
         </div>
 
         <div className={styles.feat}>
-          <div>
+          <Reveal>
             <div className={styles.featEyebrow}>EVALUATION</div>
             <h2 className={styles.featTitle}>What doesn&apos;t work gets written down, not deleted.</h2>
             <p className={styles.featCopy}>
               Every experiment produces a record: what we tried, what the data said, what we&apos;d do differently. That
               record is what turns an experiment into the next one, instead of a repeat.
             </p>
-          </div>
+          </Reveal>
           <div
             className={styles.viz}
             onMouseEnter={() => setEvalApart(true)}
@@ -217,61 +222,71 @@ export function ElsewherePage() {
       </div>
 
       <section className={styles.pipeline}>
-        <div className={styles.pipeHead}>
-          <div className={styles.featEyebrow}>HOW AN IDEA MOVES THROUGH</div>
-          <h2 className={styles.pipeTitle}>Research, then build, then prove it.</h2>
-        </div>
-        <div className={styles.pipeGrid}>
+        <Reveal>
+          <div className={styles.pipeHead}>
+            <div className={styles.featEyebrow}>HOW AN IDEA MOVES THROUGH</div>
+            <h2 className={styles.pipeTitle}>Research, then build, then prove it.</h2>
+          </div>
+        </Reveal>
+        <StaggerGroup className={styles.pipeGrid}>
           {PIPELINE.map((step) => (
-            <div key={step.n} className={`${styles.pipeCard} ${step.solid ? styles.pipeSolid : ""}`}>
-              <div className={styles.pipeLabel}>
-                {step.n} · {step.title}
+            <StaggerItem key={step.n}>
+              <div className={`${styles.pipeCard} ${step.solid ? styles.pipeSolid : ""}`}>
+                <div className={styles.pipeLabel}>
+                  {step.n} · {step.title}
+                </div>
+                <p>{step.text}</p>
               </div>
-              <p>{step.text}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
-        <p className={styles.pipeNote}>
-          The same Contract → Trace → Expand discipline as{" "}
-          <Link href="/rft">RFT</Link>, applied to how the department itself works.
-        </p>
+        </StaggerGroup>
+        <Reveal>
+          <p className={styles.pipeNote}>
+            The same Contract → Trace → Expand discipline as{" "}
+            <Link href="/rft">RFT</Link>, applied to how the department itself works.
+          </p>
+        </Reveal>
       </section>
 
       <div className={styles.teaserWrap}>
-        <Link href="/voda" className={styles.teaser}>
-          <div>
-            <div className={styles.teaserEyebrow}>THE ENGINE BEHIND IT</div>
-            <div className={styles.teaserTitle}>Most of this runs on VODA.</div>
-            <p>Our intelligence engine maps how a business actually works, then predicts what happens next.</p>
-          </div>
-          <span className={styles.teaserCta}>
-            Meet VODA <span>→</span>
-          </span>
-        </Link>
+        <Reveal>
+          <LiftCard href="/voda" className={styles.teaser}>
+            <div>
+              <div className={styles.teaserEyebrow}>THE ENGINE BEHIND IT</div>
+              <div className={styles.teaserTitle}>Most of this runs on VODA.</div>
+              <p>Our intelligence engine maps how a business actually works, then predicts what happens next.</p>
+            </div>
+            <span className={styles.teaserCta}>
+              Meet VODA <span>→</span>
+            </span>
+          </LiftCard>
+        </Reveal>
       </div>
 
       <div className={styles.notify}>
-        <h2 className={styles.notifyTitle}>Still in the lab.</h2>
-        <p className={styles.notifyCopy}>Leave your email and we&apos;ll let you know when there&apos;s something worth trying.</p>
-        <form
-          className={styles.form}
-          onSubmit={(e) => {
-            e.preventDefault();
-            window.location.href = mailto;
-          }}
-        >
-          <input
-            type="email"
-            required
-            placeholder="you@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={styles.input}
-          />
-          <a href={mailto} className={styles.notifyBtn}>
-            Notify me
-          </a>
-        </form>
+        <Reveal>
+          <h2 className={styles.notifyTitle}>Still in the lab.</h2>
+          <p className={styles.notifyCopy}>Leave your email and we&apos;ll let you know when there&apos;s something worth trying.</p>
+          <form
+            className={styles.form}
+            onSubmit={(e) => {
+              e.preventDefault();
+              window.location.href = mailto;
+            }}
+          >
+            <input
+              type="email"
+              required
+              placeholder="you@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={styles.input}
+            />
+            <MagneticButton externalHref={mailto} className={styles.notifyBtn}>
+              Notify me
+            </MagneticButton>
+          </form>
+        </Reveal>
       </div>
 
       <div className={styles.footer}>

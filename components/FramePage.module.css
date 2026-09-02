@@ -1202,6 +1202,10 @@
     margin-bottom: 24px;
   }
 
+  .privacyGrid {
+    grid-template-columns: 1fr;
+  }
+
   .privacyPoint {
     font-size: 12px;
     padding-top: 12px;

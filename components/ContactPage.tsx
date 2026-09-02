@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useRef, useState, type FormEvent } from "react";
+import { Reveal, StaggerGroup, StaggerItem } from "./motion/Reveal";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
 import { CONTACT_EMAIL } from "@/lib/site";
@@ -100,50 +102,58 @@ export function ContactPage() {
           <div className={styles.eyeR} />
           <div className={styles.smile} />
         </div>
-        <div className={styles.eyebrow}>CONTACT</div>
-        <h1 className={styles.title}>Say the bit that’s on your mind.</h1>
-        <p className={styles.lede}>
-          No chatbot pretending to be a person. Send us the useful bit and an actual human will read it.
-        </p>
+        <Reveal>
+          <div className={styles.eyebrow}>CONTACT</div>
+          <h1 className={styles.title}>Say the bit that’s on your mind.</h1>
+          <p className={styles.lede}>
+            No chatbot pretending to be a person. Send us the useful bit and an actual human will read it.
+          </p>
+        </Reveal>
       </section>
 
       <section className={styles.reasons}>
-        <div className={styles.reasonsHead}>
-          <div className={styles.pick}>PICK YOUR BIT</div>
-          <h2 className={styles.reasonsTitle}>What brings you here?</h2>
-        </div>
-        <div className={styles.grid}>
+        <Reveal>
+          <div className={styles.reasonsHead}>
+            <div className={styles.pick}>PICK YOUR BIT</div>
+            <h2 className={styles.reasonsTitle}>What brings you here?</h2>
+          </div>
+        </Reveal>
+        <StaggerGroup className={styles.grid}>
           {REASONS.map((r) => (
-            <a
-              key={r.title}
-              href="#contact-form"
-              onClick={() => setSelectedReason(r.reason)}
-              className={`${styles.card} ${
-                r.className === "problem"
-                  ? styles.problem
-                  : r.className === "idea"
-                    ? styles.idea
-                    : styles.hi
-              }`}
-            >
-              <div className={styles.emoji}>{r.emoji}</div>
-              <div className={styles.cardTitle}>{r.title}</div>
-              <p>{r.copy}</p>
-              <div className={styles.cardCta}>{r.cta}</div>
-            </a>
+            <StaggerItem key={r.title}>
+              <a
+                href="#contact-form"
+                onClick={() => setSelectedReason(r.reason)}
+                className={`${styles.card} ${
+                  r.className === "problem"
+                    ? styles.problem
+                    : r.className === "idea"
+                      ? styles.idea
+                      : styles.hi
+                }`}
+              >
+                <div className={styles.emoji}>{r.emoji}</div>
+                <div className={styles.cardTitle}>{r.title}</div>
+                <p>{r.copy}</p>
+                <div className={styles.cardCta}>{r.cta}</div>
+              </a>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
 
       <section className={styles.formSection} id="contact-form">
-        <div className={styles.formIntro}>
-          <div className={styles.pick}>SEND AN ENQUIRY</div>
-          <h2 className={styles.reasonsTitle}>Put it in our inbox.</h2>
-          <p>
-            Name, email, reason, message. That’s it. Please don’t put passwords, API keys or sensitive client information in here.
-          </p>
-        </div>
+        <Reveal>
+          <div className={styles.formIntro}>
+            <div className={styles.pick}>SEND AN ENQUIRY</div>
+            <h2 className={styles.reasonsTitle}>Put it in our inbox.</h2>
+            <p>
+              Name, email, reason, message. That’s it. Please don’t put passwords, API keys or sensitive client information in here.
+            </p>
+          </div>
+        </Reveal>
 
+        <Reveal>
         <form className={styles.form} onSubmit={submitContact}>
           <div className={styles.formRow}>
             <label className={styles.field}>
@@ -187,23 +197,26 @@ export function ContactPage() {
               {sending ? "Sending…" : "Send it →"}
             </button>
             <p className={styles.privacyNote}>
-              By sending this form, you’re giving us the information above so we can respond. See our <a href="/privacy">Privacy Policy</a>.
+              By sending this form, you’re giving us the information above so we can respond. See our <Link href="/privacy">Privacy Policy</Link>.
             </p>
           </div>
           <div className={styles.formStatus} aria-live="polite">{formStatus}</div>
         </form>
+        </Reveal>
       </section>
 
       <section className={styles.skip}>
-        <div className={styles.skipEyebrow}>PREFER EMAIL?</div>
-        <button type="button" className={styles.emailBtn} onClick={copyEmail}>
-          {CONTACT_EMAIL}
-        </button>
-        <div className={styles.copyStatus}>{copyStatus}</div>
-        <p className={styles.skipNote}>
-          We usually reply within one Earth day. The Elsewhere Department works faster, but it isn&apos;t allowed to
-          answer your emails yet.
-        </p>
+        <Reveal>
+          <div className={styles.skipEyebrow}>PREFER EMAIL?</div>
+          <button type="button" className={styles.emailBtn} onClick={copyEmail}>
+            {CONTACT_EMAIL}
+          </button>
+          <div className={styles.copyStatus}>{copyStatus}</div>
+          <p className={styles.skipNote}>
+            We usually reply within one Earth day. The Elsewhere Department works faster, but it isn&apos;t allowed
+            to answer your emails yet.
+          </p>
+        </Reveal>
       </section>
 
       <div className={styles.footer}>

@@ -1,128 +1,72 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef } from "react";
 import { BarMark } from "./BarMark";
 import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
+import { Reveal, StaggerGroup } from "./motion/Reveal";
+import { ProductCard } from "./motion/ProductCard";
+import { LiftCard } from "./motion/LiftCard";
+import { MagneticButton } from "./motion/MagneticButton";
+import { cardEntranceVariants } from "@/lib/motion";
 import styles from "./HomePage.module.css";
 
-const defaultTilt = "perspective(800px) rotateX(0deg) rotateY(0deg) scale(1) translateY(0)";
-
-function revealStyle(on: boolean, delay: number, pop = false) {
-  if (pop) {
-    return {
-      opacity: on ? 1 : 0,
-      transform: on ? "scale(1) translateY(0)" : "scale(0.82) translateY(36px)",
-      transition: `opacity 0.6s cubic-bezier(.34,1.56,.64,1) ${delay}s, transform 0.6s cubic-bezier(.34,1.56,.64,1) ${delay}s`,
-    } as const;
-  }
-  return {
-    opacity: on ? 1 : 0,
-    transform: on ? "translateY(0)" : "translateY(28px)",
-    transition: `opacity 0.7s cubic-bezier(.16,1,.3,1) ${delay}s, transform 0.7s cubic-bezier(.16,1,.3,1) ${delay}s`,
-  } as const;
-}
-
 export function HomePage() {
-  const [revealed, setRevealed] = useState<Record<string, boolean>>({ hero: true });
-  const [mouse, setMouse] = useState({ x: 0.5, y: 0.25 });
-  const [orbitProgress, setOrbitProgress] = useState(0);
-  const [priceTilt, setPriceTilt] = useState<Record<number, string>>({});
-  const nodes = useRef<Record<string, HTMLElement | null>>({});
-  const priceNodes = useRef<(HTMLDivElement | null)[]>([]);
-  const orbitEl = useRef<HTMLElement | null>(null);
+  const orbitRef = useRef<HTMLElement | null>(null);
 
-  const setNode = useCallback((id: string) => (el: HTMLElement | null) => {
-    nodes.current[id] = el;
-  }, []);
+  // Hero spotlight tracks the cursor via a motion value (direct DOM write),
+  // never a React re-render on every mousemove.
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.25);
+  const spotlight = useMotionTemplate`radial-gradient(600px circle at ${useTransform(mouseX, (v) => `${v * 100}%`)} ${useTransform(mouseY, (v) => `${v * 100}%`)}, rgba(123,47,247,0.10), transparent 60%)`;
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          const id = (e.target as HTMLElement).dataset.revealId;
-          if (!id) return;
-          setRevealed((s) => ({ ...s, [id]: true }));
-          observer.unobserve(e.target);
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    Object.entries(nodes.current).forEach(([id, el]) => {
-      if (!el) return;
-      el.dataset.revealId = id;
-      observer.observe(el);
-    });
-
-    const onScroll = () => {
-      const el = orbitEl.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const raw = (window.innerHeight - rect.top) / (window.innerHeight + rect.height * 0.5);
-      setOrbitProgress(Math.max(0, Math.min(1, raw)));
-    };
-
     const onMove = (e: MouseEvent) => {
-      setMouse({ x: e.clientX / window.innerWidth, y: e.clientY / window.innerHeight });
+      mouseX.set(e.clientX / window.innerWidth);
+      mouseY.set(e.clientY / window.innerHeight);
     };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("mousemove", onMove);
-    onScroll();
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [mouseX, mouseY]);
 
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("mousemove", onMove);
-    };
-  }, []);
-
-  const onPriceMove = (i: number) => (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = priceNodes.current[i];
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width;
-    const py = (e.clientY - r.top) / r.height;
-    const rotY = (px - 0.5) * 16;
-    const rotX = (0.5 - py) * 16;
-    setPriceTilt((s) => ({
-      ...s,
-      [i]: `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.08) translateY(-10px)`,
-    }));
-  };
-
-  const onPriceLeave = (i: number) => () => {
-    setPriceTilt((s) => ({ ...s, [i]: defaultTilt }));
-  };
-
-  const r = (id: string) => !!revealed[id];
-  const spotlight = `radial-gradient(600px circle at ${mouse.x * 100}% ${mouse.y * 100}%, rgba(123,47,247,0.10), transparent 60%)`;
-  const orbitCircleScale = 0.4 + orbitProgress * 0.9;
-  const orbitCircleStroke = `rgba(255,255,255,${(0.04 + orbitProgress * 0.16).toFixed(3)})`;
+  // Orbit ring intensifies as the ecosystem section scrolls through view —
+  // driven by Motion's scroll tracking, not a scroll-listener re-render.
+  const { scrollYProgress: orbitScroll } = useScroll({
+    target: orbitRef,
+    offset: ["end end", "center center"],
+  });
+  const orbitCircleScale = useTransform(orbitScroll, [0, 1], [0.4, 1.3]);
+  const orbitCircleOpacity = useTransform(orbitScroll, [0, 1], [0.04, 0.2]);
+  const orbitCircleStroke = useMotionTemplate`rgba(255,255,255,${orbitCircleOpacity})`;
+  const ring1Scale = useTransform(orbitScroll, [0, 1], [0.25, 1.4]);
+  const ring1Opacity = useTransform(orbitScroll, [0, 1], [0, 1]);
+  const ring2Scale = useTransform(orbitScroll, [0, 1], [0.15, 1.2]);
+  const ring2Opacity = useTransform(orbitScroll, [0, 1], [0, 0.85]);
 
   return (
     <div className={styles.page}>
       <SiteNav variant="home" ctaHref="/contact" />
 
       <section className={styles.hero}>
-        <div className={styles.spotlight} style={{ background: spotlight }} />
-        <div ref={setNode("hero")} style={revealStyle(r("hero"), 0)}>
+        <motion.div className={styles.spotlight} style={{ background: spotlight }} />
+        <Reveal>
           <div className={styles.eyebrow}>AN AUSTRALIAN PROBLEM-SOLVING COMPANY</div>
           <h1 className={styles.heroTitle}>
             We figure out what&apos;s
             <br />
             actually going on.
           </h1>
-        </div>
-        <p className={styles.heroSub} style={revealStyle(r("hero"), 0.12)}>
-          Then we build the tool that fixes it. WhatBit is a small Australian company — and the family of tools we&apos;ve built along the way.
-        </p>
-        <div className={styles.heroLine} style={revealStyle(r("hero"), 0.12)}>
+        </Reveal>
+        <Reveal delay={0.12}>
+          <p className={styles.heroSub}>
+            Then we build the tool that fixes it. WhatBit is a small Australian company — and the family of tools we&apos;ve built along the way.
+          </p>
+        </Reveal>
+        <Reveal delay={0.16} className={styles.heroLine}>
           Human where it matters. Clever where it counts.
-        </div>
+        </Reveal>
         <div className={styles.scrollHint}>
           <div className={styles.scrollDot} />
         </div>
@@ -131,16 +75,15 @@ export function HomePage() {
       <section
         className={styles.orbit}
         ref={(el) => {
-          orbitEl.current = el;
-          nodes.current.orbit = el;
-          if (el) el.dataset.revealId = "orbit";
+          orbitRef.current = el;
         }}
-        style={revealStyle(r("orbit"), 0)}
       >
-        <h2 className={styles.orbitTitle}>One approach. Seven tools.</h2>
-        <p className={styles.orbitCopy}>
-          Every product carries the same name suffix for a reason. Same method, same standard — a different problem each time. “By WhatBit” means we did the thinking so you don&apos;t have to.
-        </p>
+        <Reveal>
+          <h2 className={styles.orbitTitle}>One approach. Seven tools.</h2>
+          <p className={styles.orbitCopy}>
+            Every product carries the same name suffix for a reason. Same method, same standard — a different problem each time. “By WhatBit” means we did the thinking so you don&apos;t have to.
+          </p>
+        </Reveal>
         <div className={styles.orbitStage}>
           <div className={styles.core} />
           {[
@@ -158,99 +101,99 @@ export function HomePage() {
             </div>
           ))}
           <div className={styles.rings}>
-            <div className={styles.ring} style={{ width: "100%", height: "100%", background: "radial-gradient(circle,rgba(123,47,247,0.16) 0%,rgba(123,47,247,0) 68%)", opacity: orbitProgress, transform: `scale(${(0.25 + orbitProgress * 1.15).toFixed(3)})` }} />
-            <div className={styles.ring} style={{ width: "78%", height: "78%", background: "radial-gradient(circle,rgba(31,191,163,0.14) 0%,rgba(31,191,163,0) 68%)", opacity: orbitProgress * 0.85, transform: `scale(${(0.15 + orbitProgress * 1.05).toFixed(3)})` }} />
+            <motion.div className={styles.ring} style={{ width: "100%", height: "100%", background: "radial-gradient(circle,rgba(123,47,247,0.16) 0%,rgba(123,47,247,0) 68%)", opacity: ring1Opacity, scale: ring1Scale }} />
+            <motion.div className={styles.ring} style={{ width: "78%", height: "78%", background: "radial-gradient(circle,rgba(31,191,163,0.14) 0%,rgba(31,191,163,0) 68%)", opacity: ring2Opacity, scale: ring2Scale }} />
           </div>
           <svg className={styles.svg} viewBox="0 0 460 460">
-            <circle cx="230" cy="230" r="170" fill="none" stroke={orbitCircleStroke} strokeWidth="1" style={{ transformBox: "fill-box", transformOrigin: "center", transform: `scale(${orbitCircleScale})`, transition: "transform 0.9s cubic-bezier(.22,1,.36,1), stroke 0.9s ease" }} />
+            <motion.circle cx="230" cy="230" r="170" fill="none" stroke={orbitCircleStroke} strokeWidth="1" style={{ transformBox: "fill-box", transformOrigin: "center", scale: orbitCircleScale }} />
           </svg>
         </div>
       </section>
 
       <section id="products" className={styles.products}>
-        <div className={styles.sectionHead}>
+        <Reveal className={styles.sectionHead}>
           <h2 className={styles.sectionTitle}>The tools</h2>
           <p className={styles.sectionSub}>Each one solves a specific problem. None of them exist just because we could build them.</p>
-        </div>
-        <div className={styles.grid} ref={setNode("products")}>
-          <Link href="/pace" className={`${styles.card} ${styles.orbitCard}`} style={revealStyle(r("products"), 0, true)}>
-            <div className={styles.cardTop}>
-              <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#9B6EF3,#7B2FF7)" />
-              <div className={styles.live}>FREE · LIVE</div>
-            </div>
-            <div>
-              <div className={`${styles.cardName} ${styles.orbitName}`}>Pace <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
-              <div className={styles.orbitHeadline}>Your week, your hours, what they&apos;re worth.</div>
-              <p className={styles.cardTag}>A free calendar and hours workspace for practitioners who bill by the hour — logged time, billed value, and pace toward target, all in one place.</p>
-            </div>
-            <div className={styles.explore}>Open Pace <span>→</span></div>
-          </Link>
+        </Reveal>
+        <StaggerGroup className={styles.grid}>
+            <ProductCard href="/pace" strong className={`${styles.card} ${styles.orbitCard}`} variants={cardEntranceVariants}>
+              <div className={styles.cardTop}>
+                <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#9B6EF3,#7B2FF7)" />
+                <div className={styles.live}>FREE · LIVE</div>
+              </div>
+              <div>
+                <div className={`${styles.cardName} ${styles.orbitName}`}>Pace <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
+                <div className={styles.orbitHeadline}>Your week, your hours, what they&apos;re worth.</div>
+                <p className={styles.cardTag}>A free calendar and hours workspace for practitioners who bill by the hour — logged time, billed value, and pace toward target, all in one place.</p>
+              </div>
+              <div className={styles.explore}>Open Pace <span>→</span></div>
+            </ProductCard>
 
-          <Link href="/frame" className={`${styles.card} ${styles.frameCard}`} style={revealStyle(r("products"), 0.05, true)}>
-            <div className={styles.cardTop}>
-              <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#F07655,#E8542E)" />
-              <div className={`${styles.live} ${styles.frameLive}`}>LIVE · FREE</div>
-            </div>
-            <div>
-              <div className={`${styles.cardName} ${styles.orbitName}`}>Frame <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
-              <div className={styles.frameHeadline}>Behaviour support evidence, from observation to hypothesis.</div>
-              <p className={styles.cardTag}>Record observations, gather structured screening, compare evidence and keep uncertainty visible.</p>
-            </div>
-            <div className={`${styles.explore} ${styles.frameExplore}`}>Explore Frame <span>→</span></div>
-          </Link>
+            <ProductCard href="/frame" strong className={`${styles.card} ${styles.frameCard}`} variants={cardEntranceVariants}>
+              <div className={styles.cardTop}>
+                <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#F07655,#E8542E)" />
+                <div className={`${styles.live} ${styles.frameLive}`}>LIVE · FREE</div>
+              </div>
+              <div>
+                <div className={`${styles.cardName} ${styles.orbitName}`}>Frame <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
+                <div className={styles.frameHeadline}>Behaviour support evidence, from observation to hypothesis.</div>
+                <p className={styles.cardTag}>Record observations, gather structured screening, compare evidence and keep uncertainty visible.</p>
+              </div>
+              <div className={`${styles.explore} ${styles.frameExplore}`}>Explore Frame <span>→</span></div>
+            </ProductCard>
 
-          <a href="https://axis.whatbit.tech" className={`${styles.card} ${styles.axil}`} style={revealStyle(r("products"), 0.1, true)}>
-            <div className={styles.cardTop}>
-              <BarMark size={44} gradient="linear-gradient(135deg,#F7A876,#F2925C)" />
-              <div className={styles.live}>LIVE · FREE + PRO</div>
-            </div>
-            <div>
-              <div className={styles.cardName}>Axis <span className={styles.by}>by WhatBit</span></div>
-              <p className={styles.cardTag}>Voice-first task capture and daily planning. Speak what needs doing, review the tasks, then plan the day and week.</p>
-            </div>
-            <div className={styles.explore}>Open Axis <span>→</span></div>
-          </a>
+            <LiftCard externalHref="https://axis.whatbit.tech" className={`${styles.card} ${styles.axil}`} variants={cardEntranceVariants}>
+              <div className={styles.cardTop}>
+                <BarMark size={44} gradient="linear-gradient(135deg,#F7A876,#F2925C)" />
+                <div className={styles.live}>LIVE · FREE + PRO</div>
+              </div>
+              <div>
+                <div className={styles.cardName}>Axis <span className={styles.by}>by WhatBit</span></div>
+                <p className={styles.cardTag}>Voice-first task capture and daily planning. Speak what needs doing, review the tasks, then plan the day and week.</p>
+              </div>
+              <div className={styles.explore}>Open Axis <span>→</span></div>
+            </LiftCard>
 
-          <Link href="/trace" className={`${styles.card} ${styles.trace}`} style={revealStyle(r("products"), 0.1, true)}>
-            <BarMark size={44} gradient="linear-gradient(135deg,#3FD4B8,#1FBFA3)" />
-            <div>
-              <div className={styles.cardName}>Trace <span className={styles.by}>by WhatBit</span></div>
-              <p className={styles.cardTag}>Free behaviour-support budget and pacing calculator. Pro unlocks downloadable reports and document exports.</p>
-            </div>
-            <div className={styles.live}>FREE · PRO</div>
-          </Link>
+            <LiftCard href="/trace" className={`${styles.card} ${styles.trace}`} variants={cardEntranceVariants}>
+              <BarMark size={44} gradient="linear-gradient(135deg,#3FD4B8,#1FBFA3)" />
+              <div>
+                <div className={styles.cardName}>Trace <span className={styles.by}>by WhatBit</span></div>
+                <p className={styles.cardTag}>Free behaviour-support budget and pacing calculator. Pro unlocks downloadable reports and document exports.</p>
+              </div>
+              <div className={styles.live}>FREE · PRO</div>
+            </LiftCard>
 
-          <Link href="/vector" className={`${styles.card} ${styles.vector}`} style={revealStyle(r("products"), 0.15, true)}>
-            <BarMark size={44} gradient="linear-gradient(135deg,#B294F5,#8B5CF6)" />
-            <div>
-              <div className={styles.cardName}>Vector <span className={styles.by}>by WhatBit</span></div>
-              <p className={styles.cardTag}>The forms you need, without the paperwork feeling like paperwork.</p>
-            </div>
-            <div className={styles.vectorLive}>LIVE</div>
-          </Link>
+            <LiftCard href="/vector" className={`${styles.card} ${styles.vector}`} variants={cardEntranceVariants}>
+              <BarMark size={44} gradient="linear-gradient(135deg,#B294F5,#8B5CF6)" />
+              <div>
+                <div className={styles.cardName}>Vector <span className={styles.by}>by WhatBit</span></div>
+                <p className={styles.cardTag}>The forms you need, without the paperwork feeling like paperwork.</p>
+              </div>
+              <div className={styles.vectorLive}>LIVE</div>
+            </LiftCard>
 
-          <Link href="/field" className={`${styles.card} ${styles.field}`} style={revealStyle(r("products"), 0.2, true)}>
-            <div className={styles.cardTop}>
-              <BarMark size={44} gradient="linear-gradient(135deg,#22B393,#0E8F71)" />
-              <div className={styles.live}>LIVE · FREE</div>
-            </div>
-            <div>
-              <div className={styles.cardName}>Field <span className={styles.by}>by WhatBit</span></div>
-              <p className={styles.cardTag}>Evidence-based strategies, personalised in under a minute.</p>
-            </div>
-            <div className={styles.explore}>Explore Field <span>→</span></div>
-          </Link>
+            <LiftCard href="/field" className={`${styles.card} ${styles.field}`} variants={cardEntranceVariants}>
+              <div className={styles.cardTop}>
+                <BarMark size={44} gradient="linear-gradient(135deg,#22B393,#0E8F71)" />
+                <div className={styles.live}>LIVE · FREE</div>
+              </div>
+              <div>
+                <div className={styles.cardName}>Field <span className={styles.by}>by WhatBit</span></div>
+                <p className={styles.cardTag}>Evidence-based strategies, personalised in under a minute.</p>
+              </div>
+              <div className={styles.explore}>Explore Field <span>→</span></div>
+            </LiftCard>
 
-          <Link href="/arc" className={`${styles.card} ${styles.arc}`} style={revealStyle(r("products"), 0.25, true)}>
-            <BarMark size={44} gradient="linear-gradient(135deg,#7C4FD1,#5B21B6)" />
-            <div><div className={styles.cardName}>Arc <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The shape of getting there.</p></div>
-            <div className={styles.dev}>IN DEVELOPMENT</div>
-          </Link>
-        </div>
+            <ProductCard href="/arc" strong className={`${styles.card} ${styles.arc}`} variants={cardEntranceVariants}>
+              <BarMark size={44} gradient="linear-gradient(135deg,#7C4FD1,#5B21B6)" />
+              <div><div className={styles.cardName}>Arc <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The shape of getting there.</p></div>
+              <div className={styles.dev}>IN DEVELOPMENT</div>
+            </ProductCard>
+        </StaggerGroup>
       </section>
 
-      <section className={styles.aiBlueprintSpotlight} ref={setNode("aiBlueprint")}>
-        <div className={styles.aiBlueprintSpotlightInner} style={revealStyle(r("aiBlueprint"), 0)}>
+      <section className={styles.aiBlueprintSpotlight}>
+        <Reveal className={styles.aiBlueprintSpotlightInner}>
           <div className={styles.aiBlueprintSpotlightBadge}>COMING SOON · A DIFFERENT KIND OF PRODUCT</div>
           <h2 className={styles.aiBlueprintSpotlightTitle}>
             AI Blueprint <span className={styles.by}>by WhatBit</span>
@@ -261,63 +204,66 @@ export function HomePage() {
             reviews — not another dashboard, not a subscription, its own thing entirely. Five Founding Client spots
             are opening soon.
           </p>
-          <Link href="/ai-blueprint#early-access" className={styles.aiBlueprintSpotlightCta}>
+          <MagneticButton href="/ai-blueprint#early-access" className={styles.aiBlueprintSpotlightCta}>
             Get early access <span>→</span>
-          </Link>
-        </div>
+          </MagneticButton>
+        </Reveal>
       </section>
 
       <section className={styles.pricing}>
-        <div className={styles.sectionHead}>
+        <Reveal className={styles.sectionHead}>
           <div className={styles.priceEyebrow}>PRICING</div>
           <h2 className={styles.sectionTitle}>However you want to pay for it.</h2>
           <p className={styles.sectionSub} style={{ maxWidth: 520 }}>Every product stands alone. Most of them also plug into each other — use one, or stack a few.</p>
-        </div>
-        <div className={styles.priceGrid} ref={setNode("price")}>
+        </Reveal>
+        <StaggerGroup className={styles.priceGrid}>
           {[
-            { title: "Free", body: "Full access to a single tool, no card required. Good for finding out if it fits how you work.", meta: "$0", metaColor: "#7B2FF7", className: "" },
-            { title: "Subscription", body: "Ongoing access, billed monthly. Add tools as you go — each one talks to the others automatically.", meta: "PER PRODUCT / MONTH", metaColor: "#B794FF", className: styles.priceDark },
-            { title: "Own it", body: "One-time purchase per product. Yours outright, updates included.", meta: "ONE-TIME / PRODUCT", metaColor: "#E8542E", className: styles.priceOrange },
-          ].map((card, i) => (
-            <div key={card.title} style={revealStyle(r("price"), [0, 0.08, 0.16][i], true)}>
-              <div ref={(el) => { priceNodes.current[i] = el; }} className={`${styles.priceCard} ${card.className}`} style={{ transform: priceTilt[i] || defaultTilt }} onMouseMove={onPriceMove(i)} onMouseLeave={onPriceLeave(i)}>
-                <div className={styles.priceTitle}>{card.title}</div>
-                <p className={styles.priceBody}>{card.body}</p>
-                <div className={styles.priceMeta} style={{ color: card.metaColor }}>{card.meta}</div>
-              </div>
-            </div>
+            { title: "Free", body: "Full access to a single tool, no card required. Good for finding out if it fits how you work.", meta: "$0", metaColor: "#7B2FF7", className: "", glow: false },
+            { title: "Subscription", body: "Ongoing access, billed monthly. Add tools as you go — each one talks to the others automatically.", meta: "PER PRODUCT / MONTH", metaColor: "#B794FF", className: styles.priceDark, glow: true },
+            { title: "Own it", body: "One-time purchase per product. Yours outright, updates included.", meta: "ONE-TIME / PRODUCT", metaColor: "#E8542E", className: styles.priceOrange, glow: false },
+          ].map((card) => (
+            <LiftCard key={card.title} tilt={card.glow} variants={cardEntranceVariants} className={`${styles.priceCard} ${card.className}`}>
+              {card.glow ? <span className="wb-illum" aria-hidden /> : null}
+              <div className={styles.priceTitle}>{card.title}</div>
+              <p className={styles.priceBody}>{card.body}</p>
+              <div className={styles.priceMeta} style={{ color: card.metaColor }}>{card.meta}</div>
+            </LiftCard>
           ))}
-        </div>
+        </StaggerGroup>
         <div className={styles.priceNote}>Exact pricing per product coming soon.</div>
       </section>
 
-      <section className={styles.aboutWrap} ref={setNode("about")}>
-        <Link href="/about" className={styles.aboutBand} style={revealStyle(r("about"), 0)}>
-          <div>
-            <div className={styles.aboutEyebrow}>HOW WE GOT HERE</div>
-            <div className={styles.aboutTitle}>It&apos;s a longer story than most software companies have.</div>
-            <p className={styles.aboutCopy}>The engine behind every WhatBit product started somewhere unexpected. Here&apos;s the whole thing.</p>
-          </div>
-          <div className={styles.aboutCta}>Read the story <span>→</span></div>
-        </Link>
+      <section className={styles.aboutWrap}>
+        <Reveal>
+          <LiftCard href="/about" className={styles.aboutBand}>
+            <div>
+              <div className={styles.aboutEyebrow}>HOW WE GOT HERE</div>
+              <div className={styles.aboutTitle}>It&apos;s a longer story than most software companies have.</div>
+              <p className={styles.aboutCopy}>The engine behind every WhatBit product started somewhere unexpected. Here&apos;s the whole thing.</p>
+            </div>
+            <div className={styles.aboutCta}>Read the story <span>→</span></div>
+          </LiftCard>
+        </Reveal>
       </section>
 
-      <section id="philosophy" className={styles.philosophy} ref={setNode("philosophy")}>
-        <div className={styles.philLine} style={revealStyle(r("philosophy"), 0)}>We don&apos;t lead with the technology.</div>
-        <div className={`${styles.philLine} ${styles.philAccent}`} style={revealStyle(r("philosophy"), 0.15)}>We lead with the problem.</div>
-        <div className={`${styles.philLine} ${styles.philSub}`} style={revealStyle(r("philosophy"), 0.3)}>The technology should disappear into the work.</div>
+      <section id="philosophy" className={styles.philosophy}>
+        <Reveal className={styles.philLine}>We don&apos;t lead with the technology.</Reveal>
+        <Reveal delay={0.1} className={`${styles.philLine} ${styles.philAccent}`}>We lead with the problem.</Reveal>
+        <Reveal delay={0.2} className={`${styles.philLine} ${styles.philSub}`}>The technology should disappear into the work.</Reveal>
       </section>
 
-      <section className={styles.trust} ref={setNode("trust")} style={revealStyle(r("trust"), 0)}>
-        <h2 className={styles.trustTitle}>There&apos;s very little black box about how we work.</h2>
-        <p className={styles.trustCopy}>If we build something for you, you should be able to see how it works, why it works, and what it&apos;s built on. Trust is the whole product — not a line in the terms and conditions.</p>
+      <section className={styles.trust}>
+        <Reveal>
+          <h2 className={styles.trustTitle}>There&apos;s very little black box about how we work.</h2>
+          <p className={styles.trustCopy}>If we build something for you, you should be able to see how it works, why it works, and what it&apos;s built on. Trust is the whole product — not a line in the terms and conditions.</p>
+        </Reveal>
       </section>
 
-      <section id="cta" className={styles.ctaBlock} ref={setNode("cta")}>
-        <div className={styles.ctaInner} style={revealStyle(r("cta"), 0)}>
+      <section id="cta" className={styles.ctaBlock}>
+        <Reveal className={styles.ctaInner}>
           <h2 className={styles.ctaTitle}>Got a problem worth solving?</h2>
-          <Link href="/contact" className={styles.ctaBtn}>Get in touch</Link>
-        </div>
+          <MagneticButton href="/contact" className={styles.ctaBtn}>Get in touch</MagneticButton>
+        </Reveal>
         <SiteFooter />
         <div className={styles.legal}>
           WhatBit · Australia

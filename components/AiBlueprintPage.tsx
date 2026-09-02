@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { AI_BLUEPRINT_CTA_LABEL, AI_BLUEPRINT_PRICE_LABEL } from "@/lib/ai-blueprint";
+import { Reveal, StaggerGroup, StaggerItem } from "./motion/Reveal";
+import { MagneticButton } from "./motion/MagneticButton";
 import styles from "./AiBlueprintPage.module.css";
 
 const PROOF_ITEMS = [
@@ -75,35 +77,6 @@ const FAQS = [
     a: "That's fine — the assessment and report scale to what you're actually doing. Even a small AI footprint is worth mapping properly before it grows.",
   },
 ] as const;
-
-function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setShown(true);
-            observer.unobserve(entry.target);
-          }
-        }
-      },
-      { threshold: 0.12 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div ref={ref} className={`${styles.reveal} ${shown ? styles.revealShown : ""} ${className}`}>
-      {children}
-    </div>
-  );
-}
 
 function EarlyAccessForm({ id }: { id?: string }) {
   const [email, setEmail] = useState("");
@@ -209,21 +182,23 @@ export function AiBlueprintPage() {
           early access gets you in first, at the lowest price it will ever be.
         </p>
         <div className={styles.heroCtas}>
-          <a href="#early-access" className={styles.btnPrimary}>
+          <MagneticButton externalHref="#early-access" className={styles.btnPrimary}>
             {AI_BLUEPRINT_CTA_LABEL}
-          </a>
+          </MagneticButton>
           <a href="#what-you-get" className={styles.textCta}>
             See what&apos;s in the pack →
           </a>
         </div>
-        <div className={styles.proofStrip}>
+        <StaggerGroup className={styles.proofStrip}>
           {PROOF_ITEMS.map((item) => (
-            <div key={item} className={styles.proofItem}>
-              <span className={styles.check}>✓</span>
-              <span>{item}</span>
-            </div>
+            <StaggerItem key={item}>
+              <div className={styles.proofItem}>
+                <span className={styles.check}>✓</span>
+                <span>{item}</span>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
       </section>
 
       <Reveal className={styles.problem}>
@@ -268,26 +243,30 @@ export function AiBlueprintPage() {
           <div className={styles.whatGrid}>
             <div className={styles.reportCard}>
               <div className={styles.eyebrow}>THE REPORT COVERS</div>
-              <div className={styles.checklist}>
+              <StaggerGroup className={styles.checklist}>
                 {REPORT_COVERS.map((item) => (
-                  <div key={item} className={styles.checkRow}>
-                    <span className={styles.check}>✓</span>
-                    <span>{item}</span>
-                  </div>
+                  <StaggerItem key={item}>
+                    <div className={styles.checkRow}>
+                      <span className={styles.check}>✓</span>
+                      <span>{item}</span>
+                    </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
             </div>
 
             <div className={styles.toolkitCard}>
               <div className={styles.eyebrow}>THE TOOLKIT · 9 DOCUMENTS</div>
-              <div className={styles.toolkitGrid}>
+              <StaggerGroup className={styles.toolkitGrid}>
                 {TOOLKIT_DOCS.map((doc, i) => (
-                  <div key={doc} className={styles.toolkitTile}>
-                    <span className={styles.toolkitNum}>{String(i + 1).padStart(2, "0")}</span>
-                    <span className={styles.toolkitName}>{doc}</span>
-                  </div>
+                  <StaggerItem key={doc}>
+                    <div className={styles.toolkitTile}>
+                      <span className={styles.toolkitNum}>{String(i + 1).padStart(2, "0")}</span>
+                      <span className={styles.toolkitName}>{doc}</span>
+                    </div>
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGroup>
               <p className={styles.toolkitNote}>
                 Everything is ready to use — not a set of ideas you still have to turn into documents yourself.
               </p>
@@ -299,15 +278,17 @@ export function AiBlueprintPage() {
       <Reveal className={styles.how}>
         <div className={styles.howInner}>
           <h2 className={styles.sectionHeadingLight}>Three steps. About 20 minutes of your time.</h2>
-          <div className={styles.stepGrid}>
+          <StaggerGroup className={styles.stepGrid}>
             {STEPS.map((step, i) => (
-              <div key={step.title} className={styles.step}>
-                <div className={styles.stepNum}>{i + 1}</div>
-                <div className={styles.stepTitle}>{step.title}</div>
-                <p className={styles.stepBody}>{step.body}</p>
-              </div>
+              <StaggerItem key={step.title}>
+                <div className={styles.step}>
+                  <div className={styles.stepNum}>{i + 1}</div>
+                  <div className={styles.stepTitle}>{step.title}</div>
+                  <p className={styles.stepBody}>{step.body}</p>
+                </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </Reveal>
 
@@ -363,7 +344,9 @@ export function AiBlueprintPage() {
       </Reveal>
 
       <section className={styles.faq}>
-        <h2 className={styles.sectionHeading}>Questions people actually ask.</h2>
+        <Reveal>
+          <h2 className={styles.sectionHeading}>Questions people actually ask.</h2>
+        </Reveal>
         <div className={styles.faqList}>
           {FAQS.map((item, i) => {
             const open = openFaq === i;
@@ -398,9 +381,9 @@ export function AiBlueprintPage() {
             Five Founding Client spots, {AI_BLUEPRINT_PRICE_LABEL}. A clear report, a real toolkit, and an actual
             answer the next time someone asks — but only if you&apos;re on the list before it opens.
           </p>
-          <a href="#early-access" className={styles.btnPrimary}>
+          <MagneticButton externalHref="#early-access" className={styles.btnPrimary}>
             {AI_BLUEPRINT_CTA_LABEL}
-          </a>
+          </MagneticButton>
         </div>
         <div className={styles.footerRow}>
           <Link href="/" className={styles.footerLogo}>

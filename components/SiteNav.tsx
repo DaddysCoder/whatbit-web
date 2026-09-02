@@ -31,7 +31,7 @@ export function SiteNav({
           : ctaLabel;
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 1100px)");
+    const mq = window.matchMedia("(max-width: 860px)");
     const sync = () => setCompact(mq.matches);
     sync();
     mq.addEventListener("change", sync);

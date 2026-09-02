@@ -38,30 +38,6 @@ export const VODA_PRODUCT = {
   notifyHover: "#6E8CFF",
 };
 
-export type WaitlistProduct = {
-  slug: Exclude<ProductSlug, "orbit" | "axis" | "frame" | "trace" | "voda" | "vector" | "field">;
-  name: string;
-  tagline: string;
-  accent: string;
-  accentHover: string;
-  selection: string;
-  gradient: string;
-  glow: string;
-};
-
-export const WAITLIST_PRODUCTS: WaitlistProduct[] = [
-  {
-    slug: "arc",
-    name: "Arc",
-    tagline: "The shape of getting there.",
-    accent: "#7C4FD1",
-    accentHover: "#5B21B6",
-    selection: "#E9DEFA",
-    gradient: "linear-gradient(135deg,#9B7BE0,#5B21B6)",
-    glow: "rgba(91,33,182,0.3)",
-  },
-];
-
 export const PRODUCT_LINKS: { href: string; label: string }[] = [
   { href: "/pace", label: "Pace" },
   { href: "/frame", label: "Frame" },

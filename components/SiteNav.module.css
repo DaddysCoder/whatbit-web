@@ -35,21 +35,39 @@
   gap: 24px;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 860px) {
   .desktop {
     gap: 32px;
   }
 }
 
 .textLink {
+  position: relative;
   font-size: 13px;
   font-weight: 700;
   color: #0b0b0c;
+  padding-bottom: 2px;
+}
+
+.textLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -2px;
+  height: 2px;
+  border-radius: 2px;
+  background: #7b2ff7;
+  transition: right 0.25s var(--wb-ease-settle, cubic-bezier(0.16, 1, 0.3, 1));
 }
 
 .textLink:hover {
   color: #0b0b0c;
   text-decoration: none;
+}
+
+.textLink:hover::after {
+  right: 0;
 }
 
 .current {
@@ -65,17 +83,18 @@
   background: #0b0b0c;
   padding: 9px 18px;
   border-radius: 8px;
-  transition: background 0.15s, transform 0.1s;
+  transition: background 0.15s ease, transform 0.2s var(--wb-ease-spring, cubic-bezier(0.34, 1.4, 0.4, 1));
 }
 
 .cta:hover {
   background: #7b2ff7;
   color: #ffffff;
   text-decoration: none;
+  transform: translateY(-1px);
 }
 
 .cta:active {
-  transform: scale(0.96);
+  transform: translateY(0) scale(0.96);
 }
 
 .burger {
@@ -103,7 +122,7 @@
   display: none;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 860px) {
   .nav {
     padding: 0 16px;
   }
@@ -144,6 +163,18 @@
     z-index: 99;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    animation: sheetIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes sheetIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.99);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
 
   .sheet a,
@@ -153,6 +184,11 @@
     color: #0b0b0c;
     padding: 12px 4px;
     border-bottom: 1px solid #f0f0f0;
+    transition: opacity 0.15s ease;
+  }
+
+  .sheet a:active {
+    opacity: 0.5;
   }
 
   .sheet .current {
