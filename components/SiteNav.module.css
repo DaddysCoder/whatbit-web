@@ -35,7 +35,7 @@
   gap: 24px;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 860px) {
   .desktop {
     gap: 32px;
   }
@@ -122,7 +122,7 @@
   display: none;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 860px) {
   .nav {
     padding: 0 16px;
   }
