@@ -218,10 +218,58 @@ export function FieldPage() {
             <div className={`${styles.heroFrame} ${styles.gradientBorder}`}>
               <div className={styles.gradientBorderInner}>
                 <div className={styles.heroPanel}>
-                  <p className={styles.heroPanelLabel}>
-                    <strong>Personalisation review</strong>
-                    Screenshot placeholder — swap in the real Field review screen once you have one.
-                  </p>
+                  <div className={styles.heroScreens}>
+                    <div className={styles.heroPhone}>
+                      <div className={styles.heroPhoneBar}>
+                        <span className={styles.heroPhoneTime}>9:41</span>
+                        <span className={styles.heroPhoneNotch} />
+                      </div>
+                      <div className={styles.heroPhoneScreen}>
+                        <div className={styles.heroPhoneLabel}>02 · DETAIL</div>
+                        <div className={styles.heroPhoneTags}>
+                          <span className={styles.tagStrong}>Strong evidence</span>
+                          <span className={styles.tagAttention}>Attention</span>
+                        </div>
+                        <div className={styles.heroPhoneTitle}>Non-contingent reinforcement (NCR)</div>
+                        <div className={styles.evidenceCardLabel}>MECHANISM</div>
+                        <p className={styles.heroPhoneBody}>
+                          Delivers the reinforcer on a schedule, unrelated to behaviour, reducing its value
+                          through satiation.
+                        </p>
+                        <div className={styles.heroPhoneCitationBox}>
+                          <div className={styles.evidenceCardLabel}>CITATION</div>
+                          <div className={styles.heroPhoneCitation}>
+                            Tucker et al. (1998). Behavior Modification, 22(4), 529–547.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.heroPhone}>
+                      <div className={styles.heroPhoneBar}>
+                        <span className={styles.heroPhoneTime}>9:41</span>
+                        <span className={styles.heroPhoneNotch} />
+                      </div>
+                      <div className={styles.heroPhoneScreen}>
+                        <div className={styles.heroPhoneLabel}>03 · PERSONALISE</div>
+                        <div className={styles.heroPhoneTitle}>A draft to review, never final.</div>
+                        <div className={styles.heroPhoneStepLabel}>STEP 1 · CAPACITY NOTE</div>
+                        <div className={styles.heroPhoneInput}>
+                          Support worker present most shifts; can deliver reinforcement on a timer but not
+                          track duration data.
+                        </div>
+                        <div className={styles.heroPhoneStepLabel}>STEP 2 · AI-GENERATE</div>
+                        <div className={styles.heroPhoneGenerateBtn}>
+                          <span className={styles.heroPhoneAiBadge}>AI</span>
+                          Generate draft
+                        </div>
+                        <div className={styles.heroPhoneReviewLabel}>Review — always editable</div>
+                        <p className={styles.heroPhoneBody}>
+                          Deliver a preferred sensory item on a 10-minute fixed schedule, independent of
+                          behaviour. Increase the interval by 2 minutes weekly.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
