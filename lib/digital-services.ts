@@ -67,58 +67,152 @@ export const DS_FLOW = [
   },
 ] as const;
 
-export const DS_SERVICES = [
+export type DsService = {
+  title: string;
+  frontBody: string[];
+  backHeading: string;
+  backIntro?: string[];
+  items: string[];
+  backClosing?: string[];
+};
+
+export const DS_SERVICES: DsService[] = [
   {
     title: "Web & digital products",
-    body: "Websites and digital services that help people find their way, understand what matters and complete the task they came to do.",
+    frontBody: [
+      "We design and build digital things that have a job to do.",
+      "Public websites, service information, interactive tools, portals and small purpose-built applications — designed around what people need to find, understand or complete.",
+      "We work from the information and user journey outwards, rather than starting with a template and trying to squeeze the problem into it.",
+    ],
+    backHeading: "On the technical side",
+    backIntro: ["Depending on the project, we can handle the full build and operating environment, including:"],
     items: [
-      "Website design, development and user experience",
-      "Interactive tools and guided user journeys",
-      "Responsive implementation across devices",
-      "Hosting, maintenance and support options",
-      "Information-led digital service design",
-      "Technology choices matched to the project, team and long-term maintenance needs",
+      "Responsive front-end development",
+      "Application and API development",
+      "Structured content and CMS implementation",
+      "PostgreSQL databases and persistent data storage",
+      "Authentication and user access",
+      "Secure file handling and uploads",
+      "Integrations with existing systems and third-party services",
+      "Cloud deployment and infrastructure configuration",
+      "Custom domains, DNS and HTTPS",
+      "Hosting, backups and environment management",
+      "Analytics and operational monitoring",
+      "Browser, device and functional testing",
+      "Ongoing maintenance, updates and support",
+      "Technical documentation and handover",
+    ],
+    backClosing: [
+      "Technology is selected around the job, the level of risk and who needs to maintain it afterwards — not because we have one stack we force onto everything.",
     ],
   },
   {
     title: "Engagement & participation",
-    body: "Digital participation should be easy to enter, clear about its purpose and useful after responses have been collected.",
+    frontBody: [
+      "Make it easier for people to have a say — and easier for organisations to do something useful with what they hear.",
+      "We design consultation and participation experiences that make the purpose clear, reduce unnecessary friction and give people more practical ways to respond.",
+      "That can include community consultation, surveys, submissions, feedback tools, project engagement pages and purpose-built digital participation experiences.",
+    ],
+    backHeading: "Behind the interaction",
+    backIntro: [
+      "Good engagement needs more than a form embedded on a webpage. We can design the system around the full participation loop:",
+      "Invite → Participate → Understand → Decide → Report back",
+      "That can include:",
+    ],
     items: [
-      "Online consultation and feedback pathways",
-      "Accessible surveys and response systems",
-      "Interactive and structured feedback experiences",
-      "Community-facing digital tools",
-      "Stakeholder engagement workflows",
-      "Reporting-back pathways that show people what happened next",
+      "Consultation and engagement pathway design",
+      "Online surveys and structured feedback forms",
+      "Conditional questions and participant journeys",
+      "Anonymous or identified participation models",
+      "Consent and privacy considerations",
+      "Accessible and mobile-friendly participation",
+      "Structured response capture",
+      "Data export and analysis-ready outputs",
+      "Dashboards or internal review views",
+      "Categorisation and thematic organisation of responses",
+      "Moderation and submission workflows where required",
+      "Acknowledgement and follow-up pathways",
+      "Consultation findings and public reporting",
+      "Version control and approval processes",
+      "Hosting and maintenance of engagement tools",
+    ],
+    backClosing: [
+      "The goal is not simply to collect responses. It is to create a traceable path between what was asked, what people said and what happened next.",
     ],
   },
   {
     title: "Accessible information",
-    body: "Accessibility changes how information is structured, presented and acted on. We build it into the product from the beginning.",
+    frontBody: [
+      "Important information should not become harder to use because of the way it has been designed or delivered.",
+      "We help organisations turn complex information into clearer, more usable digital and accessible-format experiences.",
+      "That might mean restructuring a difficult webpage, redesigning a document, building an interactive alternative to a long PDF, or creating several ways for people to access the same information.",
+    ],
+    backHeading: "Accessibility in the actual build",
+    backIntro: [
+      "We treat accessibility as part of the content, interaction and technology — not a check at the end.",
+      "Depending on the project, that can include:",
+    ],
     items: [
-      "WCAG-informed design and testing",
-      "Plain-language structure and information-first routes",
-      "Semantic and keyboard-accessible interfaces",
-      "Accessible digital content and document production",
-      "Captions and transcripts where appropriate",
-      "Reduced-motion and low-bandwidth alternatives",
-      "Cognitive and communication accessibility considerations",
-      "Alternative ways to receive information or provide a response",
+      "Accessible information architecture and navigation",
+      "Plain-language content restructuring",
+      "Semantic HTML and meaningful heading structures",
+      "Keyboard-accessible interaction",
+      "Screen-reader considerations",
+      "Focus states and logical focus order",
+      "Colour contrast and non-colour cues",
+      "Accessible forms, labels and error states",
+      "Captions, transcripts and media alternatives",
+      "Reduced-motion considerations",
+      "Responsive text and zoom behaviour",
+      "Accessible tables and data presentation",
+      "Downloadable accessible-format resources",
+      "Alternatives to inaccessible PDFs where appropriate",
+      "Low-bandwidth and mobile access considerations",
+      "Testing against agreed WCAG requirements",
+      "Accessibility guidance for future content updates",
+    ],
+    backClosing: [
+      "We can also work with separately scoped qualified providers where specialist translation or interpreting is required.",
+      "Accessibility targets and testing requirements are agreed for the project so there is a clear standard to design and build against.",
     ],
   },
   {
     title: "Content & communication",
-    body: "Clear content is part of the system. We plan what needs to be said, where it belongs, how it will be maintained and what the reader needs to do next.",
+    frontBody: [
+      "Sometimes the technology is fine. The information inside it is the problem.",
+      "We help organisations work out what needs to be said, where it belongs and how people should move through it.",
+      "That includes large or messy websites, service information, policy-heavy content, public information, project communications and material that has accumulated across different teams and systems over time.",
+    ],
+    backHeading: "Underneath the words",
+    backIntro: ["Content work can include:"],
     items: [
+      "Content audits and inventories",
+      "Information architecture",
+      "Navigation and taxonomy design",
+      "Content modelling",
+      "Page and content hierarchy",
+      "Plain-language rewriting",
+      "Web copy and service information",
       "Communications strategy and planning",
-      "Information architecture and content models",
-      "Copywriting, editing and public-facing content",
-      "Complex information shaped into usable formats",
-      "Content workflows, ownership and governance",
-      "Reusable content patterns for changing information",
+      "Audience and user-pathway mapping",
+      "Reusable content patterns and templates",
+      "Structured content for CMS environments",
+      "Metadata and tagging structures",
+      "Content migration planning",
+      "Duplicated or outdated content identification",
+      "Ownership and approval workflows",
+      "Publishing governance",
+      "Version control",
+      "Review and expiry processes",
+      "Content standards and writing guidance",
+      "Handover documentation and team training",
+    ],
+    backClosing: [
+      "For larger information environments, we can also design the underlying structure so content is easier to search, retrieve, reuse, update and govern rather than continuing to grow as disconnected pages and documents.",
+      "The end result should not just read better on launch day. It should be easier for the organisation to keep correct six months later.",
     ],
   },
-] as const;
+];
 
 /**
  * The design HTML referenced eight operating conditions but omitted the array

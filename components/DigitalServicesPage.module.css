@@ -206,42 +206,20 @@
   margin: 0 0 44px;
 }
 
+.svcSection {
+  max-width: 1400px;
+}
+
 .svcGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 32px;
 }
 
-.svcCard {
-  border: 1px solid #f0f0f0;
-  border-radius: 14px;
-  padding: 28px 30px;
-  transform: perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  background: #ffffff;
-}
-
-.h3 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 19px;
-  margin: 0 0 10px;
-}
-
-.svcBody {
-  font-size: 15px;
-  color: #6b6b6b;
-  line-height: 1.65;
-  margin: 0 0 18px;
-}
-
-.list {
-  margin: 0;
-  padding-left: 18px;
-  font-size: 14.5px;
-  line-height: 1.9;
-  color: #0b0b0c;
+@media (min-width: 1360px) {
+  .svcGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 .note {
@@ -829,10 +807,6 @@
   .steps,
   .flowGrid {
     grid-template-columns: 1fr;
-  }
-
-  .svcCard {
-    padding: 22px 20px;
   }
 
   .workBody {

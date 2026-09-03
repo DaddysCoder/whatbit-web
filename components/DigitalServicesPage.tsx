@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   DS_A11Y_ITEMS,
   DS_CONDITIONS,
@@ -14,6 +14,7 @@ import {
 import { SiteNav } from "./SiteNav";
 import { Reveal, StaggerGroup, StaggerItem } from "./motion/Reveal";
 import { MagneticButton } from "./motion/MagneticButton";
+import { ServiceFlipCard } from "./ServiceFlipCard";
 import styles from "./DigitalServicesPage.module.css";
 
 const REVEAL_KEYS = ["Hero", "What", "How", "Work", "Env", "Engage"] as const;
@@ -28,12 +29,9 @@ function revealClass(on: boolean) {
 
 export function DigitalServicesPage() {
   const [revealed, setRevealed] = useState<Partial<Record<RevealKey, boolean>>>({});
-  const [tilt, setTilt] = useState<Record<number, string>>({});
-  const [shadow, setShadow] = useState<Record<number, string>>({});
   const [heroFailed, setHeroFailed] = useState(false);
   const [workFailed, setWorkFailed] = useState<Record<string, boolean>>({});
   const nodes = useRef<Partial<Record<RevealKey, HTMLElement | null>>>({});
-  const svcRefs = useRef<(HTMLDivElement | null)[]>([]);
   const reduced = useRef(false);
 
   const setNode = useCallback(
@@ -80,28 +78,6 @@ export function DigitalServicesPage() {
       observer.disconnect();
     };
   }, []);
-
-  const onSvcMove = (i: number) => (e: MouseEvent<HTMLDivElement>) => {
-    if (reduced.current) return;
-    const el = svcRefs.current[i];
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const rotY = ((e.clientX - r.left) / r.width - 0.5) * 7;
-    const rotX = (0.5 - (e.clientY - r.top) / r.height) * 7;
-    setTilt((s) => ({
-      ...s,
-      [i]: `perspective(900px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-5px)`,
-    }));
-    setShadow((s) => ({ ...s, [i]: "0 22px 50px rgba(11,11,12,0.10)" }));
-  };
-
-  const onSvcLeave = (i: number) => () => {
-    setTilt((s) => ({
-      ...s,
-      [i]: "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)",
-    }));
-    setShadow((s) => ({ ...s, [i]: "0 0 0 rgba(0,0,0,0)" }));
-  };
 
   return (
     <div className={styles.page}>
@@ -163,7 +139,7 @@ export function DigitalServicesPage() {
         </div>
       </section>
 
-      <section className={styles.section}>
+      <section className={`${styles.section} ${styles.svcSection}`}>
         <h2 className={`${styles.h2} ${revealClass(!!revealed.What)}`} ref={setNode("What")}>
           What we do
         </h2>
@@ -174,28 +150,9 @@ export function DigitalServicesPage() {
           </p>
         </Reveal>
         <StaggerGroup className={styles.svcGrid}>
-          {DS_SERVICES.map((svc, i) => (
+          {DS_SERVICES.map((svc) => (
             <StaggerItem key={svc.title}>
-              <div
-                ref={(el) => {
-                  svcRefs.current[i] = el;
-                }}
-                className={styles.svcCard}
-                style={{
-                  transform: tilt[i] || "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)",
-                  boxShadow: shadow[i] || "0 0 0 rgba(0,0,0,0)",
-                }}
-                onMouseMove={onSvcMove(i)}
-                onMouseLeave={onSvcLeave(i)}
-              >
-                <h3 className={styles.h3}>{svc.title}</h3>
-                <p className={styles.svcBody}>{svc.body}</p>
-                <ul className={styles.list}>
-                  {svc.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+              <ServiceFlipCard service={svc} />
             </StaggerItem>
           ))}
         </StaggerGroup>

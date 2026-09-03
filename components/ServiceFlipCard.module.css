@@ -1,0 +1,198 @@
+.card {
+  position: relative;
+  perspective: 1400px;
+  height: 560px;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-style: preserve-3d;
+}
+
+.inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: 1px solid #f0f0f0;
+  border-radius: 14px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+  background: #fafafa;
+}
+
+.front {
+  box-sizing: border-box;
+  justify-content: space-between;
+  padding: 30px 30px 26px;
+  cursor: pointer;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  margin: 0 0 12px;
+  color: #0b0b0c;
+}
+
+.frontP {
+  font-size: 15px;
+  color: #6b6b6b;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+.frontP:last-of-type {
+  margin-bottom: 0;
+}
+
+.cueBtn {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #7b2ff7;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cueBtn:hover,
+.cueBtn:focus-visible {
+  gap: 10px;
+}
+
+.cueBtn:focus-visible {
+  outline: 2px solid #7b2ff7;
+  outline-offset: 4px;
+}
+
+.cueBtn span {
+  transition: transform 0.25s ease;
+}
+
+.cueBtn:hover span,
+.cueBtn:focus-visible span {
+  transform: translateX(3px);
+}
+
+.backScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 26px 28px 16px;
+}
+
+.backScroll:focus-visible {
+  outline: 2px solid #7b2ff7;
+  outline-offset: -2px;
+}
+
+.backHeading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  margin: 0 0 10px;
+  color: #0b0b0c;
+}
+
+.backP {
+  font-size: 14px;
+  color: #6b6b6b;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+.flowLine {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #7b2ff7;
+  background: #f7f5fc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 0 0 12px;
+}
+
+.backList {
+  margin: 0 0 14px;
+  padding-left: 18px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: #0b0b0c;
+}
+
+.backList li {
+  margin-bottom: 4px;
+}
+
+.backBtn {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 14px 28px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0b0b0c;
+  border-top: 1px solid #ececec;
+  cursor: pointer;
+  flex-shrink: 0;
+  border-radius: 0 0 14px 14px;
+}
+
+.backBtn:hover,
+.backBtn:focus-visible {
+  color: #7b2ff7;
+}
+
+.backBtn:focus-visible {
+  outline: 2px solid #7b2ff7;
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inner {
+    transition: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .card {
+    height: 420px;
+  }
+
+  .front {
+    padding: 24px 22px 20px;
+  }
+
+  .backScroll {
+    padding: 22px 22px 14px;
+  }
+
+  .backBtn {
+    padding: 12px 22px;
+  }
+}
