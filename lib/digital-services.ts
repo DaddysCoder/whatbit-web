@@ -194,7 +194,7 @@ export const DS_WORK: WorkExample[] = [
   },
   {
     image: "/assets/ds/hedland-happenings.png",
-    alt: "Hedland Happenings mobile screen showing local events and an activity builder for planning the day.",
+    alt: "Hedland Happenings activity result card suggesting a swim at South Hedland Aquatic Centre, with a twist idea and an optional keepsake.",
     badge: "COMMUNITY PROJECT",
     badgeTone: "concept",
     title: "Hedland Happenings",
