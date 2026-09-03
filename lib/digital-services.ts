@@ -203,7 +203,7 @@ export const DS_WORK: WorkExample[] = [
   },
   {
     image: "/assets/ds/i-choose-how.png",
-    alt: "I Choose How prototype offering Read it, Listen to it, Show me, Help me and more-time format choices.",
+    alt: "I Choose How app screen letting someone choose a topic, such as consent or a service agreement, to explore.",
     badge: "ACCESSIBILITY PROJECT",
     badgeTone: "concept",
     title: "I Choose How",
