@@ -229,41 +229,166 @@
   line-height: 1.4;
 }
 
-.sectionHead {
-  font-family: var(--font-display);
-  font-weight: 700;
-  color: #0b0b0c;
-  margin-top: 8px;
-}
-
 .italic {
   font-style: italic;
 }
 
-.bold {
-  font-weight: 700;
-  color: #0b0b0c;
+.capGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 28px;
 }
 
-.values {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  font-size: 15px;
-  line-height: 1.6;
+.capItem {
+  padding: 18px;
+}
+
+.capLabel {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.capBody {
+  font-size: 13.5px;
+  line-height: 1.5;
   color: #2b2b2b;
 }
 
-.valueItem p {
+.mediaSlot {
+  border-radius: 16px;
+  aspect-ratio: 16 / 9;
+  background: #faf9f5;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+}
+
+.mediaSlotDark {
+  border-radius: 16px;
+  aspect-ratio: 16 / 9;
+  background: #0b0b0c;
+  border: 1px dashed rgba(255, 255, 255, 0.14);
+}
+
+.storyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.triad {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.triadHead {
+  padding: 0 4px;
+}
+
+.triadHead .cardHeading {
+  margin-bottom: 0;
+}
+
+.triadItem {
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.09);
+  padding: 26px 28px;
+}
+
+.triadItem p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #2b2b2b;
   margin: 0;
 }
 
-.valueTitle {
+.triadTitle {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 17px;
+  font-size: 16px;
   color: #0b0b0c;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.founders {
+  display: flex;
+  flex-direction: column;
+}
+
+.foundersIntro {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+
+.foundersIntro .num,
+.foundersIntro .cardEyebrow {
+  text-align: left;
+}
+
+.founderRow {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 44px;
+  align-items: center;
+  margin-bottom: 72px;
+}
+
+.founderRowReverse {
+  grid-template-columns: 1fr 1.1fr;
+  margin-bottom: 0;
+}
+
+.founderRowReverse > div:first-child {
+  order: 1;
+}
+
+.founderRowReverse > .founderPhoto {
+  order: 2;
+}
+
+.founderPhoto {
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.founderImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+  aspect-ratio: 4 / 5;
+}
+
+.founderName {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 26px;
+  color: #0b0b0c;
+  margin-bottom: 4px;
+}
+
+.founderRole {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.foundersClosing {
+  text-align: center;
+  margin-top: 64px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(20px, 2.6vw, 28px);
+  color: #0b0b0c;
 }
 
 .quoteLines {
@@ -307,15 +432,6 @@
   gap: 8px;
 }
 
-.closeBrand {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 14px;
-  letter-spacing: 0.14em;
-  color: #b794ff;
-  margin-bottom: 24px;
-}
-
 .closeTitle {
   font-family: var(--font-display);
   font-weight: 800;
@@ -323,12 +439,31 @@
   letter-spacing: -0.01em;
 }
 
-.closeMuted {
-  color: #9b9b9b;
+.closeActions {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.back {
-  margin-top: 48px;
+.ctaPrimary {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0b0b0c;
+  background: #ffffff;
+  padding: 14px 30px;
+  border-radius: 10px;
+  transition: opacity 0.15s;
+}
+
+.ctaPrimary:hover {
+  opacity: 0.88;
+  color: #0b0b0c;
+  text-decoration: none;
+}
+
+.ctaSecondary {
   font-size: 14px;
   font-weight: 700;
   color: #ffffff;
@@ -338,7 +473,7 @@
   transition: background 0.15s;
 }
 
-.back:hover {
+.ctaSecondary:hover {
   background: rgba(255, 255, 255, 0.18);
   color: #ffffff;
   text-decoration: none;
@@ -435,5 +570,34 @@
 
   .body {
     font-size: 15px;
+  }
+
+  .capGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .founderRow,
+  .founderRowReverse {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .founderRowReverse > div:first-child {
+    order: 2;
+  }
+
+  .founderRowReverse > .founderPhoto {
+    order: 1;
+  }
+
+  .founderPhoto {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .triadItem {
+    margin-left: 0 !important;
+    padding: 20px;
   }
 }

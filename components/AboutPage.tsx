@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ABOUT_CARDS, ABOUT_DOT_COLORS, type AboutBodyLine, type AboutCard } from "@/lib/about-cards";
+import { ABOUT_CARDS, ABOUT_DOT_COLORS, FOUNDERS, type AboutBodyLine, type AboutCard } from "@/lib/about-cards";
 import { Reveal } from "./motion/Reveal";
 import { Wordmark } from "./Wordmark";
 import { SiteNav } from "./SiteNav";
@@ -52,25 +52,9 @@ function StoryBody({ lines, accent }: { lines: AboutBodyLine[]; accent: string }
   return (
     <div className={styles.body}>
       {lines.map((p, idx) => {
-        if (p.variant === "lead" || p.variant === "leadStrong" || p.variant === "section") {
+        if (p.variant === "lead") {
           return (
-            <p
-              key={idx}
-              className={
-                p.variant === "section"
-                  ? styles.sectionHead
-                  : p.variant === "leadStrong"
-                    ? styles.leadStrong
-                    : styles.lead
-              }
-            >
-              {p.text}
-            </p>
-          );
-        }
-        if (p.variant === "italic") {
-          return (
-            <p key={idx} className={styles.italic} style={{ color: accent }}>
+            <p key={idx} className={styles.lead}>
               {p.text}
             </p>
           );
@@ -78,24 +62,21 @@ function StoryBody({ lines, accent }: { lines: AboutBodyLine[]; accent: string }
         if (p.variant === "italicQuote") {
           return (
             <p key={idx}>
-              Or somebody says:{" "}
               <span className={styles.italic} style={{ color: accent }}>
                 “{p.text}”
               </span>
             </p>
           );
         }
-        if (p.boldPrefix) {
-          return (
-            <p key={idx}>
-              <span className={styles.bold}>{p.boldPrefix}</span>
-              {p.text}
-            </p>
-          );
-        }
         return <p key={idx}>{p.text}</p>;
       })}
     </div>
+  );
+}
+
+function MediaSlot({ tone }: { tone: "light" | "dark" }) {
+  return (
+    <div className={tone === "dark" ? styles.mediaSlotDark : styles.mediaSlot} aria-hidden="true" />
   );
 }
 
@@ -115,46 +96,144 @@ function CardInner({ card }: { card: AboutCard }) {
           <span style={{ color: "rgba(255,255,255,0.25)" }}>{card.lines[2]}</span>
         </div>
         <div className={styles.imgSlot} aria-hidden="true" />
-        <div className={styles.quoteText} style={{ color: card.quoteColor }}>
+        <div className={styles.quoteText} style={{ color: card.accent }}>
           {card.quote}
         </div>
       </div>
     );
   }
 
-  if (card.kind === "values") {
+  if (card.kind === "grid") {
     return (
       <div
         className={styles.storyCard}
-        style={{
-          borderRadius: card.radius,
-          border: card.border ?? "none",
-        }}
+        style={{ borderRadius: card.radius, border: card.border ?? "none" }}
       >
-        <div className={styles.num} style={{ color: card.accent, opacity: 0.16 }}>
+        <div className={styles.num} style={{ color: card.accent, opacity: 0.14 }}>
           {card.number}
         </div>
         <div className={styles.cardEyebrow} style={{ color: card.accent }}>
           {card.eyebrow}
         </div>
-        <div className={styles.values}>
+        <div className={styles.cardHeading}>{card.heading}</div>
+        <div className={styles.body} style={{ marginBottom: 28 }}>
+          {card.body.map((p, idx) => (
+            <p key={idx}>{p}</p>
+          ))}
+        </div>
+        <div className={styles.capGrid}>
           {card.items.map((item) => (
-            <div key={item.title} className={styles.valueItem}>
-              <div className={styles.valueTitle}>{item.title}</div>
-              <p>
-                {item.body}
-                {item.italicSuffix ? (
-                  <>
-                    {" "}
-                    <span className={styles.italic} style={{ color: card.accent }}>
-                      {item.italicSuffix}
-                    </span>
-                  </>
-                ) : null}
-              </p>
+            <div
+              key={item.label}
+              className={styles.capItem}
+              style={{ background: item.bg, borderRadius: item.radius }}
+            >
+              <div className={styles.capLabel} style={{ color: item.accent }}>
+                {item.label}
+              </div>
+              <div className={styles.capBody}>{item.body}</div>
             </div>
           ))}
         </div>
+        <MediaSlot tone="light" />
+      </div>
+    );
+  }
+
+  if (card.kind === "triad") {
+    return (
+      <div className={styles.triad}>
+        <div className={styles.triadHead}>
+          <div className={styles.num} style={{ color: card.accent, opacity: 0.16 }}>
+            {card.number}
+          </div>
+          <div className={styles.cardEyebrow} style={{ color: card.accent }}>
+            {card.eyebrow}
+          </div>
+          <div className={styles.cardHeading} style={{ marginBottom: 0 }}>
+            {card.heading}
+          </div>
+        </div>
+        {card.items.map((item) => (
+          <div
+            key={item.title}
+            className={styles.triadItem}
+            style={{ borderRadius: item.radius, marginLeft: item.offset ?? 0 }}
+          >
+            <div className={styles.triadTitle}>{item.title}</div>
+            <p>{item.body}</p>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  if (card.kind === "founders") {
+    return (
+      <div className={styles.founders}>
+        <div className={styles.foundersIntro}>
+          <div className={styles.num} style={{ color: card.accent, opacity: 0.14 }}>
+            {card.number}
+          </div>
+          <div className={styles.cardEyebrow} style={{ color: card.accent }}>
+            {card.eyebrow}
+          </div>
+          <div className={styles.body}>
+            {card.intro.map((p, idx) => (
+              <p key={idx} className={idx === 2 ? styles.leadStrong : undefined}>
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.founderRow}>
+          <div
+            className={styles.founderPhoto}
+            style={{
+              transform: "rotate(-1.2deg)",
+              boxShadow: `0 24px 60px rgba(${FOUNDERS.pol.shadowRgb},0.16)`,
+            }}
+          >
+            <img src={FOUNDERS.pol.photo} alt={FOUNDERS.pol.name} className={styles.founderImg} />
+          </div>
+          <div>
+            <div className={styles.founderName}>{FOUNDERS.pol.name}</div>
+            <div className={styles.founderRole} style={{ color: FOUNDERS.pol.accent }}>
+              {FOUNDERS.pol.role}
+            </div>
+            <div className={styles.body}>
+              {FOUNDERS.pol.bio.map((p, idx) => (
+                <p key={idx}>{p}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className={`${styles.founderRow} ${styles.founderRowReverse}`}>
+          <div>
+            <div className={styles.founderName}>{FOUNDERS.josh.name}</div>
+            <div className={styles.founderRole} style={{ color: FOUNDERS.josh.accent }}>
+              {FOUNDERS.josh.role}
+            </div>
+            <div className={styles.body}>
+              {FOUNDERS.josh.bio.map((p, idx) => (
+                <p key={idx}>{p}</p>
+              ))}
+            </div>
+          </div>
+          <div
+            className={styles.founderPhoto}
+            style={{
+              transform: "rotate(1.2deg)",
+              boxShadow: `0 24px 60px rgba(${FOUNDERS.josh.shadowRgb},0.16)`,
+            }}
+          >
+            <img src={FOUNDERS.josh.photo} alt={FOUNDERS.josh.name} className={styles.founderImg} />
+          </div>
+        </div>
+
+        <div className={styles.foundersClosing}>{card.closing}</div>
       </div>
     );
   }
@@ -173,8 +252,14 @@ function CardInner({ card }: { card: AboutCard }) {
       <div className={styles.cardEyebrow} style={{ color: card.accent }}>
         {card.eyebrow}
       </div>
-      {card.heading ? <div className={styles.cardHeading}>{card.heading}</div> : null}
+      <div className={styles.cardHeading}>{card.heading}</div>
       <StoryBody lines={card.body} accent={card.accent} />
+      {card.link ? (
+        <Link href={card.link.href} className={styles.storyLink} style={{ color: card.accent }}>
+          {card.link.label}
+        </Link>
+      ) : null}
+      {card.media ? <MediaSlot tone={card.media} /> : null}
     </div>
   );
 }
@@ -430,8 +515,14 @@ export function AboutPage() {
         <Reveal>
           <div className={styles.eyebrow}>ABOUT WHATBIT</div>
           <h1 className={styles.title}>We find the bit that actually matters.</h1>
-          <p className={styles.lede}>WHATBIT is an Australian research, technology and problem-solving company.</p>
-          <div className={styles.line}>Human where it matters. Clever where it counts.</div>
+          <p className={styles.lede}>
+            Sometimes that means software. Sometimes it means automation, research, process redesign,
+            modelling, or simply finding a much shorter path through something that has become
+            unnecessarily difficult.
+          </p>
+          <div className={styles.line}>
+            Work out what is really happening. Find the bit that matters. Build around that.
+          </div>
         </Reveal>
         <div className={styles.scrollHint}>
           <div className={styles.scrollDot} />
@@ -492,12 +583,15 @@ export function AboutPage() {
 
       <div className={styles.close}>
         <Reveal>
-          <div className={styles.closeBrand}>WHATBIT</div>
-          <div className={styles.closeTitle}>Find the bit that matters.</div>
-          <div className={`${styles.closeTitle} ${styles.closeMuted}`}>Then build from there.</div>
-          <Link href="/" className={styles.back}>
-            ← Back home
-          </Link>
+          <div className={styles.closeTitle}>Got a problem worth pulling apart?</div>
+          <div className={styles.closeActions}>
+            <Link href="/#cta" className={styles.ctaPrimary}>
+              Work with us
+            </Link>
+            <Link href="/#products" className={styles.ctaSecondary}>
+              See what we&rsquo;re building
+            </Link>
+          </div>
         </Reveal>
       </div>
 
