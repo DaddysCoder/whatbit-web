@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   DS_A11Y_ITEMS,
   DS_CONDITIONS,
@@ -11,17 +11,22 @@ import {
   DS_SUPPORT_ITEMS,
   DS_WORK,
 } from "@/lib/digital-services";
+import { swatchAt } from "@/lib/ds-palette";
 import { SiteNav } from "./SiteNav";
 import { Reveal, StaggerGroup, StaggerItem } from "./motion/Reveal";
 import { MagneticButton } from "./motion/MagneticButton";
 import { ServiceFlipCard } from "./ServiceFlipCard";
+import { HeroVisual } from "./ds/HeroVisual";
+import { HowWeWork } from "./ds/HowWeWork";
+import { WorkShowcase } from "./ds/WorkShowcase";
+import { OperatingEnvironments } from "./ds/OperatingEnvironments";
+import { EngagementLoop } from "./ds/EngagementLoop";
+import { BandList } from "./ds/BandList";
+import { SupportLifecycle } from "./ds/SupportLifecycle";
 import styles from "./DigitalServicesPage.module.css";
 
-const REVEAL_KEYS = ["Hero", "What", "How", "Work", "Env", "Engage"] as const;
+const REVEAL_KEYS = ["Hero", "What", "How", "Work", "Engage"] as const;
 type RevealKey = (typeof REVEAL_KEYS)[number];
-
-const HERO_DESKTOP = "/assets/ds/hero-desktop.png";
-const HERO_MOBILE = "/assets/ds/hero-mobile.png";
 
 function revealClass(on: boolean) {
   return on ? `${styles.reveal} ${styles.revealOn}` : styles.reveal;
@@ -29,8 +34,6 @@ function revealClass(on: boolean) {
 
 export function DigitalServicesPage() {
   const [revealed, setRevealed] = useState<Partial<Record<RevealKey, boolean>>>({});
-  const [heroFailed, setHeroFailed] = useState(false);
-  const [workFailed, setWorkFailed] = useState<Record<string, boolean>>({});
   const nodes = useRef<Partial<Record<RevealKey, HTMLElement | null>>>({});
   const reduced = useRef(false);
 
@@ -119,22 +122,8 @@ export function DigitalServicesPage() {
               </a>
             </div>
           </Reveal>
-          <div className={styles.heroFrame}>
-            <div className={styles.chrome} aria-hidden>
-              <div className={styles.dot} />
-              <div className={styles.dot} />
-              <div className={styles.dot} />
-            </div>
-            {heroFailed ? <div className={styles.imgMissing}>Hero image pending</div> : null}
-            <picture style={heroFailed ? ({ display: "none" } as CSSProperties) : undefined}>
-              <source media="(max-width:640px)" srcSet={HERO_MOBILE} />
-              <img
-                src={HERO_DESKTOP}
-                alt="Three overlapping WhatBit product interfaces showing weekly workload, behaviour-support budget planning and a functional assessment screener."
-                className={styles.heroImg}
-                onError={() => setHeroFailed(true)}
-              />
-            </picture>
+          <div className={styles.heroObject}>
+            <HeroVisual />
           </div>
         </div>
       </section>
@@ -150,9 +139,9 @@ export function DigitalServicesPage() {
           </p>
         </Reveal>
         <StaggerGroup className={styles.svcGrid}>
-          {DS_SERVICES.map((svc) => (
+          {DS_SERVICES.map((svc, i) => (
             <StaggerItem key={svc.title}>
-              <ServiceFlipCard service={svc} />
+              <ServiceFlipCard service={svc} swatch={swatchAt(i)} />
             </StaggerItem>
           ))}
         </StaggerGroup>
@@ -178,18 +167,7 @@ export function DigitalServicesPage() {
             that can be reviewed, tested and approved before the project moves on.
           </p>
         </Reveal>
-        <StaggerGroup className={styles.steps}>
-          {DS_STEPS.map((step) => (
-            <StaggerItem key={step.n}>
-              <div className={styles.step}>
-                <div className={styles.stepN}>{step.n}</div>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepBody}>{step.body}</p>
-                <div className={styles.stepArtefact}>{step.artefact}</div>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+        <HowWeWork steps={DS_STEPS} />
       </section>
 
       <section className={styles.a11y}>
@@ -224,80 +202,28 @@ export function DigitalServicesPage() {
         </Reveal>
       </section>
 
-      <section id="work" className={styles.sectionFlush}>
-        <h2 className={`${styles.h2} ${revealClass(!!revealed.Work)}`} ref={setNode("Work")}>
-          Selected work
-        </h2>
-        <Reveal>
-          <p className={styles.sectionLede}>
-            A selection of client work, independent projects and experimental builds showing how we
-            approach different kinds of digital problems — from full product delivery to accessibility,
-            community information and public-facing experiences.
-          </p>
-        </Reveal>
-        <StaggerGroup className={styles.workGrid}>
-          {DS_WORK.map((item) => {
-            const failed = !!workFailed[item.image];
-            return (
-              <StaggerItem
-                key={item.title}
-                className={item.featured ? styles.workItemFeatured : undefined}
-              >
-                <div className={`${styles.workCard} ${item.featured ? styles.workCardFeatured : ""}`}>
-                  <div className={styles.workImgWrap}>
-                    {failed ? <div className={styles.imgMissing}>Image pending</div> : null}
-                    <img
-                      src={item.image}
-                      alt={item.alt}
-                      className={styles.workImg}
-                      style={failed ? ({ display: "none" } as CSSProperties) : undefined}
-                      onError={() => setWorkFailed((s) => ({ ...s, [item.image]: true }))}
-                    />
-                  </div>
-                  <div className={styles.workBody}>
-                    <div
-                      className={`${styles.badge} ${
-                        item.badgeTone === "concept" ? styles.badgeConcept : styles.badgeNeutral
-                      }`}
-                    >
-                      {item.badge}
-                    </div>
-                    <h3 className={styles.workTitle}>{item.title}</h3>
-                    <p className={styles.workCopy}>{item.body}</p>
-                    <div className={styles.workMeta}>{item.meta}</div>
-                  </div>
-                </div>
-              </StaggerItem>
-            );
-          })}
-        </StaggerGroup>
+      <section id="work" className={styles.workSection}>
+        <div className={styles.inner}>
+          <h2 className={`${styles.h2} ${revealClass(!!revealed.Work)}`} ref={setNode("Work")}>
+            Selected work
+          </h2>
+          <Reveal>
+            <p className={styles.sectionLede}>
+              A selection of client work, independent projects and experimental builds showing how we
+              approach different kinds of digital problems — from full product delivery to accessibility,
+              community information and public-facing experiences.
+            </p>
+          </Reveal>
+        </div>
+        <WorkShowcase items={DS_WORK} />
       </section>
 
       <section className={styles.section}>
-        <h2 className={`${styles.h2} ${revealClass(!!revealed.Env)}`} ref={setNode("Env")}>
-          Built for real operating environments
-        </h2>
-        <Reveal>
-          <p className={styles.sectionLede} style={{ marginBottom: 36 }}>
-            A digital service has to work outside the ideal demo. We plan for the conditions in which
-            people will actually use, review, update and be accountable for it.
-          </p>
-        </Reveal>
-        <StaggerGroup className={styles.conditions}>
-          {DS_CONDITIONS.map((condition) => (
-            <StaggerItem key={condition}>
-              <div className={styles.conditionRow}>
-                <div className={styles.conditionDot} aria-hidden />
-                <div className={styles.conditionText}>{condition}</div>
-              </div>
-            </StaggerItem>
-          ))}
-          <div className={styles.conditionFoot}>
-            The solution should still make sense after the launch team has moved on. That is why
-            maintainability, documentation and content ownership are design decisions, not
-            end-of-project admin.
-          </div>
-        </StaggerGroup>
+        <OperatingEnvironments
+          conditions={DS_CONDITIONS}
+          intro="A digital service has to work outside the ideal demo. We plan for the conditions in which people will actually use, review, update and be accountable for it."
+          foot="The solution should still make sense after the launch team has moved on. That is why maintainability, documentation and content ownership are design decisions, not end-of-project admin."
+        />
       </section>
 
       <section className={styles.engage}>
@@ -312,20 +238,7 @@ export function DigitalServicesPage() {
               see what happened after the decision.
             </p>
           </Reveal>
-          <StaggerGroup className={styles.flowGrid}>
-            {DS_FLOW.map((stage) => (
-              <StaggerItem key={stage.n}>
-                <div className={styles.flowCard}>
-                  <div className={styles.flowHead}>
-                    <div className={styles.flowN}>{stage.n}</div>
-                    <div className={styles.flowRule} aria-hidden />
-                  </div>
-                  <h3 className={styles.flowTitle}>{stage.title}</h3>
-                  <p className={styles.flowBody}>{stage.body}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+          <EngagementLoop stages={DS_FLOW} />
           <Reveal>
             <p className={styles.engageExtra}>
               Where useful and appropriate, the system can also support stakeholder segmentation,
@@ -357,36 +270,26 @@ export function DigitalServicesPage() {
               that the work can move with fewer surprises.
             </p>
           </Reveal>
-          <Reveal className={styles.splitList} direction="right">
-            <ul className={styles.splitItems}>
-              {DS_PUBLIC_ITEMS.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </Reveal>
+          <div className={styles.splitList}>
+            <BandList items={DS_PUBLIC_ITEMS} />
+          </div>
         </div>
       </section>
 
       <section className={styles.section}>
-        <div className={styles.split}>
-          <Reveal className={styles.splitCopy}>
-            <h2 className={styles.h2}>Support after launch</h2>
-            <p className={styles.splitLede}>
-              Launch is a handover point, not an exit. Support can be scoped to the product, platform
-              and capability of the client team.
-            </p>
-            <p className={styles.splitMuted}>
-              Support scope, responsibilities, channels and response times are agreed for each project
-              rather than hidden behind a vague promise of always-on support.
-            </p>
-          </Reveal>
-          <Reveal className={styles.splitList} direction="right">
-            <ul className={styles.splitItems}>
-              {DS_SUPPORT_ITEMS.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </Reveal>
+        <Reveal className={styles.splitCopy}>
+          <h2 className={styles.h2}>Support after launch</h2>
+          <p className={styles.splitLede}>
+            Launch is a handover point, not an exit. Support can be scoped to the product, platform and
+            capability of the client team.
+          </p>
+          <p className={styles.splitMuted}>
+            Support scope, responsibilities, channels and response times are agreed for each project
+            rather than hidden behind a vague promise of always-on support.
+          </p>
+        </Reveal>
+        <div className={styles.lifecycleWrap}>
+          <SupportLifecycle items={DS_SUPPORT_ITEMS} />
         </div>
       </section>
 

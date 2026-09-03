@@ -1,0 +1,118 @@
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  /* generous negative space: the planes only occupy the middle band */
+  padding: 6%;
+}
+
+.plane {
+  position: absolute;
+  will-change: transform;
+}
+
+.planeFloat {
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+/* Large off-white base plane */
+.planeBase {
+  top: 4%;
+  left: 2%;
+  width: 60%;
+  height: 60%;
+}
+
+.planeBase .planeFloat {
+  background: #f6f4f0;
+  border-radius: 28px;
+  box-shadow: 0 30px 60px -30px rgba(11, 11, 12, 0.14);
+}
+
+/* White plane, overlapping bottom-right */
+.planeWhite {
+  bottom: 6%;
+  right: 4%;
+  width: 46%;
+  height: 46%;
+}
+
+.planeWhite .planeFloat {
+  background: #ffffff;
+  border: 1px solid #efefef;
+  border-radius: 24px;
+  box-shadow: 0 24px 50px -26px rgba(11, 11, 12, 0.16);
+}
+
+/* Pale lilac plane, rotated, top-right */
+.planeLilac {
+  top: 0%;
+  right: 0%;
+  width: 34%;
+  height: 34%;
+  transform: rotate(-6deg);
+}
+
+.planeLilac .planeFloat {
+  background: #ede4fb;
+  border-radius: 22px;
+}
+
+/* Purple accent — the one saturated block */
+.planePurple {
+  bottom: 2%;
+  left: 6%;
+  width: 25%;
+  height: 25%;
+}
+
+.planePurple .planeFloat {
+  background: #7b2ff7;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px -18px rgba(123, 47, 247, 0.55);
+}
+
+/* Dark ink bar crossing the composition */
+.planeInk {
+  top: 42%;
+  left: 30%;
+  width: 34%;
+  height: 12%;
+  transform: rotate(5deg);
+}
+
+.planeInk .planeFloat {
+  background: #0b0b0c;
+  border-radius: 999px;
+}
+
+/* Thin purple line — the "order" gesture */
+.planeLine {
+  bottom: 16%;
+  left: 14%;
+  width: 40%;
+  height: 3px;
+}
+
+.planeLine .planeFloat {
+  background: linear-gradient(90deg, rgba(123, 47, 247, 0.7), rgba(123, 47, 247, 0));
+  border-radius: 999px;
+}
+
+@media (max-width: 720px) {
+  .stage {
+    max-width: 300px;
+    padding: 8%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plane,
+  .planeFloat {
+    will-change: auto;
+  }
+}

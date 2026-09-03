@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react"
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import type { DsService } from "@/lib/digital-services";
+import type { DsSwatch } from "@/lib/ds-palette";
 import { useReducedMotionSafe } from "./motion/useMediaQuery";
 import styles from "./ServiceFlipCard.module.css";
 
@@ -20,7 +21,7 @@ function useIsClient() {
   );
 }
 
-export function ServiceFlipCard({ service }: { service: DsService }) {
+export function ServiceFlipCard({ service, swatch }: { service: DsService; swatch: DsSwatch }) {
   const [open, setOpen] = useState(false);
   const mounted = useIsClient();
   const reduceMotion = useReducedMotionSafe();
@@ -51,11 +52,17 @@ export function ServiceFlipCard({ service }: { service: DsService }) {
 
   return (
     <div className={styles.card}>
-      <div className={styles.face}>
+      <motion.div
+        className={styles.face}
+        style={{ background: swatch.bg, color: swatch.text }}
+        whileHover={reduceMotion ? undefined : { y: -6 }}
+        whileTap={reduceMotion ? undefined : { scale: 0.985 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className={styles.frontTop}>
           <h3 className={styles.title}>{service.title}</h3>
           {service.frontBody.map((p, i) => (
-            <p key={i} className={styles.frontP}>
+            <p key={i} className={styles.frontP} style={{ color: swatch.textMuted }}>
               {p}
             </p>
           ))}
@@ -64,12 +71,13 @@ export function ServiceFlipCard({ service }: { service: DsService }) {
           type="button"
           ref={openBtnRef}
           className={styles.cueBtn}
+          style={{ color: swatch.text }}
           onClick={() => setOpen(true)}
           aria-haspopup="dialog"
         >
           See what&rsquo;s underneath <span aria-hidden>→</span>
         </button>
-      </div>
+      </motion.div>
 
       {mounted &&
         createPortal(
