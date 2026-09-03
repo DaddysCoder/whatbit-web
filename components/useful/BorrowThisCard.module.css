@@ -1,0 +1,51 @@
+.card {
+  background: #f2ecfb;
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #7b2ff7;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 13.5px;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.band {
+  margin-top: 40px;
+  padding: 32px 36px;
+  text-align: center;
+}
+
+.band .title {
+  font-size: 18px;
+}
+
+.band .description {
+  margin: 0 auto;
+  max-width: 520px;
+  font-size: 14px;
+}
+
+@media (max-width: 760px) {
+  .band {
+    padding: 24px;
+  }
+}

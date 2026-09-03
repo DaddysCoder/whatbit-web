@@ -1,0 +1,103 @@
+.card {
+  background: #f5f1e8;
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.card.strip {
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #7b2ff7;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 13px;
+  color: #4a4a4a;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.strip .description {
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.strip .form {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d9cdf5;
+  font-size: 13.5px;
+  font-family: var(--font-body);
+  background: #ffffff;
+  color: #0b0b0c;
+}
+
+.input::placeholder {
+  color: #9b9b9b;
+}
+
+.button {
+  width: 100%;
+  box-sizing: border-box;
+  background: #0b0b0c;
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 11px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    transform 0.2s var(--wb-ease-spring, cubic-bezier(0.34, 1.4, 0.4, 1)),
+    background 0.2s ease;
+}
+
+.button:hover {
+  background: #7b2ff7;
+  transform: scale(1.02);
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.note {
+  font-size: 11.5px;
+  color: #8a7ab0;
+  font-style: italic;
+  margin-top: 14px;
+}
+
+.confirmed {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #5b21b6;
+}

@@ -6,7 +6,7 @@ import { Wordmark } from "./Wordmark";
 import styles from "./SiteNav.module.css";
 
 type SiteNavProps = {
-  variant?: "home" | "inner" | "about" | "waitlist" | "digital";
+  variant?: "home" | "inner" | "about" | "waitlist" | "digital" | "useful";
   accent?: string;
   ctaHref?: string;
   ctaLabel?: string;
@@ -101,7 +101,8 @@ export function SiteNav({
   }
 
   const digitalCurrent = variant === "digital";
-  const solidNav = variant === "inner" || variant === "digital";
+  const usefulCurrent = variant === "useful";
+  const solidNav = variant === "inner" || variant === "digital" || variant === "useful";
 
   return (
     <header
@@ -136,6 +137,15 @@ export function SiteNav({
         <Link href="/rft" className={styles.textLink}>
           RFT
         </Link>
+        {usefulCurrent ? (
+          <span className={styles.current} aria-current="page">
+            Useful
+          </span>
+        ) : (
+          <Link href="/useful" className={styles.textLink}>
+            Useful
+          </Link>
+        )}
         <Link href="/elsewhere" className={styles.textLink}>
           Elsewhere
         </Link>
@@ -180,6 +190,15 @@ export function SiteNav({
           <Link href="/rft" onClick={() => setOpen(false)}>
             RFT
           </Link>
+          {usefulCurrent ? (
+            <span className={styles.current} aria-current="page">
+              Useful
+            </span>
+          ) : (
+            <Link href="/useful" onClick={() => setOpen(false)}>
+              Useful
+            </Link>
+          )}
           <Link href="/elsewhere" onClick={() => setOpen(false)}>
             Elsewhere
           </Link>
