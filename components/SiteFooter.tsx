@@ -92,6 +92,9 @@ export function SiteFooter({ variant = "full", accent = "#B794FF" }: SiteFooterP
           <Link href="/cookies" className={styles.link}>
             Cookies
           </Link>
+          <Link href="/legal/ndis-disclaimer" className={styles.link}>
+            NDIS Disclaimer
+          </Link>
         </div>
       </div>
     </div>
