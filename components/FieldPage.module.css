@@ -152,7 +152,15 @@
   }
 }
 
-/* Rotating rainbow gradient border, wraps a card/panel */
+/* Travelling-highlight border: a thin static ring with a bright spot
+   that circles the perimeter via a rotating conic-gradient angle.
+   The box itself never moves or resizes, so nothing rotates visibly. */
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .gradientBorder {
   position: relative;
   border-radius: 18px;
@@ -162,17 +170,29 @@
 .gradientBorder::before {
   content: "";
   position: absolute;
-  inset: -40%;
-  background: conic-gradient(from 0deg, #0e8f71, #5fd9ae, #2e9e8a, #0e8f71);
-  animation: spin 6s linear infinite;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--border-angle),
+    rgba(14, 143, 113, 0.32) 0deg,
+    rgba(14, 143, 113, 0.32) 250deg,
+    rgba(184, 255, 227, 0.85) 282deg,
+    #f4fffa 300deg,
+    rgba(184, 255, 227, 0.85) 318deg,
+    rgba(14, 143, 113, 0.32) 350deg,
+    rgba(14, 143, 113, 0.32) 360deg
+  );
+  filter: drop-shadow(0 0 5px rgba(107, 226, 178, 0.4));
+  animation: borderTravel 9s linear infinite;
   z-index: 0;
+  pointer-events: none;
 }
 
 .gradientBorderInner {
   position: relative;
   z-index: 1;
-  margin: 2.5px;
-  border-radius: 16px;
+  margin: 1.5px;
+  border-radius: 16.5px;
   background: #ffffff;
 }
 
@@ -182,9 +202,9 @@
   }
 }
 
-@keyframes spin {
+@keyframes borderTravel {
   to {
-    transform: rotate(360deg);
+    --border-angle: 360deg;
   }
 }
 
