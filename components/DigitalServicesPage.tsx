@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import {
   DS_A11Y_ITEMS,
   DS_CONDITIONS,
@@ -14,6 +14,7 @@ import {
 import { SiteNav } from "./SiteNav";
 import { Reveal, StaggerGroup, StaggerItem } from "./motion/Reveal";
 import { MagneticButton } from "./motion/MagneticButton";
+import { ServiceFlipCard } from "./ServiceFlipCard";
 import styles from "./DigitalServicesPage.module.css";
 
 const REVEAL_KEYS = ["Hero", "What", "How", "Work", "Env", "Engage"] as const;
@@ -28,12 +29,9 @@ function revealClass(on: boolean) {
 
 export function DigitalServicesPage() {
   const [revealed, setRevealed] = useState<Partial<Record<RevealKey, boolean>>>({});
-  const [tilt, setTilt] = useState<Record<number, string>>({});
-  const [shadow, setShadow] = useState<Record<number, string>>({});
   const [heroFailed, setHeroFailed] = useState(false);
   const [workFailed, setWorkFailed] = useState<Record<string, boolean>>({});
   const nodes = useRef<Partial<Record<RevealKey, HTMLElement | null>>>({});
-  const svcRefs = useRef<(HTMLDivElement | null)[]>([]);
   const reduced = useRef(false);
 
   const setNode = useCallback(
@@ -81,28 +79,6 @@ export function DigitalServicesPage() {
     };
   }, []);
 
-  const onSvcMove = (i: number) => (e: MouseEvent<HTMLDivElement>) => {
-    if (reduced.current) return;
-    const el = svcRefs.current[i];
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const rotY = ((e.clientX - r.left) / r.width - 0.5) * 7;
-    const rotX = (0.5 - (e.clientY - r.top) / r.height) * 7;
-    setTilt((s) => ({
-      ...s,
-      [i]: `perspective(900px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-5px)`,
-    }));
-    setShadow((s) => ({ ...s, [i]: "0 22px 50px rgba(11,11,12,0.10)" }));
-  };
-
-  const onSvcLeave = (i: number) => () => {
-    setTilt((s) => ({
-      ...s,
-      [i]: "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)",
-    }));
-    setShadow((s) => ({ ...s, [i]: "0 0 0 rgba(0,0,0,0)" }));
-  };
-
   return (
     <div className={styles.page}>
       <SiteNav variant="digital" ctaHref="/contact" ctaLabel="Start a project" />
@@ -113,22 +89,26 @@ export function DigitalServicesPage() {
           New: recent work added <span aria-hidden>→</span>
         </a>
         <div className={styles.eyebrow}>DIGITAL SERVICES BY WHATBIT — A PRIMITIVE AI BRAND</div>
-        <h1 className={styles.h1}>Digital services for information people actually need to use.</h1>
+        <h1 className={styles.h1}>Make the complicated usable.</h1>
         <div className={styles.heroRow}>
           <Reveal className={styles.heroCopy}>
             <p className={styles.lede}>
-              We design and build websites, digital tools, accessible content and engagement systems
-              for work that cannot afford to be confusing.
+              We turn complex information, services and processes into digital experiences people can
+              understand, navigate and act on.
             </p>
             <p className={styles.body}>
-              The starting point is not how a page should look. It is what people need to understand,
-              do or respond to — and what the organisation needs to keep accurate, maintainable and
-              accountable.
+              That could be a website, an interactive tool, an accessible resource, a consultation
+              pathway or a better way to organise and deliver information behind the scenes.
+            </p>
+            <p className={styles.body}>
+              We start with what people actually need to know, decide, complete or respond to — and
+              what the organisation needs to keep accurate, accessible and manageable over time.
             </p>
             <p className={styles.bodyLast}>
-              That means combining strategy, human-centred design, accessible information and working
-              digital systems. The result might be a website, an interactive tool, a consultation
-              pathway, a content system or a practical mix of them.
+              Then we bring together content, UX, accessibility and technology to make it work.
+            </p>
+            <p className={styles.lede} style={{ marginBottom: 32 }}>
+              Clear enough to use. Robust enough to run.
             </p>
             <div className={styles.ctaRow}>
               <MagneticButton href="/contact" className={styles.btnPrimary}>
@@ -159,7 +139,7 @@ export function DigitalServicesPage() {
         </div>
       </section>
 
-      <section className={styles.section}>
+      <section className={`${styles.section} ${styles.svcSection}`}>
         <h2 className={`${styles.h2} ${revealClass(!!revealed.What)}`} ref={setNode("What")}>
           What we do
         </h2>
@@ -170,28 +150,9 @@ export function DigitalServicesPage() {
           </p>
         </Reveal>
         <StaggerGroup className={styles.svcGrid}>
-          {DS_SERVICES.map((svc, i) => (
+          {DS_SERVICES.map((svc) => (
             <StaggerItem key={svc.title}>
-              <div
-                ref={(el) => {
-                  svcRefs.current[i] = el;
-                }}
-                className={styles.svcCard}
-                style={{
-                  transform: tilt[i] || "perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0)",
-                  boxShadow: shadow[i] || "0 0 0 rgba(0,0,0,0)",
-                }}
-                onMouseMove={onSvcMove(i)}
-                onMouseLeave={onSvcLeave(i)}
-              >
-                <h3 className={styles.h3}>{svc.title}</h3>
-                <p className={styles.svcBody}>{svc.body}</p>
-                <ul className={styles.list}>
-                  {svc.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </div>
+              <ServiceFlipCard service={svc} />
             </StaggerItem>
           ))}
         </StaggerGroup>

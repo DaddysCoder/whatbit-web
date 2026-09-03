@@ -283,7 +283,6 @@ export const ABOUT_CARDS: AboutCard[] = [
       },
       { text: "That is the company we are trying to build.", variant: "lead" },
     ],
-    media: { tone: "light" },
     width: "min(680px,90vw)",
     radius: 14,
     border: "1px solid rgba(0,0,0,0.08)",

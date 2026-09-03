@@ -321,6 +321,7 @@
 .founders {
   display: flex;
   flex-direction: column;
+  padding: 36px 32px;
 }
 
 .foundersIntro {
@@ -547,6 +548,10 @@
 
   .quoteCard {
     padding: 24px 18px 18px;
+  }
+
+  .founders {
+    padding: 28px 20px;
   }
 
   .num {

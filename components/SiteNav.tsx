@@ -129,11 +129,9 @@ export function SiteNav({
         <Link href="/#philosophy" className={styles.textLink}>
           Philosophy
         </Link>
-        {variant === "home" ? (
-          <Link href="/about" className={styles.textLink}>
-            About
-          </Link>
-        ) : null}
+        <Link href="/about" className={styles.textLink}>
+          About
+        </Link>
         <Link href="/rft" className={styles.textLink}>
           RFT
         </Link>
