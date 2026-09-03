@@ -113,22 +113,26 @@ export function DigitalServicesPage() {
           New: recent work added <span aria-hidden>→</span>
         </a>
         <div className={styles.eyebrow}>DIGITAL SERVICES BY WHATBIT — A PRIMITIVE AI BRAND</div>
-        <h1 className={styles.h1}>Digital services for information people actually need to use.</h1>
+        <h1 className={styles.h1}>Make the complicated usable.</h1>
         <div className={styles.heroRow}>
           <Reveal className={styles.heroCopy}>
             <p className={styles.lede}>
-              We design and build websites, digital tools, accessible content and engagement systems
-              for work that cannot afford to be confusing.
+              We turn complex information, services and processes into digital experiences people can
+              understand, navigate and act on.
             </p>
             <p className={styles.body}>
-              The starting point is not how a page should look. It is what people need to understand,
-              do or respond to — and what the organisation needs to keep accurate, maintainable and
-              accountable.
+              That could be a website, an interactive tool, an accessible resource, a consultation
+              pathway or a better way to organise and deliver information behind the scenes.
+            </p>
+            <p className={styles.body}>
+              We start with what people actually need to know, decide, complete or respond to — and
+              what the organisation needs to keep accurate, accessible and manageable over time.
             </p>
             <p className={styles.bodyLast}>
-              That means combining strategy, human-centred design, accessible information and working
-              digital systems. The result might be a website, an interactive tool, a consultation
-              pathway, a content system or a practical mix of them.
+              Then we bring together content, UX, accessibility and technology to make it work.
+            </p>
+            <p className={styles.lede} style={{ marginBottom: 32 }}>
+              Clear enough to use. Robust enough to run.
             </p>
             <div className={styles.ctaRow}>
               <MagneticButton href="/contact" className={styles.btnPrimary}>
