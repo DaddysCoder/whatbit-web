@@ -18,6 +18,12 @@ export type AboutTriadItem = {
   offset?: number;
 };
 
+export type AboutMedia = {
+  tone: "light" | "dark";
+  image?: string;
+  alt?: string;
+};
+
 export type AboutCard =
   | {
       kind: "quote";
@@ -25,6 +31,8 @@ export type AboutCard =
       accentRgb: string;
       lines: [string, string, string];
       quote: string;
+      image?: string;
+      alt?: string;
       width: string;
       radius: number;
       border: string | null;
@@ -38,6 +46,7 @@ export type AboutCard =
       heading: string;
       body: string[];
       items: AboutGridItem[];
+      media?: AboutMedia;
       width: string;
       radius: number;
       border: string | null;
@@ -61,7 +70,7 @@ export type AboutCard =
       eyebrow: string;
       heading: string;
       body: AboutBodyLine[];
-      media?: "light" | "dark";
+      media?: AboutMedia;
       link?: { label: string; href: string };
       width: string;
       radius: number;
@@ -86,6 +95,8 @@ export const ABOUT_CARDS: AboutCard[] = [
     accentRgb: "123,47,247",
     lines: ["FIND", "THE BIT", "THAT MATTERS"],
     quote: "Find the bit that matters.",
+    image: "/assets/about/quote-find-the-bit.jpg",
+    alt: "A tangle of paperwork, folders, plans and a purple ribbon around a coffee cup, glasses, a book and family photos.",
     width: "min(480px,80vw)",
     radius: 20,
     border: "1px solid rgba(255,255,255,0.06)",
@@ -132,6 +143,11 @@ export const ABOUT_CARDS: AboutCard[] = [
         body: "Prototypes, AI systems, automation and new technical approaches tested before they become real products.",
       },
     ],
+    media: {
+      tone: "light",
+      image: "/assets/about/what-we-do.jpg",
+      alt: "A monitor, tablet, phone and public information kiosk displaying interface mockups, connected by looping coloured arcs.",
+    },
     width: "min(720px,92vw)",
     radius: 22,
     border: "1px solid rgba(0,0,0,0.06)",
@@ -170,6 +186,8 @@ export const ABOUT_CARDS: AboutCard[] = [
     accentRgb: "242,146,92",
     lines: ["USEFUL", "BEATS", "IMPRESSIVE"],
     quote: "Useful beats impressive.",
+    image: "/assets/about/quote-useful-beats-impressive.jpg",
+    alt: "An open jar of pickles on a kitchen counter with a hand-written label, its lid resting beside it.",
     width: "min(520px,82vw)",
     radius: 24,
     border: null,
@@ -191,7 +209,11 @@ export const ABOUT_CARDS: AboutCard[] = [
       },
       { text: "If it works, we keep going. If it does not, we would rather learn that quickly." },
     ],
-    media: "light",
+    media: {
+      tone: "light",
+      image: "/assets/about/how-ideas-start.jpg",
+      alt: "An elaborate desktop kinetic sculpture of gears, pulleys and glass tubes, built to sharpen a pencil.",
+    },
     width: "min(680px,90vw)",
     radius: 12,
     border: "1px solid rgba(0,0,0,0.08)",
@@ -216,7 +238,11 @@ export const ABOUT_CARDS: AboutCard[] = [
       },
     ],
     link: { label: "Explore Elsewhere →", href: "/elsewhere" },
-    media: "dark",
+    media: {
+      tone: "dark",
+      image: "/assets/about/elsewhere.jpg",
+      alt: "Overlapping purple arcs glowing against a black background.",
+    },
     width: "min(700px,92vw)",
     radius: 20,
     border: "1px solid rgba(0,0,0,0.06)",
@@ -257,7 +283,7 @@ export const ABOUT_CARDS: AboutCard[] = [
       },
       { text: "That is the company we are trying to build.", variant: "lead" },
     ],
-    media: "light",
+    media: { tone: "light" },
     width: "min(680px,90vw)",
     radius: 14,
     border: "1px solid rgba(0,0,0,0.08)",

@@ -74,10 +74,16 @@ function StoryBody({ lines, accent }: { lines: AboutBodyLine[]; accent: string }
   );
 }
 
-function MediaSlot({ tone }: { tone: "light" | "dark" }) {
-  return (
-    <div className={tone === "dark" ? styles.mediaSlotDark : styles.mediaSlot} aria-hidden="true" />
-  );
+function MediaSlot({ tone, image, alt }: { tone: "light" | "dark"; image?: string; alt?: string }) {
+  const slotClass = tone === "dark" ? styles.mediaSlotDark : styles.mediaSlot;
+  if (image) {
+    return (
+      <div className={slotClass} style={{ border: "none" }}>
+        <img src={image} alt={alt ?? ""} className={styles.mediaImg} />
+      </div>
+    );
+  }
+  return <div className={slotClass} aria-hidden="true" />;
 }
 
 function CardInner({ card }: { card: AboutCard }) {
@@ -95,7 +101,13 @@ function CardInner({ card }: { card: AboutCard }) {
           <span style={{ color: "rgba(255,255,255,0.5)" }}>{card.lines[1]}</span>
           <span style={{ color: "rgba(255,255,255,0.25)" }}>{card.lines[2]}</span>
         </div>
-        <div className={styles.imgSlot} aria-hidden="true" />
+        {card.image ? (
+          <div className={styles.imgSlot}>
+            <img src={card.image} alt={card.alt ?? ""} className={styles.mediaImg} />
+          </div>
+        ) : (
+          <div className={styles.imgSlot} aria-hidden="true" />
+        )}
         <div className={styles.quoteText} style={{ color: card.accent }}>
           {card.quote}
         </div>
@@ -135,7 +147,9 @@ function CardInner({ card }: { card: AboutCard }) {
             </div>
           ))}
         </div>
-        <MediaSlot tone="light" />
+        {card.media ? (
+          <MediaSlot tone={card.media.tone} image={card.media.image} alt={card.media.alt} />
+        ) : null}
       </div>
     );
   }
@@ -259,7 +273,9 @@ function CardInner({ card }: { card: AboutCard }) {
           {card.link.label}
         </Link>
       ) : null}
-      {card.media ? <MediaSlot tone={card.media} /> : null}
+      {card.media ? (
+        <MediaSlot tone={card.media.tone} image={card.media.image} alt={card.media.alt} />
+      ) : null}
     </div>
   );
 }
