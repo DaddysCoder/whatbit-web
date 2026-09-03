@@ -1,0 +1,338 @@
+.page {
+  min-height: 100vh;
+  background: #ffffff;
+  color: #0b0b0c;
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.page :global(a) {
+  color: #7b2ff7;
+}
+
+.page :global(a:hover) {
+  color: #5b21b6;
+}
+
+.page :global(::selection) {
+  background: #ede4fb;
+}
+
+.articleHeader {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  color: #0b0b0c !important;
+}
+
+.headerNav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.backLink {
+  font-size: 13px;
+  font-weight: 700;
+  color: #7b2ff7 !important;
+}
+
+.cta {
+  display: inline-block;
+  background: #0b0b0c;
+  color: #ffffff !important;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 8px;
+  transition: transform 0.2s var(--wb-ease-spring, cubic-bezier(0.34, 1.4, 0.4, 1)), background 0.15s ease;
+}
+
+.cta:hover {
+  background: #7b2ff7 !important;
+  transform: scale(1.05);
+}
+
+/* --- Title block shared bits --- */
+.tagRow {
+  margin-bottom: 18px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  max-width: 820px;
+  text-wrap: pretty;
+}
+
+.dek {
+  font-size: 17px;
+  color: #6b6b6b;
+  line-height: 1.6;
+  margin: 0 0 8px;
+  max-width: 680px;
+}
+
+.meta {
+  font-size: 12.5px;
+  color: #9b9b9b;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+.body {
+  font-size: 17px;
+  line-height: 1.75;
+  color: #1a1a1a;
+  max-width: 680px;
+}
+
+.body p {
+  margin: 0 0 20px;
+}
+
+.body h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  margin: 36px 0 14px;
+  color: #0b0b0c;
+}
+
+.footerWrap {
+  background: #0b0b0c;
+  color: #ffffff;
+  padding: 48px 40px;
+}
+
+@media (max-width: 760px) {
+  .articleHeader {
+    padding: 0 20px;
+    height: 56px;
+  }
+
+  .footerWrap {
+    padding: 32px 20px;
+  }
+}
+
+/* ===================== Layout A — Sidebar ===================== */
+.aHeroWrap {
+  position: relative;
+  height: min(60vh, 520px);
+}
+
+.aHeroWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.aTitleBlock {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 40px 0;
+}
+
+.aBodyGrid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px 40px 100px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 64px;
+  align-items: start;
+}
+
+.aAside {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 88px;
+}
+
+@media (max-width: 760px) {
+  .aHeroWrap {
+    height: 260px;
+  }
+
+  .aTitleBlock {
+    padding: 28px 20px 0;
+  }
+
+  .aBodyGrid {
+    padding: 28px 20px 56px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .aAside {
+    position: static;
+  }
+}
+
+/* ===================== Layout B — Split header ===================== */
+.bSplitHero {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 56px 40px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.bHeroImgWrap {
+  border-radius: 24px;
+  overflow: hidden;
+  height: 380px;
+}
+
+.bHeroImgWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bHeaderCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bBodyWrap {
+  max-width: 680px;
+  margin: 56px auto 0;
+  padding: 0 40px;
+}
+
+.bCardsRow {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px 40px 100px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.bCardsRow > * {
+  flex: 1;
+}
+
+@media (max-width: 760px) {
+  .bSplitHero {
+    padding: 28px 20px 0;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .bHeroImgWrap {
+    height: 220px;
+  }
+
+  .bBodyWrap {
+    margin: 36px auto 0;
+    padding: 0 20px;
+  }
+
+  .bCardsRow {
+    padding: 32px 20px 56px;
+    flex-direction: column;
+  }
+}
+
+/* ===================== Layout C — Centered editorial ===================== */
+.cHeroOuter {
+  padding: 32px 40px 0;
+}
+
+.cHeroInset {
+  border-radius: 28px;
+  overflow: hidden;
+  height: 440px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.cHeroInset img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cTitleBlock {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 40px 40px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.cTitleBlock .title,
+.cTitleBlock .dek {
+  max-width: 640px;
+}
+
+.cBodyWrap {
+  max-width: 680px;
+  margin: 40px auto 0;
+  padding: 0 40px;
+}
+
+.cNewsletterStrip {
+  max-width: 680px;
+  margin: 32px auto 0;
+  padding: 0 100px;
+}
+
+@media (max-width: 760px) {
+  .cHeroOuter {
+    padding: 16px;
+  }
+
+  .cHeroInset {
+    height: 220px;
+  }
+
+  .cTitleBlock {
+    padding: 28px 20px 0;
+  }
+
+  .cBodyWrap {
+    margin: 32px auto 0;
+    padding: 0 20px;
+  }
+
+  .cNewsletterStrip {
+    margin: 28px auto 0;
+    padding: 0 20px 56px;
+  }
+}

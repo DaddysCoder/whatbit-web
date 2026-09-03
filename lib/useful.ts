@@ -1,0 +1,523 @@
+// Content model for "The Useful Bit" editorial section.
+// Extracted from the design-handoff prototypes and adapted into a typed content array.
+
+export type Outcome =
+  | "Save Me Time"
+  | "Help Me Choose"
+  | "Make This Clearer"
+  | "Keep It Safe"
+  | "Show Me How";
+
+export const OUTCOMES: Outcome[] = [
+  "Save Me Time",
+  "Help Me Choose",
+  "Make This Clearer",
+  "Keep It Safe",
+  "Show Me How",
+];
+
+export const OUTCOME_COLORS: Record<Outcome, { bg: string; fg: string }> = {
+  "Save Me Time": { bg: "#EEF6C9", fg: "#5C6B0A" },
+  "Help Me Choose": { bg: "#F2ECFB", fg: "#5B21B6" },
+  "Make This Clearer": { bg: "#E1F7F2", fg: "#0E8F71" },
+  "Keep It Safe": { bg: "#FBDDD3", fg: "#B3401E" },
+  "Show Me How": { bg: "#EFE7FF", fg: "#7B2FF7" },
+};
+
+export type UsefulBlock = { type: "paragraph" | "heading"; text: string };
+
+export type UsefulArticle = {
+  slug: string;
+  outcome: Outcome;
+  /** Small uppercase eyebrow label, e.g. "TINY SYSTEM, BIG RELIEF". */
+  format: string;
+  title: string;
+  dek: string;
+  readTime: string;
+  heroImage: string;
+  heroAlt: string;
+  layout: "A" | "B" | "C";
+  featured?: boolean;
+  body: UsefulBlock[];
+  borrowThis: { title: string; description: string };
+};
+
+export const USEFUL_ARTICLES: UsefulArticle[] = [
+  {
+    slug: "inbox-not-a-filing-cabinet",
+    outcome: "Save Me Time",
+    format: `TINY SYSTEM, BIG RELIEF`,
+    title: `Your inbox is not a filing cabinet`,
+    dek: `A 12-minute reset that turns email into decisions, waiting and done.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/mail-sorting-machine.jpeg",
+    heroAlt: `Illustration of an email inbox being sorted like mail into three labelled trays`,
+    layout: "A",
+    body: [
+      { type: "paragraph", text: `Most inboxes are not overflowing with email. They are overflowing with unmade decisions, sitting in a list that was never designed to hold them.` },
+      { type: "heading", text: `Three folders, not thirty` },
+      { type: "paragraph", text: `Everything that lands needs one of three answers: decide now, waiting on someone else, or done. Three folders hold that. Anything more granular than that is filing for its own sake.` },
+      { type: "heading", text: `The 12-minute version` },
+      { type: "paragraph", text: `Once a day, move every unread email into one of the three. Nothing gets answered during the sort — that is a separate pass. Separating triage from response is what makes the twelve minutes enough.` },
+      { type: "paragraph", text: `The inbox count stops mattering once it stops being where decisions live. It becomes a doorway again, not a to-do list.` },
+    ],
+    borrowThis: {
+      title: `The three-folder sort`,
+      description: `Decide Now, Waiting On, Done. Sort daily. Respond separately. No fourth folder.`,
+    },
+  },
+  {
+    slug: "reply-later-pile-is-a-workflow",
+    outcome: "Help Me Choose",
+    format: `CAN THIS BE LESS ANNOYING?`,
+    title: `The "reply later" pile is a workflow`,
+    dek: `Make the invisible follow-up system visible before buying a CRM.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/layered-desk-clutter.jpeg",
+    heroAlt: `A cluttered desk with layered sticky notes representing an informal follow-up pile`,
+    layout: "A",
+    body: [
+      { type: "paragraph", text: `Every business already has a follow-up system. It usually lives in someone's head, or in a pile of starred emails nobody else can see. That pile is doing real work — it just is not written down anywhere.` },
+      { type: "heading", text: `Write down what the pile already does` },
+      { type: "paragraph", text: `Before adding software, describe the pile out loud: what goes in, what makes something come back out, who checks it and how often. Most of the time this takes less than five minutes and reveals the actual rule already in use.` },
+      { type: "heading", text: `Then decide if it needs a tool` },
+      { type: "paragraph", text: `A written rule that one person can follow does not need a CRM. A rule that only works because one person remembers it is a risk, whether or not it gets software — and that is a different problem to fix first.` },
+    ],
+    borrowThis: {
+      title: `Name the pile`,
+      description: `Write the rule in one sentence: what goes in, what brings it back, who checks it. If you can't, that's the actual problem.`,
+    },
+  },
+  {
+    slug: "eleven-tab-tax",
+    outcome: "Save Me Time",
+    format: `FIELD NOTE`,
+    title: `The eleven-tab tax`,
+    dek: `What context switching actually feels like, and how to remove one hand-off.`,
+    readTime: "6 MIN READ",
+    heroImage: "/useful/sticky-note-monitor.jpeg",
+    heroAlt: `A computer monitor surrounded by sticky notes symbolising constant context switching`,
+    layout: "B",
+    body: [
+      { type: "paragraph", text: `It is 3:47pm. You are not doing the task. You are looking for the place where the task became a task. The email says "as discussed". The document says "final_v4". Your browser has eleven tabs open and every one of them is technically relevant.` },
+      { type: "heading", text: `The tax nobody sees on the invoice` },
+      { type: "paragraph", text: `Every switch between a tab, a tool and a conversation asks the brain to rebuild the situation from nothing: who asked, what changed, what still needs a decision. That reconstruction is the tax. It does not show up in a timesheet, but it is most of why a simple task can eat an afternoon.` },
+      { type: "heading", text: `One real workflow` },
+      { type: "paragraph", text: `Trace an ordinary task end to end and it usually crosses four or five places: a message that raised it, a document that holds the detail, a tool that tracks the status, an email that confirmed a change, and a calendar invite that never got cancelled. Each crossing is a small rebuild.` },
+      { type: "heading", text: `Remove one crossing, not the whole stack` },
+      { type: "paragraph", text: `The fix is not one app to rule them all — that just creates a bigger system for someone to maintain. The fix is putting the decision and the next action beside the work, so the most expensive crossing disappears. One removed hand-off is worth more than a full re-platform.` },
+      { type: "paragraph", text: `You do not need one app to rule them all. You need one fewer place to remember what happened.` },
+    ],
+    borrowThis: {
+      title: `The Tab Tax Map`,
+      description: `Trace one task for five minutes. Circle every crossing between a tab, tool or message. Remove the most annoying one first.`,
+    },
+  },
+  {
+    slug: "can-this-meeting-be-a-form",
+    outcome: "Save Me Time",
+    format: `SHORT VIDEO`,
+    title: `Can this meeting be a form?`,
+    dek: `Replace a status meeting with three questions and one exception rule.`,
+    readTime: "3 MIN READ",
+    heroImage: "/useful/boardroom-cables.jpeg",
+    heroAlt: `An empty boardroom table tangled with cables, standing in for a status meeting nobody needs`,
+    layout: "B",
+    body: [
+      { type: "paragraph", text: `This meeting has occurred six times. Nothing has happened in it. Three people say "no update" in turn, and the room moves on to the next status check.` },
+      { type: "heading", text: `If most people are reporting status, you may not need a meeting` },
+      { type: "paragraph", text: `A status update does not need a room, a calendar hold or everyone's attention at once. It needs to be written down somewhere everyone can see it. What actually needs a meeting is a decision — and only some updates come with one attached.` },
+      { type: "heading", text: `Three questions instead` },
+      { type: "paragraph", text: `Replace the meeting with a short form, asked on the same schedule: what changed, what is blocked, and what needs a decision. Responses roll into one view everyone can check on their own time.` },
+      { type: "heading", text: `The one exception rule` },
+      { type: "paragraph", text: `Meet only when an answer needs discussion. If nothing in the form needs a decision made out loud, cancel the meeting. The goal is not fewer humans in the room — it is fewer humans trapped in a room that has nothing left to decide.` },
+    ],
+    borrowThis: {
+      title: `The three-question check-in`,
+      description: `What changed, what is blocked, what needs a decision. One exception rule: meet only when an answer needs discussion.`,
+    },
+  },
+  {
+    slug: "tiny-system-for-people-who-hate-systems",
+    outcome: "Make This Clearer",
+    format: `TINY SYSTEM, BIG RELIEF`,
+    title: `A tiny system for people who hate systems`,
+    dek: `A capture–choose–close loop that fits on one page.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/tiny-system-podiums-1.jpeg",
+    heroAlt: `Three simple podiums labelled capture, choose and close representing a minimal productivity loop`,
+    layout: "B",
+    body: [
+      { type: "paragraph", text: `Most productivity systems fail for the same reason: they need more upkeep than the problem they were solving. The system becomes the second job. What survives a busy week is smaller than that — three steps, not thirty fields.` },
+      { type: "heading", text: `Capture` },
+      { type: "paragraph", text: `Whatever crosses your attention — a request, an idea, a thing you said you'd do — goes to one place immediately. Not sorted, not prioritised. Just out of your head and onto the page.` },
+      { type: "heading", text: `Choose` },
+      { type: "paragraph", text: `Once a day, look at what landed and choose one of three things for each: do it now, put a date on it, or let it go. The choosing is the only part that takes judgment. Everything else is mechanical.` },
+      { type: "heading", text: `Close` },
+      { type: "paragraph", text: `Mark it done and remove it from view. A list that never empties stops feeling useful — closing is what makes the loop worth repeating tomorrow.` },
+      { type: "paragraph", text: `None of this needs an app built for it. A page, a habit and the discipline to do all three every day is the whole system.` },
+    ],
+    borrowThis: {
+      title: `The one-page loop`,
+      description: `Three columns: Capture, Choose, Close. Everything moves left to right. Nothing stays in the middle column overnight.`,
+    },
+  },
+  {
+    slug: "we-asked-ai-to-plan-our-week",
+    outcome: "Show Me How",
+    format: `HUMAN ERROR`,
+    title: `We asked AI to plan our week`,
+    dek: `What it got impressively right, what it confidently invented, and what we kept.`,
+    readTime: "5 MIN READ",
+    heroImage: "/useful/planner-notebook-week.jpeg",
+    heroAlt: `A weekly planner notebook open on a desk, representing an AI-drafted schedule`,
+    layout: "B",
+    body: [
+      { type: "paragraph", text: `We handed a week's worth of tasks, meetings and vague intentions to an AI assistant and asked it to build the schedule. Not as a demo — as the actual plan we would try to follow.` },
+      { type: "heading", text: `What it got right` },
+      { type: "paragraph", text: `It grouped similar tasks instead of scattering them, left buffer time around meetings that tend to run over, and put the hardest thinking task in the morning without being told to. That is a genuinely useful default most people do not set for themselves.` },
+      { type: "heading", text: `What it confidently invented` },
+      { type: "paragraph", text: `It assumed a client call would take an hour because most calls do — this one was fifteen minutes. It scheduled deep work over a recurring commitment that was not in the list it was given, because it filled a gap with something plausible rather than leaving the gap alone.` },
+      { type: "heading", text: `What we kept` },
+      { type: "paragraph", text: `The grouping and the morning-first rule stayed. Every time estimate got a second look, and anything invented got deleted rather than corrected. The plan was a good draft, not a finished schedule — and treating it as a draft is what made it useful.` },
+    ],
+    borrowThis: {
+      title: `The draft-not-schedule check`,
+      description: `Before you follow an AI-built plan: check every time estimate, and delete anything it added that you did not give it.`,
+    },
+  },
+  {
+    slug: "before-you-paste-that-client-file-into-ai",
+    outcome: "Keep It Safe",
+    format: `BORROW THIS`,
+    title: `Before you paste that client file into AI`,
+    dek: `A 30-second stop/check/strip decision card.`,
+    readTime: "3 MIN READ",
+    heroImage: "/useful/client-folder-scanner.jpeg",
+    heroAlt: `A client folder being scanned, representing the moment before sensitive data is pasted into an AI tool`,
+    layout: "B",
+    body: [
+      { type: "paragraph", text: `Pasting a client file into an AI tool feels like the fast version of a task you were already doing. Sometimes it is. Sometimes it is also the moment a name, an address or a health detail leaves your control with no record of where it went.` },
+      { type: "heading", text: `Stop` },
+      { type: "paragraph", text: `Before pasting, ask whether the tool is approved for this kind of data. Not "is it good" — approved, meaning someone has already checked its data handling and terms.` },
+      { type: "heading", text: `Check` },
+      { type: "paragraph", text: `Does the file actually need to be whole? Most tasks need a paragraph, a table or a summary — not the entire record with every field attached.` },
+      { type: "heading", text: `Strip` },
+      { type: "paragraph", text: `Remove names, contact details and anything identifying before it goes in, and replace them with placeholders if the structure still matters. What comes back can be matched to the real record afterwards.` },
+      { type: "paragraph", text: `None of this is about avoiding AI. It is about making sure the convenient version and the responsible version are the same version.` },
+    ],
+    borrowThis: {
+      title: `The stop/check/strip card`,
+      description: `Stop: is the tool approved? Check: does it need the whole file? Strip: remove identifying details first.`,
+    },
+  },
+  {
+    slug: "your-business-is-not-disorganised",
+    outcome: "Make This Clearer",
+    format: `CAN THIS BE LESS ANNOYING?`,
+    title: `Your business is not disorganised`,
+    dek: `It has nowhere obvious for decisions to live.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/organized-trays-flatlay.jpeg",
+    heroAlt: `A flat-lay of neatly organised trays, showing tidy storage without a clear home for decisions`,
+    layout: "C",
+    body: [
+      { type: "paragraph", text: `"We're just disorganised" is the explanation people reach for when the real issue is more specific: a decision got made in a conversation, and there was never a place for it to be written down where the next person would look.` },
+      { type: "heading", text: `Every piece has a place — the decisions don't` },
+      { type: "paragraph", text: `Look closely at a business that feels chaotic and the pieces are usually well kept: tidy files, labelled folders, careful records. What is missing is not order. It is a single obvious home for "here's what we decided and why."` },
+      { type: "heading", text: `Why this looks like disorganisation` },
+      { type: "paragraph", text: `Without that home, the same question gets re-decided in different places by different people, and each version looks like a mess from the outside. The fix is not a bigger system. It is one place, checked by habit, where decisions get written the moment they are made.` },
+      { type: "paragraph", text: `Buy the organising tools once you know what they need to hold. Most businesses do not know yet — they just know it should not be a group chat scroll.` },
+    ],
+    borrowThis: {
+      title: `The decision-home check`,
+      description: `Next time a decision gets made out loud, ask: where does this get written down, and would the next person know to look there?`,
+    },
+  },
+  {
+    slug: "the-19-dollar-tool-that-costs-400-in-avoidance",
+    outcome: "Help Me Choose",
+    format: `WRONG TOOL, RIGHT PROBLEM`,
+    title: `The $19 tool that costs $400 in avoidance`,
+    dek: `A humane way to calculate subscription value — including setup dread.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/19-dollar-tool-receipt.jpeg",
+    heroAlt: `A receipt for a $19 subscription tool sitting unused on a desk`,
+    layout: "C",
+    body: [
+      { type: "paragraph", text: `A tool priced at $19 a month looks cheap on the invoice. It is not cheap if it has been sitting unopened for three months because setting it up properly felt like a whole afternoon nobody had.` },
+      { type: "heading", text: `The real cost has four parts` },
+      { type: "paragraph", text: `The subscription price. The time to learn it well enough to trust it. The migration of whatever it replaces. And the maintenance nobody budgeted for — updates, permissions, the odd broken integration. Add those up before comparing tools on sticker price alone.` },
+      { type: "heading", text: `Setup dread is a real cost` },
+      { type: "paragraph", text: `If a tool has been avoided for weeks because starting it feels effortful, that avoidance has a price too — the $19 is still being paid every month for nothing. Either the setup gets scheduled properly, or the tool gets cancelled. Sitting unused is the expensive option.` },
+      { type: "paragraph", text: `A $19 tool used well beats a $9 tool left in a drawer, every time.` },
+    ],
+    borrowThis: {
+      title: `The real-cost tally`,
+      description: `Subscription price + setup time + migration + upkeep. Compare that total, not the sticker price.`,
+    },
+  },
+  {
+    slug: "stop-collecting-apps",
+    outcome: "Help Me Choose",
+    format: `WRONG TOOL, RIGHT PROBLEM`,
+    title: `Stop collecting apps`,
+    dek: `A tool-cancellation ritual with a duplicate-job map.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/app-grave-hammer.jpeg",
+    heroAlt: `A hammer beside a pile of app icons, representing a tool-cancellation ritual`,
+    layout: "C",
+    body: [
+      { type: "paragraph", text: `Most small teams do not have a tool problem. They have a tool-accumulation problem. Each subscription solved something real at the time — the pile just never gets revisited once the urgency passes.` },
+      { type: "heading", text: `Map the duplicate jobs` },
+      { type: "paragraph", text: `List every tool the business pays for, and next to each one write the single job it does. When two tools do the same job, that is not redundancy for safety — it is a decision nobody made, still costing money every month.` },
+      { type: "heading", text: `The cancellation ritual` },
+      { type: "paragraph", text: `Once a quarter, ask of every tool: if this disappeared tomorrow, who would notice, and what would they do instead? If the honest answer is "use the other tool that already does this", cancel it. If nobody can answer, that is its own answer.` },
+      { type: "paragraph", text: `Cancelling a tool is not admitting a mistake. It is closing a decision that was left open.` },
+    ],
+    borrowThis: {
+      title: `The duplicate-job map`,
+      description: `Tool, job, who would notice if it vanished. Any two rows doing the same job get a decision, not a shrug.`,
+    },
+  },
+  {
+    slug: "your-mum-should-not-need-a-manual",
+    outcome: "Make This Clearer",
+    format: `BEHIND THE BIT`,
+    title: `No, your mum should not need a manual`,
+    dek: `What consumer apps can learn from explaining nothing.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/mum-manual-dig-1.jpeg",
+    heroAlt: `Someone digging through a thick instruction manual to use a simple consumer app`,
+    layout: "B",
+    body: [
+      { type: "paragraph", text: `The best consumer apps are used by people who never read a help page. Not because those people are technical, but because the app never needed them to be. Every choice was already made, and the one choice left was obvious.` },
+      { type: "paragraph", text: `Most business software takes the opposite approach: options for everything, so nothing has to be decided upfront by whoever built it. The cost lands on the person using it, and quietly on whoever has to explain it to them.` },
+      { type: "paragraph", text: `A tool that needs a manual before someone's mum can use it has not been finished. It has been handed over early, with the hard decisions still unmade.` },
+    ],
+    borrowThis: {
+      title: `The three-question clarity test`,
+      description: `Could a first-time user finish the task without asking anyone? Is the next step ever unclear? Would removing an option make the screen better, not worse?`,
+    },
+  },
+  {
+    slug: "a-chatbot-is-not-customer-service",
+    outcome: "Keep It Safe",
+    format: `WRONG TOOL, RIGHT PROBLEM`,
+    title: `A chatbot is not customer service`,
+    dek: `Where automation helps and where a person must stay reachable.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/reception-machine.jpeg",
+    heroAlt: `A mechanical reception desk representing a chatbot standing in for customer service`,
+    layout: "C",
+    body: [
+      { type: "paragraph", text: `A chatbot is a very good reception desk. It can take a name, confirm a booking, answer the question you have already answered five hundred times. What it is not is the person who notices you are upset before you have said why.` },
+      { type: "heading", text: `Where it earns its place` },
+      { type: "paragraph", text: `Repeated, well-defined questions with a right answer: opening hours, order status, how to reset a password. These do not need a human's judgment — they need speed and availability, which is exactly what a bot is good at.` },
+      { type: "heading", text: `Where it should hand off, not answer` },
+      { type: "paragraph", text: `Anything with a complaint attached, anything ambiguous, anything the person has already tried to solve themselves — that is the moment automation should recognise its limit and put a person in front of the customer, quickly and without a form to fill in first.` },
+      { type: "paragraph", text: `The failure is not having a chatbot. The failure is not building the exit.` },
+    ],
+    borrowThis: {
+      title: `The hand-off rule`,
+      description: `Second unanswered question, or any mention of a complaint, routes straight to a person — no extra form.`,
+    },
+  },
+  {
+    slug: "three-documents-hiding-inside-one-voice-note",
+    outcome: "Save Me Time",
+    format: `BORROW THIS`,
+    title: `The three documents hiding inside one voice note`,
+    dek: `Turn a ramble into a task list, customer reply and decision record.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/voice-note-documents.jpeg",
+    heroAlt: `A phone recording a voice note beside three separate document types it contains`,
+    layout: "B",
+    body: [
+      { type: "paragraph", text: `A voice note recorded on the drive home is rarely one thing. It is a task list, a reply to a customer, and a record of a decision — all tangled together in one recording, in whatever order they occurred to you.` },
+      { type: "heading", text: `Separate before you act` },
+      { type: "paragraph", text: `Most people either transcribe the whole thing as one block, or act on it from memory a day later and lose half of it. Both skip the step that actually saves time: pulling the three documents apart before doing anything with any of them.` },
+      { type: "heading", text: `The task list` },
+      { type: "paragraph", text: `Anything you said you would do, however casually, becomes a line on a list with an owner and a date — even if the owner is you.` },
+      { type: "heading", text: `The customer reply` },
+      { type: "paragraph", text: `Anything meant for someone else gets written as a message, in a tone they would actually receive well — not the shorthand you used while thinking out loud.` },
+      { type: "heading", text: `The decision record` },
+      { type: "paragraph", text: `Anything you decided — a price, a date, a way forward — gets written down once, plainly, so it does not need to be re-decided from memory next month.` },
+      { type: "paragraph", text: `An AI transcript can do the separating quickly. It cannot decide what belongs in each pile — that judgment call is still yours.` },
+    ],
+    borrowThis: {
+      title: `The three-pile prompt`,
+      description: `Split this transcript into: tasks (with owner and date), a customer-ready reply, and a plain decision record.`,
+    },
+  },
+  {
+    slug: "best-automation-nobody-notices",
+    outcome: "Show Me How",
+    format: `BEHIND THE BIT`,
+    title: `The best automation is the one nobody notices`,
+    dek: `Five signals that a workflow is actually helping.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/hidden-mechanism-wall.jpeg",
+    heroAlt: `A hidden mechanism built into a plain wall, representing automation nobody notices`,
+    layout: "C",
+    body: [
+      { type: "paragraph", text: `Good automation looks like nothing. The work still gets done, the same way it always did, except one step quietly stopped needing a person. Bad automation announces itself — a new dashboard to check, a new tool to learn, a new failure mode to explain.` },
+      { type: "heading", text: `Five signals it is working` },
+      { type: "paragraph", text: `Nobody asks how it works anymore — they only ask when it breaks. It has not added a step for anyone downstream. It fails obviously, not silently, when it fails. The person who used to do the task manually would notice if you switched it off. And it is still there, unmodified, six months later — nobody has needed to build a workaround around it.` },
+      { type: "heading", text: `The tell that it is not working` },
+      { type: "paragraph", text: `If a workflow needs its own onboarding document, a champion to keep it running, or a weekly check to make sure it actually fired — it has become a second job wearing the costume of automation.` },
+      { type: "paragraph", text: `The goal was never more automation. It was fewer things a person has to remember to do.` },
+    ],
+    borrowThis: {
+      title: `The five-signal check`,
+      description: `No new dashboard. No new step for anyone else. Fails loudly. Would be missed if switched off. Unchanged after six months.`,
+    },
+  },
+  {
+    slug: "what-ai-should-never-decide-for-you",
+    outcome: "Keep It Safe",
+    format: `BEHIND THE BIT`,
+    title: `What AI should never decide for you`,
+    dek: `A plain-language boundary for small teams working with real people.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/decision-wheel.jpeg",
+    heroAlt: `A decision wheel representing the boundary of what AI should never decide alone`,
+    layout: "C",
+    body: [
+      { type: "paragraph", text: `It can feel arbitrary to leave AI out of a decision it could technically handle. It is not arbitrary — it is about who bears the consequence, and whether a person can be held accountable for it.` },
+      { type: "heading", text: `Never let AI decide` },
+      { type: "paragraph", text: `Whether someone gets access, gets paid, gets a job, or gets refused a service. Anything involving a vulnerable person's safety or wellbeing. Anything with a legal or compliance consequence attached to being wrong.` },
+      { type: "heading", text: `Fine for AI to draft, never to finalise` },
+      { type: "paragraph", text: `A first pass at a policy, a reply, a summary or a plan. It can generate the draft. A person reads it, is accountable for it, and decides whether it goes out as written.` },
+      { type: "heading", text: `The plain test` },
+      { type: "paragraph", text: `If someone asked "who decided this, and can they explain why?" — the answer needs to be a name, not a model. If it can't be, the decision was made too far upstream of a person.` },
+    ],
+    borrowThis: {
+      title: `The "who decided" test`,
+      description: `Before automating a decision, ask who could explain it to the person affected. If the answer is nobody, keep a person in the loop.`,
+    },
+  },
+  {
+    slug: "the-form-was-the-problem",
+    outcome: "Make This Clearer",
+    format: `CAN THIS BE LESS ANNOYING?`,
+    title: `The form was the problem`,
+    dek: `Before/after teardown of a form that asks the organisation's questions, not the user's.`,
+    readTime: "5 MIN READ",
+    heroImage: "/useful/overloaded-door.jpeg",
+    heroAlt: `A door covered in extra locks and latches, representing an overloaded intake form`,
+    layout: "C",
+    body: [
+      { type: "paragraph", text: `A form with thirty fields, six sections and a reference number field at the top is usually not protecting anyone. It is answering the organisation's questions — which department this routes to, which system it feeds, which audit it satisfies — before it answers the person's.` },
+      { type: "heading", text: `Before: every lock on the door` },
+      { type: "paragraph", text: `Every past complaint, edge case and internal handover added one more field or one more step. None of them was wrong to ask, individually. Together they built a door nobody could open without help.` },
+      { type: "heading", text: `After: one door, one handle` },
+      { type: "paragraph", text: `Ask only what changes what happens next. Everything the organisation needs but the user doesn't — routing codes, internal categories — gets filled in after submission, not by the person filling out the form.` },
+      { type: "paragraph", text: `A form should ask what the user already knows the answer to. Anything else is the organisation's homework, handed to the wrong person.` },
+    ],
+    borrowThis: {
+      title: `The "whose question" audit`,
+      description: `For every field: does the user know the answer without checking, and does it change what happens next? If not, cut it or move it downstream.`,
+    },
+  },
+  {
+    slug: "handover-should-survive-a-sick-day",
+    outcome: "Save Me Time",
+    format: `TINY SYSTEM, BIG RELIEF`,
+    title: `Your handover should survive a sick day`,
+    dek: `A one-screen handover pattern for small teams.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/office-relay-race.jpeg",
+    heroAlt: `An office relay race baton hand-off, representing a handover that should survive a sick day`,
+    layout: "C",
+    body: [
+      { type: "paragraph", text: `The real test of a handover is not the document — it is whether someone who was not there yesterday can pick up the work today without a phone call. Most handovers fail that test because they were written for the person leaving, not the person arriving.` },
+      { type: "heading", text: `One screen, not one document` },
+      { type: "paragraph", text: `A handover that needs scrolling gets skimmed. Everything that matters for the next 24 hours should fit on one screen: what is in progress, what is waiting on someone else, and what cannot wait until you are back.` },
+      { type: "heading", text: `Write it as you go, not at the door` },
+      { type: "paragraph", text: `A handover written in the last five minutes before leaving is a memory dump, not a briefing. Update the same screen through the week, so leaving unexpectedly costs nothing extra.` },
+      { type: "heading", text: `The test that matters` },
+      { type: "paragraph", text: `Could someone who was out sick today read this screen and know what to do next, without needing to call you? If not, the handover is not finished — it is just written down.` },
+    ],
+    borrowThis: {
+      title: `The one-screen handover`,
+      description: `In progress, waiting on, cannot wait. Three sections, kept current all week, not written at the door.`,
+    },
+  },
+  {
+    slug: "software-should-feel-like-a-shortcut",
+    outcome: "Help Me Choose",
+    format: `BEHIND THE BIT`,
+    title: `Software should feel like a shortcut`,
+    dek: `A WHATBIT point of view on products that become a second job.`,
+    readTime: "3 MIN READ",
+    heroImage: "/useful/clutter-tunnel-shortcut.jpeg",
+    heroAlt: `A cluttered tunnel with a clear shortcut cut through it, representing software that should feel simpler`,
+    layout: "C",
+    body: [
+      { type: "paragraph", text: `A shortcut gets you somewhere faster, with less to carry. A lot of business software does the opposite: it promises speed, then hands back a list of settings to configure, a workflow to maintain and a person whose job becomes keeping the tool running.` },
+      { type: "heading", text: `The test we use` },
+      { type: "paragraph", text: `Does using this tool for a month leave less to think about, or more? A genuine shortcut removes a decision permanently. A second job just moves the decision into a settings panel and asks you to keep making it.` },
+      { type: "heading", text: `Why this shapes what we build` },
+      { type: "paragraph", text: `It means fewer configuration screens, fewer places a workflow can silently break, and a bias toward one sensible default over ten customisable ones. Software that needs a manual to operate has skipped the hard part — deciding what to leave out.` },
+    ],
+    borrowThis: {
+      title: `The one-month test`,
+      description: `A month in, does this tool leave less to think about? If it added upkeep instead, it is a job, not a shortcut.`,
+    },
+  },
+  {
+    slug: "the-polite-lie-of-quick-setup",
+    outcome: "Help Me Choose",
+    format: `WRONG TOOL, RIGHT PROBLEM`,
+    title: `The polite lie of "quick setup"`,
+    dek: `Include migration, learning, cleanup and maintenance in every tool decision.`,
+    readTime: "4 MIN READ",
+    heroImage: "/useful/quick-setup-button.jpeg",
+    heroAlt: `A large quick-setup button, representing the hidden cost behind a one-click install`,
+    layout: "C",
+    body: [
+      { type: "paragraph", text: `"Quick setup" usually means one button was easy to press. It rarely means the tool is now actually working for your business. Behind that button is everything nobody put on the sales page: the data that needs moving, the habits that need relearning, the exceptions that need handling.` },
+      { type: "heading", text: `What the button skips` },
+      { type: "paragraph", text: `Migration — getting what you already have into the new place. Learning — the time before anyone uses it without thinking. Cleanup — fixing the mess the migration made. Maintenance — the ongoing cost of keeping it running. None of these show up in the five-minute demo.` },
+      { type: "heading", text: `Price the whole thing, not the button` },
+      { type: "paragraph", text: `Before adopting a tool, estimate all four costs, not just the subscription. A tool that takes a real week to bed in is not a bad tool — it is a tool being honestly assessed, instead of judged on how fast the first screen loaded.` },
+      { type: "paragraph", text: `The setup that matters is not the one behind the button. It is the one that happens after, whether anyone planned for it or not.` },
+    ],
+    borrowThis: {
+      title: `The four-cost estimate`,
+      description: `Migration, learning, cleanup, maintenance. Estimate all four before comparing tools on price alone.`,
+    },
+  },
+  {
+    slug: "you-do-not-need-a-crm-yet",
+    outcome: "Help Me Choose",
+    format: `CAROUSEL · CAN THIS BE LESS ANNOYING?`,
+    title: `You do not need a CRM. Yet.`,
+    dek: `The three signals that mean a shared list is still enough — and the fourth that means it is not.`,
+    readTime: "5 MIN READ",
+    heroImage: "/useful/crm-control-room.jpeg",
+    heroAlt: `A control room of dashboards representing a CRM bought before it was needed`,
+    layout: "A",
+    featured: true,
+    body: [
+      { type: "paragraph", text: `Most small teams reach for a CRM the moment a second person needs to know what is going on with a customer. That is usually too early. A shared list — a spreadsheet, a shared inbox, a simple board — does the job for longer than most people expect.` },
+      { type: "heading", text: `Three signs the list is still enough` },
+      { type: "paragraph", text: `You can still name every open deal without checking. Follow-ups happen because someone remembers, not because a system reminds them. And when someone is away, the handover takes one conversation, not a training session.` },
+      { type: "heading", text: `The fourth sign — the one that changes things` },
+      { type: "paragraph", text: `The moment two people are relying on the same follow-up and neither knows the other is on it, the list has stopped being enough. That is not a volume problem. It is a visibility problem, and it is the actual job a CRM does.` },
+      { type: "paragraph", text: `Buying software to fix a visibility problem before you have one just adds a second job: maintaining the software.` },
+    ],
+    borrowThis: {
+      title: `The visibility check`,
+      description: `Once a month, ask: is there a customer only one person could speak to right now? If yes twice in a row, it is time to look at a CRM.`,
+    },
+  },
+];
+
+export function getUsefulArticle(slug: string): UsefulArticle | undefined {
+  return USEFUL_ARTICLES.find((a) => a.slug === slug);
+}
+
+export const FEATURED_ARTICLE = USEFUL_ARTICLES.find((a) => a.featured)!;
+export const GRID_ARTICLES = USEFUL_ARTICLES.filter((a) => !a.featured);
