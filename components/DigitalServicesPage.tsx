@@ -30,8 +30,8 @@ export function DigitalServicesPage() {
   const [revealed, setRevealed] = useState<Partial<Record<RevealKey, boolean>>>({});
   const [tilt, setTilt] = useState<Record<number, string>>({});
   const [shadow, setShadow] = useState<Record<number, string>>({});
-  const [heroReady, setHeroReady] = useState(false);
-  const [workReady, setWorkReady] = useState<Record<string, boolean>>({});
+  const [heroFailed, setHeroFailed] = useState(false);
+  const [workFailed, setWorkFailed] = useState<Record<string, boolean>>({});
   const nodes = useRef<Partial<Record<RevealKey, HTMLElement | null>>>({});
   const svcRefs = useRef<(HTMLDivElement | null)[]>([]);
   const reduced = useRef(false);
@@ -108,6 +108,10 @@ export function DigitalServicesPage() {
       <SiteNav variant="digital" ctaHref="/contact" ctaLabel="Start a project" />
 
       <section className={`${styles.hero} ${revealClass(!!revealed.Hero)}`} ref={setNode("Hero")}>
+        <a href="#work" className={styles.heroPill}>
+          <span className={styles.heroPillDot} />
+          New: recent work added <span aria-hidden>→</span>
+        </a>
         <div className={styles.eyebrow}>DIGITAL SERVICES BY WHATBIT — A PRIMITIVE AI BRAND</div>
         <h1 className={styles.h1}>Digital services for information people actually need to use.</h1>
         <div className={styles.heroRow}>
@@ -141,17 +145,14 @@ export function DigitalServicesPage() {
               <div className={styles.dot} />
               <div className={styles.dot} />
             </div>
-            {heroReady ? null : (
-              <div className={styles.imgMissing}>Hero image pending</div>
-            )}
-            <picture style={heroReady ? undefined : ({ display: "none" } as CSSProperties)}>
+            {heroFailed ? <div className={styles.imgMissing}>Hero image pending</div> : null}
+            <picture style={heroFailed ? ({ display: "none" } as CSSProperties) : undefined}>
               <source media="(max-width:640px)" srcSet={HERO_MOBILE} />
               <img
                 src={HERO_DESKTOP}
                 alt="Three overlapping WhatBit product interfaces showing weekly workload, behaviour-support budget planning and a functional assessment screener."
                 className={styles.heroImg}
-                onLoad={() => setHeroReady(true)}
-                onError={() => setHeroReady(false)}
+                onError={() => setHeroFailed(true)}
               />
             </picture>
           </div>
@@ -275,7 +276,7 @@ export function DigitalServicesPage() {
         </Reveal>
         <StaggerGroup className={styles.workGrid}>
           {DS_WORK.map((item) => {
-            const ready = !!workReady[item.image];
+            const failed = !!workFailed[item.image];
             return (
               <StaggerItem
                 key={item.title}
@@ -283,14 +284,13 @@ export function DigitalServicesPage() {
               >
                 <div className={`${styles.workCard} ${item.featured ? styles.workCardFeatured : ""}`}>
                   <div className={styles.workImgWrap}>
-                    {ready ? null : <div className={styles.imgMissing}>Image pending</div>}
+                    {failed ? <div className={styles.imgMissing}>Image pending</div> : null}
                     <img
                       src={item.image}
                       alt={item.alt}
                       className={styles.workImg}
-                      style={ready ? undefined : ({ display: "none" } as CSSProperties)}
-                      onLoad={() => setWorkReady((s) => ({ ...s, [item.image]: true }))}
-                      onError={() => setWorkReady((s) => ({ ...s, [item.image]: false }))}
+                      style={failed ? ({ display: "none" } as CSSProperties) : undefined}
+                      onError={() => setWorkFailed((s) => ({ ...s, [item.image]: true }))}
                     />
                   </div>
                   <div className={styles.workBody}>
