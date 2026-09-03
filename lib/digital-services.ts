@@ -191,12 +191,12 @@ export const DS_WORK: WorkExample[] = [
     footer: "nolink",
   },
   {
-    image: "/assets/ds/support-shift.png",
-    alt: "Support Shift prototype presenting four possible staff responses at a branching scenario.",
-    badge: "FOUNDER-BUILT INTERACTIVE PROTOTYPE",
-    badgeTone: "concept",
-    title: "Support Shift",
-    body: "A branching interaction prototype that turns structured information into guided pathways. It demonstrates clear choices, purposeful interaction and support for users who may need different routes through the same information.",
+    image: "/assets/ds/proof-and-path.png",
+    alt: "Proof & Path interface — designed and developed as a guided digital experience for managing consumer purchase issues.",
+    badge: "CLIENT PROJECT",
+    badgeTone: "neutral",
+    title: "Proof & Path",
+    body: "A consumer-facing platform helping people manage purchase disputes, organise evidence and work through the steps required to resolve a problem. WhatBit shaped the product, designed the user experience and built the underlying digital system — from product strategy and UX through to case management, evidence organisation, guided action steps and subscription architecture, structured around a clear Understand → Gather → Prepare → Act → Track → Escalate progression.",
     footer: "nolink",
   },
   {
