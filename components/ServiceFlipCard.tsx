@@ -28,6 +28,7 @@ export function ServiceFlipCard({ service, swatch }: { service: DsService; swatc
   const reactId = useId();
   const headingId = `${reactId}-heading`;
   const openBtnRef = useRef<HTMLButtonElement>(null);
+  const wasOpen = useRef(false);
 
   useEffect(() => {
     if (!open) return;
@@ -47,7 +48,10 @@ export function ServiceFlipCard({ service, swatch }: { service: DsService; swatc
   }, [open]);
 
   useEffect(() => {
-    if (!open) openBtnRef.current?.focus();
+    // Return focus to the trigger only when the modal has just closed —
+    // never on mount, or every card's button steals scroll/focus on load.
+    if (!open && wasOpen.current) openBtnRef.current?.focus();
+    wasOpen.current = open;
   }, [open]);
 
   return (
