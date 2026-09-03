@@ -177,53 +177,46 @@ export type WorkExample = {
   badgeTone: "concept" | "neutral";
   title: string;
   body: string;
-  footer: "nolink" | "products";
+  meta: string;
+  featured?: boolean;
 };
 
 export const DS_WORK: WorkExample[] = [
-  {
-    image: "/assets/ds/i-choose-how.png",
-    alt: "I Choose How prototype offering Read it, Listen to it, Show me, Help me and more-time format choices.",
-    badge: "PROTOTYPE / CONCEPT",
-    badgeTone: "concept",
-    title: "I Choose How",
-    body: "An interaction concept exploring participant-controlled format choice, supported responses and different ways to receive and provide information. It demonstrates how accessibility can change the structure of an experience, not just its visual layer.",
-    footer: "nolink",
-  },
-  {
-    image: "/assets/ds/support-shift.png",
-    alt: "Support Shift prototype presenting four possible staff responses at a branching scenario.",
-    badge: "FOUNDER-BUILT INTERACTIVE PROTOTYPE",
-    badgeTone: "concept",
-    title: "Support Shift",
-    body: "A branching interaction prototype that turns structured information into guided pathways. It demonstrates clear choices, purposeful interaction and support for users who may need different routes through the same information.",
-    footer: "nolink",
-  },
-  {
-    image: "/assets/ds/newman-map.png",
-    alt: "Illustrative Newman map interface with concept, upgrade and existing-asset locations clearly differentiated.",
-    badge: "INDEPENDENT ILLUSTRATIVE CONCEPT — NOT COMMISSIONED CLIENT WORK",
-    badgeTone: "neutral",
-    title: "Newman: Now and Next",
-    body: "Created in a tender context to demonstrate place-based digital storytelling, maps, guided narratives and accessible alternatives. It is included as a design and prototyping example only; it is not a government or council case study.",
-    footer: "nolink",
-  },
   {
     image: "/assets/ds/Screenshot 2026-09-03 102022.png",
     alt: "Proof & Path product screen offering to start a case or see how the service works, with a search bar for asking questions and a How it works section below.",
     badge: "PRODUCT / APPLICATION DEVELOPMENT",
     badgeTone: "concept",
     title: "Proof & Path",
-    body: "A consumer-navigation product that turns a stressful purchase problem into one clear path: understand, gather, prepare, act, track, escalate. We took it from concept through UX, product architecture and a working application, including accounts, evidence handling, document exports, timelines and the privacy and data systems underneath.",
-    footer: "nolink",
+    body: "A consumer-navigation product that turns a stressful purchase problem into one clear path: understand, gather, prepare, act, track, escalate. We took Proof & Path from concept through UX, product architecture and a working application, including accounts, evidence handling, document exports, timelines and the privacy and data systems underneath it.",
+    meta: "Product strategy · UX & interaction design · Application development · Workflow design · Product architecture · Client handover",
+    featured: true,
   },
   {
-    image: "/assets/ds/products-montage.png",
-    alt: "Pace, Trace and Frame product interfaces shown together.",
-    badge: "PRODUCT PORTFOLIO",
+    image: "/assets/ds/hedland-happenings.png",
+    alt: "Hedland Happenings mobile screen showing local events and an activity builder for planning the day.",
+    badge: "COMMUNITY PROJECT",
     badgeTone: "concept",
-    title: "WhatBit products",
-    body: "Our product work demonstrates the same core approach: turning operational complexity into clear, responsive workflows with structured information and purposeful interaction. Individual product pages show what each product does and its current stage.",
-    footer: "products",
+    title: "Hedland Happenings",
+    body: "Regional communities are full of things to do, but finding useful, current information can still mean jumping between calendars, social pages and word of mouth. Hedland Happenings brings local events and everyday activity ideas into one simple, mobile-first experience designed around the question people actually ask: what can we do today? It combines local information with a guided activity builder, helping turn an ordinary day into something easier to plan, explore and enjoy.",
+    meta: "Independent regional community project",
+  },
+  {
+    image: "/assets/ds/i-choose-how.png",
+    alt: "I Choose How prototype offering Read it, Listen to it, Show me, Help me and more-time format choices.",
+    badge: "ACCESSIBILITY PROJECT",
+    badgeTone: "concept",
+    title: "I Choose How",
+    body: "Most digital information assumes everyone wants to read, understand and respond in the same way. I Choose How explores a different model: letting the person choose how information is presented and how they want to engage with it. Reading, listening, visual pathways, supported responses and extra time are treated as part of the experience itself — demonstrating how accessibility can shape the structure of a digital service rather than being added after the design is finished.",
+    meta: "Accessibility and inclusive interaction design",
+  },
+  {
+    image: "/assets/ds/newman-map.png",
+    alt: "Interactive map interface layering current, proposed and future views of a place with guided explanations.",
+    badge: "COMMUNITY EXPERIENCE",
+    badgeTone: "concept",
+    title: "Making change easier to see",
+    body: "Community projects can become difficult to understand when plans, existing places, future changes and supporting information are spread across reports and static documents. We built an interactive prototype exploring a clearer way to communicate that story — combining maps, visual layers and guided explanations so people can move between what exists now, what is proposed and what it could mean for the place around them. The concept demonstrates how complex public information can become a more understandable, visual and explorable digital experience.",
+    meta: "Place-based digital storytelling prototype",
   },
 ];

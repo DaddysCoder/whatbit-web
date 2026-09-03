@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import {
   DS_A11Y_ITEMS,
@@ -269,16 +268,20 @@ export function DigitalServicesPage() {
         </h2>
         <Reveal>
           <p className={styles.sectionLede}>
-            Evidence matters. These examples are labelled for what they are so a working prototype is
-            never presented as commissioned client work.
+            A selection of client work, independent projects and experimental builds showing how we
+            approach different kinds of digital problems — from full product delivery to accessibility,
+            community information and public-facing experiences.
           </p>
         </Reveal>
         <StaggerGroup className={styles.workGrid}>
           {DS_WORK.map((item) => {
             const ready = !!workReady[item.image];
             return (
-              <StaggerItem key={item.title}>
-                <div className={styles.workCard}>
+              <StaggerItem
+                key={item.title}
+                className={item.featured ? styles.workItemFeatured : undefined}
+              >
+                <div className={`${styles.workCard} ${item.featured ? styles.workCardFeatured : ""}`}>
                   <div className={styles.workImgWrap}>
                     {ready ? null : <div className={styles.imgMissing}>Image pending</div>}
                     <img
@@ -300,13 +303,7 @@ export function DigitalServicesPage() {
                     </div>
                     <h3 className={styles.workTitle}>{item.title}</h3>
                     <p className={styles.workCopy}>{item.body}</p>
-                    {item.footer === "products" ? (
-                      <Link href="/#products" className={styles.workLink}>
-                        Explore WhatBit products <span aria-hidden>→</span>
-                      </Link>
-                    ) : (
-                      <div className={styles.workMeta}>Screenshot-led example. No public link.</div>
-                    )}
+                    <div className={styles.workMeta}>{item.meta}</div>
                   </div>
                 </div>
               </StaggerItem>
