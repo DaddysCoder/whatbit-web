@@ -51,7 +51,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `A 12-minute reset that turns email into decisions, waiting and done.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/mail-sorting-machine.jpeg",
-    heroAlt: `mail sorting machine`,
+    heroAlt: `Illustration of an email inbox being sorted like mail into three labelled trays`,
     layout: "A",
     body: [
       { type: "paragraph", text: `Most inboxes are not overflowing with email. They are overflowing with unmade decisions, sitting in a list that was never designed to hold them.` },
@@ -74,7 +74,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `Make the invisible follow-up system visible before buying a CRM.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/layered-desk-clutter.jpeg",
-    heroAlt: `layered desk clutter`,
+    heroAlt: `A cluttered desk with layered sticky notes representing an informal follow-up pile`,
     layout: "A",
     body: [
       { type: "paragraph", text: `Every business already has a follow-up system. It usually lives in someone's head, or in a pile of starred emails nobody else can see. That pile is doing real work — it just is not written down anywhere.` },
@@ -96,7 +96,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `What context switching actually feels like, and how to remove one hand-off.`,
     readTime: "6 MIN READ",
     heroImage: "/useful/sticky-note-monitor.jpeg",
-    heroAlt: `sticky note monitor`,
+    heroAlt: `A computer monitor surrounded by sticky notes symbolising constant context switching`,
     layout: "B",
     body: [
       { type: "paragraph", text: `It is 3:47pm. You are not doing the task. You are looking for the place where the task became a task. The email says "as discussed". The document says "final_v4". Your browser has eleven tabs open and every one of them is technically relevant.` },
@@ -121,7 +121,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `Replace a status meeting with three questions and one exception rule.`,
     readTime: "3 MIN READ",
     heroImage: "/useful/boardroom-cables.jpeg",
-    heroAlt: `boardroom cables`,
+    heroAlt: `An empty boardroom table tangled with cables, standing in for a status meeting nobody needs`,
     layout: "B",
     body: [
       { type: "paragraph", text: `This meeting has occurred six times. Nothing has happened in it. Three people say "no update" in turn, and the room moves on to the next status check.` },
@@ -145,7 +145,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `A capture–choose–close loop that fits on one page.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/tiny-system-podiums-1.jpeg",
-    heroAlt: `tiny system podiums 1`,
+    heroAlt: `Three simple podiums labelled capture, choose and close representing a minimal productivity loop`,
     layout: "B",
     body: [
       { type: "paragraph", text: `Most productivity systems fail for the same reason: they need more upkeep than the problem they were solving. The system becomes the second job. What survives a busy week is smaller than that — three steps, not thirty fields.` },
@@ -170,7 +170,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `What it got impressively right, what it confidently invented, and what we kept.`,
     readTime: "5 MIN READ",
     heroImage: "/useful/planner-notebook-week.jpeg",
-    heroAlt: `planner notebook week`,
+    heroAlt: `A weekly planner notebook open on a desk, representing an AI-drafted schedule`,
     layout: "B",
     body: [
       { type: "paragraph", text: `We handed a week's worth of tasks, meetings and vague intentions to an AI assistant and asked it to build the schedule. Not as a demo — as the actual plan we would try to follow.` },
@@ -194,7 +194,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `A 30-second stop/check/strip decision card.`,
     readTime: "3 MIN READ",
     heroImage: "/useful/client-folder-scanner.jpeg",
-    heroAlt: `client folder scanner`,
+    heroAlt: `A client folder being scanned, representing the moment before sensitive data is pasted into an AI tool`,
     layout: "B",
     body: [
       { type: "paragraph", text: `Pasting a client file into an AI tool feels like the fast version of a task you were already doing. Sometimes it is. Sometimes it is also the moment a name, an address or a health detail leaves your control with no record of where it went.` },
@@ -219,7 +219,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `It has nowhere obvious for decisions to live.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/organized-trays-flatlay.jpeg",
-    heroAlt: `organized trays flatlay`,
+    heroAlt: `A flat-lay of neatly organised trays, showing tidy storage without a clear home for decisions`,
     layout: "C",
     body: [
       { type: "paragraph", text: `"We're just disorganised" is the explanation people reach for when the real issue is more specific: a decision got made in a conversation, and there was never a place for it to be written down where the next person would look.` },
@@ -242,7 +242,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `A humane way to calculate subscription value — including setup dread.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/19-dollar-tool-receipt.jpeg",
-    heroAlt: `19 dollar tool receipt`,
+    heroAlt: `A receipt for a $19 subscription tool sitting unused on a desk`,
     layout: "C",
     body: [
       { type: "paragraph", text: `A tool priced at $19 a month looks cheap on the invoice. It is not cheap if it has been sitting unopened for three months because setting it up properly felt like a whole afternoon nobody had.` },
@@ -265,7 +265,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `A tool-cancellation ritual with a duplicate-job map.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/app-grave-hammer.jpeg",
-    heroAlt: `app grave hammer`,
+    heroAlt: `A hammer beside a pile of app icons, representing a tool-cancellation ritual`,
     layout: "C",
     body: [
       { type: "paragraph", text: `Most small teams do not have a tool problem. They have a tool-accumulation problem. Each subscription solved something real at the time — the pile just never gets revisited once the urgency passes.` },
@@ -288,7 +288,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `What consumer apps can learn from explaining nothing.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/mum-manual-dig-1.jpeg",
-    heroAlt: `mum manual dig 1`,
+    heroAlt: `Someone digging through a thick instruction manual to use a simple consumer app`,
     layout: "B",
     body: [
       { type: "paragraph", text: `The best consumer apps are used by people who never read a help page. Not because those people are technical, but because the app never needed them to be. Every choice was already made, and the one choice left was obvious.` },
@@ -308,7 +308,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `Where automation helps and where a person must stay reachable.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/reception-machine.jpeg",
-    heroAlt: `reception machine`,
+    heroAlt: `A mechanical reception desk representing a chatbot standing in for customer service`,
     layout: "C",
     body: [
       { type: "paragraph", text: `A chatbot is a very good reception desk. It can take a name, confirm a booking, answer the question you have already answered five hundred times. What it is not is the person who notices you are upset before you have said why.` },
@@ -331,7 +331,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `Turn a ramble into a task list, customer reply and decision record.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/voice-note-documents.jpeg",
-    heroAlt: `voice note documents`,
+    heroAlt: `A phone recording a voice note beside three separate document types it contains`,
     layout: "B",
     body: [
       { type: "paragraph", text: `A voice note recorded on the drive home is rarely one thing. It is a task list, a reply to a customer, and a record of a decision — all tangled together in one recording, in whatever order they occurred to you.` },
@@ -358,7 +358,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `Five signals that a workflow is actually helping.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/hidden-mechanism-wall.jpeg",
-    heroAlt: `hidden mechanism wall`,
+    heroAlt: `A hidden mechanism built into a plain wall, representing automation nobody notices`,
     layout: "C",
     body: [
       { type: "paragraph", text: `Good automation looks like nothing. The work still gets done, the same way it always did, except one step quietly stopped needing a person. Bad automation announces itself — a new dashboard to check, a new tool to learn, a new failure mode to explain.` },
@@ -381,7 +381,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `A plain-language boundary for small teams working with real people.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/decision-wheel.jpeg",
-    heroAlt: `decision wheel`,
+    heroAlt: `A decision wheel representing the boundary of what AI should never decide alone`,
     layout: "C",
     body: [
       { type: "paragraph", text: `It can feel arbitrary to leave AI out of a decision it could technically handle. It is not arbitrary — it is about who bears the consequence, and whether a person can be held accountable for it.` },
@@ -405,7 +405,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `Before/after teardown of a form that asks the organisation's questions, not the user's.`,
     readTime: "5 MIN READ",
     heroImage: "/useful/overloaded-door.jpeg",
-    heroAlt: `overloaded door`,
+    heroAlt: `A door covered in extra locks and latches, representing an overloaded intake form`,
     layout: "C",
     body: [
       { type: "paragraph", text: `A form with thirty fields, six sections and a reference number field at the top is usually not protecting anyone. It is answering the organisation's questions — which department this routes to, which system it feeds, which audit it satisfies — before it answers the person's.` },
@@ -428,7 +428,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `A one-screen handover pattern for small teams.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/office-relay-race.jpeg",
-    heroAlt: `office relay race`,
+    heroAlt: `An office relay race baton hand-off, representing a handover that should survive a sick day`,
     layout: "C",
     body: [
       { type: "paragraph", text: `The real test of a handover is not the document — it is whether someone who was not there yesterday can pick up the work today without a phone call. Most handovers fail that test because they were written for the person leaving, not the person arriving.` },
@@ -452,7 +452,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `A WHATBIT point of view on products that become a second job.`,
     readTime: "3 MIN READ",
     heroImage: "/useful/clutter-tunnel-shortcut.jpeg",
-    heroAlt: `clutter tunnel shortcut`,
+    heroAlt: `A cluttered tunnel with a clear shortcut cut through it, representing software that should feel simpler`,
     layout: "C",
     body: [
       { type: "paragraph", text: `A shortcut gets you somewhere faster, with less to carry. A lot of business software does the opposite: it promises speed, then hands back a list of settings to configure, a workflow to maintain and a person whose job becomes keeping the tool running.` },
@@ -474,7 +474,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `Include migration, learning, cleanup and maintenance in every tool decision.`,
     readTime: "4 MIN READ",
     heroImage: "/useful/quick-setup-button.jpeg",
-    heroAlt: `quick setup button`,
+    heroAlt: `A large quick-setup button, representing the hidden cost behind a one-click install`,
     layout: "C",
     body: [
       { type: "paragraph", text: `"Quick setup" usually means one button was easy to press. It rarely means the tool is now actually working for your business. Behind that button is everything nobody put on the sales page: the data that needs moving, the habits that need relearning, the exceptions that need handling.` },
@@ -497,7 +497,7 @@ export const USEFUL_ARTICLES: UsefulArticle[] = [
     dek: `The three signals that mean a shared list is still enough — and the fourth that means it is not.`,
     readTime: "5 MIN READ",
     heroImage: "/useful/crm-control-room.jpeg",
-    heroAlt: `crm control room`,
+    heroAlt: `A control room of dashboards representing a CRM bought before it was needed`,
     layout: "A",
     featured: true,
     body: [
