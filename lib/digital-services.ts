@@ -209,6 +209,15 @@ export const DS_WORK: WorkExample[] = [
     footer: "nolink",
   },
   {
+    image: "/assets/ds/Screenshot 2026-09-03 102022.png",
+    alt: "Proof & Path product screen offering to start a case or see how the service works, with a search bar for asking questions and a How it works section below.",
+    badge: "PRODUCT / APPLICATION DEVELOPMENT",
+    badgeTone: "concept",
+    title: "Proof & Path",
+    body: "A consumer-navigation product that turns a stressful purchase problem into one clear path: understand, gather, prepare, act, track, escalate. We took it from concept through UX, product architecture and a working application, including accounts, evidence handling, document exports, timelines and the privacy and data systems underneath.",
+    footer: "nolink",
+  },
+  {
     image: "/assets/ds/products-montage.png",
     alt: "Pace, Trace and Frame product interfaces shown together.",
     badge: "PRODUCT PORTFOLIO",
