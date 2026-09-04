@@ -6,7 +6,9 @@ This repository contains the public WhatBit website and product pages.
 
 **Production is Cloudflare.** GitHub is the source repository and Cloudflare is the production deployment target for `whatbit.dev` / `www.whatbit.dev`.
 
-A Vercel project may still create automatic preview builds from this repository, but those previews are not the WhatBit production source of truth.
+Deploys are automated: pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm run build:vinext` and `npm run deploy:vinext`. This requires the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` GitHub Actions secrets (repo Settings → Secrets and variables → Actions) — separate from the app's own runtime env vars below.
+
+There is no Vercel deployment for this repository. Do not reconnect one — Cloudflare is the only production target, and the AI Blueprint admin tooling depends on Cloudflare-only D1/KV bindings.
 
 ## Product links
 
@@ -62,4 +64,4 @@ Open `http://localhost:3000`.
 npm run build
 ```
 
-Keep production-hosting changes Cloudflare-compatible and do not treat a successful Vercel preview as proof that the Cloudflare production site has deployed.
+Keep production-hosting changes Cloudflare-compatible. A successful `npm run build` locally is not proof the Cloudflare production site has deployed — check the `Deploy to Cloudflare` GitHub Actions run.
