@@ -26,8 +26,8 @@ const WORKFLOW_STEPS = [
   },
   {
     num: "03",
-    label: "DRAFT",
-    body: "Field drafts personalised wording using the participant's profile and your capacity note — never the mechanism itself.",
+    label: "MATCH",
+    body: "Field matches the participant's profile against pre-authored delivery wording for this strategy, deterministically — never the mechanism itself.",
   },
   {
     num: "04",
@@ -58,10 +58,9 @@ const FIELD_FREE_FEATURES = [
 ] as const;
 
 const FIELD_PRO_FEATURES = [
-  "AI-assisted personalisation drafting",
+  "Automated personalisation matching",
   "Unlimited participants",
   "Full participant profile",
-  "Reads from Frame when connected",
   "Session-log reformat",
 ] as const;
 
@@ -257,10 +256,9 @@ export function FieldPage() {
                           Support worker present most shifts; can deliver reinforcement on a timer but not
                           track duration data.
                         </div>
-                        <div className={styles.heroPhoneStepLabel}>STEP 2 · AI-GENERATE</div>
+                        <div className={styles.heroPhoneStepLabel}>STEP 2 · MATCH VARIANT</div>
                         <div className={styles.heroPhoneGenerateBtn}>
-                          <span className={styles.heroPhoneAiBadge}>AI</span>
-                          Generate draft
+                          Match variant
                         </div>
                         <div className={styles.heroPhoneReviewLabel}>Review — always editable</div>
                         <p className={styles.heroPhoneBody}>
@@ -311,10 +309,9 @@ export function FieldPage() {
             <div className={styles.eyebrow}>SHOW THE WORKING</div>
             <h2 className={styles.sectionTitle}>Every draft comes with its evidence attached.</h2>
             <p className={styles.lead}>
-              Field never invents a technique. Strategy selection is retrieval-only — the model searches and
-              reasons over an authored library, it doesn&apos;t generate new mechanisms. Personalisation only ever
-              varies the surface: wording, delivery, tone for this participant&apos;s interests and communication
-              style.
+              Field never invents a technique. The strategy library is authored and reviewed ahead of time, and
+              matching is deterministic and local — no model call, no generated text. Personalisation only ever
+              picks between pre-authored wording for this participant&apos;s interests and communication style.
             </p>
             <p className={styles.leadSecondary}>
               The mechanism and citation stay pinned alongside every draft. Nothing is a black box.
@@ -353,11 +350,12 @@ export function FieldPage() {
 
       <section id="pair-frame" className={styles.pairFrame}>
         <Reveal className={styles.sectionIntro}>
-          <div className={styles.eyebrow}>WORKS ALONE, WORKS BETTER CONNECTED</div>
-          <h2 className={styles.sectionTitle}>Pair it with Frame.</h2>
+          <div className={styles.eyebrow}>BUILT TO PAIR WITH FRAME</div>
+          <h2 className={styles.sectionTitle}>Designed alongside Frame.</h2>
           <p className={styles.lead}>
-            Frame builds the evidence picture. Field turns it into a personalised strategy. Used together, Field
-            reads the participant profile Frame already has — no second intake form.
+            Frame builds the evidence picture. Field turns it into a personalised strategy. A direct profile
+            handoff between the two is planned but not yet live — today, Field works standalone from its own
+            participant profile.
           </p>
         </Reveal>
         <div ref={reveal.ref(2)} className={`${reveal.className(2)} ${styles.pairRow}`}>
