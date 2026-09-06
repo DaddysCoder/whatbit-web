@@ -4,13 +4,11 @@ This repository contains the public WhatBit website and product pages.
 
 ## Production hosting
 
-**Production is Cloudflare.** GitHub is the source repository and Cloudflare is the production deployment target for `whatbit.dev` / `www.whatbit.dev`.
+**Production is Vercel.** GitHub is the source repository and Vercel is the production deployment target for `whatbit.dev` / `www.whatbit.dev`.
 
-Deploys are automated: pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm run build:vinext` and `npm run deploy:vinext`. This requires the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` GitHub Actions secrets (repo Settings → Secrets and variables → Actions) — separate from the app's own runtime env vars below.
+Pushing to `main` triggers a Vercel production deployment through the connected `DaddysCoder/whatbit-web` Git repository. `www.whatbit.dev` is the primary site; the apex `whatbit.dev` redirects permanently to `www.whatbit.dev`.
 
-**Known issue:** as of this writing, every run of `Deploy to Cloudflare` has failed at the `wrangler` step because those two secrets are unset. CI has never successfully deployed this repository — whatever is currently serving `whatbit.dev` was deployed manually at an unknown commit. Populate both secrets, then re-run the workflow to restore automated deploys.
-
-There is no Vercel deployment for this repository. Do not reconnect one — Cloudflare is the only production target, and the AI Blueprint admin tooling depends on Cloudflare-only D1/KV bindings.
+Cloudflare remains the DNS provider and continues to host the separate product Workers on their existing subdomains. The main website is no longer deployed by the repository's former Cloudflare GitHub Actions workflow.
 
 ## Product links
 
@@ -49,7 +47,7 @@ Required production runtime configuration:
 - `AI_BLUEPRINT_ADMIN_SESSION_SECRET` — random secret used to HMAC-sign the admin session cookie
 - `NEXT_PUBLIC_AI_BLUEPRINT_CHECKOUT_URL` — optional; a Stripe Payment Link for the "Become a Founding Client" CTA. Until set, CTAs fall back to the on-page offer section.
 
-Without `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_AI_BLUEPRINT_API_TOKEN`, the AI Blueprint API routes return a `503` rather than erroring, matching how `/api/contact` degrades when its own Cloudflare credentials are absent.
+Without `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_AI_BLUEPRINT_API_TOKEN`, the AI Blueprint API routes return a `503`. The contact form is independent and requires its own Resend configuration.
 
 ## Development
 
@@ -66,4 +64,4 @@ Open `http://localhost:3000`.
 npm run build
 ```
 
-Keep production-hosting changes Cloudflare-compatible. A successful `npm run build` locally is not proof the Cloudflare production site has deployed — check the `Deploy to Cloudflare` GitHub Actions run.
+A successful local build is not proof production has deployed. Check the latest Vercel production deployment for `whatbit-web` and confirm it is serving the current `main` commit.
