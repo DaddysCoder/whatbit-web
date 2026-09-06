@@ -32,6 +32,18 @@
   margin-bottom: 16px;
 }
 
+.statusChip {
+  display: inline-flex;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: #5b21b6;
+  font-weight: 700;
+  background: #ece3fb;
+  padding: 7px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
 .title {
   font-family: var(--font-display);
   font-weight: 800;

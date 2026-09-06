@@ -10,13 +10,13 @@ export type ProductSlug =
 
 export const FRAME_APP_URL = "https://frame.whatbit.dev";
 /** When true, Frame's Pro pricing CTA switches from "Coming soon" to a live trial link. */
-export const FRAME_COMMERCIAL_LIVE = false;
+export const FRAME_COMMERCIAL_LIVE = true;
 export const FRAME_FREE_URL = "https://frame.whatbit.dev";
 export const FRAME_PRO_TRIAL_URL = "https://frame.whatbit.dev/trial";
 
 export const FIELD_APP_URL = "https://field.whatbit.dev";
 /** When true, Field's Pro pricing CTA switches from "Coming soon" to a live trial link. */
-export const FIELD_COMMERCIAL_LIVE = false;
+export const FIELD_COMMERCIAL_LIVE = true;
 export const FIELD_FREE_URL = "https://field.whatbit.dev";
 export const FIELD_PRO_TRIAL_URL = "https://field.whatbit.dev/trial";
 

@@ -21,7 +21,7 @@ export const VECTOR_TERMS_BLOCKS: DocBlock[] = [
   },
   {
     heading: "Subscription price",
-    text: "The current advertised Vector subscription price is A$9 per month unless a different price is clearly shown to you in Stripe Checkout before you purchase. Prices are shown in Australian dollars and include GST where applicable. Subscriptions renew automatically each billing period until cancelled. We may offer promotional or introductory pricing from time to time; any such pricing will be shown clearly before you subscribe.",
+    text: "The current advertised Vector paid pricing is A$19 per month, A$180 per year, or A$5 per one-off finished document, unless a different price is clearly shown to you in Stripe Checkout before you purchase. Prices are shown in Australian dollars and include GST where applicable. Subscriptions renew automatically each billing period until cancelled. We may offer promotional or introductory pricing from time to time; any such pricing will be shown clearly before you subscribe.",
   },
   {
     heading: "Payment processing",

@@ -8,6 +8,8 @@ This repository contains the public WhatBit website and product pages.
 
 Deploys are automated: pushing to `main` triggers `.github/workflows/deploy.yml`, which runs `npm run build:vinext` and `npm run deploy:vinext`. This requires the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` GitHub Actions secrets (repo Settings → Secrets and variables → Actions) — separate from the app's own runtime env vars below.
 
+**Known issue:** as of this writing, every run of `Deploy to Cloudflare` has failed at the `wrangler` step because those two secrets are unset. CI has never successfully deployed this repository — whatever is currently serving `whatbit.dev` was deployed manually at an unknown commit. Populate both secrets, then re-run the workflow to restore automated deploys.
+
 There is no Vercel deployment for this repository. Do not reconnect one — Cloudflare is the only production target, and the AI Blueprint admin tooling depends on Cloudflare-only D1/KV bindings.
 
 ## Product links

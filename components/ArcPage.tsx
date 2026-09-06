@@ -71,27 +71,28 @@ export function ArcPage() {
 
   return (
     <div className={styles.page}>
-      <SiteNav variant="inner" accent="#7C4FD1" ctaHref={DEMO_MAILTO} ctaLabel="Book a demo" />
+      <SiteNav variant="inner" accent="#7C4FD1" ctaHref={earlyAccessMailto} ctaLabel="Join early access" />
 
       <section className={styles.hero}>
         <Reveal>
+          <div className={styles.statusChip}>IN DEVELOPMENT · NOT A PRODUCTION CLINICAL SYSTEM</div>
           <div className={styles.eyebrow}>ARC · BY WHATBIT</div>
           <h1 className={styles.title}>Clinical practice management, built around the work itself.</h1>
           <p className={styles.lede}>
-            Arc is a secure clinical CRM and practice management platform for allied health, behaviour support and
-            disability service organisations.
+            Arc is being built as a secure clinical CRM and practice management platform for allied health,
+            behaviour support and disability service organisations.
           </p>
           <p className={styles.lede}>
-            It brings client information, clinical documentation, assessments, evidence, service delivery,
+            It will bring client information, clinical documentation, assessments, evidence, service delivery,
             scheduling, compliance and multidisciplinary workflows into one connected workspace.
           </p>
-          <p className={styles.ledeStrong}>Less fragmentation. Better clinical context. Stronger practice operations.</p>
+          <p className={styles.ledeStrong}>Arc is not yet available for clinical use. Early access only — please don&apos;t enter real participant or client information yet.</p>
           <div className={styles.heroCtas}>
-            <a href={DEMO_MAILTO} className={styles.btnPrimary}>
-              Book a demo
+            <a href={earlyAccessMailto} className={styles.btnPrimary}>
+              Join early access
             </a>
-            <a href="#workspace" className={styles.btnSecondary}>
-              Explore Arc
+            <a href={CONTACT_ARC_MAILTO} className={styles.btnSecondary}>
+              Talk to us about Arc
             </a>
           </div>
         </Reveal>

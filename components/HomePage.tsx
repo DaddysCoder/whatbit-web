@@ -11,7 +11,10 @@ import { ProductCard } from "./motion/ProductCard";
 import { LiftCard } from "./motion/LiftCard";
 import { MagneticButton } from "./motion/MagneticButton";
 import { cardEntranceVariants } from "@/lib/motion";
+import { CONTACT_MAILTO } from "@/lib/site";
 import styles from "./HomePage.module.css";
+
+const ARC_EARLY_ACCESS_MAILTO = `${CONTACT_MAILTO}?subject=${encodeURIComponent("Arc early access")}`;
 
 export function HomePage() {
   const orbitRef = useRef<HTMLElement | null>(null);
@@ -79,7 +82,7 @@ export function HomePage() {
         }}
       >
         <Reveal>
-          <h2 className={styles.orbitTitle}>One approach. Seven tools.</h2>
+          <h2 className={styles.orbitTitle}>One approach. Eight tools.</h2>
           <p className={styles.orbitCopy}>
             Every product carries the same name suffix for a reason. Same method, same standard — a different problem each time. “By WhatBit” means we did the thinking so you don&apos;t have to.
           </p>
@@ -119,7 +122,7 @@ export function HomePage() {
             <ProductCard href="/pace" strong className={`${styles.card} ${styles.orbitCard}`} variants={cardEntranceVariants}>
               <div className={styles.cardTop}>
                 <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#9B6EF3,#7B2FF7)" />
-                <div className={styles.live}>FREE · LIVE</div>
+                <div className={styles.live}>LIVE · FREE</div>
               </div>
               <div>
                 <div className={`${styles.cardName} ${styles.orbitName}`}>Pace <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
@@ -132,7 +135,7 @@ export function HomePage() {
             <ProductCard href="/frame" strong className={`${styles.card} ${styles.frameCard}`} variants={cardEntranceVariants}>
               <div className={styles.cardTop}>
                 <BarMark size={56} radius={16} gradient="linear-gradient(135deg,#F07655,#E8542E)" />
-                <div className={`${styles.live} ${styles.frameLive}`}>LIVE · FREE</div>
+                <div className={`${styles.live} ${styles.frameLive}`}>LIVE · FREE + PRO</div>
               </div>
               <div>
                 <div className={`${styles.cardName} ${styles.orbitName}`}>Frame <span className={`${styles.by} ${styles.orbitBy}`}>by WhatBit</span></div>
@@ -160,7 +163,7 @@ export function HomePage() {
                 <div className={styles.cardName}>Trace <span className={styles.by}>by WhatBit</span></div>
                 <p className={styles.cardTag}>Free behaviour-support budget and pacing calculator. Pro unlocks downloadable reports and document exports.</p>
               </div>
-              <div className={styles.live}>FREE · PRO</div>
+              <div className={styles.live}>LIVE · FREE + PRO</div>
             </LiftCard>
 
             <LiftCard href="/vector" className={`${styles.card} ${styles.vector}`} variants={cardEntranceVariants}>
@@ -169,13 +172,13 @@ export function HomePage() {
                 <div className={styles.cardName}>Vector <span className={styles.by}>by WhatBit</span></div>
                 <p className={styles.cardTag}>The forms you need, without the paperwork feeling like paperwork.</p>
               </div>
-              <div className={styles.vectorLive}>LIVE</div>
+              <div className={styles.vectorLive}>LIVE · FREE ENTRY + PAID</div>
             </LiftCard>
 
             <LiftCard href="/field" className={`${styles.card} ${styles.field}`} variants={cardEntranceVariants}>
               <div className={styles.cardTop}>
                 <BarMark size={44} gradient="linear-gradient(135deg,#22B393,#0E8F71)" />
-                <div className={styles.live}>LIVE · FREE</div>
+                <div className={styles.live}>LIVE · FREE + PRO</div>
               </div>
               <div>
                 <div className={styles.cardName}>Field <span className={styles.by}>by WhatBit</span></div>
@@ -184,12 +187,39 @@ export function HomePage() {
               <div className={styles.explore}>Explore Field <span>→</span></div>
             </LiftCard>
 
-            <ProductCard href="/arc" strong className={`${styles.card} ${styles.arc}`} variants={cardEntranceVariants}>
-              <BarMark size={44} gradient="linear-gradient(135deg,#7C4FD1,#5B21B6)" />
-              <div><div className={styles.cardName}>Arc <span className={styles.by}>by WhatBit</span></div><p className={styles.cardTag}>The shape of getting there.</p></div>
-              <div className={styles.dev}>IN DEVELOPMENT</div>
-            </ProductCard>
+            <LiftCard href="/digital-services" className={`${styles.card} ${styles.digitalServices}`} variants={cardEntranceVariants}>
+              <div className={styles.cardTop}>
+                <BarMark size={44} gradient="linear-gradient(135deg,#7C4FD1,#5B21B6)" />
+                <div className={styles.live}>AVAILABLE</div>
+              </div>
+              <div>
+                <div className={styles.cardName}>Digital Services <span className={styles.by}>by WhatBit</span></div>
+                <p className={styles.cardTag}>Websites, digital products, accessible content and engagement systems designed around what people actually need to use.</p>
+              </div>
+              <div className={styles.explore}>Explore Digital Services <span>→</span></div>
+            </LiftCard>
         </StaggerGroup>
+      </section>
+
+      <section className={styles.arcSpotlight}>
+        <Reveal className={styles.arcSpotlightInner}>
+          <div className={styles.arcSpotlightBadge}>IN DEVELOPMENT · NOT YET A PRODUCTION SYSTEM</div>
+          <h2 className={styles.arcSpotlightTitle}>
+            Arc <span className={styles.by}>by WhatBit</span>
+          </h2>
+          <p className={styles.arcSpotlightSub}>
+            Arc is the organisation-wide practice-management layer we&apos;re building — the future home for team
+            workflows, caseload and administration across an organisation, distinct from the individual
+            practitioner tools above. It&apos;s still being designed and built, so it isn&apos;t open for real
+            participant or client information yet.
+          </p>
+          <div className={styles.arcSpotlightCtas}>
+            <MagneticButton href={ARC_EARLY_ACCESS_MAILTO} className={styles.arcSpotlightCta}>
+              Join early access <span>→</span>
+            </MagneticButton>
+            <Link href="/arc" className={styles.arcSpotlightSecondary}>Talk to us about Arc <span>→</span></Link>
+          </div>
+        </Reveal>
       </section>
 
       <section className={styles.aiBlueprintSpotlight}>
@@ -212,25 +242,11 @@ export function HomePage() {
 
       <section className={styles.pricing}>
         <Reveal className={styles.sectionHead}>
-          <div className={styles.priceEyebrow}>PRICING</div>
-          <h2 className={styles.sectionTitle}>However you want to pay for it.</h2>
-          <p className={styles.sectionSub} style={{ maxWidth: 520 }}>Every product stands alone. Most of them also plug into each other — use one, or stack a few.</p>
+          <p className={styles.sectionSub} style={{ maxWidth: 560 }}>
+            Use the WhatBit tools that fit the job. Each product has its own free and paid options where
+            applicable — availability and pricing are shown on the relevant product page.
+          </p>
         </Reveal>
-        <StaggerGroup className={styles.priceGrid}>
-          {[
-            { title: "Free", body: "Full access to a single tool, no card required. Good for finding out if it fits how you work.", meta: "$0", metaColor: "#7B2FF7", className: "", glow: false },
-            { title: "Subscription", body: "Ongoing access, billed monthly. Add tools as you go — each one talks to the others automatically.", meta: "PER PRODUCT / MONTH", metaColor: "#B794FF", className: styles.priceDark, glow: true },
-            { title: "Own it", body: "One-time purchase per product. Yours outright, updates included.", meta: "ONE-TIME / PRODUCT", metaColor: "#E8542E", className: styles.priceOrange, glow: false },
-          ].map((card) => (
-            <LiftCard key={card.title} tilt={card.glow} variants={cardEntranceVariants} className={`${styles.priceCard} ${card.className}`}>
-              {card.glow ? <span className="wb-illum" aria-hidden /> : null}
-              <div className={styles.priceTitle}>{card.title}</div>
-              <p className={styles.priceBody}>{card.body}</p>
-              <div className={styles.priceMeta} style={{ color: card.metaColor }}>{card.meta}</div>
-            </LiftCard>
-          ))}
-        </StaggerGroup>
-        <div className={styles.priceNote}>Exact pricing per product coming soon.</div>
       </section>
 
       <section className={styles.aboutWrap}>

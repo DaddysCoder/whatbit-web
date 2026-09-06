@@ -3,9 +3,9 @@ import { SiteFooter } from "./SiteFooter";
 import { SiteNav } from "./SiteNav";
 import { Reveal } from "./motion/Reveal";
 import { MagneticButton } from "./motion/MagneticButton";
+import { PACE_APP_URL } from "@/lib/products";
 import styles from "./OrbitPage.module.css";
 
-const PACE_APP_URL = "https://orbit.whatbit.tech";
 const PACE_PRIVACY_URL = `${PACE_APP_URL}/privacy`;
 const PACE_TERMS_URL = `${PACE_APP_URL}/terms`;
 
