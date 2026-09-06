@@ -127,6 +127,19 @@
   margin-bottom: 20px;
 }
 
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #7b2ff7;
+  font-weight: 700;
+  background: #f2ecfb;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
 .headline {
   font-family: var(--font-display);
   font-weight: 800;
@@ -650,6 +663,52 @@
   color: #7b2ff7;
 }
 
+.roadmap {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid #e8e4f0;
+}
+
+.roadmapBadge {
+  display: inline-flex;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #6b6b6b;
+  font-weight: 700;
+  background: #f2f0f5;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+
+.roadmapCopy {
+  font-size: 14px;
+  color: #6b6b6b;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.roadmapGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  text-align: left;
+}
+
+.roadmapCard {
+  border: 1px dashed #d8d3e2;
+  border-radius: 12px;
+  padding: 16px;
+  color: #8a8a8a;
+}
+
+.roadmapCardTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: #4d4d4d;
+}
+
 .footer {
   background: #0b0b0c;
   color: #6b6b6b;
@@ -801,7 +860,8 @@
     padding-right: 16px;
   }
 
-  .templateGrid {
+  .templateGrid,
+  .roadmapGrid {
     grid-template-columns: 1fr;
   }
 

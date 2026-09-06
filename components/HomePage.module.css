@@ -232,20 +232,18 @@
   min-height: unset;
 }
 
-/* Featured tiles (Pace, Frame, Arc) carry the full illuminated-edge
+/* Featured tiles (Pace, Frame) carry the full illuminated-edge
    treatment via <ProductCard>/<GlowCard> (components/motion) — lift,
    pointer tilt and glow tracking are all Motion-driven there, so only
    the resting/base state and non-Motion hover styling (box-shadow,
    background wash) live here. */
 .orbitCard,
-.frameCard,
-.arc {
+.frameCard {
   will-change: transform;
 }
 
 .orbitCard:hover,
-.frameCard:hover,
-.arc:hover {
+.frameCard:hover {
   box-shadow: 0 24px 48px rgba(11, 11, 12, 0.14);
 }
 
@@ -255,10 +253,6 @@
 
 .frameCard:hover {
   background: rgba(232, 84, 46, 0.04);
-}
-
-.arc:hover {
-  background: rgba(91, 33, 182, 0.05);
 }
 
 .voda:hover {
@@ -289,6 +283,12 @@
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 20px 44px rgba(14, 143, 113, 0.18);
   background: rgba(14, 143, 113, 0.05);
+}
+
+.digitalServices:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 20px 44px rgba(91, 33, 182, 0.16);
+  background: rgba(91, 33, 182, 0.05);
 }
 
 .aiBlueprintSpotlight {
@@ -426,13 +426,6 @@
   line-height: 1.55;
 }
 
-.dev {
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: #6b6b6b;
-  font-weight: 700;
-}
-
 .vectorLive {
   font-size: 10px;
   letter-spacing: 0.08em;
@@ -469,73 +462,108 @@
   margin: 0 auto;
 }
 
-.priceEyebrow {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  color: #7b2ff7;
-  font-weight: 700;
-  margin-bottom: 14px;
+.arcSpotlight {
+  background: linear-gradient(135deg, #f3edfc 0%, #f8f5fd 60%, #ffffff 100%);
+  border-top: 1px solid #ece3fb;
+  border-bottom: 1px solid #ece3fb;
+  padding: 96px 24px;
+  display: flex;
+  justify-content: center;
 }
 
-.priceGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-}
-
-.priceCard {
-  position: relative;
-  border-radius: 24px;
-  padding: 40px 32px;
-  background: #f7f5fc;
-  transition: box-shadow 0.3s ease;
-  box-shadow: 0 20px 50px rgba(123, 47, 247, 0.08);
-}
-
-.priceDark:hover :global(.wb-illum) {
-  opacity: 1;
-  animation: wb-illum-spin 7s linear infinite;
-}
-
-.priceDark {
-  background: #0b0b0c;
-  color: #ffffff;
-  box-shadow: 0 30px 70px rgba(123, 47, 247, 0.28);
-}
-
-.priceOrange {
-  box-shadow: 0 20px 50px rgba(242, 146, 92, 0.1);
-}
-
-.priceTitle {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.priceBody {
-  font-size: 14px;
-  color: #6b6b6b;
-  line-height: 1.6;
-  margin-bottom: 24px;
-}
-
-.priceDark .priceBody {
-  color: #b0b0b0;
-}
-
-.priceMeta {
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-}
-
-.priceNote {
-  margin-top: 24px;
+.arcSpotlightInner {
+  max-width: 680px;
   text-align: center;
-  font-size: 13px;
-  color: #9b9b9b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.arcSpotlightBadge {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: #5b21b6;
+  font-weight: 700;
+  background: #ece3fb;
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.arcSpotlightTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(32px, 4.5vw, 48px);
+  letter-spacing: -0.01em;
+  color: #0b0b0c;
+}
+
+.arcSpotlightSub {
+  font-size: 16.5px;
+  line-height: 1.65;
+  color: #4d4d4d;
+  max-width: 600px;
+}
+
+.arcSpotlightCtas {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.arcSpotlightCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #5b21b6;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 15px 30px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.2s var(--wb-ease-spring), box-shadow 0.2s ease;
+}
+
+.arcSpotlightCta span {
+  display: inline-block;
+  transition: transform 0.25s var(--wb-ease-settle);
+}
+
+.arcSpotlightCta:hover {
+  background: #7c4fd1;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(91, 33, 182, 0.28);
+}
+
+.arcSpotlightCta:hover span {
+  transform: translateX(3px);
+}
+
+.arcSpotlightCta:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.arcSpotlightSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #5b21b6;
+  text-decoration: none;
+}
+
+.arcSpotlightSecondary span {
+  display: inline-block;
+  transition: transform 0.25s var(--wb-ease-settle);
+}
+
+.arcSpotlightSecondary:hover span {
+  transform: translateX(3px);
 }
 
 .aboutWrap {
@@ -821,13 +849,8 @@
     padding-bottom: 80px;
   }
 
-  .priceGrid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .priceCard {
-    padding: 28px 22px;
+  .arcSpotlight {
+    padding: 64px 20px;
   }
 
   .aboutWrap {
@@ -875,8 +898,3 @@
   }
 }
 
-@media (max-width: 420px) {
-  .priceGrid {
-    grid-template-columns: 1fr;
-  }
-}

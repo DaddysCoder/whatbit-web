@@ -58,6 +58,16 @@ const PAID_FEATURES = [
   },
 ] as const;
 
+const WORKFLOW_IN_DEVELOPMENT = [
+  { title: "BSA/FBA review", copy: "Reviews the behaviour support/functional behaviour assessment handed off from Frame — Vector receives and carries forward Frame's output, it does not produce the assessment itself." },
+  { title: "Behaviour Data Capture", copy: "Structured capture of ongoing behaviour data to inform later plan documents." },
+  { title: "Strategy Instance Worksheet", copy: "Working notes for a specific strategy instance within a plan." },
+  { title: "RRP Assessment", copy: "Assessment documentation for regulated restrictive practices." },
+  { title: "Support Letter", copy: "A short-form practitioner support letter generated from carried-forward details." },
+  { title: "Progress Report", copy: "A progress report drawing on prior plan and data-capture documents." },
+  { title: "BSP Review / Change Addendum", copy: "A review or addendum documenting a change to an existing behaviour support plan." },
+] as const;
+
 const SUPPORT_TEMPLATES = [
   {
     title: "Behaviour Support Plan",
@@ -90,7 +100,7 @@ const PAID_FEATURES_LIST = [
 
 const PAID_TIERS = [
   { name: "Monthly", price: "A$19 / month", note: "" },
-  { name: "Annual", price: "A$180 / year", note: "2 months free" },
+  { name: "Annual", price: "A$180 / year", note: "Save A$48 vs monthly" },
   { name: "One-off", price: "A$5 / document", note: "no subscription" },
 ] as const;
 
@@ -160,12 +170,13 @@ export function VectorPage() {
 
       <section className={styles.hero}>
         <Reveal>
+          <div className={styles.statusChip}>LIVE · FREE ENTRY + PAID WORKFLOW</div>
           <div className={styles.eyebrow}>VECTOR · BY WHATBIT</div>
           <h1 className={styles.headline}>
             The forms you need. Without the paperwork feeling like paperwork.
           </h1>
           <p className={styles.subcopy}>
-            Referral, practitioner triage and consultation records — structured, usable and ready when you need them.
+            Start with the information you already have, then carry relevant details forward through the practitioner workflow. Vector reduces repeated data entry while keeping every document editable and reviewable by the practitioner.
           </p>
           <div className={styles.ctaRow}>
             <MagneticButton externalHref={VECTOR_FORMS_URL} className={styles.btnPrimary}>
@@ -210,8 +221,9 @@ export function VectorPage() {
 
       <section id="forms" className={styles.forms}>
         <Reveal className={styles.sectionIntro}>
-          <div className={styles.eyebrow}>THREE TOOLS</div>
-          <h2 className={styles.sectionTitle}>Each one works on its own.</h2>
+          <div className={styles.eyebrow}>WHERE IT STARTS</div>
+          <h2 className={styles.sectionTitle}>Three entry points into one workflow.</h2>
+          <p className={styles.toolCopy}>Each form works on its own — and relevant details carry forward if you continue through the wider Vector workflow.</p>
         </Reveal>
 
         <StaggerGroup className={styles.toolGrid}>
@@ -334,6 +346,22 @@ export function VectorPage() {
         <a href={VECTOR_TEMPLATES_URL} className={styles.templatesAction}>
           Access templates on Vector <VectorBadge />
         </a>
+
+        <div className={styles.roadmap}>
+          <div className={styles.roadmapBadge}>THE WIDER WORKFLOW · IN DEVELOPMENT</div>
+          <p className={styles.roadmapCopy}>
+            Not yet available in Vector. Listed so you can see where the connected practitioner workflow is going —
+            each of these is intended to carry forward details from the documents above rather than starting blank.
+          </p>
+          <div className={styles.roadmapGrid}>
+            {WORKFLOW_IN_DEVELOPMENT.map((item) => (
+              <div key={item.title} className={styles.roadmapCard}>
+                <div className={styles.roadmapCardTitle}>{item.title}</div>
+                <p className={styles.templateCopy}>{item.copy}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <footer className={styles.footer}>
