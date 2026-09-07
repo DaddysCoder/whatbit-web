@@ -148,7 +148,7 @@ export function HomePage() {
             <LiftCard externalHref="https://axis.whatbit.tech" className={`${styles.card} ${styles.axil}`} variants={cardEntranceVariants}>
               <div className={styles.cardTop}>
                 <BarMark size={44} gradient="linear-gradient(135deg,#F7A876,#F2925C)" />
-                <div className={styles.live}>LIVE · FREE + PRO</div>
+                <div className={styles.live}>LIVE · FREE</div>
               </div>
               <div>
                 <div className={styles.cardName}>Axis <span className={styles.by}>by WhatBit</span></div>
@@ -163,7 +163,7 @@ export function HomePage() {
                 <div className={styles.cardName}>Trace <span className={styles.by}>by WhatBit</span></div>
                 <p className={styles.cardTag}>Free behaviour-support budget and pacing calculator. Pro unlocks downloadable reports and document exports.</p>
               </div>
-              <div className={styles.live}>LIVE · FREE + PRO</div>
+              <div className={styles.live}>LIVE · FREE, PRO PILOT</div>
             </LiftCard>
 
             <LiftCard href="/vector" className={`${styles.card} ${styles.vector}`} variants={cardEntranceVariants}>

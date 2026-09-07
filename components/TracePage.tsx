@@ -26,7 +26,7 @@ export function TracePage() {
               float
             />
           </div>
-          <div className={styles.live}>FREE CORE · TRACE PRO A$9/MO</div>
+          <div className={styles.live}>FREE CALCULATOR · PRO OUTPUTS (PILOT) A$9/MO</div>
           <h1 className={styles.title}>
             Know whether the plan
             <br />
@@ -73,7 +73,7 @@ export function TracePage() {
             </a>
           </div>
           <p style={{ marginTop: 16, fontSize: 14, opacity: 0.72 }}>
-            No account or card is needed for the calculator. Pro is only for downloadable reports and premium document exports.
+            No account or card is needed for the calculator, which is free and available now. Pro (downloadable reports and premium document exports) is in pilot — the checkout-to-portal flow is still being verified end to end.
           </p>
         </Reveal>
       </div>
@@ -135,10 +135,10 @@ export function TracePage() {
 
         <div className={styles.feat}>
           <Reveal>
-            <div className={styles.featEyebrow}>TRACE PRO</div>
+            <div className={styles.featEyebrow}>TRACE PRO (PILOT)</div>
             <h2 className={styles.featTitle}>Do the thinking once. Take the output with you.</h2>
             <p className={styles.featCopy}>
-              Pro unlocks downloadable budget and pacing reports and the premium document/export layer as Trace grows. Billing is handled by Stripe and can be managed or cancelled through Stripe&apos;s customer portal.
+              Pro unlocks downloadable budget and pacing reports and the premium document/export layer as Trace grows, at A$9/month. Billing is handled by Stripe and can be managed or cancelled through Stripe&apos;s customer portal. Pro is in pilot while we finish verifying the full subscribe-to-cancel flow.
             </p>
           </Reveal>
           <div className={`${styles.viz} ${styles.sources} ${styles.vizDelay2}`} style={{ background: "linear-gradient(160deg,#F2FBF9,#FFFFFF)" }}>
