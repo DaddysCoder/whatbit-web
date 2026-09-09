@@ -4,7 +4,7 @@ import { ContactPage } from "@/components/ContactPage";
 export const metadata: Metadata = {
   title: "Contact — WhatBit",
   description:
-    "No contact form gatekeeper, no chatbot pretending to be a person. Just an inbox, checked by actual humans.",
+    "Contact WhatBit about digital services, products, partnerships, pilots or something else. Your message goes to an inbox checked by actual humans.",
 };
 
 export default function Page() {
