@@ -12,7 +12,7 @@ export default function Page() {
     <DocPage
       eyebrow="TERMS OF USE"
       title="The useful rules."
-      lede="WhatBit is a brand operated by Primitive AI Labs Limited (trading as Primitive AI), ABN 45 537 386 346, ACN 701 195 708. These terms apply to the WhatBit website and general WhatBit services unless a product-specific set of terms or signed client agreement applies."
+      lede="WhatBit is a brand operated by Primitive AI Labs Pty Limited, ABN 86 701 195 708, ACN 701 195 708. These terms apply to the WhatBit website and general WhatBit services unless a product-specific set of terms or signed client agreement applies."
       blocks={[
         {
           heading: "Website information",
