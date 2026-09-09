@@ -29,7 +29,7 @@ export const VODA_PRODUCT = {
   name: "VODA",
   tagline: "See the business as a graph. Then see what happens next.",
   description:
-    "VODA is WhatBit's intelligence engine. It maps how work actually moves through a business, then runs predictive models against that map to say what's coming — a bottleneck, a risk, an opening.",
+    "VODA is an intelligence engine in development. It is being designed to map how work moves through a business and test predictive models against that map to surface potential bottlenecks, risks and openings.",
   accent: "#3452FF",
   accentHover: "#1E3AB8",
   selection: "#E1E7FF",
