@@ -11,6 +11,7 @@ import {
   aggregateSuggestedControls,
   type OrgWideContext,
 } from "./scoring";
+import { applyStrictReviewGates } from "./strict-review";
 import { computeCompletenessFlags, computeContradictionFlags } from "./completeness";
 
 /**
@@ -58,10 +59,13 @@ export function assembleSubmissionPayload(params: BuildSubmissionParams): Assess
     sectors,
   };
 
-  const computedUseCases: UseCaseRecord[] = useCases.map((uc) => ({
-    ...uc,
-    computed: computeUseCaseTriage(uc, ctx),
-  }));
+  const computedUseCases: UseCaseRecord[] = useCases.map((uc) => {
+    const base = computeUseCaseTriage(uc, ctx);
+    return {
+      ...uc,
+      computed: applyStrictReviewGates(uc, ctx, base),
+    };
+  });
 
   const overallAttention = computeOverallAttention(computedUseCases);
   const suggestedControls = aggregateSuggestedControls(computedUseCases);
