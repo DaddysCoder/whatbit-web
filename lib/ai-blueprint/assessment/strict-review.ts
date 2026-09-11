@@ -24,9 +24,10 @@ function hasPersonalOrSensitiveData(answers: Record<string, unknown>): boolean {
  * reassuring. These gates never turn uncertainty into a factual failure: they
  * only force human review and the controls needed to resolve the uncertainty.
  *
- * IMPORTANT: `__impact_review_evidence_confirmed` is reviewer/internal state.
- * Customer-provided Q18 narrative text is not proof that a documented impact
- * review exists and must never auto-clear U7.
+ * Customer-submitted answers can never clear a reviewer-only escalation. In
+ * particular, Q18 narrative text is not proof that a documented impact review
+ * exists. U7 is raised here and may only be cleared later by the authenticated
+ * human-review workflow with a recorded reason/evidence trail.
  */
 export function applyStrictReviewGates(
   useCase: UseCaseRecord,
@@ -79,11 +80,11 @@ export function applyStrictReviewGates(
     controls.add("C16");
   }
 
-  // U7: describing an affected vulnerable group is not evidence of a documented
-  // impact review. Only explicit reviewer-confirmed evidence may clear this gate.
+  // U7: a customer narrative cannot prove a documented impact review exists.
+  // Always escalate vulnerable + higher-stakes combinations for authenticated
+  // reviewer confirmation; the later review workflow may clear it with evidence.
   const higherStakes = highImpact || ["rank_shortlist", "determines"].includes(q16);
-  const impactReviewConfirmed = answers.__impact_review_evidence_confirmed === true;
-  if (groups.length > 0 && higherStakes && !impactReviewConfirmed) {
+  if (groups.length > 0 && higherStakes) {
     flags.add("U7");
     controls.add("C05");
   }
