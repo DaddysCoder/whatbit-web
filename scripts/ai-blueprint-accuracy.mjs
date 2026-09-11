@@ -39,7 +39,7 @@ const reviewCases = [
   ["Public high-impact + disclosure/redress does not add strict U3", useCase({ Q15: "varied_with_escalation", Q17: ["health_clinical_disability"], Q16: "no" }), context({ Q27: "clear_notice", Q28: "formal_ai_process" }), "U3", false],
   ["Vulnerable + high-impact no review evidence escalates U7", useCase({ Q18: ["people_with_disability"], Q17: ["essential_service_access"], Q18_detail: "needs considered" }), context(), "U7", true],
   ["Q18 narrative does not falsely clear U7", useCase({ Q18: ["children_young_people"], Q16: "determines", Q18_detail: "we considered children" }), context(), "U7", true],
-  ["Reviewer-confirmed impact-review evidence can clear strict U7", useCase({ Q18: ["children_young_people"], Q16: "determines", __impact_review_evidence_confirmed: true }), context(), "U7", false],
+  ["Customer-injected reviewer-looking field cannot clear U7", useCase({ Q18: ["children_young_people"], Q16: "determines", __impact_review_evidence_confirmed: true }), context(), "U7", true],
   ["High-impact sampled-after-use without subject review escalates U8", useCase({ Q17: ["legal_rights_justice"] }), context({ Q22: "sampled_after_use", Q24: ["accuracy_check"] }), "U8", true],
   ["High-impact with subject-matter review does not add strict U8", useCase({ Q17: ["legal_rights_justice"] }), context({ Q22: "no_defined_review", Q24: ["subject_matter_review"] }), "U8", false],
   ["Low-impact internal drafting remains un-escalated", useCase({ Q15: "no", Q16: "no", Q17: ["none"], Q18: ["no"], Q12: ["ordinary_internal"] }), context({ Q22: "before_use", Q27: "clear_notice", Q28: "formal_ai_process", Q24: ["subject_matter_review"] }), null, false],
