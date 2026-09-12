@@ -49,6 +49,10 @@ Required production runtime configuration:
 
 Without `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_AI_BLUEPRINT_API_TOKEN`, the AI Blueprint API routes return a `503`. The contact form is independent and requires its own Resend configuration.
 
+## AI Blueprint separation (Phase A)
+
+The operational AI Blueprint app extracts to `DaddysCoder/blue-print-ai-app`. WHATBIT keeps the marketing page (`/ai-blueprint`) plus the early-access signup (`/api/ai-blueprint/early-access`). No deploy, DNS, or Stripe changes are part of this task; the standalone app origin is configured via `NEXT_PUBLIC_AI_BLUEPRINT_APP_URL` (empty until the owner approves the domain).
+
 ## Development
 
 ```bash

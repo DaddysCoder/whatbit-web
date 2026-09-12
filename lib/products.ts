@@ -24,6 +24,10 @@ export const PACE_APP_URL = "https://orbit.whatbit.tech";
 export const AXIS_APP_URL = "https://axis.whatbit.tech";
 export const TRACE_APP_URL = "https://trace.whatbit.dev";
 
+// Configurable standalone AI Blueprint app origin; empty until the owner
+// approves the domain. Marketing derives terms/privacy/open-app links from it.
+export const AI_BLUEPRINT_APP_URL = process.env.NEXT_PUBLIC_AI_BLUEPRINT_APP_URL ?? "";
+
 export const VODA_PRODUCT = {
   slug: "voda" as const,
   name: "VODA",
