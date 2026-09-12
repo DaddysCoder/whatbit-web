@@ -24,7 +24,7 @@ function cacheKey(token: string) {
 }
 
 /**
- * Crash-resilience fallback ONLY. The server (`/api/ai-blueprint/assessment/[token]`)
+ * Crash-resilience fallback ONLY. The server (`/api/assessment/[token]`)
  * is the authoritative source of truth on load. This cache exists purely to
  * cover the narrow window between a keystroke and the debounced autosave PUT
  * reaching the server — e.g. the tab or browser crashes mid-edit. It is

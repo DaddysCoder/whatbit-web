@@ -79,12 +79,12 @@ payload server-side via `assembleSubmissionPayload`, and freezes the record;
   `website@whatbit.dev`), `POST https://api.resend.com/emails`, log-and-continue on
   missing key for Blueprint / `503` for the public contact form.
 - Marketing CTA/footer (`components/AiBlueprintPage.tsx`): CTAs point at
-  `AI_BLUEPRINT_EARLY_ACCESS_HREF = "/ai-blueprint#early-access"`; footer legal links
-  are `/ai-blueprint/privacy` and `/ai-blueprint/terms`. Future open-app/terms/privacy
-  links derive from `AI_BLUEPRINT_APP_URL` (`lib/products.ts`,
-  `NEXT_PUBLIC_AI_BLUEPRINT_APP_URL`, empty until owner approves domain).
-- `app/robots.ts` disallows `/admin/`, `/api/`, `/ai-blueprint/assessment`,
-  `/ai-blueprint/success`; `app/sitemap.ts` lists only the public `/ai-blueprint` page.
+  `AI_BLUEPRINT_EARLY_ACCESS_HREF = "/ai-blueprint#early-access"`; footer service-legal
+  links render only when `AI_BLUEPRINT_APP_URL` is configured, as
+  `${AI_BLUEPRINT_APP_URL}/privacy|/terms` (standalone app owns them).
+- `app/robots.ts` disallows `/api/` only (Blueprint assessment/success/admin
+  entries removed with the operational routes); `app/sitemap.ts` lists only the
+  public `/ai-blueprint` page.
 
 ---
 
