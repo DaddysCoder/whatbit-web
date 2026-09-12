@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // This directory is a standalone app (promoted to DaddysCoder/blue-print-ai-app).
+  // Pin the Turbopack root so the transitional whatbit-web checkout layout
+  // (two lockfiles) doesn't trigger workspace-root inference warnings.
+  turbopack: {
+    root: import.meta.dirname,
+  },
   async headers() {
     return [
       {
