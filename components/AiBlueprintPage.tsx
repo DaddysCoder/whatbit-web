@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { AI_BLUEPRINT_CTA_LABEL, AI_BLUEPRINT_PRICE_LABEL } from "@/lib/ai-blueprint";
+import { AI_BLUEPRINT_APP_URL } from "@/lib/products";
 import { Reveal, StaggerGroup, StaggerItem } from "./motion/Reveal";
 import { MagneticButton } from "./motion/MagneticButton";
 import styles from "./AiBlueprintPage.module.css";
@@ -392,8 +393,15 @@ export function AiBlueprintPage() {
           </Link>
           <div className={styles.footerLinks}>
             <span>AI Blueprint by WhatBit · Australia</span>
-            <Link href="/ai-blueprint/privacy">Privacy Policy</Link>
-            <Link href="/ai-blueprint/terms">Terms</Link>
+            {/* Service Terms/Privacy live in the standalone Blueprint app
+                (AI_BLUEPRINT_APP_URL); hidden until the owner approves the
+                domain so marketing never links at an empty/unset origin. */}
+            {AI_BLUEPRINT_APP_URL ? (
+              <>
+                <a href={`${AI_BLUEPRINT_APP_URL}/privacy`}>Privacy Policy</a>
+                <a href={`${AI_BLUEPRINT_APP_URL}/terms`}>Terms</a>
+              </>
+            ) : null}
           </div>
         </div>
       </Reveal>

@@ -35,19 +35,11 @@ The form collects only name, email, reason and message, includes a honeypot fiel
 
 ## AI Blueprint
 
-`/ai-blueprint` is a paid AI-readiness assessment product. The public pages (`/ai-blueprint`, `/success`, `/assessment`, `/submitted`, `/terms`, `/privacy`) and the internal review tooling (`/admin/ai-blueprint`, `/admin/ai-blueprint/[id]`) are backed by a Cloudflare D1 database (`ai-blueprint`) and a Cloudflare KV namespace (`ai-blueprint-admin-sessions`), both queried over Cloudflare's REST API (no Workers bindings required, so this runs on any Next.js hosting target).
+`/ai-blueprint` is the WHATBIT marketing page for the paid AI-readiness assessment product, plus a marketing-only early-access waitlist (`/api/ai-blueprint/early-access`, Resend email notification only — no database).
 
-Required production runtime configuration:
+The operational Blueprint application (assessment, reviewer/admin UI, assessment APIs, Stripe checkout webhook, Cloudflare D1/KV backend) lives in the standalone `DaddysCoder/blue-print-ai-app` codebase, prepared in `blue-print-ai-app/` for promotion to its own repository. WHATBIT links to it through the single `AI_BLUEPRINT_APP_URL` constant in `lib/products.ts` (configured via `NEXT_PUBLIC_AI_BLUEPRINT_APP_URL`; empty until the owner approves the domain).
 
-- `CLOUDFLARE_ACCOUNT_ID` — shared with the D1/KV REST calls above
-- `CLOUDFLARE_AI_BLUEPRINT_API_TOKEN` — secret scoped to D1 Edit + Workers KV Storage Edit for the `ai-blueprint` database and `ai-blueprint-admin-sessions` namespace only
-- `RESEND_API_KEY` / `CONTACT_FROM_EMAIL` — shared with the contact form; used to send assessment-invite, submission-notification and delivery emails
-- `AI_BLUEPRINT_STRIPE_WEBHOOK_SECRET` — the signing secret for a Stripe webhook subscribed to `checkout.session.completed`, pointed at `/api/ai-blueprint/checkout-webhook`
-- `AI_BLUEPRINT_ADMIN_PASSWORD` — shared password for `/admin/ai-blueprint` sign-in (a lightweight gate; there is no per-reviewer account system yet)
-- `AI_BLUEPRINT_ADMIN_SESSION_SECRET` — random secret used to HMAC-sign the admin session cookie
-- `NEXT_PUBLIC_AI_BLUEPRINT_CHECKOUT_URL` — optional; a Stripe Payment Link for the "Become a Founding Client" CTA. Until set, CTAs fall back to the on-page offer section.
-
-Without `CLOUDFLARE_ACCOUNT_ID` / `CLOUDFLARE_AI_BLUEPRINT_API_TOKEN`, the AI Blueprint API routes return a `503`. The contact form is independent and requires its own Resend configuration.
+WHATBIT production needs only `RESEND_API_KEY` / `CONTACT_FROM_EMAIL` (shared with the contact form) for Blueprint marketing. Blueprint operational secrets (`CLOUDFLARE_*`, `AI_BLUEPRINT_ADMIN_*`, `AI_BLUEPRINT_STRIPE_WEBHOOK_SECRET`) belong to the standalone app and must not be set on WHATBIT.
 
 ## AI Blueprint separation (Phase A)
 
