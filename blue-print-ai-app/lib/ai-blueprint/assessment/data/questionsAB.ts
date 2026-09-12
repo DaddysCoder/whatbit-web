@@ -1,0 +1,202 @@
+import type { QuestionDef } from "../types";
+
+// Section A — Organisation and scope (Q01–Q05)
+export const sectionA: QuestionDef[] = [
+  {
+    id: "Q01",
+    section: "A",
+    kind: "compound",
+    prompt: "What organisation is this assessment for?",
+    followUps: [
+      { id: "Q01_name", prompt: "Legal or trading name", kind: "short_text", maxLength: 120 },
+      { id: "Q01_abn", prompt: "ABN (optional)", kind: "short_text", maxLength: 20 },
+      { id: "Q01_website", prompt: "Website (optional)", kind: "short_text", maxLength: 120 },
+      {
+        id: "Q01_state",
+        prompt: "Main Australian state or territory",
+        kind: "single_select",
+        options: [
+          { value: "nsw", label: "New South Wales" },
+          { value: "vic", label: "Victoria" },
+          { value: "qld", label: "Queensland" },
+          { value: "wa", label: "Western Australia" },
+          { value: "sa", label: "South Australia" },
+          { value: "tas", label: "Tasmania" },
+          { value: "act", label: "Australian Capital Territory" },
+          { value: "nt", label: "Northern Territory" },
+          { value: "multiple", label: "Multiple states / national" },
+        ],
+      },
+      {
+        id: "Q01_description",
+        prompt: "One-sentence description of products/services",
+        kind: "short_text",
+        maxLength: 200,
+      },
+    ],
+  },
+  {
+    id: "Q02",
+    section: "A",
+    kind: "single_select",
+    prompt: "About how large is the organisation?",
+    helper: "Include employees and regular contractors.",
+    options: [
+      { value: "sole_trader", label: "Sole trader" },
+      { value: "2_5", label: "2–5 people" },
+      { value: "6_19", label: "6–19" },
+      { value: "20_49", label: "20–49" },
+      { value: "50_199", label: "50–199" },
+      { value: "200_plus", label: "200+" },
+      { value: "not_sure", label: "Not sure" },
+    ],
+  },
+  {
+    id: "Q03",
+    section: "A",
+    kind: "multi_select",
+    prompt: "Which areas best describe your work?",
+    options: [
+      { value: "professional_consulting", label: "Professional/consulting services" },
+      { value: "retail_hospitality", label: "Retail/hospitality" },
+      { value: "technology_software", label: "Technology/software" },
+      { value: "marketing_media_creative", label: "Marketing/media/creative" },
+      { value: "construction_trades", label: "Construction/trades" },
+      { value: "education_training", label: "Education/training" },
+      { value: "health_clinical", label: "Health/clinical" },
+      { value: "disability_aged_community", label: "Disability/aged care/community services" },
+      { value: "child_related", label: "Child-related services" },
+      { value: "recruitment_employment", label: "Recruitment/employment" },
+      { value: "finance_credit_insurance", label: "Finance/credit/insurance" },
+      { value: "legal_services", label: "Legal services" },
+      { value: "government_public", label: "Government/public services" },
+      { value: "critical_infrastructure", label: "Critical infrastructure/essential services" },
+      { value: "other", label: "Other" },
+    ],
+  },
+  {
+    id: "Q04",
+    section: "A",
+    kind: "compound",
+    prompt: "Who is completing this assessment?",
+    followUps: [
+      { id: "Q04_name", prompt: "Name", kind: "short_text", maxLength: 120 },
+      { id: "Q04_role_title", prompt: "Role (title)", kind: "short_text", maxLength: 120 },
+      { id: "Q04_email", prompt: "Email", kind: "short_text", maxLength: 120 },
+      {
+        id: "Q04_role_type",
+        prompt: "Which best describes your role?",
+        kind: "single_select",
+        options: [
+          { value: "owner_director", label: "Owner/director" },
+          { value: "senior_manager", label: "Senior manager" },
+          { value: "ai_tech_lead", label: "AI/technology lead" },
+          { value: "privacy_security_risk", label: "Privacy/security/risk role" },
+          { value: "team_member", label: "Team member" },
+          { value: "external_adviser", label: "External adviser" },
+          { value: "other", label: "Other" },
+        ],
+      },
+      {
+        id: "Q04_confirm_visibility",
+        prompt: "Can you confirm organisation-wide practices?",
+        kind: "single_select",
+        options: [
+          { value: "yes", label: "Yes" },
+          { value: "partly", label: "Partly" },
+          { value: "no", label: "No" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "Q05",
+    section: "A",
+    kind: "multi_select",
+    hasNotSure: true,
+    prompt:
+      "Are any special rules or formal obligations likely to apply to the organisation or the AI uses being reviewed?",
+    options: [
+      { value: "privacy_act_app", label: "Privacy Act / Australian Privacy Principles" },
+      { value: "health_clinical_records", label: "Health records or clinical obligations" },
+      { value: "ndis_disability", label: "NDIS/disability service obligations" },
+      { value: "employment_workplace", label: "Employment/workplace obligations" },
+      {
+        value: "credit_finance_insurance",
+        label: "Consumer credit/financial services/insurance obligations",
+      },
+      { value: "child_safety", label: "Child safety" },
+      { value: "government_procurement", label: "Government contract/procurement requirements" },
+      { value: "professional_standards", label: "Professional standards or registration" },
+      {
+        value: "contractual_confidentiality",
+        label: "Contractual confidentiality/data-residency requirements",
+      },
+      { value: "other", label: "Other" },
+      { value: "none_known", label: "None known" },
+      { value: "not_sure", label: "Not sure" },
+    ],
+  },
+];
+
+// Section B — AI inventory (Q06–Q09)
+export const sectionB: QuestionDef[] = [
+  {
+    id: "Q06",
+    section: "B",
+    kind: "tool_repeat_group",
+    prompt: "Which AI tools or AI-enabled systems are currently used or planned?",
+    helper:
+      "Include things like chatbots, Copilot features, transcription, image/content tools, CRM/HR/accounting AI features, automated recommendations and agents. Add 1–10 tools.",
+  },
+  {
+    id: "Q07",
+    section: "B",
+    kind: "single_select",
+    hasNotSure: true,
+    prompt: "Could staff be using AI for work without the organisation knowing or approving each tool?",
+    options: [
+      { value: "no_unlikely", label: "No, unlikely" },
+      { value: "possibly", label: "Possibly" },
+      { value: "yes", label: "Yes" },
+      { value: "not_sure", label: "Not sure" },
+      { value: "n_a_only_me", label: "Not applicable — only I use the tools" },
+    ],
+  },
+  {
+    id: "Q08",
+    section: "B",
+    kind: "multi_select",
+    prompt: "What is AI currently used for across the organisation?",
+    options: [
+      { value: "brainstorming_research", label: "Brainstorming/research" },
+      { value: "drafting_editing_summarising", label: "Drafting/editing/summarising" },
+      { value: "images_audio_video", label: "Images/audio/video" },
+      { value: "meeting_notes_transcription", label: "Meeting notes/transcription" },
+      { value: "coding_software", label: "Coding/software" },
+      { value: "data_analysis_forecasting", label: "Data analysis/forecasting" },
+      { value: "internal_search_knowledge", label: "Internal search/knowledge" },
+      { value: "marketing_sales", label: "Marketing/sales" },
+      { value: "customer_service_chat", label: "Customer service/chat" },
+      { value: "hr_recruitment_performance", label: "HR/recruitment/performance" },
+      { value: "finance_credit_insurance", label: "Finance/credit/insurance" },
+      {
+        value: "health_clinical_disability_community",
+        label: "Health/clinical/disability/community services",
+      },
+      { value: "security_fraud", label: "Security/fraud" },
+      { value: "eligibility_prioritisation_allocation", label: "Eligibility/prioritisation/allocation" },
+      { value: "automated_actions_agents", label: "Automated actions/agents" },
+      { value: "other", label: "Other" },
+    ],
+  },
+  {
+    id: "Q09",
+    section: "B",
+    kind: "use_case_repeat_group",
+    prompt:
+      "Choose the AI use that could matter most if it produced a wrong, unfair, private or unexpected result.",
+    helper:
+      "Choose impact, not frequency. A rare hiring, health, finance or service-access use may matter more than daily drafting. One is required; you can add up to two more.",
+  },
+];
