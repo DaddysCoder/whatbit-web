@@ -13,6 +13,9 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     "fracta-flow-vector/**",
+    // Standalone AI Blueprint app (promotes to DaddysCoder/blue-print-ai-app):
+    // it carries its own eslint config and is linted from its own directory.
+    "blue-print-ai-app/**",
   ]),
 ]);
 

@@ -30,5 +30,11 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules", "fracta-flow-vector"]
+  "exclude": [
+    "node_modules",
+    "fracta-flow-vector",
+    // Standalone AI Blueprint app (promotes to DaddysCoder/blue-print-ai-app):
+    // it carries its own tsconfig with its own @/* paths.
+    "blue-print-ai-app"
+  ]
 }
